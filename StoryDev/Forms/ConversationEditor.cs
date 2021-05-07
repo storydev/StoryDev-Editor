@@ -28,5 +28,10 @@ namespace StoryDev.Forms
             else if (cmbView.SelectedIndex == 1)
                 branchDesignerUI1.View = Components.BranchView.List;
         }
+
+        private void chbSnapping_CheckedChanged(object sender, EventArgs e)
+        {
+            branchDesignerUI1.Snapping = chbSnapping.Checked;
+        }
     }
 }

@@ -24,6 +24,7 @@ namespace StoryDev.Components
 
         private Pen selectedPen;
         private Pen subSelectedPen;
+        private Pen highlightPen;
         private Font regularFont;
 
         private BranchView view;
@@ -40,11 +41,26 @@ namespace StoryDev.Components
             }
         }
 
+        private bool snapping;
+        public bool Snapping
+        {
+            get
+            {
+                return snapping;
+            }
+            set
+            {
+                snapping = value;
+                Invalidate();
+            }
+        }
+
         private PointF[] positions;
         private string[] names;
         private int[] levels;
         private bool[] manualMove;
         private bool[][] links;
+        private bool[] highlightRoute;
 
         private int currentIndex = -1;
         private const int MAX_BRANCHES = 50;
@@ -58,6 +74,7 @@ namespace StoryDev.Components
         private int lastMouseY;
         private int diffX;
         private int diffY;
+        private bool movingSelected;
 
         private float indent;
 
@@ -70,6 +87,7 @@ namespace StoryDev.Components
             InitializeComponent();
 
             selectedPen = new Pen(Brushes.Blue, 3f);
+            highlightPen = new Pen(Brushes.LimeGreen, 2f);
             subSelectedPen = new Pen(Brushes.Blue, 1f);
             subSelectedPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
 
@@ -80,6 +98,7 @@ namespace StoryDev.Components
             levels = new int[MAX_BRANCHES];
             links = new bool[MAX_BRANCHES][];
             manualMove = new bool[MAX_BRANCHES];
+            highlightRoute = new bool[MAX_BRANCHES];
 
             for (int i = 0; i < MAX_BRANCHES; i++)
             {
@@ -169,18 +188,37 @@ namespace StoryDev.Components
 
             if (view == BranchView.Branch)
             {
-                var cellsX = (int)Math.Ceiling(Width / 180f);
-                var cellsY = (int)Math.Ceiling(Height / 100f);
+                var cellWidth = (BRANCH_WIDTH / 2);
+                var cellHeight = (BRANCH_HEIGHT / 2);
+                var cellsX = (int)Math.Ceiling(Width / cellWidth);
+                var cellsY = (int)Math.Ceiling(Height / cellHeight);
 
                 for (int x = 0; x < cellsX; x++)
                 {
-                    g.DrawLine(new Pen(Color.FromArgb(220, 220, 255)), x * 180f, 0, x * 180f, Height);
+                    g.DrawLine(new Pen(Color.FromArgb(220, 220, 255)), x * cellWidth, 0, x * cellWidth, Height);
                 }
 
                 for (int y = 0; y < cellsY; y++)
                 {
-                    g.DrawLine(new Pen(Color.FromArgb(220, 220, 255)), 0, y * 100f, Width, y * 100f);
+                    g.DrawLine(new Pen(Color.FromArgb(220, 220, 255)), 0, y * cellHeight, Width, y * cellHeight);
                 }
+
+                if (!movingSelected && selectedIndex > -1)
+                {
+                    highlightRoute = new bool[MAX_BRANCHES];
+
+                    var currentParent = selectedIndex;
+
+                    for (int i = currentIndex; i > -1; i--)
+                    {
+                        if (links[currentParent][i])
+                        {
+                            highlightRoute[i] = true;
+                            currentParent = i;
+                        }
+                    }
+                }
+
 
                 // draw branch links
                 for (int i = 0; i <= currentIndex; i++)
@@ -191,8 +229,10 @@ namespace StoryDev.Components
 
                         if (selectedIndex > -1)
                         {
-                            if (links[i][selectedIndex])
+                            if (links[i][selectedIndex] && !highlightRoute[selectedIndex])
                                 pen = selectedPen;
+                            else if (highlightRoute[selectedIndex])
+                                pen = highlightPen;
                         }
 
                         if (links[i][j])
@@ -273,6 +313,7 @@ namespace StoryDev.Components
 
             mouseReleased = false;
             mouseButton = MouseButtons.None;
+            movingSelected = false;
         }
 
         private bool ListItem(int index, ref float startY)
@@ -302,7 +343,9 @@ namespace StoryDev.Components
                 pen = selectedPen;
             else if (selectedIndex > -1)
             {
-                if (links[index][selectedIndex])
+                if (highlightRoute[index])
+                    pen = highlightPen;
+                else if (links[index][selectedIndex])
                     pen = subSelectedPen;
             }
 
@@ -340,6 +383,33 @@ namespace StoryDev.Components
             mouseDown = false;
             mouseButton = e.Button;
 
+            // check a 5 pixel tolerance when snapping to determine a result outside it's original cell.
+            if (movingIndex > -1 && snapping && (diffX > 5 || diffY > 5))
+            {
+                var cellX = BRANCH_WIDTH / 2;
+                var cellY = BRANCH_HEIGHT / 2;
+
+                var x = positions[movingIndex].X;
+                var y = positions[movingIndex].Y;
+
+                var tileX = Math.Floor(x / cellX) * cellX;
+                var tileY = Math.Floor(y / cellY) * cellY;
+
+                if (tileX < 0)
+                    tileX = 0;
+
+                if (tileY < 0)
+                    tileY = 0;
+
+                positions[movingIndex].X = (float)tileX;
+                positions[movingIndex].Y = (float)tileY;
+            }
+            else if (movingIndex > -1 && snapping)
+            {
+                positions[movingIndex].X -= diffX;
+                positions[movingIndex].Y -= diffY;
+            }
+
             movingIndex = -1;
 
             var found = false;
@@ -355,6 +425,9 @@ namespace StoryDev.Components
 
             if (!found)
                 selectedIndex = -1;
+
+            diffX = 0;
+            diffY = 0;
 
             Invalidate();
         }
@@ -397,11 +470,15 @@ namespace StoryDev.Components
                 var diffX = e.X - lastMouseX;
                 var diffY = e.Y - lastMouseY;
 
+                this.diffX += diffX;
+                this.diffY += diffY;
+
                 positions[movingIndex].X += diffX;
                 positions[movingIndex].Y += diffY;
 
                 lastMouseX = e.X;
                 lastMouseY = e.Y;
+                movingSelected = true;
             }
 
             Invalidate();
