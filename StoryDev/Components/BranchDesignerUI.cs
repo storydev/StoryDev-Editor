@@ -55,6 +55,9 @@ namespace StoryDev.Components
             }
         }
 
+        private float actualOffsetX;
+        private float actualOffsetY;
+
         private PointF[] positions;
         private string[] names;
         private int[] levels;
@@ -188,19 +191,66 @@ namespace StoryDev.Components
 
             if (view == BranchView.Branch)
             {
+                var offsetX = 0f;
+                var offsetY = 0f;
+
+                var maxWidth = 0f;
+                var maxHeight = 0f;
+
+                for (int x = 0; x <= currentIndex; x++)
+                {
+                    if (positions[x].X + BRANCH_WIDTH > maxWidth)
+                        maxWidth = positions[x].X + BRANCH_WIDTH;
+
+                    if (positions[x].Y + BRANCH_HEIGHT > maxHeight)
+                        maxHeight = positions[x].Y + BRANCH_HEIGHT;
+                }
+
+                maxWidth += 250f;
+                maxHeight += 250f;
+
+                if (movingIndex == -1)
+                {
+                    var remWidth = maxWidth - Width;
+                    var remHeight = maxHeight - Height;
+
+                    hScrollBar.Visible = remWidth > 0;
+                    vScrollBar.Visible = remHeight > 0;
+
+                    if (remWidth > 0)
+                    {
+                        offsetX = (float)hScrollBar.Value / (float)hScrollBar.Maximum;
+                        actualOffsetX = offsetX * remWidth;
+                    }
+                    else
+                    {
+                        actualOffsetX = 0f;
+                    }
+
+                    if (remHeight > 0)
+                    {
+                        offsetY = (float)vScrollBar.Value / (float)vScrollBar.Maximum;
+                        actualOffsetY = offsetY * remHeight;
+                    }
+                    else
+                    {
+                        actualOffsetY = 0f;
+                    }
+                }
+
                 var cellWidth = (BRANCH_WIDTH / 2);
                 var cellHeight = (BRANCH_HEIGHT / 2);
-                var cellsX = (int)Math.Ceiling(Width / cellWidth);
-                var cellsY = (int)Math.Ceiling(Height / cellHeight);
+                var cellsX = (int)Math.Ceiling((maxWidth > Width ? maxWidth : Width) / cellWidth);
+                var cellsY = (int)Math.Ceiling((maxHeight > Height ? maxHeight : Height) / cellHeight);
 
                 for (int x = 0; x < cellsX; x++)
                 {
-                    g.DrawLine(new Pen(Color.FromArgb(220, 220, 255)), x * cellWidth, 0, x * cellWidth, Height);
+                    g.DrawLine(new Pen(Color.FromArgb(220, 220, 255)), (x * cellWidth) - actualOffsetX, 0, (x * cellWidth) - actualOffsetX, Height);
                 }
 
                 for (int y = 0; y < cellsY; y++)
                 {
-                    g.DrawLine(new Pen(Color.FromArgb(220, 220, 255)), 0, y * cellHeight, Width, y * cellHeight);
+                    g.DrawLine(new Pen(Color.FromArgb(220, 220, 255)), 0, (y * cellHeight) - actualOffsetY, Width, (y * cellHeight) - actualOffsetY);
                 }
 
                 if (!movingSelected && selectedIndex > -1)
@@ -246,7 +296,7 @@ namespace StoryDev.Components
                             var rightB = boxB.X;
                             var topB = boxB.Y + (BRANCH_HEIGHT / 2);
 
-                            g.DrawLine(pen, leftA, downA, rightB, topB);
+                            g.DrawLine(pen, leftA - actualOffsetX, downA - actualOffsetY, rightB - actualOffsetX, topB - actualOffsetY);
                         }
                     }
                 }
@@ -336,7 +386,7 @@ namespace StoryDev.Components
             var position = positions[index];
             var text = names[index];
 
-            var active = IsMouseOver((int)position.X, (int)position.Y, (int)BRANCH_WIDTH, (int)BRANCH_HEIGHT);
+            var active = IsMouseOver((int)(position.X - actualOffsetX), (int)(position.Y - actualOffsetY), (int)BRANCH_WIDTH, (int)BRANCH_HEIGHT);
             var pen = Pens.Black;
 
             if (selectedIndex == index)
@@ -349,8 +399,8 @@ namespace StoryDev.Components
                     pen = subSelectedPen;
             }
 
-            g.FillRectangle(Brushes.White, position.X, position.Y, BRANCH_WIDTH, BRANCH_HEIGHT);
-            g.DrawRectangle(pen, position.X, position.Y, BRANCH_WIDTH, BRANCH_HEIGHT);
+            g.FillRectangle(Brushes.White, position.X - actualOffsetX, position.Y - actualOffsetY, BRANCH_WIDTH, BRANCH_HEIGHT);
+            g.DrawRectangle(pen, position.X - actualOffsetX, position.Y - actualOffsetY, BRANCH_WIDTH, BRANCH_HEIGHT);
 
             var textBlockWidth = BRANCH_WIDTH * .9;
 
@@ -360,8 +410,8 @@ namespace StoryDev.Components
                 textBlockWidth = size.Width;
             }
 
-            var textX = ((BRANCH_WIDTH - textBlockWidth) / 2) + position.X;
-            var textY = ((BRANCH_HEIGHT - size.Height) / 2) + position.Y;
+            var textX = (((BRANCH_WIDTH - textBlockWidth) / 2) + position.X) - actualOffsetX;
+            var textY = (((BRANCH_HEIGHT - size.Height) / 2) + position.Y) - actualOffsetY;
 
             g.DrawString(text, regularFont, Brushes.Black, new RectangleF((float)textX, textY, (float)textBlockWidth, size.Height));
 
@@ -384,7 +434,7 @@ namespace StoryDev.Components
             mouseButton = e.Button;
 
             // check a 5 pixel tolerance when snapping to determine a result outside it's original cell.
-            if (movingIndex > -1 && snapping && (diffX > 5 || diffY > 5))
+            if (movingIndex > -1 && snapping && (diffX > 5 || diffY > 5 || diffX < -5 || diffY < -5))
             {
                 var cellX = BRANCH_WIDTH / 2;
                 var cellY = BRANCH_HEIGHT / 2;
@@ -415,7 +465,7 @@ namespace StoryDev.Components
             var found = false;
             for (int i = 0; i <= currentIndex; i++)
             {
-                var active = IsMouseOver((int)positions[i].X, (int)positions[i].Y, (int)BRANCH_WIDTH, (int)BRANCH_HEIGHT);
+                var active = IsMouseOver((int)(positions[i].X - actualOffsetX), (int)(positions[i].Y - actualOffsetY), (int)BRANCH_WIDTH, (int)BRANCH_HEIGHT);
                 if (active)
                 {
                     found = true;
@@ -441,7 +491,7 @@ namespace StoryDev.Components
             
             for (int i = 0; i <= currentIndex; i++)
             {
-                var active = IsMouseOver((int)positions[i].X, (int)positions[i].Y, (int)BRANCH_WIDTH, (int)BRANCH_HEIGHT);
+                var active = IsMouseOver((int)(positions[i].X - actualOffsetX), (int)(positions[i].Y - actualOffsetY), (int)BRANCH_WIDTH, (int)BRANCH_HEIGHT);
                 if (active)
                 {
                     movingIndex = i;
@@ -510,6 +560,16 @@ namespace StoryDev.Components
                     AddBranch(new PointF(1, 1), create.Value, selectedIndex);
                 }
             }
+        }
+
+        private void vScrollBar_Scroll(object sender, ScrollEventArgs e)
+        {
+            Invalidate();
+        }
+
+        private void hScrollBar_Scroll(object sender, ScrollEventArgs e)
+        {
+            Invalidate();
         }
     }
 

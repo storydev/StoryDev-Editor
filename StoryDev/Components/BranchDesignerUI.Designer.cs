@@ -46,6 +46,8 @@ namespace StoryDev.Components
             this.hScrollBar.Name = "hScrollBar";
             this.hScrollBar.Size = new System.Drawing.Size(934, 26);
             this.hScrollBar.TabIndex = 0;
+            this.hScrollBar.Visible = false;
+            this.hScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar_Scroll);
             // 
             // vScrollBar
             // 
@@ -54,6 +56,8 @@ namespace StoryDev.Components
             this.vScrollBar.Name = "vScrollBar";
             this.vScrollBar.Size = new System.Drawing.Size(26, 684);
             this.vScrollBar.TabIndex = 1;
+            this.vScrollBar.Visible = false;
+            this.vScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vScrollBar_Scroll);
             // 
             // cmsBranchOptions
             // 
@@ -63,24 +67,24 @@ namespace StoryDev.Components
             this.toolStripSeparator1,
             this.renameToolStripMenuItem});
             this.cmsBranchOptions.Name = "contextMenuStrip1";
-            this.cmsBranchOptions.Size = new System.Drawing.Size(241, 107);
+            this.cmsBranchOptions.Size = new System.Drawing.Size(189, 74);
             // 
             // addBranchToolStripMenuItem
             // 
             this.addBranchToolStripMenuItem.Name = "addBranchToolStripMenuItem";
-            this.addBranchToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
+            this.addBranchToolStripMenuItem.Size = new System.Drawing.Size(188, 32);
             this.addBranchToolStripMenuItem.Text = "Add Branch...";
             this.addBranchToolStripMenuItem.Click += new System.EventHandler(this.addBranchToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(237, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(185, 6);
             // 
             // renameToolStripMenuItem
             // 
             this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
-            this.renameToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
+            this.renameToolStripMenuItem.Size = new System.Drawing.Size(188, 32);
             this.renameToolStripMenuItem.Text = "Rename...";
             this.renameToolStripMenuItem.Click += new System.EventHandler(this.renameToolStripMenuItem_Click);
             // 
