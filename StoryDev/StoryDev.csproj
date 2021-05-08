@@ -651,6 +651,10 @@
     <Compile Include="Lib\Haxe\Std.cs" />
     <Compile Include="Lib\Haxe\StringBuf.cs" />
     <Compile Include="Lib\Haxe\Type.cs" />
+    <Compile Include="Lib\StoryDev\Command.cs" />
+    <Compile Include="Lib\StoryDev\CommandBlock.cs" />
+    <Compile Include="Lib\StoryDev\CommandType.cs" />
+    <Compile Include="Lib\StoryDev\Parser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Components\AchievementsUI.resx">

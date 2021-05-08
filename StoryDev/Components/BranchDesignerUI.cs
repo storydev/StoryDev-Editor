@@ -96,6 +96,14 @@ namespace StoryDev.Components
 
             regularFont = new Font("Verdana", 8f);
 
+            Clear();
+        }
+
+        public void Clear()
+        {
+            selectedIndex = -1;
+            movingIndex = -1;
+
             positions = new PointF[MAX_BRANCHES];
             names = new string[MAX_BRANCHES];
             levels = new int[MAX_BRANCHES];
@@ -114,8 +122,55 @@ namespace StoryDev.Components
                     links[i][j] = false;
                 }
             }
+        }
 
-            AddBranch(new PointF(50, 50), "Untitled");
+        public string ToFileData()
+        {
+            var result = "";
+
+            for (int i = 0; i <= currentIndex; i++)
+            {
+                result += names[i] + "|";
+                result += positions[i].X + "|";
+                result += positions[i].Y + "|";
+                var found = false;
+                for (int j = 0; j <= currentIndex; j++)
+                {
+                    if (links[i][j])
+                    {
+                        found = true;
+                        result += j;
+                        break;
+                    }
+                }
+
+                if (!found)
+                    result += "-1";
+
+                result += "\r\n";
+            }
+
+            return result;
+        }
+
+        public void FromFileData(string contents)
+        {
+            Clear();
+
+            var lines = contents.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                var line = lines[i];
+                var splitted = line.Split('|');
+
+                var name = splitted[0];
+                var positionX = float.Parse(splitted[1]);
+                var positionY = float.Parse(splitted[2]);
+                var link = int.Parse(splitted[3]);
+
+                AddBranch(new PointF(positionX, positionY), name, link);
+            }
         }
 
         public void AddBranch(PointF position, string name, int linkedFrom = -1)
@@ -139,7 +194,64 @@ namespace StoryDev.Components
             Invalidate();
         }
 
-        public void RecalculatePositions(int parentBranch)
+        public int GetNameIndex(string name)
+        {
+            for (int i = 0; i <= currentIndex; i++)
+            {
+                if (names[i] == name)
+                    return i;
+            }
+            return -1;
+        }
+
+        public string GetNameByIndex(int index)
+        {
+            if (index > -1 && index <= currentIndex)
+            {
+                return names[index];
+            }
+            return "";
+        }
+
+        public void SelectBranch(int index)
+        {
+            if (index <= currentIndex)
+            {
+                selectedIndex = index;
+                Invalidate();
+            }
+        }
+
+        public int[] GetChildren(int index)
+        {
+            var numChildren = 0;
+            for (int i = 0; i <= currentIndex; i++)
+            {
+                if (links[i][index])
+                {
+                    numChildren++;
+                }
+            }
+
+            var result = new int[numChildren];
+            var k = 0;
+            for (int i = 0; i <= currentIndex; i++)
+            {
+                if (links[i][index])
+                {
+                    result[k++] = i;
+                }
+            }
+
+            return result;
+        }
+
+        public int GetSelectedIndex()
+        {
+            return selectedIndex;
+        }
+
+        private void RecalculatePositions(int parentBranch)
         {
             var numChildren = 0;
             var level = 0;
@@ -319,6 +431,7 @@ namespace StoryDev.Components
                     {
                         selectedIndex = i;
                         redraw = true;
+                        BranchSelectedIndexChanged?.Invoke(selectedIndex);
                     }
                 }
 
@@ -330,6 +443,7 @@ namespace StoryDev.Components
                         {
                             selectedIndex = i;
                             redraw = true;
+                            BranchSelectedIndexChanged?.Invoke(selectedIndex);
                         }
                     }
                 }
@@ -474,7 +588,10 @@ namespace StoryDev.Components
             }
 
             if (!found)
+            {
                 selectedIndex = -1;
+                BranchSelectedIndexChanged?.Invoke(selectedIndex);
+            }
 
             diffX = 0;
             diffY = 0;
@@ -543,8 +660,16 @@ namespace StoryDev.Components
                 editName.Value = names[selectedIndex];
                 if (editName.ShowDialog() == DialogResult.OK)
                 {
-                    names[selectedIndex] = editName.Value;
-                    Invalidate();
+                    if (editName.Value.Contains("|"))
+                    {
+                        MessageBox.Show("Names cannot contain the '|' character.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        names[selectedIndex] = editName.Value;
+                        BranchRenamed?.Invoke(selectedIndex, editName.Value);
+                        Invalidate();
+                    }
                 }
             }
         }
@@ -554,10 +679,18 @@ namespace StoryDev.Components
             if (selectedIndex > -1)
             {
                 var create = new SimpleEntryForm();
-                create.Text = "Rename Branch";
+                create.Text = "Create Branch";
                 if (create.ShowDialog() == DialogResult.OK)
                 {
-                    AddBranch(new PointF(1, 1), create.Value, selectedIndex);
+                    if (create.Value.Contains("|"))
+                    {
+                        MessageBox.Show("Names cannot contain the '|' character.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        AddBranch(new PointF(1, 1), create.Value, selectedIndex);
+                        BranchAdded?.Invoke(create.Value);
+                    }
                 }
             }
         }
@@ -571,6 +704,11 @@ namespace StoryDev.Components
         {
             Invalidate();
         }
+
+        public event OnBranchSelectedIndexChanged BranchSelectedIndexChanged;
+        public event OnBranchAdded BranchAdded;
+        public event OnBranchRenamed BranchRenamed;
+        
     }
 
     enum BranchView
