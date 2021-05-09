@@ -132,21 +132,19 @@ namespace StoryDev.Components
             {
                 result += names[i] + "|";
                 result += positions[i].X + "|";
-                result += positions[i].Y + "|";
-                var found = false;
+                result += positions[i].Y;
+                result += "\r\n";
+            }
+
+            result += "Links:\r\n";
+            for (int i = 0; i <= currentIndex; i++)
+            {
                 for (int j = 0; j <= currentIndex; j++)
                 {
-                    if (links[i][j])
-                    {
-                        found = true;
-                        result += j;
-                        break;
-                    }
+                    result += "" + (links[i][j] ? 1 : 0);
+                    if (j + 1 <= currentIndex)
+                        result += "|";
                 }
-
-                if (!found)
-                    result += "-1";
-
                 result += "\r\n";
             }
 
@@ -158,18 +156,38 @@ namespace StoryDev.Components
             Clear();
 
             var lines = contents.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            var isLinks = false;
 
+            int startingLink = 0;
             for (int i = 0; i < lines.Length; i++)
             {
                 var line = lines[i];
                 var splitted = line.Split('|');
+                if (line.StartsWith("Links:"))
+                {
+                    startingLink = i + 1;
+                    isLinks = true;
+                    continue;
+                }
 
-                var name = splitted[0];
-                var positionX = float.Parse(splitted[1]);
-                var positionY = float.Parse(splitted[2]);
-                var link = int.Parse(splitted[3]);
+                if (!isLinks)
+                {
+                    var name = splitted[0];
+                    var positionX = float.Parse(splitted[1]);
+                    var positionY = float.Parse(splitted[2]);
+                    var link = -1;
+                    if (splitted.Length == 4)
+                        link = int.Parse(splitted[3]);
 
-                AddBranch(new PointF(positionX, positionY), name, link);
+                    AddBranch(new PointF(positionX, positionY), name, link);
+                }
+                else
+                {
+                    for (int j = 0; j <= currentIndex; j++)
+                    {
+                        links[i - startingLink][j] = int.Parse(splitted[j]) == 1;
+                    }
+                }
             }
         }
 

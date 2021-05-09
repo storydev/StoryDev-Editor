@@ -63,6 +63,7 @@ namespace StoryDev.Forms
             // 
             // menuStrip1
             // 
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
@@ -220,7 +221,6 @@ namespace StoryDev.Forms
             this.storyEditor.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.storyEditor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.storyEditor.Enabled = false;
-            this.storyEditor.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.storyEditor.IsReplaceMode = false;
             this.storyEditor.Location = new System.Drawing.Point(0, 43);
             this.storyEditor.Name = "storyEditor";
@@ -233,6 +233,7 @@ namespace StoryDev.Forms
             this.storyEditor.Zoom = 100;
             this.storyEditor.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.storyEditor_TextChanged);
             this.storyEditor.Load += new System.EventHandler(this.storyEditor_Load);
+            this.storyEditor.KeyUp += new System.Windows.Forms.KeyEventHandler(this.storyEditor_KeyUp);
             // 
             // pnlChoiceProperties
             // 

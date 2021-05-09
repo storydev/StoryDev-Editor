@@ -50,6 +50,20 @@ namespace StoryDev.Forms
             }
         }
 
+        public bool OnlyExecutables
+        {
+            get
+            {
+                return !sbtnConditions.Visible;
+            }
+            set
+            {
+                sbtnConditions.Visible = !value;
+            }
+        }
+
+
+
         public string Code
         {
             get; private set;
@@ -125,7 +139,8 @@ namespace StoryDev.Forms
                     }
                     else
                     {
-                        lbCommands.Items.Add(call);
+                        var temp = call.TrimStart(' ');
+                        lbCommands.Items.Add(temp);
                     }
                 }
             }
@@ -249,9 +264,8 @@ namespace StoryDev.Forms
 
         private void LaunchFormFromFuncString(string code)
         {
-            var func = code.Substring(0, code.IndexOf('('));
-            func = func.TrimStart('\r', '\n');
             code = code.TrimStart('\r', '\n');
+            var func = code.Substring(0, code.IndexOf('('));
 
             var resolvedType = System.Type.GetType("StoryDev.Components.CodeUI." + func);
             if (resolvedType != null)
@@ -287,7 +301,8 @@ namespace StoryDev.Forms
                         result += item;
                     }
 
-                    result += ";";
+                    if (!item.EndsWith(";"))
+                        result += ";";
                 }
                 else
                 {

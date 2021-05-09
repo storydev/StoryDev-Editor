@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
+using StoryDev.Components;
 using StoryDev.Lib.StoryDev;
 
 namespace StoryDev.Forms
@@ -52,20 +53,43 @@ namespace StoryDev.Forms
             branchDesignerUI1.Snapping = chbSnapping.Checked;
         }
 
+        private void PopulateChoices(int index)
+        {
+            pnlChoices.Controls.Clear();
+            for (int i = 0; i < choices.Count; i++)
+            {
+                if (choices[i].CurrentIndex == index)
+                {
+                    var choiceUI = new ChoiceUI(choices[i]);
+                    choiceUI.Dock = DockStyle.Top;
+                    choiceUI.SetGoingToName(branchDesignerUI1.GetNameByIndex(choices[i].ChildIndex));
+
+                    pnlChoices.Controls.Add(choiceUI);
+                    pnlChoices.Controls.SetChildIndex(choiceUI, 0);
+                }
+            }
+        }
+
         private void branchDesignerUI1_BranchSelectedIndexChanged(int index)
         {
             if (index == -1)
             {
                 storyEditor.Text = "";
+                storyEditor.Enabled = false;
                 cmbBranches.SelectedIndex = -1;
                 pnlChoiceProperties.Enabled = false;
+                pnlChoices.Controls.Clear();
             }
             else if (index < cmbBranches.Items.Count)
             {
                 MarkAsUnsaved();
                 cmbBranches.SelectedIndex = index;
                 pnlChoiceProperties.Enabled = true;
+
+                PopulateChoices(index);
             }
+
+            storyEditor.ClearUndo();
         }
 
         private void branchDesignerUI1_BranchRenamed(int index, string branchName)
@@ -80,6 +104,15 @@ namespace StoryDev.Forms
         private void branchDesignerUI1_BranchAdded(string branchName)
         {
             MarkAsUnsaved();
+
+            var current = branchDesignerUI1.GetSelectedIndex();
+
+            var choice = new ChoiceData();
+            choice.ChildIndex = branchDesignerUI1.GetNameIndex(branchName);
+            choice.CurrentIndex = current;
+            choices.Add(choice);
+
+            PopulateChoices(current);
 
             cmbBranches.Items.Add(branchName);
             convoData.Add("");
@@ -110,11 +143,16 @@ namespace StoryDev.Forms
                 for (int i = 0; i < convoData.Count; i++)
                 {
                     convo += "convo " + cmbBranches.Items[i] + "\r\n";
-                    convo += convoData[i];
+                    convo += convoData[i] + "\r\n";
                     var _choices = choices.Where((c) => c.CurrentIndex == i);
                     foreach (var choice in _choices)
                     {
-                        convo += "> " + branchDesignerUI1.GetNameByIndex(choice.ChildIndex) + " -> " + choice.Code;
+                        if (!string.IsNullOrEmpty(choice.Condition))
+                            convo += "=! " + choice.Condition + "\r\n";
+
+                        var _goto = branchDesignerUI1.GetNameByIndex(choice.ChildIndex);
+
+                        convo += "> " + branchDesignerUI1.GetNameByIndex(choice.ChildIndex) + " -> goto(\"" + _goto + "\"); " + choice.Code;
                         convo += "\r\n";
                     }
                     convo += "\r\n";
@@ -174,6 +212,7 @@ namespace StoryDev.Forms
                         for (int j = 0; j < b.Commands.Count; j++)
                         {
                             var command = b.Commands[j];
+
                             switch (command.Type)
                             {
                                 case (int)CommandType.Choices:
@@ -182,7 +221,13 @@ namespace StoryDev.Forms
                                         {
                                             var split = ch.Split('|');
                                             choice.ChildIndex = branchDesignerUI1.GetNameIndex(split[0]);
-                                            choice.Code = split[1];
+
+                                            var gotol = ("goto(\"" + split[0] + "\");").Length;
+                                            if (gotol < split[1].Length)
+                                            {
+                                                var extracted = split[1].Substring(gotol);
+                                                choice.Code = extracted;
+                                            }
                                             choices.Add(choice);
 
                                             var temp = choice.CurrentIndex;
@@ -210,7 +255,18 @@ namespace StoryDev.Forms
                                     break;
                                 case (int)CommandType.OptionConditional:
                                     {
-                                        convo += "=! " + command.Data[0] + "\r\n";
+                                        if (j + 1 < b.Commands.Count)
+                                        {
+                                            var next = b.Commands[j + 1];
+                                            if (next.Type == (int)CommandType.Choices)
+                                            {
+                                                choice.Condition = command.Data[0];
+                                            }
+                                            else
+                                            {
+                                                convo += "=! " + command.Data[0] + "\r\n";
+                                            }
+                                        }
                                     } break;
                             }
                         }
@@ -326,6 +382,10 @@ namespace StoryDev.Forms
             {
                 currentFile = save.FileName.Substring(0, save.FileName.LastIndexOf('.'));
 
+                var file = currentFile.Substring(currentFile.LastIndexOf('\\') + 1);
+                fileShortName = file;
+                Text = "Conversation Editor - " + file;
+
                 MarkAsUnsaved();
                 branchDesignerUI1.AddBranch(new PointF(50, 50), "Untitled");
                 cmbBranches.Items.Add("Untitled");
@@ -340,14 +400,60 @@ namespace StoryDev.Forms
                 unsaved = false;
             }
         }
+
+        private void storyEditor_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (string.IsNullOrEmpty(storyEditor.SelectedText) && e.KeyCode == Keys.P && e.Modifiers == Keys.Control)
+            {
+                var line = storyEditor.GetLineText(storyEditor.Selection.FromLine);
+                var code = "";
+                var isExecute = false;
+                if (line.StartsWith("!"))
+                {
+                    isExecute = true;
+                    code = line.Substring(2);
+                }
+                else if (line.StartsWith("=!"))
+                    code = line.Substring(3);
+                else
+                    return;
+
+                var construct = new CodeConstructForm();
+                if (!string.IsNullOrEmpty(code))
+                    construct.ConstructFromExisting(code);
+
+                construct.OnlyConditionals = line.StartsWith("=!");
+                construct.OnlyExecutables = line.StartsWith("!");
+                construct.NoSwitching = true;
+                construct.Method = ConstructMethod.Simple;
+                if (construct.ShowDialog() == DialogResult.OK)
+                {
+                    var lineRange = storyEditor.GetLine(storyEditor.Selection.FromLine);
+                    storyEditor.Selection.Start = lineRange.Start;
+                    storyEditor.Selection.End = lineRange.End;
+                    storyEditor.ClearSelected();
+
+                    if (!isExecute)
+                    {
+                        storyEditor.InsertText("=! " + construct.Code);
+                    }
+                    else
+                    {
+                        storyEditor.InsertText("! " + construct.Code);
+                    }
+                }
+            }
+        }
     }
 
     class ChoiceData
     {
 
+        public int Priority;
         public int ChildIndex;
         public int CurrentIndex;
         public string Code;
+        public string Condition;
 
         public ChoiceData()
         {

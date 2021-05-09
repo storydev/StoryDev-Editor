@@ -110,6 +110,12 @@
     <Compile Include="Components\CharacterUI.Designer.cs">
       <DependentUpon>CharacterUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\ChoiceUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\ChoiceUI.Designer.cs">
+      <DependentUpon>ChoiceUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\CodeEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -671,6 +677,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Components\CharacterUI.resx">
       <DependentUpon>CharacterUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\ChoiceUI.resx">
+      <DependentUpon>ChoiceUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\CodeUI\AccessSection.resx">
       <DependentUpon>AccessSection.cs</DependentUpon>
