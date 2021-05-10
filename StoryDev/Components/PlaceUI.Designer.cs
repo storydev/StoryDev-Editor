@@ -94,6 +94,7 @@ namespace StoryDev.Components
             // 
             // lvSections
             // 
+            this.lvSections.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lvSections.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader5,
             this.columnHeader8,
@@ -160,6 +161,7 @@ namespace StoryDev.Components
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(56, 484);
@@ -170,6 +172,7 @@ namespace StoryDev.Components
             // 
             // lvActivities
             // 
+            this.lvActivities.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lvActivities.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
@@ -209,6 +212,7 @@ namespace StoryDev.Components
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(56, 272);

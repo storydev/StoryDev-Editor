@@ -78,6 +78,7 @@ namespace StoryDev.Components
         private int diffX;
         private int diffY;
         private bool movingSelected;
+        private bool manualLinking;
 
         private float indent;
 
@@ -311,6 +312,51 @@ namespace StoryDev.Components
                     startPosY += BRANCH_HEIGHT + padding;
                 }
             }
+        }
+
+        private void DeleteBranch(int index)
+        {
+            // break the links with the index to be deleted.
+            for (int i = 0; i <= currentIndex; i++)
+            {
+                links[index][i] = false;
+                links[i][index] = false;
+            }
+
+            var count = currentIndex - index;
+            var tempNames = new string[count];
+            var tempPositions = new PointF[count];
+            var tempLinks = new bool[count][];
+            for (int i = 0; i < count; i++)
+            {
+                tempNames[i] = names[index + i + 1];
+                tempPositions[i] = new PointF(positions[index + i + 1].X, positions[index + i + 1].Y);
+
+                tempLinks[i] = new bool[currentIndex + 1];
+
+                for (int j = 0; j <= currentIndex; j++)
+                {
+                    tempLinks[i][j] = links[i + index + 1][j];
+                }
+            }
+
+            currentIndex--;
+            for (int i = 0; i < count; i++)
+            {
+                names[i + index] = tempNames[i];
+                positions[i + index] = new PointF(tempPositions[i].X, tempPositions[i].Y);
+
+                for (int j = 0; j <= currentIndex; j++)
+                {
+                    links[i + index][j] = tempLinks[i][j];
+                }
+            }
+
+            names[currentIndex + 1] = string.Empty;
+            positions[currentIndex + 1] = PointF.Empty;
+            links[currentIndex + 1][currentIndex + 1] = false;
+
+            Invalidate();
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -726,7 +772,29 @@ namespace StoryDev.Components
         public event OnBranchSelectedIndexChanged BranchSelectedIndexChanged;
         public event OnBranchAdded BranchAdded;
         public event OnBranchRenamed BranchRenamed;
-        
+        public event OnBranchDeleted BranchDeleted;
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (selectedIndex > -1)
+            {
+                var response = MessageBox.Show("Do you wish to delete " + names[selectedIndex] + "?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (response == DialogResult.Yes)
+                {
+                    DeleteBranch(selectedIndex);
+                    BranchDeleted?.Invoke(selectedIndex);
+                    selectedIndex = -1;
+                }
+            }
+        }
+
+        private void linkUpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (selectedIndex > -1)
+            {
+                manualLinking = true;
+            }
+        }
     }
 
     enum BranchView

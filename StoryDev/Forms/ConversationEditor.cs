@@ -444,6 +444,39 @@ namespace StoryDev.Forms
                 }
             }
         }
+
+        private void branchDesignerUI1_BranchDeleted(int index)
+        {
+            var startIndex = -1;
+            for (int i = 0; i < choices.Count; i++)
+            {
+                if (choices[i].ChildIndex == index)
+                    startIndex = i;
+
+                if (startIndex > -1)
+                {
+                    if (i + 1 < choices.Count)
+                    {
+                        choices[i] = choices[i + 1];
+                        if (choices[i].ChildIndex > -1)
+                            choices[i].ChildIndex -= 1;
+                        if (choices[i].CurrentIndex > -1)
+                            choices[i].CurrentIndex -= 1;
+                    }
+                }
+            }
+
+            choices.RemoveAt(choices.Count - 1);
+
+            storyEditor.TextChanged -= storyEditor_TextChanged;
+            storyEditor.Text = "";
+            storyEditor.TextChanged += storyEditor_TextChanged;
+
+            storyEditor.Enabled = false;
+            pnlChoiceProperties.Enabled = false;
+            cmbBranches.Items.RemoveAt(index);
+            convoData.RemoveAt(index);
+        }
     }
 
     class ChoiceData

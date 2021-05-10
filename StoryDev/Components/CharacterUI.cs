@@ -254,7 +254,7 @@ namespace StoryDev.Components
 
         private void cmbCharacterGroup_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (selectedCharacter > -1)
+            if (selectedCharacter > -1 && cmbCharacterGroup.SelectedIndex > -1)
             {
                 Globals.Characters[selectedCharacter].GroupID = Globals.CharacterGroups[cmbCharacterGroup.SelectedIndex].ID;
             }

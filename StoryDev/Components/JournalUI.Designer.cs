@@ -95,6 +95,7 @@ namespace StoryDev.Components
             // 
             // pnlRequirements
             // 
+            this.pnlRequirements.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pnlRequirements.Controls.Add(this.cmbChapters);
             this.pnlRequirements.Controls.Add(this.label2);
             this.pnlRequirements.Controls.Add(this.nudStoryProgress);

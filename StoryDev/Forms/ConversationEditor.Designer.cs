@@ -38,17 +38,17 @@ namespace StoryDev.Forms
             this.saveConversationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pnlDesigner = new System.Windows.Forms.Panel();
-            this.branchDesignerUI1 = new StoryDev.Components.BranchDesignerUI();
             this.panel1 = new System.Windows.Forms.Panel();
             this.chbSnapping = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbView = new System.Windows.Forms.ComboBox();
-            this.storyEditor = new StoryDev.Components.CodeEditor();
             this.pnlChoiceProperties = new System.Windows.Forms.Panel();
             this.pnlChoices = new System.Windows.Forms.Panel();
             this.pnlTools = new System.Windows.Forms.Panel();
             this.cmbBranches = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.branchDesignerUI1 = new StoryDev.Components.BranchDesignerUI();
+            this.storyEditor = new StoryDev.Components.CodeEditor();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -56,9 +56,9 @@ namespace StoryDev.Forms
             this.splitContainer1.SuspendLayout();
             this.pnlDesigner.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.storyEditor)).BeginInit();
             this.pnlChoiceProperties.SuspendLayout();
             this.pnlTools.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.storyEditor)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -69,7 +69,7 @@ namespace StoryDev.Forms
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1705, 33);
+            this.menuStrip1.Size = new System.Drawing.Size(1705, 36);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -80,7 +80,7 @@ namespace StoryDev.Forms
             this.openToolStripMenuItem,
             this.saveConversationToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(54, 29);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(54, 32);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // newToolStripMenuItem
@@ -111,7 +111,7 @@ namespace StoryDev.Forms
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 33);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 36);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -125,7 +125,7 @@ namespace StoryDev.Forms
             this.splitContainer1.Panel2.Controls.Add(this.storyEditor);
             this.splitContainer1.Panel2.Controls.Add(this.pnlChoiceProperties);
             this.splitContainer1.Panel2.Controls.Add(this.pnlTools);
-            this.splitContainer1.Size = new System.Drawing.Size(1705, 972);
+            this.splitContainer1.Size = new System.Drawing.Size(1705, 969);
             this.splitContainer1.SplitterDistance = 824;
             this.splitContainer1.TabIndex = 1;
             // 
@@ -135,22 +135,8 @@ namespace StoryDev.Forms
             this.pnlDesigner.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlDesigner.Location = new System.Drawing.Point(0, 43);
             this.pnlDesigner.Name = "pnlDesigner";
-            this.pnlDesigner.Size = new System.Drawing.Size(824, 929);
+            this.pnlDesigner.Size = new System.Drawing.Size(824, 926);
             this.pnlDesigner.TabIndex = 0;
-            // 
-            // branchDesignerUI1
-            // 
-            this.branchDesignerUI1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.branchDesignerUI1.Enabled = false;
-            this.branchDesignerUI1.Location = new System.Drawing.Point(0, 0);
-            this.branchDesignerUI1.Name = "branchDesignerUI1";
-            this.branchDesignerUI1.Size = new System.Drawing.Size(824, 929);
-            this.branchDesignerUI1.Snapping = false;
-            this.branchDesignerUI1.TabIndex = 0;
-            this.branchDesignerUI1.View = StoryDev.Components.BranchView.Branch;
-            this.branchDesignerUI1.BranchSelectedIndexChanged += new StoryDev.OnBranchSelectedIndexChanged(this.branchDesignerUI1_BranchSelectedIndexChanged);
-            this.branchDesignerUI1.BranchAdded += new StoryDev.OnBranchAdded(this.branchDesignerUI1_BranchAdded);
-            this.branchDesignerUI1.BranchRenamed += new StoryDev.OnBranchRenamed(this.branchDesignerUI1_BranchRenamed);
             // 
             // panel1
             // 
@@ -199,48 +185,12 @@ namespace StoryDev.Forms
             this.cmbView.TabIndex = 1;
             this.cmbView.SelectedIndexChanged += new System.EventHandler(this.cmbView_SelectedIndexChanged);
             // 
-            // storyEditor
-            // 
-            this.storyEditor.AutoCompleteBracketsList = new char[] {
-        '(',
-        ')',
-        '{',
-        '}',
-        '[',
-        ']',
-        '\"',
-        '\"',
-        '\'',
-        '\''};
-            this.storyEditor.AutoScrollMinSize = new System.Drawing.Size(167, 22);
-            this.storyEditor.BackBrush = null;
-            this.storyEditor.CharHeight = 22;
-            this.storyEditor.CharWidth = 12;
-            this.storyEditor.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.storyEditor.DelayedTextChangedInterval = 170;
-            this.storyEditor.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.storyEditor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.storyEditor.Enabled = false;
-            this.storyEditor.IsReplaceMode = false;
-            this.storyEditor.Location = new System.Drawing.Point(0, 43);
-            this.storyEditor.Name = "storyEditor";
-            this.storyEditor.Paddings = new System.Windows.Forms.Padding(0);
-            this.storyEditor.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.storyEditor.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("storyEditor.ServiceColors")));
-            this.storyEditor.Size = new System.Drawing.Size(877, 694);
-            this.storyEditor.TabIndex = 2;
-            this.storyEditor.Text = "codeEditor1";
-            this.storyEditor.Zoom = 100;
-            this.storyEditor.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.storyEditor_TextChanged);
-            this.storyEditor.Load += new System.EventHandler(this.storyEditor_Load);
-            this.storyEditor.KeyUp += new System.Windows.Forms.KeyEventHandler(this.storyEditor_KeyUp);
-            // 
             // pnlChoiceProperties
             // 
             this.pnlChoiceProperties.Controls.Add(this.pnlChoices);
             this.pnlChoiceProperties.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlChoiceProperties.Enabled = false;
-            this.pnlChoiceProperties.Location = new System.Drawing.Point(0, 737);
+            this.pnlChoiceProperties.Location = new System.Drawing.Point(0, 734);
             this.pnlChoiceProperties.Name = "pnlChoiceProperties";
             this.pnlChoiceProperties.Size = new System.Drawing.Size(877, 235);
             this.pnlChoiceProperties.TabIndex = 1;
@@ -285,6 +235,59 @@ namespace StoryDev.Forms
             this.label1.TabIndex = 0;
             this.label1.Text = "Dialogue Branch:";
             // 
+            // branchDesignerUI1
+            // 
+            this.branchDesignerUI1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.branchDesignerUI1.Enabled = false;
+            this.branchDesignerUI1.Location = new System.Drawing.Point(0, 0);
+            this.branchDesignerUI1.Name = "branchDesignerUI1";
+            this.branchDesignerUI1.Size = new System.Drawing.Size(824, 926);
+            this.branchDesignerUI1.Snapping = false;
+            this.branchDesignerUI1.TabIndex = 0;
+            this.branchDesignerUI1.View = StoryDev.Components.BranchView.Branch;
+            this.branchDesignerUI1.BranchSelectedIndexChanged += new StoryDev.OnBranchSelectedIndexChanged(this.branchDesignerUI1_BranchSelectedIndexChanged);
+            this.branchDesignerUI1.BranchAdded += new StoryDev.OnBranchAdded(this.branchDesignerUI1_BranchAdded);
+            this.branchDesignerUI1.BranchRenamed += new StoryDev.OnBranchRenamed(this.branchDesignerUI1_BranchRenamed);
+            this.branchDesignerUI1.BranchDeleted += new StoryDev.OnBranchDeleted(this.branchDesignerUI1_BranchDeleted);
+            // 
+            // storyEditor
+            // 
+            this.storyEditor.AutoCompleteBracketsList = new char[] {
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\"',
+        '\"',
+        '\'',
+        '\''};
+            this.storyEditor.AutoScrollMinSize = new System.Drawing.Size(167, 22);
+            this.storyEditor.BackBrush = null;
+            this.storyEditor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.storyEditor.CaretColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(216)))), ((int)(((byte)(216)))));
+            this.storyEditor.CharHeight = 22;
+            this.storyEditor.CharWidth = 12;
+            this.storyEditor.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.storyEditor.DelayedTextChangedInterval = 170;
+            this.storyEditor.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.storyEditor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.storyEditor.Enabled = false;
+            this.storyEditor.IsReplaceMode = false;
+            this.storyEditor.Location = new System.Drawing.Point(0, 43);
+            this.storyEditor.Name = "storyEditor";
+            this.storyEditor.Paddings = new System.Windows.Forms.Padding(0);
+            this.storyEditor.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.storyEditor.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("storyEditor.ServiceColors")));
+            this.storyEditor.Size = new System.Drawing.Size(877, 691);
+            this.storyEditor.TabIndex = 2;
+            this.storyEditor.Text = "codeEditor1";
+            this.storyEditor.Zoom = 100;
+            this.storyEditor.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.storyEditor_TextChanged);
+            this.storyEditor.Load += new System.EventHandler(this.storyEditor_Load);
+            this.storyEditor.KeyUp += new System.Windows.Forms.KeyEventHandler(this.storyEditor_KeyUp);
+            // 
             // ConversationEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -307,10 +310,10 @@ namespace StoryDev.Forms
             this.pnlDesigner.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.storyEditor)).EndInit();
             this.pnlChoiceProperties.ResumeLayout(false);
             this.pnlTools.ResumeLayout(false);
             this.pnlTools.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.storyEditor)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

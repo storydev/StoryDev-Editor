@@ -34,8 +34,10 @@ namespace StoryDev.Components
             this.vScrollBar = new System.Windows.Forms.VScrollBar();
             this.cmsBranchOptions = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addBranchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.linkUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsBranchOptions.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,10 +66,12 @@ namespace StoryDev.Components
             this.cmsBranchOptions.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.cmsBranchOptions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addBranchToolStripMenuItem,
+            this.linkUpToolStripMenuItem,
             this.toolStripSeparator1,
-            this.renameToolStripMenuItem});
+            this.renameToolStripMenuItem,
+            this.deleteToolStripMenuItem});
             this.cmsBranchOptions.Name = "contextMenuStrip1";
-            this.cmsBranchOptions.Size = new System.Drawing.Size(189, 74);
+            this.cmsBranchOptions.Size = new System.Drawing.Size(189, 138);
             // 
             // addBranchToolStripMenuItem
             // 
@@ -75,6 +79,13 @@ namespace StoryDev.Components
             this.addBranchToolStripMenuItem.Size = new System.Drawing.Size(188, 32);
             this.addBranchToolStripMenuItem.Text = "Add Branch...";
             this.addBranchToolStripMenuItem.Click += new System.EventHandler(this.addBranchToolStripMenuItem_Click);
+            // 
+            // linkUpToolStripMenuItem
+            // 
+            this.linkUpToolStripMenuItem.Name = "linkUpToolStripMenuItem";
+            this.linkUpToolStripMenuItem.Size = new System.Drawing.Size(188, 32);
+            this.linkUpToolStripMenuItem.Text = "Link up";
+            this.linkUpToolStripMenuItem.Click += new System.EventHandler(this.linkUpToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -87,6 +98,13 @@ namespace StoryDev.Components
             this.renameToolStripMenuItem.Size = new System.Drawing.Size(188, 32);
             this.renameToolStripMenuItem.Text = "Rename...";
             this.renameToolStripMenuItem.Click += new System.EventHandler(this.renameToolStripMenuItem_Click);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(188, 32);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // BranchDesignerUI
             // 
@@ -109,5 +127,7 @@ namespace StoryDev.Components
         private System.Windows.Forms.ToolStripMenuItem addBranchToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem renameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem linkUpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
     }
 }
