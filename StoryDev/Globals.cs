@@ -954,6 +954,7 @@ namespace StoryDev
         public int CurrentConversationPosition;
         public List<InventoryState> Inventories;
         public ArtefactState Artefacts;
+        public CharacterState Characters;
 
 
     }
@@ -993,7 +994,20 @@ namespace StoryDev
     class CharacterState
     {
 
+        public List<int> Characters;
+        public List<int> Attitudes;
+        public List<CharacterAttitude> AttitudesTowards;
+        public List<int> Traits;
+        public List<int> TraitProgress;
 
+        public CharacterState()
+        {
+            Characters = new List<int>();
+            Attitudes = new List<int>();
+            AttitudesTowards = new List<CharacterAttitude>();
+            Traits = new List<int>();
+            TraitProgress = new List<int>();
+        }
 
     }
     
