@@ -949,5 +949,80 @@ namespace StoryDev
 
     }
 
+    class PlayerState
+    {
+
+        public float Frequency;
+        public List<int> ConversationCharacters;
+        public int CharacterPointOfView;
+        public int CurrentConversationID;
+        public int CurrentConversationPosition;
+        public List<InventoryState> Inventories;
+        public ArtefactState Artefacts;
+        public CharacterState Characters;
+
+
+    }
+
+    class InventoryState
+    {
+
+        public List<int> Characters;
+        public List<int> ItemID;
+        public List<int> Quantity;
+
+        public InventoryState()
+        {
+            Characters = new List<int>();
+            ItemID = new List<int>();
+            Quantity = new List<int>();
+        }
+
+    }
+
+    class ArtefactState
+    {
+
+        public List<int> FragmentsDiscovered;
+        public List<int> ArtefactsUnlocked;
+        public List<int> ArtefactsActivated;
+
+        public ArtefactState()
+        {
+            FragmentsDiscovered = new List<int>();
+            ArtefactsActivated = new List<int>();
+            ArtefactsUnlocked = new List<int>();
+        }
+
+    }
+
+    class CharacterState
+    {
+
+        public List<int> Characters;
+        public List<int> Attitudes;
+        public List<int> HungerLevel;
+        public List<int> ThirstLevel;
+        public List<int> PhysicalLevel;
+        public List<int> MentalLevel;
+
+        public List<CharacterAttitude> AttitudesTowards;
+        public List<int> Traits;
+        public List<int> TraitProgress;
+
+        public CharacterState()
+        {
+            Characters = new List<int>();
+            Attitudes = new List<int>();
+            HungerLevel = new List<int>();
+            ThirstLevel = new List<int>();
+            PhysicalLevel = new List<int>();
+            MentalLevel = new List<int>();
+            AttitudesTowards = new List<CharacterAttitude>();
+            Traits = new List<int>();
+            TraitProgress = new List<int>();
+        }
+
+    }
     
 }
