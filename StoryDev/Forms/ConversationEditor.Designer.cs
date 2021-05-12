@@ -249,6 +249,7 @@ namespace StoryDev.Forms
             this.branchDesignerUI1.BranchAdded += new StoryDev.OnBranchAdded(this.branchDesignerUI1_BranchAdded);
             this.branchDesignerUI1.BranchRenamed += new StoryDev.OnBranchRenamed(this.branchDesignerUI1_BranchRenamed);
             this.branchDesignerUI1.BranchDeleted += new StoryDev.OnBranchDeleted(this.branchDesignerUI1_BranchDeleted);
+            this.branchDesignerUI1.BranchesLinked += new StoryDev.OnBranchesLinked(this.branchDesignerUI1_BranchesLinked);
             // 
             // storyEditor
             // 

@@ -25,6 +25,7 @@ namespace StoryDev.Components
         private Pen selectedPen;
         private Pen subSelectedPen;
         private Pen highlightPen;
+        private Pen linkingPen;
         private Font regularFont;
 
         private BranchView view;
@@ -79,6 +80,7 @@ namespace StoryDev.Components
         private int diffY;
         private bool movingSelected;
         private bool manualLinking;
+        private int manualLinkIndex;
 
         private float indent;
 
@@ -92,8 +94,12 @@ namespace StoryDev.Components
 
             selectedPen = new Pen(Brushes.Blue, 3f);
             highlightPen = new Pen(Brushes.LimeGreen, 2f);
+            linkingPen = new Pen(Brushes.CadetBlue, 3f);
+
             subSelectedPen = new Pen(Brushes.Blue, 1f);
             subSelectedPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            linkingPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+
 
             regularFont = new Font("Verdana", 8f);
 
@@ -440,11 +446,9 @@ namespace StoryDev.Components
                         if (links[currentParent][i])
                         {
                             highlightRoute[i] = true;
-                            currentParent = i;
                         }
                     }
                 }
-
 
                 // draw branch links
                 for (int i = 0; i <= currentIndex; i++)
@@ -479,6 +483,8 @@ namespace StoryDev.Components
 
                 // draw branches
 
+                var manualChildIndex = -1;
+
                 var toRenderLast = new bool[MAX_BRANCHES];
                 for (int i = 0; i <= currentIndex; i++)
                 {
@@ -493,9 +499,16 @@ namespace StoryDev.Components
 
                     if (Branch(i))
                     {
-                        selectedIndex = i;
-                        redraw = true;
-                        BranchSelectedIndexChanged?.Invoke(selectedIndex);
+                        if (manualLinking && manualLinkIndex > -1)
+                        {
+                            manualChildIndex = i;
+                        }
+                        else if (!manualLinking)
+                        {
+                            selectedIndex = i;
+                            redraw = true;
+                            BranchSelectedIndexChanged?.Invoke(selectedIndex);
+                        }
                     }
                 }
 
@@ -505,11 +518,24 @@ namespace StoryDev.Components
                     {
                         if (Branch(i))
                         {
-                            selectedIndex = i;
-                            redraw = true;
-                            BranchSelectedIndexChanged?.Invoke(selectedIndex);
+                            if (manualLinking && manualLinkIndex > -1)
+                            {
+                                manualChildIndex = i;
+                            }
+                            else if (!manualLinking)
+                            {
+                                selectedIndex = i;
+                                redraw = true;
+                                BranchSelectedIndexChanged?.Invoke(selectedIndex);
+                            }
                         }
                     }
+                }
+
+                if (manualLinking && manualLinkIndex > -1 && manualChildIndex > -1 && manualLinkIndex != manualChildIndex)
+                {
+                    links[manualChildIndex][manualLinkIndex] = !links[manualChildIndex][manualLinkIndex];
+                    BranchesLinked?.Invoke(manualLinkIndex, manualChildIndex);
                 }
 
                 var showingMenu = false;
@@ -567,15 +593,24 @@ namespace StoryDev.Components
             var active = IsMouseOver((int)(position.X - actualOffsetX), (int)(position.Y - actualOffsetY), (int)BRANCH_WIDTH, (int)BRANCH_HEIGHT);
             var pen = Pens.Black;
 
-            if (selectedIndex == index)
-                pen = selectedPen;
-            else if (selectedIndex > -1)
+            if (!manualLinking)
             {
-                if (highlightRoute[index])
-                    pen = highlightPen;
-                else if (links[index][selectedIndex])
-                    pen = subSelectedPen;
+                if (selectedIndex == index)
+                    pen = selectedPen;
+                else if (selectedIndex > -1)
+                {
+                    if (highlightRoute[index])
+                        pen = highlightPen;
+                    else if (links[index][selectedIndex])
+                        pen = subSelectedPen;
+                }
             }
+            else
+            {
+                if (manualLinkIndex == index)
+                    pen = linkingPen;
+            }
+            
 
             g.FillRectangle(Brushes.White, position.X - actualOffsetX, position.Y - actualOffsetY, BRANCH_WIDTH, BRANCH_HEIGHT);
             g.DrawRectangle(pen, position.X - actualOffsetX, position.Y - actualOffsetY, BRANCH_WIDTH, BRANCH_HEIGHT);
@@ -612,7 +647,7 @@ namespace StoryDev.Components
             mouseButton = e.Button;
 
             // check a 5 pixel tolerance when snapping to determine a result outside it's original cell.
-            if (movingIndex > -1 && snapping && (diffX > 5 || diffY > 5 || diffX < -5 || diffY < -5))
+            if (movingIndex > -1 && snapping && (diffX > 5 || diffY > 5 || diffX < -5 || diffY < -5) && !manualLinking)
             {
                 var cellX = BRANCH_WIDTH / 2;
                 var cellY = BRANCH_HEIGHT / 2;
@@ -632,7 +667,7 @@ namespace StoryDev.Components
                 positions[movingIndex].X = (float)tileX;
                 positions[movingIndex].Y = (float)tileY;
             }
-            else if (movingIndex > -1 && snapping)
+            else if (movingIndex > -1 && snapping && !manualLinking)
             {
                 positions[movingIndex].X -= diffX;
                 positions[movingIndex].Y -= diffY;
@@ -680,7 +715,7 @@ namespace StoryDev.Components
                 }
             }
             
-            if (movingIndex > -1)
+            if (movingIndex > -1 && !manualLinking)
             {
                 lastMouseX = e.X;
                 lastMouseY = e.Y;
@@ -696,7 +731,7 @@ namespace StoryDev.Components
         {
             base.OnMouseMove(e);
 
-            if (movingIndex > -1)
+            if (movingIndex > -1 && !manualLinking)
             {
                 var diffX = e.X - lastMouseX;
                 var diffY = e.Y - lastMouseY;
@@ -773,6 +808,7 @@ namespace StoryDev.Components
         public event OnBranchAdded BranchAdded;
         public event OnBranchRenamed BranchRenamed;
         public event OnBranchDeleted BranchDeleted;
+        public event OnBranchesLinked BranchesLinked;
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -792,7 +828,21 @@ namespace StoryDev.Components
         {
             if (selectedIndex > -1)
             {
-                manualLinking = true;
+                manualLinking = !manualLinking;
+                addBranchToolStripMenuItem.Enabled = !manualLinking;
+                deleteToolStripMenuItem.Enabled = !manualLinking;
+                renameToolStripMenuItem.Enabled = !manualLinking;
+
+                if (manualLinking)
+                {
+                    manualLinkIndex = selectedIndex;
+                    linkUpToolStripMenuItem.Text = "Disable Link Up";
+                }
+                else
+                {
+                    manualLinkIndex = -1;
+                    linkUpToolStripMenuItem.Text = "Link Up";
+                }
             }
         }
     }

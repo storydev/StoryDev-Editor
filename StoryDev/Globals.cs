@@ -20,6 +20,7 @@ namespace StoryDev
     delegate void OnBranchAdded(string branchName);
     delegate void OnBranchRenamed(int index, string branchName);
     delegate void OnBranchDeleted(int index);
+    delegate void OnBranchesLinked(int parent, int child);
 
     enum GameEvent
     {

@@ -477,6 +477,15 @@ namespace StoryDev.Forms
             cmbBranches.Items.RemoveAt(index);
             convoData.RemoveAt(index);
         }
+
+        private void branchDesignerUI1_BranchesLinked(int parent, int child)
+        {
+            var choice = new ChoiceData();
+            choice.ChildIndex = child;
+            choice.CurrentIndex = parent;
+
+            choices.Add(choice);
+        }
     }
 
     class ChoiceData
