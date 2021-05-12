@@ -608,6 +608,12 @@
     <Compile Include="Forms\SimpleEntryForm.Designer.cs">
       <DependentUpon>SimpleEntryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\StoryOrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\StoryOrderForm.Designer.cs">
+      <DependentUpon>StoryOrderForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\VendorItemForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -896,6 +902,9 @@
     <EmbeddedResource Include="Forms\SimpleEntryForm.resx">
       <DependentUpon>SimpleEntryForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\StoryOrderForm.resx">
+      <DependentUpon>StoryOrderForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\VendorItemForm.resx">
       <DependentUpon>VendorItemForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -964,6 +973,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\RotateClockwise.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ToTop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ToBottom.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
