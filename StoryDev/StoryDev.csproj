@@ -608,6 +608,12 @@
     <Compile Include="Forms\SimpleEntryForm.Designer.cs">
       <DependentUpon>SimpleEntryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SimulationOptionsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SimulationOptionsForm.Designer.cs">
+      <DependentUpon>SimulationOptionsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\StoryOrderForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -901,6 +907,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SimpleEntryForm.resx">
       <DependentUpon>SimpleEntryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SimulationOptionsForm.resx">
+      <DependentUpon>SimulationOptionsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\StoryOrderForm.resx">
       <DependentUpon>StoryOrderForm.cs</DependentUpon>

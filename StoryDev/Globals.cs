@@ -944,5 +944,57 @@ namespace StoryDev
 
     }
 
+    class PlayerState
+    {
+
+        public float Frequency;
+        public List<int> ConversationCharacters;
+        public int CharacterPointOfView;
+        public int CurrentConversationID;
+        public int CurrentConversationPosition;
+        public List<InventoryState> Inventories;
+        public ArtefactState Artefacts;
+
+
+    }
+
+    class InventoryState
+    {
+
+        public List<int> Characters;
+        public List<int> ItemID;
+        public List<int> Quantity;
+
+        public InventoryState()
+        {
+            Characters = new List<int>();
+            ItemID = new List<int>();
+            Quantity = new List<int>();
+        }
+
+    }
+
+    class ArtefactState
+    {
+
+        public List<int> FragmentsDiscovered;
+        public List<int> ArtefactsUnlocked;
+        public List<int> ArtefactsActivated;
+
+        public ArtefactState()
+        {
+            FragmentsDiscovered = new List<int>();
+            ArtefactsActivated = new List<int>();
+            ArtefactsUnlocked = new List<int>();
+        }
+
+    }
+
+    class CharacterState
+    {
+
+
+
+    }
     
 }
