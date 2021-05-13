@@ -957,10 +957,45 @@ namespace StoryDev
         public int CharacterPointOfView;
         public int CurrentConversationID;
         public int CurrentConversationPosition;
+        public int CurrentPlace;
+        public int CurrentSection;
+
+        public int CurrentSpecialConvoID;
+        public int CurrentSpecialConversationPosition;
+        public int CurrentSpecialPlace;
+        public int CurrentSpecialSection;
+
         public List<InventoryState> Inventories;
         public ArtefactState Artefacts;
         public CharacterState Characters;
+        public PlaceState Places;
+        public List<int> AchievementsUnlocked;
+        public JournalState Journals;
+        public SpecialScenarioState SpecialScenarios;
 
+        public PlayerState()
+        {
+            Frequency = 3.0f;
+            ConversationCharacters = new List<int>();
+            CharacterPointOfView = -1;
+            CurrentConversationID = -1;
+            CurrentConversationPosition = -1;
+            CurrentPlace = -1;
+            CurrentSection = -1;
+
+            CurrentSpecialConvoID = -1;
+            CurrentSpecialConversationPosition = -1;
+            CurrentSpecialPlace = -1;
+            CurrentSpecialSection = -1;
+
+            Inventories = new List<InventoryState>();
+            Artefacts = new ArtefactState();
+            Characters = new CharacterState();
+            Places = new PlaceState();
+            AchievementsUnlocked = new List<int>();
+            Journals = new JournalState();
+            SpecialScenarios = new SpecialScenarioState();
+        }
 
     }
 
@@ -1021,6 +1056,62 @@ namespace StoryDev
             AttitudesTowards = new List<CharacterAttitude>();
             Traits = new List<int>();
             TraitProgress = new List<int>();
+        }
+
+    }
+
+    class PlaceState
+    {
+
+        public List<int> PlacesUnlocked;
+        public List<int> SectionsAccessible;
+        public List<int> GossipsAvailable;
+        public Dictionary<int, List<int>> GossipOptionsAvailable;
+        public Dictionary<int, List<int>> GossipOptionsHidden;
+
+        public PlaceState()
+        {
+            PlacesUnlocked = new List<int>();
+            SectionsAccessible = new List<int>();
+            GossipsAvailable = new List<int>();
+            GossipOptionsAvailable = new Dictionary<int, List<int>>();
+            GossipOptionsHidden = new Dictionary<int, List<int>>();
+        }
+
+    }
+
+    class JournalState
+    {
+
+        public List<int> JournalsUnlocked;
+        public List<int> JournalsAvailable;
+        public List<int> JournalsInactive;
+        public List<int> JournalsCompleted;
+        public Dictionary<int, int> JournalPagesCompleted;
+
+        public JournalState()
+        {
+            JournalPagesCompleted = new Dictionary<int, int>();
+            JournalsAvailable = new List<int>();
+            JournalsCompleted = new List<int>();
+            JournalsInactive = new List<int>();
+            JournalsUnlocked = new List<int>();
+        }
+
+    }
+
+    class SpecialScenarioState
+    {
+
+        public List<int> SpecialScenariosUnlocked;
+        public List<int> SpecialScenariosCompleted;
+        public List<float> SpecialScenarioScores;
+
+        public SpecialScenarioState()
+        {
+            SpecialScenariosUnlocked = new List<int>();
+            SpecialScenariosCompleted = new List<int>();
+            SpecialScenarioScores = new List<float>();
         }
 
     }
