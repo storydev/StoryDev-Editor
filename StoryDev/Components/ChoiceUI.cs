@@ -63,9 +63,9 @@ namespace StoryDev.Components
         private void btnScript_Click(object sender, EventArgs e)
         {
             var construct = new CodeConstructForm();
-            if (!string.IsNullOrEmpty(data.Condition))
+            if (!string.IsNullOrEmpty(data.Code))
             {
-                construct.ConstructFromExisting(data.Condition);
+                construct.ConstructFromExisting(data.Code);
             }
 
             construct.OnlyExecutables = true;

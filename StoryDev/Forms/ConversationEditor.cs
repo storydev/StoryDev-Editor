@@ -486,6 +486,11 @@ namespace StoryDev.Forms
 
             choices.Add(choice);
         }
+
+        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new SimulationOptionsForm().ShowDialog();
+        }
     }
 
     class ChoiceData

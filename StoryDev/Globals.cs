@@ -309,6 +309,14 @@ namespace StoryDev
             File.WriteAllText(CurrentProjectFolder + "\\iconsets.json", content);
         }
 
+        public static SimulationOptions Simulation { get; private set; }
+
+        public static void SaveSimulationOptions()
+        {
+            var content = JsonConvert.SerializeObject(Simulation);
+            File.WriteAllText(CurrentProjectFolder + "\\simulation-options.json", content);
+        }
+
         //
         // Characters and Functions
         //
@@ -943,6 +951,18 @@ namespace StoryDev
             {
                 Achievements = new List<Achievement>();
             }
+
+            // Load Simulation Options
+            if (File.Exists(path + "\\simulation-options.json"))
+            {
+                var content = File.ReadAllText(path + "\\simulation-options.json");
+                Simulation = JsonConvert.DeserializeObject<SimulationOptions>(content);
+            }
+            else
+            {
+                Simulation = new SimulationOptions();
+                SaveSimulationOptions();
+            }
         }
 
         
@@ -1112,6 +1132,46 @@ namespace StoryDev
             SpecialScenariosUnlocked = new List<int>();
             SpecialScenariosCompleted = new List<int>();
             SpecialScenarioScores = new List<float>();
+        }
+
+    }
+
+    class SimulationOptions
+    {
+
+        public bool EnableSimulationsStartup;
+        public bool Resimulate;
+        public int BestOutcome;
+        public int WorstOutcome;
+        public string StateRecordingsFolder;
+        public bool EnableStateRecording;
+        public List<StateTemplate> Templates;
+
+        public SimulationOptions()
+        {
+            EnableSimulationsStartup = true;
+            Resimulate = false;
+            BestOutcome = 7;
+            WorstOutcome = 3;
+            StateRecordingsFolder = "";
+            EnableStateRecording = true;
+            Templates = new List<StateTemplate>();
+        }
+
+    }
+
+    class StateTemplate
+    {
+
+        public string Name;
+        public bool SaveStatePerChange;
+        public Dictionary<string, bool> ActiveState;
+
+        public StateTemplate()
+        {
+            Name = "";
+            SaveStatePerChange = false;
+            ActiveState = new Dictionary<string, bool>();
         }
 
     }
