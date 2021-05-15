@@ -37,6 +37,8 @@ namespace StoryDev.Forms
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveConversationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.simulationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.simulationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pnlDesigner = new System.Windows.Forms.Panel();
@@ -114,15 +116,30 @@ namespace StoryDev.Forms
             // simulationToolStripMenuItem
             // 
             this.simulationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.simulationsToolStripMenuItem,
+            this.toolStripSeparator1,
             this.optionsToolStripMenuItem});
             this.simulationToolStripMenuItem.Name = "simulationToolStripMenuItem";
             this.simulationToolStripMenuItem.Size = new System.Drawing.Size(112, 29);
             this.simulationToolStripMenuItem.Text = "Simulation";
             // 
+            // simulationsToolStripMenuItem
+            // 
+            this.simulationsToolStripMenuItem.CheckOnClick = true;
+            this.simulationsToolStripMenuItem.Name = "simulationsToolStripMenuItem";
+            this.simulationsToolStripMenuItem.Size = new System.Drawing.Size(218, 34);
+            this.simulationsToolStripMenuItem.Text = "Simulations...";
+            this.simulationsToolStripMenuItem.Click += new System.EventHandler(this.simulationsToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(215, 6);
+            // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(218, 34);
             this.optionsToolStripMenuItem.Text = "Options...";
             this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
             // 
@@ -243,6 +260,7 @@ namespace StoryDev.Forms
             this.storyEditor.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.storyEditor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.storyEditor.Enabled = false;
+            this.storyEditor.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.storyEditor.IsReplaceMode = false;
             this.storyEditor.Location = new System.Drawing.Point(0, 43);
             this.storyEditor.Name = "storyEditor";
@@ -319,6 +337,7 @@ namespace StoryDev.Forms
             this.Name = "ConversationEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Conversation Editor";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ConversationEditor_FormClosing);
             this.Load += new System.EventHandler(this.ConversationEditor_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -360,5 +379,7 @@ namespace StoryDev.Forms
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem simulationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem simulationsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }

@@ -25,19 +25,31 @@ namespace StoryDev.Forms
 
         private Parser sdParser;
 
+        private SimulationForm simulation;
+
         public ConversationEditor()
         {
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
 
             InitializeComponent();
 
-            storyEditor.CurrentLanguage = Components.Language.StoryScript;
+            simulation = new SimulationForm();
+            simulation.FormClosing += Simulation_FormClosing;
+
+            storyEditor.CurrentLanguage = Language.StoryScript;
 
             sdParser = new Parser();
 
             cmbView.SelectedIndex = 0;
             convoData = new List<string>();
             choices = new List<ChoiceData>();
+        }
+
+        private void Simulation_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            simulation.Hide();
+            simulationsToolStripMenuItem.Checked = false;
         }
 
         private void cmbView_SelectedIndexChanged(object sender, EventArgs e)
@@ -129,7 +141,11 @@ namespace StoryDev.Forms
 
         private void ConversationEditor_Load(object sender, EventArgs e)
         {
-
+            if (Globals.Simulation.EnableSimulationsStartup)
+            {
+                simulation.Show(this);
+                simulationsToolStripMenuItem.Checked = true;
+            }
         }
 
         private void SaveCurrent()
@@ -347,7 +363,7 @@ namespace StoryDev.Forms
 
         private void storyEditor_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void storyEditor_TextChanged(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
@@ -490,6 +506,25 @@ namespace StoryDev.Forms
         private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new SimulationOptionsForm().ShowDialog();
+        }
+
+        private void simulationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (simulationsToolStripMenuItem.Checked)
+            {
+                simulation.Show(this);
+            }
+            else
+            {
+                simulation.Hide();
+            }
+        }
+
+        private void ConversationEditor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = false;
+            simulation.Dispose();
+            simulation = null;
         }
     }
 
