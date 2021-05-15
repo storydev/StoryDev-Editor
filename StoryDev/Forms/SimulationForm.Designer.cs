@@ -29,6 +29,7 @@ namespace StoryDev.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnPlayStop = new System.Windows.Forms.Button();
             this.chbRecord = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,6 +40,7 @@ namespace StoryDev.Forms
             this.chbBestOutcome = new System.Windows.Forms.CheckBox();
             this.chbWorstOutcome = new System.Windows.Forms.CheckBox();
             this.pnlOptions = new System.Windows.Forms.Panel();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.pnlOptions.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -89,6 +91,8 @@ namespace StoryDev.Forms
             this.chbAutoTrack.Size = new System.Drawing.Size(164, 24);
             this.chbAutoTrack.TabIndex = 4;
             this.chbAutoTrack.Text = "Auto-Track States";
+            this.toolTip1.SetToolTip(this.chbAutoTrack, "When playing, automatically start tracking state changes across all conversations" +
+        ".");
             this.chbAutoTrack.UseVisualStyleBackColor = true;
             // 
             // chbAutoCompare
@@ -99,6 +103,8 @@ namespace StoryDev.Forms
             this.chbAutoCompare.Size = new System.Drawing.Size(139, 24);
             this.chbAutoCompare.TabIndex = 5;
             this.chbAutoCompare.Text = "Auto-Compare";
+            this.toolTip1.SetToolTip(this.chbAutoCompare, "Based on the latest saved state, automatically compare state changes while playin" +
+        "g.");
             this.chbAutoCompare.UseVisualStyleBackColor = true;
             // 
             // label2
@@ -178,5 +184,6 @@ namespace StoryDev.Forms
         private System.Windows.Forms.CheckBox chbBestOutcome;
         private System.Windows.Forms.CheckBox chbWorstOutcome;
         private System.Windows.Forms.Panel pnlOptions;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
