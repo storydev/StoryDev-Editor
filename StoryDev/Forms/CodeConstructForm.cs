@@ -76,6 +76,7 @@ namespace StoryDev.Forms
             lbCommands = new ListBox();
             lbCommands.Dock = DockStyle.Fill;
             lbCommands.DoubleClick += lbCommands_DoubleClick;
+            lbCommands.KeyUp += LbCommands_KeyUp;
 
             editor = new CodeEditor();
             editor.CurrentLanguage = Language.HaxeScript;
@@ -87,12 +88,24 @@ namespace StoryDev.Forms
             SwitchMethod();
         }
 
+        private void LbCommands_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (lbCommands.SelectedIndex > -1 && e.KeyCode == Keys.Delete)
+            {
+                var response = MessageBox.Show("Delete this option?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (response == DialogResult.Yes)
+                {
+                    lbCommands.Items.RemoveAt(lbCommands.SelectedIndex);
+                    lbCommands.SelectedIndex = -1;
+                }
+            }
+        }
+
         private void Editor_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F6)
             {
                 SelectFullFunctionCall();
-
             }
         }
 

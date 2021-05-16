@@ -483,6 +483,12 @@
     <Compile Include="Components\SplitButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Components\VarTrackerUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\VarTrackerUI.Designer.cs">
+      <DependentUpon>VarTrackerUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data\Achievement.cs" />
     <Compile Include="Data\Activity.cs" />
     <Compile Include="Data\ActivityPart.cs" />
@@ -872,6 +878,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Components\SpecialFeatureUI.resx">
       <DependentUpon>SpecialFeatureUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\VarTrackerUI.resx">
+      <DependentUpon>VarTrackerUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddJournalInlineCodeForm.resx">
       <DependentUpon>AddJournalInlineCodeForm.cs</DependentUpon>

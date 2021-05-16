@@ -985,7 +985,7 @@ namespace StoryDev
         public int CurrentSpecialPlace;
         public int CurrentSpecialSection;
 
-        public List<InventoryState> Inventories;
+        public InventoryState Inventories;
         public ArtefactState Artefacts;
         public CharacterState Characters;
         public PlaceState Places;
@@ -1008,7 +1008,7 @@ namespace StoryDev
             CurrentSpecialPlace = -1;
             CurrentSpecialSection = -1;
 
-            Inventories = new List<InventoryState>();
+            Inventories = new InventoryState();
             Artefacts = new ArtefactState();
             Characters = new CharacterState();
             Places = new PlaceState();
@@ -1019,6 +1019,7 @@ namespace StoryDev
 
     }
 
+    
     class InventoryState
     {
 
