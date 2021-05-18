@@ -999,7 +999,7 @@ namespace StoryDev
         {
             Frequency = 3.0f;
             ConversationCharacters = new List<int>();
-            ConversationCharacters.Add(5);
+            ConversationCharacters.Add(1);
             CharacterPointOfView = -1;
             CurrentConversationID = -1;
             CurrentConversationPosition = -1;

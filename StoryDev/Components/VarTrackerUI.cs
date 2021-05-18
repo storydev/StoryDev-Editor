@@ -76,6 +76,7 @@ namespace StoryDev.Components
                     vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
                     vars[initVar].CanExpand = true;
                     vars[initVar].Relationship = typeof(Character);
+                    vars[initVar].RelSource = "Characters";
                     vars[initVar].RelDisplay = "FirstName";
                     vars[initVar].RelPath = "ID";
 
@@ -95,6 +96,7 @@ namespace StoryDev.Components
                     vars[initVar].Reference = typeof(PlayerState).GetField("CharacterPointOfView");
                     vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
                     vars[initVar].Relationship = typeof(Character);
+                    vars[initVar].RelSource = "Characters";
                     vars[initVar].RelDisplay = "FirstName";
                     vars[initVar].RelPath = "ID";
 
@@ -146,6 +148,7 @@ namespace StoryDev.Components
                     vars[initVar].Reference = typeof(PlayerState).GetField("CurrentPlace");
                     vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
                     vars[initVar].Relationship = typeof(Place);
+                    vars[initVar].RelSource = "Places";
                     vars[initVar].RelPath = "ID";
                     vars[initVar].RelDisplay = "Name";
 
@@ -165,6 +168,7 @@ namespace StoryDev.Components
                     vars[initVar].Reference = typeof(PlayerState).GetField("CurrentSection");
                     vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
                     vars[initVar].Relationship = typeof(MapSection);
+                    vars[initVar].RelSource = "Sections";
                     vars[initVar].RelPath = "ID";
                     vars[initVar].RelDisplay = "Name";
 
@@ -216,6 +220,7 @@ namespace StoryDev.Components
                     vars[initVar].Reference = typeof(PlayerState).GetField("CurrentSpecialPlace");
                     vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
                     vars[initVar].Relationship = typeof(Place);
+                    vars[initVar].RelSource = "Places";
                     vars[initVar].RelPath = "ID";
                     vars[initVar].RelDisplay = "Name";
 
@@ -235,6 +240,7 @@ namespace StoryDev.Components
                     vars[initVar].Reference = typeof(PlayerState).GetField("CurrentSpecialSection");
                     vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
                     vars[initVar].Relationship = typeof(MapSection);
+                    vars[initVar].RelSource = "Sections";
                     vars[initVar].RelPath = "ID";
                     vars[initVar].RelDisplay = "Name";
 
@@ -272,6 +278,7 @@ namespace StoryDev.Components
                             vars[initVar].Reference = typeof(InventoryState).GetField("Characters");
                             vars[initVar].CanExpand = true;
                             vars[initVar].Relationship = typeof(Character);
+                            vars[initVar].RelSource = "Characters";
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "FirstName";
 
@@ -292,6 +299,7 @@ namespace StoryDev.Components
                             vars[initVar].Reference = typeof(InventoryState).GetField("ItemID");
                             vars[initVar].CanExpand = true;
                             vars[initVar].Relationship = typeof(Item);
+                            vars[initVar].RelSource = "Items";
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "Name";
 
@@ -348,6 +356,7 @@ namespace StoryDev.Components
                             vars[initVar].Reference = typeof(ArtefactState).GetField("FragmentsDiscovered");
                             vars[initVar].CanExpand = true;
                             vars[initVar].Relationship = typeof(ArtefactFragment);
+                            vars[initVar].RelSource = "Fragments";
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "Name";
 
@@ -368,6 +377,7 @@ namespace StoryDev.Components
                             vars[initVar].Reference = typeof(ArtefactState).GetField("ArtefactsUnlocked");
                             vars[initVar].CanExpand = true;
                             vars[initVar].Relationship = typeof(Artefact);
+                            vars[initVar].RelSource = "Artefacts";
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "Name";
 
@@ -388,6 +398,7 @@ namespace StoryDev.Components
                             vars[initVar].Reference = typeof(ArtefactState).GetField("ArtefactsActivated");
                             vars[initVar].CanExpand = true;
                             vars[initVar].Relationship = typeof(Artefact);
+                            vars[initVar].RelSource = "Artefacts";
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "Name";
 
@@ -427,6 +438,7 @@ namespace StoryDev.Components
                             vars[initVar].Reference = typeof(CharacterState).GetField("Characters");
                             vars[initVar].CanExpand = true;
                             vars[initVar].Relationship = typeof(Character);
+                            vars[initVar].RelSource = "Characters";
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "FirstName";
 
@@ -580,6 +592,7 @@ namespace StoryDev.Components
                             vars[initVar].Parent = vars[inv];
                             vars[initVar].Reference = typeof(CharacterState).GetField("Traits");
                             vars[initVar].Relationship = typeof(CharacterTrait);
+                            vars[initVar].RelSource = "Traits";
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "Name";
                             vars[initVar].CanExpand = true;
@@ -633,6 +646,7 @@ namespace StoryDev.Components
                             vars[initVar].Reference = typeof(PlaceState).GetField("PlacesUnlocked");
                             vars[initVar].CanExpand = true;
                             vars[initVar].Relationship = typeof(Place);
+                            vars[initVar].RelSource = "Places";
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "Name";
 
@@ -651,6 +665,7 @@ namespace StoryDev.Components
                             vars[initVar].Reference = typeof(PlaceState).GetField("SectionsAccessible");
                             vars[initVar].CanExpand = true;
                             vars[initVar].Relationship = typeof(MapSection);
+                            vars[initVar].RelSource = "Sections";
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "Name";
 
@@ -669,6 +684,7 @@ namespace StoryDev.Components
                             vars[initVar].Reference = typeof(PlaceState).GetField("GossipsAvailable");
                             vars[initVar].CanExpand = true;
                             vars[initVar].Relationship = typeof(CharacterGossip);
+                            vars[initVar].RelSource = "Gossips";
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "Name";
 
@@ -687,6 +703,7 @@ namespace StoryDev.Components
                             vars[initVar].Reference = typeof(PlaceState).GetField("GossipOptionsAvailable");
                             vars[initVar].CanExpand = true;
                             vars[initVar].Relationship = typeof(CharacterGossip);
+                            vars[initVar].RelSource = "Gossips";
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDictReference = "DisplayOption";
                             vars[initVar].RelDisplay = "Name";
@@ -706,6 +723,7 @@ namespace StoryDev.Components
                             vars[initVar].Reference = typeof(PlaceState).GetField("GossipOptionsHidden");
                             vars[initVar].CanExpand = true;
                             vars[initVar].Relationship = typeof(CharacterGossip);
+                            vars[initVar].RelSource = "Gossips";
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDictReference = "DisplayOption";
                             vars[initVar].RelDisplay = "Name";
@@ -761,6 +779,7 @@ namespace StoryDev.Components
                             vars[initVar].Reference = typeof(JournalState).GetField("JournalsUnlocked");
                             vars[initVar].CanExpand = true;
                             vars[initVar].Relationship = typeof(Journal);
+                            vars[initVar].RelSource = "Journals";
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "Name";
 
@@ -779,6 +798,7 @@ namespace StoryDev.Components
                             vars[initVar].Reference = typeof(JournalState).GetField("JournalsAvailable");
                             vars[initVar].CanExpand = true;
                             vars[initVar].Relationship = typeof(Journal);
+                            vars[initVar].RelSource = "Journals";
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "Name";
 
@@ -797,6 +817,7 @@ namespace StoryDev.Components
                             vars[initVar].Reference = typeof(JournalState).GetField("JournalsInactive");
                             vars[initVar].CanExpand = true;
                             vars[initVar].Relationship = typeof(Journal);
+                            vars[initVar].RelSource = "Journals";
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "Name";
 
@@ -815,6 +836,7 @@ namespace StoryDev.Components
                             vars[initVar].Reference = typeof(JournalState).GetField("JournalsCompleted");
                             vars[initVar].CanExpand = true;
                             vars[initVar].Relationship = typeof(Journal);
+                            vars[initVar].RelSource = "Journals";
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "Name";
 
@@ -833,6 +855,7 @@ namespace StoryDev.Components
                             vars[initVar].Reference = typeof(JournalState).GetField("JournalPagesCompleted");
                             vars[initVar].CanExpand = true;
                             vars[initVar].Relationship = typeof(Journal);
+                            vars[initVar].RelSource = "Journals";
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "Name";
 
@@ -870,6 +893,7 @@ namespace StoryDev.Components
                             vars[initVar].Reference = typeof(SpecialScenarioState).GetField("SpecialScenariosUnlocked");
                             vars[initVar].CanExpand = true;
                             vars[initVar].Relationship = typeof(SpecialScenario);
+                            vars[initVar].RelSource = "Scenarios";
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "Name";
 
@@ -888,6 +912,7 @@ namespace StoryDev.Components
                             vars[initVar].Reference = typeof(SpecialScenarioState).GetField("SpecialScenariosCompleted");
                             vars[initVar].CanExpand = true;
                             vars[initVar].Relationship = typeof(SpecialScenario);
+                            vars[initVar].RelSource = "Scenarios";
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "Name";
 
@@ -942,6 +967,16 @@ namespace StoryDev.Components
                 {
                     if (field.FieldType.GetGenericTypeDefinition() == typeof(List<>))
                     {
+                        PropertyInfo prop = null;
+                        FieldInfo relPathField = null;
+                        FieldInfo relDisplayField = null;
+                        if (variable.Relationship != null)
+                        {
+                            prop = typeof(Globals).GetProperty(variable.RelSource, BindingFlags.Public | BindingFlags.Static);
+                            relPathField = variable.Relationship.GetField(variable.RelPath);
+                            relDisplayField = variable.Relationship.GetField(variable.RelDisplay);
+                        }
+
                         if (valueTypes[index] == typeof(List<int>))
                         {
                             var listNode = new TreeNode();
@@ -953,7 +988,21 @@ namespace StoryDev.Components
                                 var val = data[i];
 
                                 var node = new TreeNode();
-                                node.Text = "[" + i + "] : " + val.ToString();
+                                var actual = val.ToString();
+                                if (prop != null)
+                                {
+                                    var relSource = (IEnumerable<DBObject>)prop.GetValue(null);
+                                    foreach (DBObject obj in relSource)
+                                    {
+                                        var value = (int)relPathField.GetValue(obj);
+                                        if (value == val)
+                                        {
+                                            actual = (string)relDisplayField.GetValue(obj);
+                                        }
+                                    }
+                                }
+
+                                node.Text = "[" + i + "] : " + actual;
                                 listNode.Nodes.Add(node);
                             }
 
@@ -1027,6 +1076,7 @@ namespace StoryDev.Components
             public object Value;
             public object Reference;
             public System.Type Relationship;
+            public string RelSource;
             public string RelPath;
             public string RelDisplay;
             public string RelDictReference;
