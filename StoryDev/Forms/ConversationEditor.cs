@@ -26,6 +26,7 @@ namespace StoryDev.Forms
         private Parser sdParser;
 
         private SimulationForm simulation;
+        private VarTrackerForm tracker;
 
         public ConversationEditor()
         {
@@ -35,6 +36,8 @@ namespace StoryDev.Forms
 
             simulation = new SimulationForm();
             simulation.FormClosing += Simulation_FormClosing;
+            simulation.SimulationStarted += Simulation_SimulationStarted;
+            simulation.SimulationStopped += Simulation_SimulationStopped;
 
             storyEditor.CurrentLanguage = Language.StoryScript;
 
@@ -43,6 +46,23 @@ namespace StoryDev.Forms
             cmbView.SelectedIndex = 0;
             convoData = new List<string>();
             choices = new List<ChoiceData>();
+        }
+
+        private void Simulation_SimulationStopped()
+        {
+            tracker.Close();
+            tracker = null;
+        }
+
+        private void Simulation_SimulationStarted(StateTemplate template)
+        {
+            if (tracker != null)
+            {
+                tracker.Dispose();
+            }
+
+            tracker = new VarTrackerForm(template);
+            tracker.Show(this);
         }
 
         private void Simulation_FormClosing(object sender, FormClosingEventArgs e)

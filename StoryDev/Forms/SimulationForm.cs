@@ -36,10 +36,12 @@ namespace StoryDev.Forms
                 if (isPlayingSimulation)
                 {
                     btnPlayStop.Image = Properties.Resources.Stop;
+                    SimulationStarted?.Invoke(Globals.Simulation.Templates[selectedTemplate]);
                 }
                 else
                 {
                     btnPlayStop.Image = Properties.Resources.Play;
+                    SimulationStopped?.Invoke();
                 }
             }
         }
@@ -48,5 +50,8 @@ namespace StoryDev.Forms
         {
             selectedTemplate = cmbTemplates.SelectedIndex;
         }
+
+        public event OnSimulationStarted SimulationStarted;
+        public event OnSimulationStopped SimulationStopped;
     }
 }

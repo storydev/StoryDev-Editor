@@ -59,6 +59,9 @@
     <Reference Include="FastColoredTextBox, Version=2.16.24.0, Culture=neutral, PublicKeyToken=fb8aa12b994ef61b, processorArchitecture=MSIL">
       <HintPath>..\packages\FCTB.2.16.24\lib\FastColoredTextBox.dll</HintPath>
     </Reference>
+    <Reference Include="FastTree, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FastTree.1.3.0.0\lib\FastTree.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -638,6 +641,12 @@
     <Compile Include="Forms\StoryOrderForm.Designer.cs">
       <DependentUpon>StoryOrderForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\VarTrackerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\VarTrackerForm.Designer.cs">
+      <DependentUpon>VarTrackerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\VendorItemForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -944,6 +953,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\StoryOrderForm.resx">
       <DependentUpon>StoryOrderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\VarTrackerForm.resx">
+      <DependentUpon>VarTrackerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\VendorItemForm.resx">
       <DependentUpon>VendorItemForm.cs</DependentUpon>

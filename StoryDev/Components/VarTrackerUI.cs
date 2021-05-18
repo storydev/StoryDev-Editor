@@ -22,11 +22,11 @@ namespace StoryDev.Components
         private int initVar;
 
         private PlayerState state;
-        public ref PlayerState State 
-        { 
+        public PlayerState State 
+        {
             get
             {
-                return ref state;
+                return state;
             }
         }
 
@@ -36,11 +36,12 @@ namespace StoryDev.Components
 
             InitializeComponent();
 
-            vars = new Variable[template.ActiveState.Count];
-            valueTypes = new System.Type[template.ActiveState.Count];
+            vars = new Variable[template.ActiveState.Count + 3];
+            valueTypes = new System.Type[template.ActiveState.Count + 3];
             state = new PlayerState();
             this.template = template;
 
+            InitVars();
         }
 
         private void InitVars()
@@ -51,263 +52,965 @@ namespace StoryDev.Components
 
             if (kvs.ContainsKey("PlayerState.Frequency"))
             {
-                vars[initVar] = new Variable();
-                vars[initVar].Name = "Frequency";
-                vars[initVar].FullPath = "PlayerState.Frequency";
-                vars[initVar].Reference = typeof(PlayerState).GetField("Frequency");
-                vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
-                valueTypes[initVar] = vars[initVar].Value.GetType();
+                if (kvs["PlayerState.Frequency"])
+                {
+                    vars[initVar] = new Variable();
+                    vars[initVar].Name = "Frequency";
+                    vars[initVar].FullPath = "PlayerState.Frequency";
+                    vars[initVar].Reference = typeof(PlayerState).GetField("Frequency");
+                    vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
+                    valueTypes[initVar] = vars[initVar].Value.GetType();
 
-                initVar++;
+                    initVar++;
+                }
             }
 
             if (kvs.ContainsKey("PlayerState.ConversationCharacters"))
             {
-                vars[initVar] = new Variable();
-                vars[initVar].Name = "ConversationCharacters";
-                vars[initVar].FullPath = "PlayerState.ConversationCharacters";
-                vars[initVar].Reference = typeof(PlayerState).GetField("ConversationCharacters");
-                vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
-                vars[initVar].CanExpand = true;
-                vars[initVar].Relationship = typeof(Character);
-                vars[initVar].RelDisplay = "FirstName";
-                vars[initVar].RelPath = "ID";
+                if (kvs["PlayerState.ConversationCharacters"])
+                {
+                    vars[initVar] = new Variable();
+                    vars[initVar].Name = "ConversationCharacters";
+                    vars[initVar].FullPath = "PlayerState.ConversationCharacters";
+                    vars[initVar].Reference = typeof(PlayerState).GetField("ConversationCharacters");
+                    vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
+                    vars[initVar].CanExpand = true;
+                    vars[initVar].Relationship = typeof(Character);
+                    vars[initVar].RelDisplay = "FirstName";
+                    vars[initVar].RelPath = "ID";
 
-                valueTypes[initVar] = vars[initVar].Value.GetType();
+                    valueTypes[initVar] = vars[initVar].Value.GetType();
 
-                initVar++;
+                    initVar++;
+                }
             }
 
             if (kvs.ContainsKey("PlayerState.CharacterPointOfView"))
             {
-                vars[initVar] = new Variable();
-                vars[initVar].Name = "CharacterPointOfView";
-                vars[initVar].FullPath = "PlayerState.CharacterPointOfView";
-                vars[initVar].Reference = typeof(PlayerState).GetField("CharacterPointOfView");
-                vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
-                vars[initVar].Relationship = typeof(Character);
-                vars[initVar].RelDisplay = "FirstName";
-                vars[initVar].RelPath = "ID";
+                if (kvs["PlayerState.CharacterPointOfView"])
+                {
+                    vars[initVar] = new Variable();
+                    vars[initVar].Name = "CharacterPointOfView";
+                    vars[initVar].FullPath = "PlayerState.CharacterPointOfView";
+                    vars[initVar].Reference = typeof(PlayerState).GetField("CharacterPointOfView");
+                    vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
+                    vars[initVar].Relationship = typeof(Character);
+                    vars[initVar].RelDisplay = "FirstName";
+                    vars[initVar].RelPath = "ID";
 
-                valueTypes[initVar] = vars[initVar].Value.GetType();
+                    valueTypes[initVar] = vars[initVar].Value.GetType();
 
-                initVar++;
+                    initVar++;
+                }
             }
 
             if (kvs.ContainsKey("PlayerState.CurrentConversationID"))
             {
-                vars[initVar] = new Variable();
-                vars[initVar].Name = "CurrentConversationID";
-                vars[initVar].FullPath = "PlayerState.CurrentConversationID";
-                vars[initVar].Reference = typeof(PlayerState).GetField("CurrentConversationID");
-                vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
+                if (kvs["PlayerState.CurrentConversationID"])
+                {
+                    vars[initVar] = new Variable();
+                    vars[initVar].Name = "CurrentConversationID";
+                    vars[initVar].FullPath = "PlayerState.CurrentConversationID";
+                    vars[initVar].Reference = typeof(PlayerState).GetField("CurrentConversationID");
+                    vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
 
-                valueTypes[initVar] = vars[initVar].Value.GetType();
+                    valueTypes[initVar] = vars[initVar].Value.GetType();
 
-                initVar++;
+                    initVar++;
+                }
             }
 
             if (kvs.ContainsKey("PlayerState.CurrentConversationPosition"))
             {
-                vars[initVar] = new Variable();
-                vars[initVar].Name = "CurrentConversationPosition";
-                vars[initVar].FullPath = "PlayerState.CurrentConversationPosition";
-                vars[initVar].Reference = typeof(PlayerState).GetField("CurrentConversationPosition");
-                vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
+                if (kvs["PlayerState.CurrentConversationPosition"])
+                {
+                    vars[initVar] = new Variable();
+                    vars[initVar].Name = "CurrentConversationPosition";
+                    vars[initVar].FullPath = "PlayerState.CurrentConversationPosition";
+                    vars[initVar].Reference = typeof(PlayerState).GetField("CurrentConversationPosition");
+                    vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
 
-                valueTypes[initVar] = vars[initVar].Value.GetType();
+                    valueTypes[initVar] = vars[initVar].Value.GetType();
 
-                initVar++;
+                    initVar++;
+                }
             }
 
             if (kvs.ContainsKey("PlayerState.CurrentPlace"))
             {
-                vars[initVar] = new Variable();
-                vars[initVar].Name = "CurrentPlace";
-                vars[initVar].FullPath = "PlayerState.CurrentPlace";
-                vars[initVar].Reference = typeof(PlayerState).GetField("CurrentPlace");
-                vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
-                vars[initVar].Relationship = typeof(Place);
-                vars[initVar].RelPath = "ID";
-                vars[initVar].RelDisplay = "Name";
+                if (kvs["PlayerState.CurrentPlace"])
+                {
+                    vars[initVar] = new Variable();
+                    vars[initVar].Name = "CurrentPlace";
+                    vars[initVar].FullPath = "PlayerState.CurrentPlace";
+                    vars[initVar].Reference = typeof(PlayerState).GetField("CurrentPlace");
+                    vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
+                    vars[initVar].Relationship = typeof(Place);
+                    vars[initVar].RelPath = "ID";
+                    vars[initVar].RelDisplay = "Name";
 
-                valueTypes[initVar] = vars[initVar].Value.GetType();
+                    valueTypes[initVar] = vars[initVar].Value.GetType();
 
-                initVar++;
+                    initVar++;
+                }
             }
 
             if (kvs.ContainsKey("PlayerState.CurrentSection"))
             {
-                vars[initVar] = new Variable();
-                vars[initVar].Name = "CurrentSection";
-                vars[initVar].FullPath = "PlayerState.CurrentSection";
-                vars[initVar].Reference = typeof(PlayerState).GetField("CurrentSection");
-                vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
-                vars[initVar].Relationship = typeof(MapSection);
-                vars[initVar].RelPath = "ID";
-                vars[initVar].RelDisplay = "Name";
+                if (kvs["PlayerState.CurrentSection"])
+                {
+                    vars[initVar] = new Variable();
+                    vars[initVar].Name = "CurrentSection";
+                    vars[initVar].FullPath = "PlayerState.CurrentSection";
+                    vars[initVar].Reference = typeof(PlayerState).GetField("CurrentSection");
+                    vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
+                    vars[initVar].Relationship = typeof(MapSection);
+                    vars[initVar].RelPath = "ID";
+                    vars[initVar].RelDisplay = "Name";
 
-                valueTypes[initVar] = vars[initVar].Value.GetType();
+                    valueTypes[initVar] = vars[initVar].Value.GetType();
 
-                initVar++;
+                    initVar++;
+                }
             }
 
             if (kvs.ContainsKey("PlayerState.CurrentSpecialConvoID"))
             {
-                vars[initVar] = new Variable();
-                vars[initVar].Name = "CurrentSpecialConvoID";
-                vars[initVar].FullPath = "PlayerState.CurrentSpecialConvoID";
-                vars[initVar].Reference = typeof(PlayerState).GetField("CurrentSpecialConvoID");
-                vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
+                if (kvs["PlayerState.CurrentSpecialConvoID"])
+                {
+                    vars[initVar] = new Variable();
+                    vars[initVar].Name = "CurrentSpecialConvoID";
+                    vars[initVar].FullPath = "PlayerState.CurrentSpecialConvoID";
+                    vars[initVar].Reference = typeof(PlayerState).GetField("CurrentSpecialConvoID");
+                    vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
 
-                valueTypes[initVar] = vars[initVar].Value.GetType();
+                    valueTypes[initVar] = vars[initVar].Value.GetType();
 
-                initVar++;
+                    initVar++;
+                }
             }
 
             if (kvs.ContainsKey("PlayerState.CurrentSpecialConversationPosition"))
             {
-                vars[initVar] = new Variable();
-                vars[initVar].Name = "CurrentSpecialConversationPosition";
-                vars[initVar].FullPath = "PlayerState.CurrentSpecialConversationPosition";
-                vars[initVar].Reference = typeof(PlayerState).GetField("CurrentSpecialConversationPosition");
-                vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
+                if (kvs["PlayerState.CurrentSpecialConversationPosition"])
+                {
+                    vars[initVar] = new Variable();
+                    vars[initVar].Name = "CurrentSpecialConversationPosition";
+                    vars[initVar].FullPath = "PlayerState.CurrentSpecialConversationPosition";
+                    vars[initVar].Reference = typeof(PlayerState).GetField("CurrentSpecialConversationPosition");
+                    vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
 
-                valueTypes[initVar] = vars[initVar].Value.GetType();
+                    valueTypes[initVar] = vars[initVar].Value.GetType();
 
-                initVar++;
+                    initVar++;
+                }
             }
 
             if (kvs.ContainsKey("PlayerState.CurrentSpecialPlace"))
             {
-                vars[initVar] = new Variable();
-                vars[initVar].Name = "CurrentSpecialPlace";
-                vars[initVar].FullPath = "PlayerState.CurrentSpecialPlace";
-                vars[initVar].Reference = typeof(PlayerState).GetField("CurrentSpecialPlace");
-                vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
-                vars[initVar].Relationship = typeof(Place);
-                vars[initVar].RelPath = "ID";
-                vars[initVar].RelDisplay = "Name";
+                if (kvs["PlayerState.CurrentSpecialPlace"])
+                {
+                    vars[initVar] = new Variable();
+                    vars[initVar].Name = "CurrentSpecialPlace";
+                    vars[initVar].FullPath = "PlayerState.CurrentSpecialPlace";
+                    vars[initVar].Reference = typeof(PlayerState).GetField("CurrentSpecialPlace");
+                    vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
+                    vars[initVar].Relationship = typeof(Place);
+                    vars[initVar].RelPath = "ID";
+                    vars[initVar].RelDisplay = "Name";
 
-                valueTypes[initVar] = vars[initVar].Value.GetType();
+                    valueTypes[initVar] = vars[initVar].Value.GetType();
 
-                initVar++;
+                    initVar++;
+                }
             }
 
             if (kvs.ContainsKey("PlayerState.CurrentSpecialSection"))
             {
-                vars[initVar] = new Variable();
-                vars[initVar].Name = "CurrentSpecialSection";
-                vars[initVar].FullPath = "PlayerState.CurrentSpecialSection";
-                vars[initVar].Reference = typeof(PlayerState).GetField("CurrentSpecialSection");
-                vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
-                vars[initVar].Relationship = typeof(MapSection);
-                vars[initVar].RelPath = "ID";
-                vars[initVar].RelDisplay = "Name";
+                if (kvs["PlayerState.CurrentSpecialSection"])
+                {
+                    vars[initVar] = new Variable();
+                    vars[initVar].Name = "CurrentSpecialSection";
+                    vars[initVar].FullPath = "PlayerState.CurrentSpecialSection";
+                    vars[initVar].Reference = typeof(PlayerState).GetField("CurrentSpecialSection");
+                    vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
+                    vars[initVar].Relationship = typeof(MapSection);
+                    vars[initVar].RelPath = "ID";
+                    vars[initVar].RelDisplay = "Name";
 
-                valueTypes[initVar] = vars[initVar].Value.GetType();
+                    valueTypes[initVar] = vars[initVar].Value.GetType();
 
-                initVar++;
+                    initVar++;
+                }
             }
 
             if (kvs.ContainsKey("PlayerState.Inventories"))
             {
                 var inv = initVar;
 
-                vars[initVar] = new Variable();
-                vars[initVar].Name = "Inventories";
-                vars[initVar].FullPath = "PlayerState.Inventories";
-                vars[initVar].Reference = typeof(PlayerState).GetField("Inventories");
-                vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
-                vars[initVar].CanExpand = true;
-
-                valueTypes[initVar] = vars[initVar].Value.GetType();
-
-                initVar++;
-
-                if (kvs.ContainsKey("PlayerState.Inventories.Characters"))
+                if (kvs["PlayerState.Inventories"])
                 {
                     vars[initVar] = new Variable();
-                    vars[initVar].Name = "Characters";
-                    vars[initVar].FullPath = "PlayerState.Inventories.Characters";
-                    vars[initVar].Parent = vars[inv];
-                    vars[initVar].Reference = typeof(InventoryState).GetField("Characters");
-                    vars[initVar].CanExpand = true;
-                    vars[initVar].Relationship = typeof(Character);
-                    vars[initVar].RelPath = "ID";
-                    vars[initVar].RelDisplay = "FirstName";
-
-                    valueTypes[initVar] = typeof(int);
-
-                    initVar++;
-                }
-
-                if (kvs.ContainsKey("PlayerState.Inventories.ItemID"))
-                {
-                    vars[initVar] = new Variable();
-                    vars[initVar].Name = "ItemID";
-                    vars[initVar].FullPath = "PlayerState.Inventories.ItemID";
-                    vars[initVar].Parent = vars[inv];
-                    vars[initVar].Reference = typeof(InventoryState).GetField("ItemID");
-                    vars[initVar].CanExpand = true;
-                    vars[initVar].Relationship = typeof(Item);
-                    vars[initVar].RelPath = "ID";
-                    vars[initVar].RelDisplay = "Name";
-
-                    valueTypes[initVar] = typeof(int);
-
-                    initVar++;
-                }
-
-                if (kvs.ContainsKey("PlayerState.Inventories.Quantity"))
-                {
-                    vars[initVar] = new Variable();
-                    vars[initVar].Name = "Quantity";
-                    vars[initVar].FullPath = "PlayerState.Inventories.Quantity";
-                    vars[initVar].Parent = vars[inv];
-                    vars[initVar].Reference = typeof(InventoryState).GetField("Quantity");
+                    vars[initVar].Name = "Inventories";
+                    vars[initVar].FullPath = "PlayerState.Inventories";
+                    vars[initVar].Reference = typeof(PlayerState).GetField("Inventories");
+                    vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
                     vars[initVar].CanExpand = true;
 
-                    valueTypes[initVar] = typeof(int);
+                    valueTypes[initVar] = vars[initVar].Value.GetType();
 
                     initVar++;
+
+                    if (kvs.ContainsKey("PlayerState.Inventories.Characters"))
+                    {
+                        if (kvs["PlayerState.Inventories.Characters"])
+                        {
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "Characters";
+                            vars[initVar].FullPath = "PlayerState.Inventories.Characters";
+                            vars[initVar].Parent = vars[inv];
+                            vars[initVar].Reference = typeof(InventoryState).GetField("Characters");
+                            vars[initVar].CanExpand = true;
+                            vars[initVar].Relationship = typeof(Character);
+                            vars[initVar].RelPath = "ID";
+                            vars[initVar].RelDisplay = "FirstName";
+
+                            valueTypes[initVar] = typeof(int);
+
+                            initVar++;
+                        }
+                    }
+
+                    if (kvs.ContainsKey("PlayerState.Inventories.ItemID"))
+                    {
+                        if (kvs["PlayerState.Inventories.ItemID"])
+                        {
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "ItemID";
+                            vars[initVar].FullPath = "PlayerState.Inventories.ItemID";
+                            vars[initVar].Parent = vars[inv];
+                            vars[initVar].Reference = typeof(InventoryState).GetField("ItemID");
+                            vars[initVar].CanExpand = true;
+                            vars[initVar].Relationship = typeof(Item);
+                            vars[initVar].RelPath = "ID";
+                            vars[initVar].RelDisplay = "Name";
+
+                            valueTypes[initVar] = typeof(int);
+
+                            initVar++;
+                        }
+                    }
+
+                    if (kvs.ContainsKey("PlayerState.Inventories.Quantity"))
+                    {
+                        if (kvs["PlayerState.Inventories.Quantity"])
+                        {
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "Quantity";
+                            vars[initVar].FullPath = "PlayerState.Inventories.Quantity";
+                            vars[initVar].Parent = vars[inv];
+                            vars[initVar].Reference = typeof(InventoryState).GetField("Quantity");
+                            vars[initVar].CanExpand = true;
+
+                            valueTypes[initVar] = typeof(int);
+
+                            initVar++;
+                        }
+                    }
                 }
             }
 
             if (kvs.ContainsKey("PlayerState.Artefacts"))
             {
-                var inv = initVar;
+                if (kvs["PlayerState.Artefacts"])
+                {
+                    var inv = initVar;
 
-                vars[initVar] = new Variable();
-                vars[initVar].Name = "Artefacts";
-                vars[initVar].FullPath = "PlayerState.Artefacts";
-                vars[initVar].Reference = typeof(PlayerState).GetField("Artefacts");
-                vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
-                vars[initVar].CanExpand = true;
+                    vars[initVar] = new Variable();
+                    vars[initVar].Name = "Artefacts";
+                    vars[initVar].FullPath = "PlayerState.Artefacts";
+                    vars[initVar].Reference = typeof(PlayerState).GetField("Artefacts");
+                    vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
+                    vars[initVar].CanExpand = true;
 
-                valueTypes[initVar] = vars[initVar].Value.GetType();
+                    valueTypes[initVar] = vars[initVar].Value.GetType();
 
-                initVar++;
+                    initVar++;
 
-                if (kvs.ContainsKey("PlayerState.Artefacts.FragmentsDiscovered"))
+                    if (kvs.ContainsKey("PlayerState.Artefacts.FragmentsDiscovered"))
+                    {
+                        if (kvs["PlayerState.Artefacts.FragmentsDiscovered"])
+                        {
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "FragmentsDiscovered";
+                            vars[initVar].FullPath = "PlayerState.Artefacts.FragmentsDiscovered";
+                            vars[initVar].Parent = vars[inv];
+                            vars[initVar].Reference = typeof(ArtefactState).GetField("FragmentsDiscovered");
+                            vars[initVar].CanExpand = true;
+                            vars[initVar].Relationship = typeof(ArtefactFragment);
+                            vars[initVar].RelPath = "ID";
+                            vars[initVar].RelDisplay = "Name";
+
+                            valueTypes[initVar] = typeof(int);
+
+                            initVar++;
+                        }
+                    }
+
+                    if (kvs.ContainsKey("PlayerState.Artefacts.ArtefactsUnlocked"))
+                    {
+                        if (kvs["PlayerState.Artefacts.ArtefactsUnlocked"])
+                        {
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "ArtefactsUnlocked";
+                            vars[initVar].FullPath = "PlayerState.Artefacts.ArtefactsUnlocked";
+                            vars[initVar].Parent = vars[inv];
+                            vars[initVar].Reference = typeof(ArtefactState).GetField("ArtefactsUnlocked");
+                            vars[initVar].CanExpand = true;
+                            vars[initVar].Relationship = typeof(Artefact);
+                            vars[initVar].RelPath = "ID";
+                            vars[initVar].RelDisplay = "Name";
+
+                            valueTypes[initVar] = typeof(int);
+
+                            initVar++;
+                        }
+                    }
+
+                    if (kvs.ContainsKey("PlayerState.Artefacts.ArtefactsActivated"))
+                    {
+                        if (kvs["PlayerState.Artefacts.ArtefactsActivated"])
+                        {
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "ArtefactsActivated";
+                            vars[initVar].FullPath = "PlayerState.Artefacts.ArtefactsActivated";
+                            vars[initVar].Parent = vars[inv];
+                            vars[initVar].Reference = typeof(ArtefactState).GetField("ArtefactsActivated");
+                            vars[initVar].CanExpand = true;
+                            vars[initVar].Relationship = typeof(Artefact);
+                            vars[initVar].RelPath = "ID";
+                            vars[initVar].RelDisplay = "Name";
+
+                            valueTypes[initVar] = typeof(int);
+
+                            initVar++;
+                        }
+                    }
+                }
+            }
+
+            if (kvs.ContainsKey("PlayerState.Characters"))
+            {
+                if (kvs["PlayerState.Characters"])
+                {
+                    var inv = initVar;
+
+                    vars[initVar] = new Variable();
+                    vars[initVar].Name = "Characters";
+                    vars[initVar].FullPath = "PlayerState.Characters";
+                    vars[initVar].Reference = typeof(PlayerState).GetField("Characters");
+                    vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
+                    vars[initVar].CanExpand = true;
+
+                    valueTypes[initVar] = vars[initVar].Value.GetType();
+
+                    initVar++;
+
+                    if (kvs.ContainsKey("PlayerState.Characters.Characters"))
+                    {
+                        if (kvs["PlayerState.Characters.Characters"])
+                        {
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "Characters";
+                            vars[initVar].FullPath = "PlayerState.Characters.Characters";
+                            vars[initVar].Parent = vars[inv];
+                            vars[initVar].Reference = typeof(CharacterState).GetField("Characters");
+                            vars[initVar].CanExpand = true;
+                            vars[initVar].Relationship = typeof(Character);
+                            vars[initVar].RelPath = "ID";
+                            vars[initVar].RelDisplay = "FirstName";
+
+                            valueTypes[initVar] = typeof(int);
+
+                            initVar++;
+                        }
+                    }
+
+                    if (kvs.ContainsKey("PlayerState.Characters.Attitudes"))
+                    {
+                        if (kvs["PlayerState.Characters.Attitudes"])
+                        {
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "Attitudes";
+                            vars[initVar].FullPath = "PlayerState.Characters.Attitudes";
+                            vars[initVar].Parent = vars[inv];
+                            vars[initVar].Reference = typeof(CharacterState).GetField("Attitudes");
+                            vars[initVar].CanExpand = true;
+
+                            valueTypes[initVar] = typeof(int);
+
+                            initVar++;
+                        }
+                    }
+
+                    if (kvs.ContainsKey("PlayerState.Characters.HungerLevel"))
+                    {
+                        if (kvs["PlayerState.Characters.HungerLevel"])
+                        {
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "HungerLevel";
+                            vars[initVar].FullPath = "PlayerState.Characters.HungerLevel";
+                            vars[initVar].Parent = vars[inv];
+                            vars[initVar].Reference = typeof(CharacterState).GetField("HungerLevel");
+                            vars[initVar].CanExpand = true;
+
+                            valueTypes[initVar] = typeof(int);
+
+                            initVar++;
+                        }
+                    }
+
+                    if (kvs.ContainsKey("PlayerState.Characters.ThirstLevel"))
+                    {
+                        if (kvs["PlayerState.Characters.ThirstLevel"])
+                        {
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "ThirstLevel";
+                            vars[initVar].FullPath = "PlayerState.Characters.ThirstLevel";
+                            vars[initVar].Parent = vars[inv];
+                            vars[initVar].Reference = typeof(CharacterState).GetField("ThirstLevel");
+                            vars[initVar].CanExpand = true;
+
+                            valueTypes[initVar] = typeof(int);
+
+                            initVar++;
+                        }
+                    }
+
+                    if (kvs.ContainsKey("PlayerState.Characters.PhysicalLevel"))
+                    {
+                        if (kvs["PlayerState.Characters.PhysicalLevel"])
+                        {
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "PhysicalLevel";
+                            vars[initVar].FullPath = "PlayerState.Characters.PhysicalLevel";
+                            vars[initVar].Parent = vars[inv];
+                            vars[initVar].Reference = typeof(CharacterState).GetField("PhysicalLevel");
+                            vars[initVar].CanExpand = true;
+
+                            valueTypes[initVar] = typeof(int);
+
+                            initVar++;
+                        }
+                    }
+
+                    if (kvs.ContainsKey("PlayerState.Characters.MentalLevel"))
+                    {
+                        if (kvs["PlayerState.Characters.MentalLevel"])
+                        {
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "MentalLevel";
+                            vars[initVar].FullPath = "PlayerState.Characters.MentalLevel";
+                            vars[initVar].Parent = vars[inv];
+                            vars[initVar].Reference = typeof(CharacterState).GetField("MentalLevel");
+                            vars[initVar].CanExpand = true;
+
+                            valueTypes[initVar] = typeof(int);
+
+                            initVar++;
+                        }
+                    }
+
+                    if (kvs.ContainsKey("PlayerState.Characters.AttitudesTowards"))
+                    {
+                        if (kvs["PlayerState.Characters.AttitudesTowards"])
+                        {
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "AttitudesTowards";
+                            vars[initVar].FullPath = "PlayerState.Characters.AttitudesTowards";
+                            vars[initVar].Parent = vars[inv];
+                            vars[initVar].Reference = typeof(CharacterState).GetField("AttitudesTowards");
+                            vars[initVar].CanExpand = true;
+
+                            valueTypes[initVar] = typeof(CharacterAttitude);
+
+                            var attitudeParent = initVar;
+
+                            initVar++;
+
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "TowardsCharacter";
+                            vars[initVar].FullPath = "PlayerState.Characters.AttitudesTowards.TowardsCharacter";
+                            vars[initVar].Parent = vars[attitudeParent];
+                            vars[initVar].Reference = typeof(CharacterAttitude).GetField("TowardsCharacter");
+
+                            valueTypes[initVar] = typeof(int);
+
+                            initVar++;
+
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "Attitude";
+                            vars[initVar].FullPath = "PlayerState.Characters.AttitudesTowards.Attitude";
+                            vars[initVar].Parent = vars[attitudeParent];
+                            vars[initVar].Reference = typeof(CharacterAttitude).GetField("Attitude");
+
+                            valueTypes[initVar] = typeof(int);
+
+                            initVar++;
+
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "RealAttitude";
+                            vars[initVar].FullPath = "PlayerState.Characters.AttitudesTowards.RealAttitude";
+                            vars[initVar].Parent = vars[attitudeParent];
+                            vars[initVar].Reference = typeof(CharacterAttitude).GetField("RealAttitude");
+
+                            valueTypes[initVar] = typeof(int);
+
+                            initVar++;
+                        }
+                    }
+
+                    if (kvs.ContainsKey("PlayerState.Characters.Traits"))
+                    {
+                        if (kvs["PlayerState.Characters.Traits"])
+                        {
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "Traits";
+                            vars[initVar].FullPath = "PlayerState.Characters.Traits";
+                            vars[initVar].Parent = vars[inv];
+                            vars[initVar].Reference = typeof(CharacterState).GetField("Traits");
+                            vars[initVar].Relationship = typeof(CharacterTrait);
+                            vars[initVar].RelPath = "ID";
+                            vars[initVar].RelDisplay = "Name";
+                            vars[initVar].CanExpand = true;
+
+                            valueTypes[initVar] = typeof(int);
+                        }
+                    }
+
+                    if (kvs.ContainsKey("PlayerState.Characters.TraitProgress"))
+                    {
+                        if (kvs["PlayerState.Characters.TraitProgress"])
+                        {
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "TraitProgress";
+                            vars[initVar].FullPath = "PlayerState.Characters.TraitProgress";
+                            vars[initVar].Parent = vars[inv];
+                            vars[initVar].Reference = typeof(CharacterState).GetField("TraitProgress");
+                            vars[initVar].CanExpand = true;
+
+                            valueTypes[initVar] = typeof(int);
+                        }
+                    }
+                }
+            }
+
+            if (kvs.ContainsKey("PlayerState.Places"))
+            {
+                if (kvs["PlayerState.Places"])
+                {
+                    var inv = initVar;
+
+                    vars[initVar] = new Variable();
+                    vars[initVar].Name = "Places";
+                    vars[initVar].FullPath = "PlayerState.Places";
+                    vars[initVar].Reference = typeof(PlayerState).GetField("Places");
+                    vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
+                    vars[initVar].CanExpand = true;
+
+                    valueTypes[initVar] = vars[initVar].Value.GetType();
+
+                    initVar++;
+
+                    if (kvs.ContainsKey("PlayerState.Places.PlacesUnlocked"))
+                    {
+                        if (kvs["PlayerState.Places.PlacesUnlocked"])
+                        {
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "PlacesUnlocked";
+                            vars[initVar].FullPath = "PlayerState.Places.PlacesUnlocked";
+                            vars[initVar].Parent = vars[inv];
+                            vars[initVar].Reference = typeof(PlaceState).GetField("PlacesUnlocked");
+                            vars[initVar].CanExpand = true;
+                            vars[initVar].Relationship = typeof(Place);
+                            vars[initVar].RelPath = "ID";
+                            vars[initVar].RelDisplay = "Name";
+
+                            valueTypes[initVar] = typeof(int);
+                        }
+                    }
+
+                    if (kvs.ContainsKey("PlayerState.Places.SectionsAccessible"))
+                    {
+                        if (kvs["PlayerState.Places.SectionsAccessible"])
+                        {
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "SectionsAccessible";
+                            vars[initVar].FullPath = "PlayerState.Places.SectionsAccessible";
+                            vars[initVar].Parent = vars[inv];
+                            vars[initVar].Reference = typeof(PlaceState).GetField("SectionsAccessible");
+                            vars[initVar].CanExpand = true;
+                            vars[initVar].Relationship = typeof(MapSection);
+                            vars[initVar].RelPath = "ID";
+                            vars[initVar].RelDisplay = "Name";
+
+                            valueTypes[initVar] = typeof(int);
+                        }
+                    }
+
+                    if (kvs.ContainsKey("PlayerState.Places.GossipsAvailable"))
+                    {
+                        if (kvs["PlayerState.Places.GossipsAvailable"])
+                        {
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "GossipsAvailable";
+                            vars[initVar].FullPath = "PlayerState.Places.GossipsAvailable";
+                            vars[initVar].Parent = vars[inv];
+                            vars[initVar].Reference = typeof(PlaceState).GetField("GossipsAvailable");
+                            vars[initVar].CanExpand = true;
+                            vars[initVar].Relationship = typeof(CharacterGossip);
+                            vars[initVar].RelPath = "ID";
+                            vars[initVar].RelDisplay = "Name";
+
+                            valueTypes[initVar] = typeof(int);
+                        }
+                    }
+
+                    if (kvs.ContainsKey("PlayerState.Places.GossipOptionsAvailable"))
+                    {
+                        if (kvs["PlayerState.Places.GossipOptionsAvailable"])
+                        {
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "GossipOptionsAvailable";
+                            vars[initVar].FullPath = "PlayerState.Places.GossipOptionsAvailable";
+                            vars[initVar].Parent = vars[inv];
+                            vars[initVar].Reference = typeof(PlaceState).GetField("GossipOptionsAvailable");
+                            vars[initVar].CanExpand = true;
+                            vars[initVar].Relationship = typeof(CharacterGossip);
+                            vars[initVar].RelPath = "ID";
+                            vars[initVar].RelDictReference = "DisplayOption";
+                            vars[initVar].RelDisplay = "Name";
+
+                            valueTypes[initVar] = typeof(int);
+                        }
+                    }
+
+                    if (kvs.ContainsKey("PlayerState.Places.GossipOptionsHidden"))
+                    {
+                        if (kvs["PlayerState.Places.GossipOptionsHidden"])
+                        {
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "GossipOptionsHidden";
+                            vars[initVar].FullPath = "PlayerState.Places.GossipOptionsHidden";
+                            vars[initVar].Parent = vars[inv];
+                            vars[initVar].Reference = typeof(PlaceState).GetField("GossipOptionsHidden");
+                            vars[initVar].CanExpand = true;
+                            vars[initVar].Relationship = typeof(CharacterGossip);
+                            vars[initVar].RelPath = "ID";
+                            vars[initVar].RelDictReference = "DisplayOption";
+                            vars[initVar].RelDisplay = "Name";
+
+                            valueTypes[initVar] = typeof(int);
+                        }
+                    }
+                }
+            }
+
+            if (kvs.ContainsKey("PlayerState.AchievementsUnlocked"))
+            {
+                if (kvs["PlayerState.AchievementsUnlocked"])
                 {
                     vars[initVar] = new Variable();
-                    vars[initVar].Name = "FragmentsDiscovered";
-                    vars[initVar].FullPath = "PlayerState.Artefacts.FragmentsDiscovered";
-                    vars[initVar].Parent = vars[inv];
-                    vars[initVar].Reference = typeof(InventoryState).GetField("FragmentsDiscovered");
+                    vars[initVar].Name = "AchievementsUnlocked";
+                    vars[initVar].FullPath = "PlayerState.AchievementsUnlocked";
+                    vars[initVar].Reference = typeof(PlayerState).GetField("AchievementsUnlocked");
+                    vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
                     vars[initVar].CanExpand = true;
-                    vars[initVar].Relationship = typeof(ArtefactFragment);
-                    vars[initVar].RelPath = "ID";
-                    vars[initVar].RelDisplay = "Name";
 
-                    valueTypes[initVar] = typeof(int);
+                    valueTypes[initVar] = vars[initVar].Value.GetType();
 
                     initVar++;
                 }
-
-
             }
+
+            if (kvs.ContainsKey("PlayerState.Journals"))
+            {
+                if (kvs["PlayerState.Journals"])
+                {
+                    var inv = initVar;
+
+                    vars[initVar] = new Variable();
+                    vars[initVar].Name = "Journals";
+                    vars[initVar].FullPath = "PlayerState.Journals";
+                    vars[initVar].Reference = typeof(PlayerState).GetField("Journals");
+                    vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
+                    vars[initVar].CanExpand = true;
+
+                    valueTypes[initVar] = vars[initVar].Value.GetType();
+
+                    initVar++;
+
+                    if (kvs.ContainsKey("PlayerState.Journals.JournalsUnlocked"))
+                    {
+                        if (kvs["PlayerState.Journals.JournalsUnlocked"])
+                        {
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "JournalsUnlocked";
+                            vars[initVar].FullPath = "PlayerState.Journals.JournalsUnlocked";
+                            vars[initVar].Parent = vars[inv];
+                            vars[initVar].Reference = typeof(JournalState).GetField("JournalsUnlocked");
+                            vars[initVar].CanExpand = true;
+                            vars[initVar].Relationship = typeof(Journal);
+                            vars[initVar].RelPath = "ID";
+                            vars[initVar].RelDisplay = "Name";
+
+                            valueTypes[initVar] = typeof(int);
+                        }
+                    }
+
+                    if (kvs.ContainsKey("PlayerState.Journals.JournalsAvailable"))
+                    {
+                        if (kvs["PlayerState.Journals.JournalsAvailable"])
+                        {
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "JournalsAvailable";
+                            vars[initVar].FullPath = "PlayerState.Journals.JournalsAvailable";
+                            vars[initVar].Parent = vars[inv];
+                            vars[initVar].Reference = typeof(JournalState).GetField("JournalsAvailable");
+                            vars[initVar].CanExpand = true;
+                            vars[initVar].Relationship = typeof(Journal);
+                            vars[initVar].RelPath = "ID";
+                            vars[initVar].RelDisplay = "Name";
+
+                            valueTypes[initVar] = typeof(int);
+                        }
+                    }
+
+                    if (kvs.ContainsKey("PlayerState.Journals.JournalsInactive"))
+                    {
+                        if (kvs["PlayerState.Journals.JournalsInactive"])
+                        {
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "JournalsInactive";
+                            vars[initVar].FullPath = "PlayerState.Journals.JournalsInactive";
+                            vars[initVar].Parent = vars[inv];
+                            vars[initVar].Reference = typeof(JournalState).GetField("JournalsInactive");
+                            vars[initVar].CanExpand = true;
+                            vars[initVar].Relationship = typeof(Journal);
+                            vars[initVar].RelPath = "ID";
+                            vars[initVar].RelDisplay = "Name";
+
+                            valueTypes[initVar] = typeof(int);
+                        }
+                    }
+
+                    if (kvs.ContainsKey("PlayerState.Journals.JournalsCompleted"))
+                    {
+                        if (kvs["PlayerState.Journals.JournalsCompleted"])
+                        {
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "JournalsCompleted";
+                            vars[initVar].FullPath = "PlayerState.Journals.JournalsCompleted";
+                            vars[initVar].Parent = vars[inv];
+                            vars[initVar].Reference = typeof(JournalState).GetField("JournalsCompleted");
+                            vars[initVar].CanExpand = true;
+                            vars[initVar].Relationship = typeof(Journal);
+                            vars[initVar].RelPath = "ID";
+                            vars[initVar].RelDisplay = "Name";
+
+                            valueTypes[initVar] = typeof(int);
+                        }
+                    }
+
+                    if (kvs.ContainsKey("PlayerState.Journals.JournalPagesCompleted"))
+                    {
+                        if (kvs["PlayerState.Journals.JournalPagesCompleted"])
+                        {
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "JournalPagesCompleted";
+                            vars[initVar].FullPath = "PlayerState.Journals.JournalPagesCompleted";
+                            vars[initVar].Parent = vars[inv];
+                            vars[initVar].Reference = typeof(JournalState).GetField("JournalPagesCompleted");
+                            vars[initVar].CanExpand = true;
+                            vars[initVar].Relationship = typeof(Journal);
+                            vars[initVar].RelPath = "ID";
+                            vars[initVar].RelDisplay = "Name";
+
+                            valueTypes[initVar] = typeof(int);
+                        }
+                    }
+                }
+            }
+
+            if (kvs.ContainsKey("PlayerState.SpecialScenarios"))
+            {
+                if (kvs["PlayerState.SpecialScenarios"])
+                {
+                    var inv = initVar;
+
+                    vars[initVar] = new Variable();
+                    vars[initVar].Name = "SpecialScenarios";
+                    vars[initVar].FullPath = "PlayerState.SpecialScenarios";
+                    vars[initVar].Reference = typeof(PlayerState).GetField("SpecialScenarios");
+                    vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
+                    vars[initVar].CanExpand = true;
+
+                    valueTypes[initVar] = vars[initVar].Value.GetType();
+
+                    initVar++;
+
+                    if (kvs.ContainsKey("PlayerState.SpecialScenarios.SpecialScenariosUnlocked"))
+                    {
+                        if (kvs["PlayerState.SpecialScenarios.SpecialScenariosUnlocked"])
+                        {
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "SpecialScenariosUnlocked";
+                            vars[initVar].FullPath = "PlayerState.SpecialScenarios.SpecialScenariosUnlocked";
+                            vars[initVar].Parent = vars[inv];
+                            vars[initVar].Reference = typeof(SpecialScenarioState).GetField("SpecialScenariosUnlocked");
+                            vars[initVar].CanExpand = true;
+                            vars[initVar].Relationship = typeof(SpecialScenario);
+                            vars[initVar].RelPath = "ID";
+                            vars[initVar].RelDisplay = "Name";
+
+                            valueTypes[initVar] = typeof(int);
+                        }
+                    }
+
+                    if (kvs.ContainsKey("PlayerState.SpecialScenarios.SpecialScenariosCompleted"))
+                    {
+                        if (kvs["PlayerState.SpecialScenarios.SpecialScenariosCompleted"])
+                        {
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "SpecialScenariosCompleted";
+                            vars[initVar].FullPath = "PlayerState.SpecialScenarios.SpecialScenariosCompleted";
+                            vars[initVar].Parent = vars[inv];
+                            vars[initVar].Reference = typeof(SpecialScenarioState).GetField("SpecialScenariosCompleted");
+                            vars[initVar].CanExpand = true;
+                            vars[initVar].Relationship = typeof(SpecialScenario);
+                            vars[initVar].RelPath = "ID";
+                            vars[initVar].RelDisplay = "Name";
+
+                            valueTypes[initVar] = typeof(int);
+                        }
+                    }
+                }
+            }
+
+            ConstructVariables();
+        }
+
+        private void ConstructVariables()
+        {
+            tvVariables.Nodes.Clear();
+
+            var root = new TreeNode();
+            root.Text = "PlayerState";
+
+            tvVariables.Nodes.Add(root);
+
+            for (int i = 0; i < vars.Length; i++)
+            {
+                if (vars[i] != null)
+                {
+                    ConstructVarIndex(i, root);
+                }
+            }
+        }
+
+        private void ConstructVarIndex(int index, TreeNode parent)
+        {
+            var _parent = parent;
+            var variable = vars[index];
+            if (variable.Parent != null)
+            {
+                _parent = GetNodeByPath(variable.Parent.FullPath);
+            }
+
+            // this is a simple variable
+            if (!variable.CanExpand && variable.Value != null)
+            {
+                var node = new TreeNode();
+                node.Text = variable.Name + " : " + variable.Value.ToString();
+                _parent.Nodes.Add(node);
+            }
+            else if (variable.CanExpand)
+            {
+                var field = (FieldInfo)variable.Reference;
+                // either a list or dictionary
+                if (field.FieldType.IsGenericType)
+                {
+                    if (field.FieldType.GetGenericTypeDefinition() == typeof(List<>))
+                    {
+                        if (valueTypes[index] == typeof(List<int>))
+                        {
+                            var listNode = new TreeNode();
+                            listNode.Text = variable.Name;
+
+                            var data = (List<int>)field.GetValue(state);
+                            for (int i = 0; i < data.Count; i++)
+                            {
+                                var val = data[i];
+
+                                var node = new TreeNode();
+                                node.Text = "[" + i + "] : " + val.ToString();
+                                listNode.Nodes.Add(node);
+                            }
+
+                            _parent.Nodes.Add(listNode);
+                        }
+
+                        
+                    }
+                }
+            }
+        }
+
+        private TreeNode GetNodeByPath(string path)
+        {
+            TreeNode result = null;
+
+            var splitted = path.Split('.');
+            foreach (TreeNode node in tvVariables.Nodes)
+            {
+                if (node.Text == splitted[0])
+                {
+                    if (splitted.Length - 1 <= 0)
+                        return node;
+
+                    var _paths = new string[splitted.Length - 1];
+                    for (int i = 0; i < _paths.Length; i++)
+                    {
+                        _paths[i] = splitted[i + 1];
+                    }
+
+                    return GetNextInPath(node, _paths);
+                }
+            }
+
+            return result;
+        }
+
+        private TreeNode GetNextInPath(TreeNode current, string[] paths)
+        {
+            foreach (TreeNode result in current.Nodes)
+            {
+                if (result.Text == paths[0])
+                {
+                    if (paths.Length - 1 <= 0)
+                        return result;
+
+                    var _paths = new string[paths.Length - 1];
+                    for (int i = 0; i < paths.Length; i++)
+                    {
+                        _paths[i] = paths[i + 1];
+                    }
+
+                    return GetNextInPath(result, _paths);
+                }
+            }
+
+            return current;
         }
 
         private void VarTrackerUI_Paint(object sender, PaintEventArgs e)
@@ -326,6 +1029,7 @@ namespace StoryDev.Components
             public System.Type Relationship;
             public string RelPath;
             public string RelDisplay;
+            public string RelDictReference;
 
             public bool CanExpand;
 

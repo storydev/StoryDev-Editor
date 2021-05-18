@@ -31,6 +31,7 @@ namespace StoryDev.Components
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtVarName = new System.Windows.Forms.TextBox();
+            this.tvVariables = new System.Windows.Forms.TreeView();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,10 +51,23 @@ namespace StoryDev.Components
             this.txtVarName.Size = new System.Drawing.Size(232, 26);
             this.txtVarName.TabIndex = 0;
             // 
+            // tvVariables
+            // 
+            this.tvVariables.CheckBoxes = true;
+            this.tvVariables.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvVariables.FullRowSelect = true;
+            this.tvVariables.Location = new System.Drawing.Point(0, 37);
+            this.tvVariables.Name = "tvVariables";
+            this.tvVariables.PathSeparator = ".";
+            this.tvVariables.ShowNodeToolTips = true;
+            this.tvVariables.Size = new System.Drawing.Size(487, 812);
+            this.tvVariables.TabIndex = 1;
+            // 
             // VarTrackerUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.tvVariables);
             this.Controls.Add(this.panel1);
             this.Name = "VarTrackerUI";
             this.Size = new System.Drawing.Size(487, 849);
@@ -68,5 +82,6 @@ namespace StoryDev.Components
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox txtVarName;
+        private System.Windows.Forms.TreeView tvVariables;
     }
 }

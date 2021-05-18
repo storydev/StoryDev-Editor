@@ -21,6 +21,8 @@ namespace StoryDev
     delegate void OnBranchRenamed(int index, string branchName);
     delegate void OnBranchDeleted(int index);
     delegate void OnBranchesLinked(int parent, int child);
+    delegate void OnSimulationStarted(StateTemplate template);
+    delegate void OnSimulationStopped();
 
     enum GameEvent
     {
@@ -997,6 +999,7 @@ namespace StoryDev
         {
             Frequency = 3.0f;
             ConversationCharacters = new List<int>();
+            ConversationCharacters.Add(5);
             CharacterPointOfView = -1;
             CurrentConversationID = -1;
             CurrentConversationPosition = -1;
