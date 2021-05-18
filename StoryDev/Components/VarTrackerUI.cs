@@ -1012,6 +1012,12 @@ namespace StoryDev.Components
                         
                     }
                 }
+                else
+                {
+                    var root = new TreeNode();
+                    root.Text = variable.Name;
+                    _parent.Nodes.Add(root);
+                }
             }
         }
 
@@ -1050,7 +1056,7 @@ namespace StoryDev.Components
                         return result;
 
                     var _paths = new string[paths.Length - 1];
-                    for (int i = 0; i < paths.Length; i++)
+                    for (int i = 0; i < _paths.Length; i++)
                     {
                         _paths[i] = paths[i + 1];
                     }
