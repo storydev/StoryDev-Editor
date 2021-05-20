@@ -282,7 +282,7 @@ namespace StoryDev.Components
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "FirstName";
 
-                            valueTypes[initVar] = typeof(int);
+                            valueTypes[initVar] = typeof(List<int>);
 
                             initVar++;
                         }
@@ -303,7 +303,7 @@ namespace StoryDev.Components
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "Name";
 
-                            valueTypes[initVar] = typeof(int);
+                            valueTypes[initVar] = typeof(List<int>);
 
                             initVar++;
                         }
@@ -320,7 +320,7 @@ namespace StoryDev.Components
                             vars[initVar].Reference = typeof(InventoryState).GetField("Quantity");
                             vars[initVar].CanExpand = true;
 
-                            valueTypes[initVar] = typeof(int);
+                            valueTypes[initVar] = typeof(List<int>);
 
                             initVar++;
                         }
@@ -360,7 +360,7 @@ namespace StoryDev.Components
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "Name";
 
-                            valueTypes[initVar] = typeof(int);
+                            valueTypes[initVar] = typeof(List<int>);
 
                             initVar++;
                         }
@@ -381,7 +381,7 @@ namespace StoryDev.Components
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "Name";
 
-                            valueTypes[initVar] = typeof(int);
+                            valueTypes[initVar] = typeof(List<int>);
 
                             initVar++;
                         }
@@ -402,7 +402,7 @@ namespace StoryDev.Components
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "Name";
 
-                            valueTypes[initVar] = typeof(int);
+                            valueTypes[initVar] = typeof(List<int>);
 
                             initVar++;
                         }
@@ -442,7 +442,7 @@ namespace StoryDev.Components
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "FirstName";
 
-                            valueTypes[initVar] = typeof(int);
+                            valueTypes[initVar] = typeof(List<int>);
 
                             initVar++;
                         }
@@ -459,7 +459,7 @@ namespace StoryDev.Components
                             vars[initVar].Reference = typeof(CharacterState).GetField("Attitudes");
                             vars[initVar].CanExpand = true;
 
-                            valueTypes[initVar] = typeof(int);
+                            valueTypes[initVar] = typeof(List<int>);
 
                             initVar++;
                         }
@@ -476,7 +476,7 @@ namespace StoryDev.Components
                             vars[initVar].Reference = typeof(CharacterState).GetField("HungerLevel");
                             vars[initVar].CanExpand = true;
 
-                            valueTypes[initVar] = typeof(int);
+                            valueTypes[initVar] = typeof(List<int>);
 
                             initVar++;
                         }
@@ -493,7 +493,7 @@ namespace StoryDev.Components
                             vars[initVar].Reference = typeof(CharacterState).GetField("ThirstLevel");
                             vars[initVar].CanExpand = true;
 
-                            valueTypes[initVar] = typeof(int);
+                            valueTypes[initVar] = typeof(List<int>);
 
                             initVar++;
                         }
@@ -510,7 +510,7 @@ namespace StoryDev.Components
                             vars[initVar].Reference = typeof(CharacterState).GetField("PhysicalLevel");
                             vars[initVar].CanExpand = true;
 
-                            valueTypes[initVar] = typeof(int);
+                            valueTypes[initVar] = typeof(List<int>);
 
                             initVar++;
                         }
@@ -527,7 +527,7 @@ namespace StoryDev.Components
                             vars[initVar].Reference = typeof(CharacterState).GetField("MentalLevel");
                             vars[initVar].CanExpand = true;
 
-                            valueTypes[initVar] = typeof(int);
+                            valueTypes[initVar] = typeof(List<int>);
 
                             initVar++;
                         }
@@ -544,7 +544,7 @@ namespace StoryDev.Components
                             vars[initVar].Reference = typeof(CharacterState).GetField("AttitudesTowards");
                             vars[initVar].CanExpand = true;
 
-                            valueTypes[initVar] = typeof(CharacterAttitude);
+                            valueTypes[initVar] = typeof(List<CharacterAttitude>);
 
                             var attitudeParent = initVar;
 
@@ -556,7 +556,7 @@ namespace StoryDev.Components
                             vars[initVar].Parent = vars[attitudeParent];
                             vars[initVar].Reference = typeof(CharacterAttitude).GetField("TowardsCharacter");
 
-                            valueTypes[initVar] = typeof(int);
+                            valueTypes[initVar] = typeof(List<int>);
 
                             initVar++;
 
@@ -566,7 +566,7 @@ namespace StoryDev.Components
                             vars[initVar].Parent = vars[attitudeParent];
                             vars[initVar].Reference = typeof(CharacterAttitude).GetField("Attitude");
 
-                            valueTypes[initVar] = typeof(int);
+                            valueTypes[initVar] = typeof(List<int>);
 
                             initVar++;
 
@@ -576,7 +576,7 @@ namespace StoryDev.Components
                             vars[initVar].Parent = vars[attitudeParent];
                             vars[initVar].Reference = typeof(CharacterAttitude).GetField("RealAttitude");
 
-                            valueTypes[initVar] = typeof(int);
+                            valueTypes[initVar] = typeof(List<int>);
 
                             initVar++;
                         }
@@ -597,7 +597,7 @@ namespace StoryDev.Components
                             vars[initVar].RelDisplay = "Name";
                             vars[initVar].CanExpand = true;
 
-                            valueTypes[initVar] = typeof(int);
+                            valueTypes[initVar] = typeof(List<int>);
                         }
                     }
 
@@ -612,7 +612,7 @@ namespace StoryDev.Components
                             vars[initVar].Reference = typeof(CharacterState).GetField("TraitProgress");
                             vars[initVar].CanExpand = true;
 
-                            valueTypes[initVar] = typeof(int);
+                            valueTypes[initVar] = typeof(List<int>);
                         }
                     }
                 }
@@ -650,7 +650,9 @@ namespace StoryDev.Components
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "Name";
 
-                            valueTypes[initVar] = typeof(int);
+                            valueTypes[initVar] = typeof(List<int>);
+
+                            initVar++;
                         }
                     }
 
@@ -669,7 +671,9 @@ namespace StoryDev.Components
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "Name";
 
-                            valueTypes[initVar] = typeof(int);
+                            valueTypes[initVar] = typeof(List<int>);
+
+                            initVar++;
                         }
                     }
 
@@ -688,7 +692,9 @@ namespace StoryDev.Components
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "Name";
 
-                            valueTypes[initVar] = typeof(int);
+                            valueTypes[initVar] = typeof(List<int>);
+
+                            initVar++;
                         }
                     }
 
@@ -708,7 +714,9 @@ namespace StoryDev.Components
                             vars[initVar].RelDictReference = "DisplayOption";
                             vars[initVar].RelDisplay = "Name";
 
-                            valueTypes[initVar] = typeof(int);
+                            valueTypes[initVar] = typeof(Dictionary<int, List<int>>);
+
+                            initVar++;
                         }
                     }
 
@@ -728,7 +736,9 @@ namespace StoryDev.Components
                             vars[initVar].RelDictReference = "DisplayOption";
                             vars[initVar].RelDisplay = "Name";
 
-                            valueTypes[initVar] = typeof(int);
+                            valueTypes[initVar] = typeof(Dictionary<int, List<int>>);
+
+                            initVar++;
                         }
                     }
                 }
@@ -783,7 +793,9 @@ namespace StoryDev.Components
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "Name";
 
-                            valueTypes[initVar] = typeof(int);
+                            valueTypes[initVar] = typeof(List<int>);
+
+                            initVar++;
                         }
                     }
 
@@ -802,7 +814,9 @@ namespace StoryDev.Components
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "Name";
 
-                            valueTypes[initVar] = typeof(int);
+                            valueTypes[initVar] = typeof(List<int>);
+
+                            initVar++;
                         }
                     }
 
@@ -821,7 +835,9 @@ namespace StoryDev.Components
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "Name";
 
-                            valueTypes[initVar] = typeof(int);
+                            valueTypes[initVar] = typeof(List<int>);
+
+                            initVar++;
                         }
                     }
 
@@ -840,7 +856,9 @@ namespace StoryDev.Components
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "Name";
 
-                            valueTypes[initVar] = typeof(int);
+                            valueTypes[initVar] = typeof(List<int>);
+
+                            initVar++;
                         }
                     }
 
@@ -859,7 +877,9 @@ namespace StoryDev.Components
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "Name";
 
-                            valueTypes[initVar] = typeof(int);
+                            valueTypes[initVar] = typeof(Dictionary<int, int>);
+
+                            initVar++;
                         }
                     }
                 }
@@ -897,7 +917,9 @@ namespace StoryDev.Components
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "Name";
 
-                            valueTypes[initVar] = typeof(int);
+                            valueTypes[initVar] = typeof(List<int>);
+
+                            initVar++;
                         }
                     }
 
@@ -916,7 +938,7 @@ namespace StoryDev.Components
                             vars[initVar].RelPath = "ID";
                             vars[initVar].RelDisplay = "Name";
 
-                            valueTypes[initVar] = typeof(int);
+                            valueTypes[initVar] = typeof(List<int>);
                         }
                     }
                 }
@@ -970,6 +992,7 @@ namespace StoryDev.Components
                         PropertyInfo prop = null;
                         FieldInfo relPathField = null;
                         FieldInfo relDisplayField = null;
+                        object stateInstance = null;
                         if (variable.Relationship != null)
                         {
                             prop = typeof(Globals).GetProperty(variable.RelSource, BindingFlags.Public | BindingFlags.Static);
@@ -977,12 +1000,28 @@ namespace StoryDev.Components
                             relDisplayField = variable.Relationship.GetField(variable.RelDisplay);
                         }
 
+                        {
+                            var dots = 0;
+                            for (int i = 0; i < variable.FullPath.Length; i++)
+                                if (variable.FullPath[i] == '.')
+                                    dots++;
+
+                            if (dots >= 2)
+                            {
+                                stateInstance = typeof(PlayerState).GetField(variable.Parent.Name).GetValue(state);
+                            }
+                            else
+                            {
+                                stateInstance = state;
+                            }
+                        }
+
                         if (valueTypes[index] == typeof(List<int>))
                         {
                             var listNode = new TreeNode();
                             listNode.Text = variable.Name;
 
-                            var data = (List<int>)field.GetValue(state);
+                            var data = (List<int>)field.GetValue(stateInstance);
                             for (int i = 0; i < data.Count; i++)
                             {
                                 var val = data[i];
@@ -1008,8 +1047,24 @@ namespace StoryDev.Components
 
                             _parent.Nodes.Add(listNode);
                         }
+                    }
+                    // for journal pages only
+                    else if (field.FieldType == typeof(Dictionary<int, int>))
+                    {
+                        var listNode = new TreeNode();
+                        listNode.Text = variable.Name;
 
-                        
+                        var source = Globals.Journals;
+                        var data = (Dictionary<int, int>)field.GetValue(state.Journals);
+                        foreach (var d in data)
+                        {
+                            var journal = source.Find((j) => j.ID == d.Key);
+                            var node = new TreeNode();
+                            node.Text = journal.Name + " : " + d.Value;
+                            listNode.Nodes.Add(node);
+                        }
+
+                        _parent.Nodes.Add(listNode);
                     }
                 }
                 else
