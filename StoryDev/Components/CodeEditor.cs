@@ -73,6 +73,7 @@ namespace StoryDev.Components
             BackColor = Color.FromArgb(64, 64, 64);
             SelectionColor = Color.FromArgb(213, 218, 239);
             CaretColor = Color.FromArgb(216, 216, 216);
+            ForeColor = Color.FromArgb(195, 195, 195);
 
             CurrentLanguage = Components.Language.HaxeScript;
 

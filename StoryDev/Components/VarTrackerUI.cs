@@ -1066,6 +1066,29 @@ namespace StoryDev.Components
 
                         _parent.Nodes.Add(listNode);
                     }
+                    else if (field.FieldType == typeof(Dictionary<int, List<int>>))
+                    {
+                        var listNode = new TreeNode();
+                        listNode.Text = variable.Name;
+
+                        var source = Globals.Gossips;
+                        var data = (Dictionary<int, List<int>>)field.GetValue(state.Places);
+                        for (int i = 0; i < data.Count; i++)
+                        {
+                            var d = data.ElementAt(i);
+                            var gossip = source.Find((g) => g.ID == d.Key);
+                            var pNode = new TreeNode();
+                            pNode.Text = "[" + i + "]: " + gossip.Name;
+
+                            var displays = d.Value;
+                            for (int j = 0; j < displays.Count; j++)
+                            {
+                                pNode.Nodes.Add(gossip.DisplayOption[displays[i]]);
+                            }
+                        }
+
+                        _parent.Nodes.Add(listNode);
+                    }
                 }
                 else
                 {

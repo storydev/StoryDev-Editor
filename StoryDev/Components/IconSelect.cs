@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
+using System.IO;
 
 using StoryDev.Data;
 
@@ -38,7 +39,8 @@ namespace StoryDev.Components
                 if (iconset != null)
                     iconset.Dispose();
 
-                iconset = Image.FromFile(IconSet.FilePath);
+                if (File.Exists(IconSet.FilePath))
+                    iconset = Image.FromFile(IconSet.FilePath);
             }
 
             if (iconset != null)

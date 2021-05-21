@@ -17,18 +17,12 @@ namespace StoryDev.Components
     {
 
         private int selectedItem;
-        private IconSelect btnIconIndex;
 
         public ItemUI()
         {
             InitializeComponent();
-
-            btnIconIndex = new IconSelect();
-            btnIconIndex.Anchor = AnchorStyles.Top;
             btnIconIndex.IconSet = Globals.IconSetData.Items;
-            btnIconIndex.Location = new Point(204, 36);
             btnIconIndex.Click += BtnIconIndex_Click;
-            pnlContent.Controls.Add(btnIconIndex);
 
             PopulateList();
         }
