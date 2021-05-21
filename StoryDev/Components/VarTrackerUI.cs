@@ -542,39 +542,12 @@ namespace StoryDev.Components
                             vars[initVar].FullPath = "PlayerState.Characters.AttitudesTowards";
                             vars[initVar].Parent = vars[inv];
                             vars[initVar].Reference = typeof(CharacterState).GetField("AttitudesTowards");
+                            vars[initVar].Relationship = typeof(Character);
+                            vars[initVar].RelSource = "Characters";
+                            vars[initVar].RelPath = "ID";
+                            vars[initVar].RelDisplay = "FirstName";
+                            vars[initVar].SubPath = "Attitudes";
                             vars[initVar].CanExpand = true;
-
-                            valueTypes[initVar] = typeof(List<CharacterAttitude>);
-
-                            var attitudeParent = initVar;
-
-                            initVar++;
-
-                            vars[initVar] = new Variable();
-                            vars[initVar].Name = "TowardsCharacter";
-                            vars[initVar].FullPath = "PlayerState.Characters.AttitudesTowards.TowardsCharacter";
-                            vars[initVar].Parent = vars[attitudeParent];
-                            vars[initVar].Reference = typeof(CharacterAttitude).GetField("TowardsCharacter");
-
-                            valueTypes[initVar] = typeof(List<int>);
-
-                            initVar++;
-
-                            vars[initVar] = new Variable();
-                            vars[initVar].Name = "Attitude";
-                            vars[initVar].FullPath = "PlayerState.Characters.AttitudesTowards.Attitude";
-                            vars[initVar].Parent = vars[attitudeParent];
-                            vars[initVar].Reference = typeof(CharacterAttitude).GetField("Attitude");
-
-                            valueTypes[initVar] = typeof(List<int>);
-
-                            initVar++;
-
-                            vars[initVar] = new Variable();
-                            vars[initVar].Name = "RealAttitude";
-                            vars[initVar].FullPath = "PlayerState.Characters.AttitudesTowards.RealAttitude";
-                            vars[initVar].Parent = vars[attitudeParent];
-                            vars[initVar].Reference = typeof(CharacterAttitude).GetField("RealAttitude");
 
                             valueTypes[initVar] = typeof(List<int>);
 
@@ -598,6 +571,8 @@ namespace StoryDev.Components
                             vars[initVar].CanExpand = true;
 
                             valueTypes[initVar] = typeof(List<int>);
+
+                            initVar++;
                         }
                     }
 
@@ -613,6 +588,8 @@ namespace StoryDev.Components
                             vars[initVar].CanExpand = true;
 
                             valueTypes[initVar] = typeof(List<int>);
+
+                            initVar++;
                         }
                     }
                 }
@@ -1008,7 +985,7 @@ namespace StoryDev.Components
 
                             if (dots >= 2)
                             {
-                                stateInstance = typeof(PlayerState).GetField(variable.Parent.Name).GetValue(state);
+                                stateInstance = typeof(PlayerState).GetField(variable.Parent.Name).GetValue(state); 
                             }
                             else
                             {
@@ -1028,7 +1005,20 @@ namespace StoryDev.Components
 
                                 var node = new TreeNode();
                                 var actual = val.ToString();
-                                if (prop != null)
+                                if (!string.IsNullOrEmpty(variable.SubPath))
+                                {
+                                    var ch = Globals.Characters.Find((c) => c.ID == val);
+                                    var pNode = new TreeNode();
+                                    pNode.Text = "[" + i + "]: " + ch.FirstName;
+                                    foreach (var attitude in ch.Attitudes)
+                                    {
+                                        var towards = Globals.Characters.Find((_c) => _c.ID == attitude.TowardsCharacter);
+                                        pNode.Nodes.Add(towards.FirstName + " : " + attitude.Attitude + " (" +
+                                            Globals.GetAttitudeName(attitude.Attitude) + ")");
+                                    }
+                                    listNode.Nodes.Add(pNode);
+                                }
+                                else if (prop != null)
                                 {
                                     var relSource = (IEnumerable<DBObject>)prop.GetValue(null);
                                     foreach (DBObject obj in relSource)
@@ -1039,10 +1029,10 @@ namespace StoryDev.Components
                                             actual = (string)relDisplayField.GetValue(obj);
                                         }
                                     }
-                                }
 
-                                node.Text = "[" + i + "] : " + actual;
-                                listNode.Nodes.Add(node);
+                                    node.Text = "[" + i + "] : " + actual;
+                                    listNode.Nodes.Add(node);
+                                }
                             }
 
                             _parent.Nodes.Add(listNode);
@@ -1160,6 +1150,7 @@ namespace StoryDev.Components
             public object Value;
             public object Reference;
             public System.Type Relationship;
+            public string SubPath;
             public string RelSource;
             public string RelPath;
             public string RelDisplay;

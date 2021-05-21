@@ -1065,7 +1065,7 @@ namespace StoryDev
         public List<int> PhysicalLevel;
         public List<int> MentalLevel;
 
-        public List<CharacterAttitude> AttitudesTowards;
+        public List<int> AttitudesTowards;
         public List<int> Traits;
         public List<int> TraitProgress;
 
@@ -1077,9 +1077,11 @@ namespace StoryDev
             ThirstLevel = new List<int>();
             PhysicalLevel = new List<int>();
             MentalLevel = new List<int>();
-            AttitudesTowards = new List<CharacterAttitude>();
+            AttitudesTowards = new List<int>();
             Traits = new List<int>();
             TraitProgress = new List<int>();
+
+            AttitudesTowards.Add(Globals.Characters[0].ID);
         }
 
     }
