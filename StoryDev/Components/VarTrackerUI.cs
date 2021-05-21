@@ -34,6 +34,22 @@ namespace StoryDev.Components
         public int Outcome
         { 
             get { return outcome; }
+            set
+            {
+                outcome = value;
+                if (outcome == 0)
+                {
+                    lblOutcomeName.Text = "Best Outcome";
+                }
+                else if (outcome == 1)
+                {
+                    lblOutcomeName.Text = "Worst Outcome";
+                }
+                else if (outcome == -1)
+                {
+                    lblOutcomeName.Text = "Saved State";
+                }
+            }
         }
 
 

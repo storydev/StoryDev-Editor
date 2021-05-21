@@ -18,6 +18,7 @@ namespace StoryDev.Forms
         private StateTemplate template;
         private VarTrackerUI worstOutcomeTracker;
         private VarTrackerUI bestOutcomeTracker;
+        private VarTrackerUI savedStateTracker;
 
         public VarTrackerForm(StateTemplate template, List<int> outcomes)
         {
@@ -30,10 +31,20 @@ namespace StoryDev.Forms
                 var maxWidth = 0;
                 foreach (var outcome in outcomes)
                 {
-                    if (outcome == 0) // best
+                    if (outcome == -1)
+                    {
+                        savedStateTracker = new VarTrackerUI(template);
+                        savedStateTracker.Outcome = -1;
+                        savedStateTracker.Dock = DockStyle.Left;
+                        Controls.Add(savedStateTracker);
+
+                        maxWidth += savedStateTracker.Width;
+                    }
+                    else if (outcome == 0) // best
                     {
                         bestOutcomeTracker = new VarTrackerUI(template);
                         bestOutcomeTracker.Dock = DockStyle.Left;
+                        bestOutcomeTracker.Outcome = 0;
                         Controls.Add(bestOutcomeTracker);
 
                         maxWidth += bestOutcomeTracker.Width;
@@ -42,6 +53,7 @@ namespace StoryDev.Forms
                     {
                         worstOutcomeTracker = new VarTrackerUI(template);
                         worstOutcomeTracker.Dock = DockStyle.Left;
+                        worstOutcomeTracker.Outcome = 1;
                         Controls.Add(worstOutcomeTracker);
 
                         maxWidth += worstOutcomeTracker.Width;
