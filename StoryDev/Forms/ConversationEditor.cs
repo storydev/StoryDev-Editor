@@ -344,6 +344,7 @@ namespace StoryDev.Forms
             {
                 branchDesignerUI1.BranchSelectedIndexChanged -= branchDesignerUI1_BranchSelectedIndexChanged;
                 branchDesignerUI1.SelectBranch(cmbBranches.SelectedIndex);
+                PopulateChoices(cmbBranches.SelectedIndex);
 
                 storyEditor.Text = convoData[cmbBranches.SelectedIndex];
                 storyEditor.Enabled = true;
