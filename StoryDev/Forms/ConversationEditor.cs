@@ -54,14 +54,14 @@ namespace StoryDev.Forms
             tracker = null;
         }
 
-        private void Simulation_SimulationStarted(StateTemplate template)
+        private void Simulation_SimulationStarted(StateTemplate template, List<int> outcomes)
         {
             if (tracker != null)
             {
                 tracker.Dispose();
             }
 
-            tracker = new VarTrackerForm(template);
+            tracker = new VarTrackerForm(template, outcomes);
             tracker.Show(this);
         }
 

@@ -21,7 +21,7 @@ namespace StoryDev
     delegate void OnBranchRenamed(int index, string branchName);
     delegate void OnBranchDeleted(int index);
     delegate void OnBranchesLinked(int parent, int child);
-    delegate void OnSimulationStarted(StateTemplate template);
+    delegate void OnSimulationStarted(StateTemplate template, List<int> outcomes);
     delegate void OnSimulationStopped();
 
     enum GameEvent

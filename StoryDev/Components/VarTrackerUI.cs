@@ -30,6 +30,13 @@ namespace StoryDev.Components
             }
         }
 
+        private int outcome;
+        public int Outcome
+        { 
+            get { return outcome; }
+        }
+
+
         public VarTrackerUI(StateTemplate template)
         {
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);

@@ -46,10 +46,12 @@ namespace StoryDev.Forms
             // 
             // btnPlayStop
             // 
-            this.btnPlayStop.Image = global::StoryDev.Properties.Resources.Play;
-            this.btnPlayStop.Location = new System.Drawing.Point(12, 12);
+            this.btnPlayStop.BackgroundImage = global::StoryDev.Properties.Resources.Play;
+            this.btnPlayStop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPlayStop.Location = new System.Drawing.Point(8, 8);
+            this.btnPlayStop.Margin = new System.Windows.Forms.Padding(2);
             this.btnPlayStop.Name = "btnPlayStop";
-            this.btnPlayStop.Size = new System.Drawing.Size(54, 54);
+            this.btnPlayStop.Size = new System.Drawing.Size(36, 35);
             this.btnPlayStop.TabIndex = 0;
             this.btnPlayStop.UseVisualStyleBackColor = true;
             this.btnPlayStop.Click += new System.EventHandler(this.btnPlayStop_Click);
@@ -57,19 +59,22 @@ namespace StoryDev.Forms
             // chbRecord
             // 
             this.chbRecord.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chbRecord.Image = global::StoryDev.Properties.Resources.Record;
-            this.chbRecord.Location = new System.Drawing.Point(72, 12);
+            this.chbRecord.BackgroundImage = global::StoryDev.Properties.Resources.Record;
+            this.chbRecord.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.chbRecord.Location = new System.Drawing.Point(48, 8);
+            this.chbRecord.Margin = new System.Windows.Forms.Padding(2);
             this.chbRecord.Name = "chbRecord";
-            this.chbRecord.Size = new System.Drawing.Size(54, 54);
+            this.chbRecord.Size = new System.Drawing.Size(36, 36);
             this.chbRecord.TabIndex = 1;
             this.chbRecord.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 3);
+            this.label1.Location = new System.Drawing.Point(2, 2);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 20);
+            this.label1.Size = new System.Drawing.Size(54, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Template:";
             // 
@@ -77,18 +82,20 @@ namespace StoryDev.Forms
             // 
             this.cmbTemplates.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTemplates.FormattingEnabled = true;
-            this.cmbTemplates.Location = new System.Drawing.Point(88, 0);
+            this.cmbTemplates.Location = new System.Drawing.Point(59, 0);
+            this.cmbTemplates.Margin = new System.Windows.Forms.Padding(2);
             this.cmbTemplates.Name = "cmbTemplates";
-            this.cmbTemplates.Size = new System.Drawing.Size(150, 28);
+            this.cmbTemplates.Size = new System.Drawing.Size(101, 21);
             this.cmbTemplates.TabIndex = 3;
             this.cmbTemplates.SelectedIndexChanged += new System.EventHandler(this.cmbTemplates_SelectedIndexChanged);
             // 
             // chbAutoTrack
             // 
             this.chbAutoTrack.AutoSize = true;
-            this.chbAutoTrack.Location = new System.Drawing.Point(7, 69);
+            this.chbAutoTrack.Location = new System.Drawing.Point(5, 45);
+            this.chbAutoTrack.Margin = new System.Windows.Forms.Padding(2);
             this.chbAutoTrack.Name = "chbAutoTrack";
-            this.chbAutoTrack.Size = new System.Drawing.Size(164, 24);
+            this.chbAutoTrack.Size = new System.Drawing.Size(112, 17);
             this.chbAutoTrack.TabIndex = 4;
             this.chbAutoTrack.Text = "Auto-Track States";
             this.toolTip1.SetToolTip(this.chbAutoTrack, "When playing, automatically start tracking state changes across all conversations" +
@@ -98,9 +105,10 @@ namespace StoryDev.Forms
             // chbAutoCompare
             // 
             this.chbAutoCompare.AutoSize = true;
-            this.chbAutoCompare.Location = new System.Drawing.Point(188, 69);
+            this.chbAutoCompare.Location = new System.Drawing.Point(125, 45);
+            this.chbAutoCompare.Margin = new System.Windows.Forms.Padding(2);
             this.chbAutoCompare.Name = "chbAutoCompare";
-            this.chbAutoCompare.Size = new System.Drawing.Size(139, 24);
+            this.chbAutoCompare.Size = new System.Drawing.Size(93, 17);
             this.chbAutoCompare.TabIndex = 5;
             this.chbAutoCompare.Text = "Auto-Compare";
             this.toolTip1.SetToolTip(this.chbAutoCompare, "Based on the latest saved state, automatically compare state changes while playin" +
@@ -110,18 +118,20 @@ namespace StoryDev.Forms
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(244, 3);
+            this.label2.Location = new System.Drawing.Point(163, 2);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 20);
+            this.label2.Size = new System.Drawing.Size(52, 13);
             this.label2.TabIndex = 6;
             this.label2.Text = "Tracking:";
             // 
             // chbBestOutcome
             // 
             this.chbBestOutcome.AutoSize = true;
-            this.chbBestOutcome.Location = new System.Drawing.Point(323, 2);
+            this.chbBestOutcome.Location = new System.Drawing.Point(215, 1);
+            this.chbBestOutcome.Margin = new System.Windows.Forms.Padding(2);
             this.chbBestOutcome.Name = "chbBestOutcome";
-            this.chbBestOutcome.Size = new System.Drawing.Size(137, 24);
+            this.chbBestOutcome.Size = new System.Drawing.Size(93, 17);
             this.chbBestOutcome.TabIndex = 7;
             this.chbBestOutcome.Text = "Best Outcome";
             this.chbBestOutcome.UseVisualStyleBackColor = true;
@@ -129,9 +139,10 @@ namespace StoryDev.Forms
             // chbWorstOutcome
             // 
             this.chbWorstOutcome.AutoSize = true;
-            this.chbWorstOutcome.Location = new System.Drawing.Point(323, 32);
+            this.chbWorstOutcome.Location = new System.Drawing.Point(215, 21);
+            this.chbWorstOutcome.Margin = new System.Windows.Forms.Padding(2);
             this.chbWorstOutcome.Name = "chbWorstOutcome";
-            this.chbWorstOutcome.Size = new System.Drawing.Size(146, 24);
+            this.chbWorstOutcome.Size = new System.Drawing.Size(100, 17);
             this.chbWorstOutcome.TabIndex = 8;
             this.chbWorstOutcome.Text = "Worst Outcome";
             this.chbWorstOutcome.UseVisualStyleBackColor = true;
@@ -145,27 +156,28 @@ namespace StoryDev.Forms
             this.pnlOptions.Controls.Add(this.chbAutoTrack);
             this.pnlOptions.Controls.Add(this.label2);
             this.pnlOptions.Controls.Add(this.chbAutoCompare);
-            this.pnlOptions.Location = new System.Drawing.Point(132, 9);
+            this.pnlOptions.Location = new System.Drawing.Point(88, 6);
+            this.pnlOptions.Margin = new System.Windows.Forms.Padding(2);
             this.pnlOptions.Name = "pnlOptions";
-            this.pnlOptions.Size = new System.Drawing.Size(531, 100);
+            this.pnlOptions.Size = new System.Drawing.Size(354, 65);
             this.pnlOptions.TabIndex = 9;
             // 
             // SimulationForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(673, 114);
+            this.ClientSize = new System.Drawing.Size(449, 74);
             this.Controls.Add(this.pnlOptions);
             this.Controls.Add(this.chbRecord);
             this.Controls.Add(this.btnPlayStop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "SimulationForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Simulations";
-            this.TopMost = true;
             this.pnlOptions.ResumeLayout(false);
             this.pnlOptions.PerformLayout();
             this.ResumeLayout(false);

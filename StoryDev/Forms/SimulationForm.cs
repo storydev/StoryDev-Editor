@@ -30,17 +30,31 @@ namespace StoryDev.Forms
         {
             if (selectedTemplate > -1)
             {
+                var outcomes = new List<int>();
+                if (chbBestOutcome.Checked)
+                    outcomes.Add(0);
+
+                if (chbWorstOutcome.Checked)
+                    outcomes.Add(1);
+
+                if (!chbBestOutcome.Checked && !chbWorstOutcome.Checked)
+                {
+                    MessageBox.Show("You must select an outcome to track.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 isPlayingSimulation = !isPlayingSimulation;
                 pnlOptions.Enabled = !isPlayingSimulation;
 
                 if (isPlayingSimulation)
                 {
-                    btnPlayStop.Image = Properties.Resources.Stop;
-                    SimulationStarted?.Invoke(Globals.Simulation.Templates[selectedTemplate]);
+                    btnPlayStop.BackgroundImage = Properties.Resources.Stop;
+
+                    SimulationStarted?.Invoke(Globals.Simulation.Templates[selectedTemplate], outcomes);
                 }
                 else
                 {
-                    btnPlayStop.Image = Properties.Resources.Play;
+                    btnPlayStop.BackgroundImage = Properties.Resources.Play;
                     SimulationStopped?.Invoke();
                 }
             }
