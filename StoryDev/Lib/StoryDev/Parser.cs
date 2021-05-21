@@ -74,6 +74,7 @@ namespace StoryDev.Lib.StoryDev
             // setup the local variables
             // don't need tokenisation because we are simple.
             choices = new List<string>();
+            Command lastCommand = null;
             var convo = false;
             var character = false;
             var overlay = false;
@@ -177,11 +178,11 @@ namespace StoryDev.Lib.StoryDev
                             break;
                         default:
                             {
-                                if (option || isGoto || optionConditional)
+                                if (isGoto || optionConditional)
                                 {
                                     text += word;
                                 }
-                                else if (narration || character || dialogue || overlay || convo || isCode)
+                                else if (narration || character || dialogue || overlay || convo || isCode || option)
                                 {
                                     if (character && word.StartsWith("#"))
                                         charColor = word;
@@ -246,23 +247,22 @@ namespace StoryDev.Lib.StoryDev
                 }
                 else if (narration)
                 {
-                    CheckChoices();
                     text = text.Substring(0, text.Length - 1);
-                    currentBlock.Commands.Add(Command.CreateNarrative(text));
+                    lastCommand = Command.CreateNarrative(text);
+                    currentBlock.Commands.Add(lastCommand);
                     text = "";
                     narration = false;
                 }
                 else if (character)
                 {
-                    CheckChoices();
                     text = text.Substring(0, text.Length - 1);
-                    _commands.Add(Command.CreateCharacterCommand(text, charColor));
+                    lastCommand = Command.CreateCharacterCommand(text, charColor);
+                    _commands.Add(lastCommand);
                     text = "";
                     character = false;
                 }
                 else if (dialogue)
                 {
-                    CheckChoices();
                     text = text.Substring(0, text.Length - 1);
                     if (string.IsNullOrEmpty(charName))
                     {
@@ -271,18 +271,60 @@ namespace StoryDev.Lib.StoryDev
                     }    
 
                     charName = charName.Substring(0, charName.Length - 1);
-                    currentBlock.Commands.Add(Command.CreateDialogue(charName, text));
+                    lastCommand = Command.CreateDialogue(charName, text);
+                    currentBlock.Commands.Add(lastCommand);
                     charName = "";
                     dialogue = false;
                     text = "";
                 }
                 else if (overlay)
                 {
-                    CheckChoices();
                     text = text.Substring(0, text.Length - 1);
-                    currentBlock.Commands.Add(Command.CreateOverlayTitle(text));
+                    lastCommand = Command.CreateOverlayTitle(text);
+                    currentBlock.Commands.Add(lastCommand);
                     text = "";
                     overlay = false;
+                }
+                else if (isCode)
+                {
+                    lastCommand = Command.CreateCodeLine(codeText);
+                    currentBlock.Commands.Add(lastCommand);
+                    codeText = "";
+                    isCode = false;
+                }
+                else if (isGoto)
+                {
+                    lastCommand = Command.CreateGoto(text);
+                    currentBlock.Commands.Add(lastCommand);
+                    text = "";
+                    isGoto = false;
+                }
+                else if (option)
+                {
+                    if (text == "EXCLUSIVE")
+                    {
+                        currentBlock.IsExclusive = true;
+                    }
+                    else if (text == "NO_CLEAR")
+                    {
+                        currentBlock.ClearCurrent = false;
+                    }
+                    else
+                    {
+                        if (lastCommand == null)
+                            currentBlock.Options.Add(text);
+                        else
+                            currentBlock.Commands.Add(Command.CreateOption(text));
+                    }
+
+                    text = "";
+                    option = false;
+                }
+                else if (optionConditional)
+                {
+                    currentBlock.Commands.Add(Command.CreateOptionConditional(text));
+                    text = "";
+                    optionConditional = false;
                 }
                 else if (isAChoice)
                 {
@@ -304,42 +346,7 @@ namespace StoryDev.Lib.StoryDev
                     choiceInstruction = "";
                     codeText = "";
                 }
-                else if (isCode)
-                {
-                    currentBlock.Commands.Add(Command.CreateCodeLine(codeText));
-                    codeText = "";
-                    isCode = false;
-                }
-                else if (isGoto)
-                {
-                    currentBlock.Commands.Add(Command.CreateGoto(text));
-                    text = "";
-                    isGoto = false;
-                }
-                else if (option)
-                {
-                    if (text == "EXCLUSIVE")
-                    {
-                        currentBlock.IsExclusive = true;
-                    }
-                    else if (text == "NO_CLEAR")
-                    {
-                        currentBlock.ClearCurrent = false;
-                    }
-                    else
-                    {
-                        currentBlock.Options.Add(text);
-                    }
-
-                    text = "";
-                    option = false;
-                }
-                else if (optionConditional)
-                {
-                    currentBlock.Commands.Add(Command.CreateOptionConditional(text));
-                    text = "";
-                    optionConditional = false;
-                }
+                
                 else
                 {
                     PostError(string.Format("Invalid syntax at line {0}. What we're you trying to do?", i));

@@ -138,5 +138,14 @@ namespace StoryDev.Lib.StoryDev
             return command;
         }
 
+        public static Command CreateOption(string text)
+        {
+            var command = new Command();
+            command.ID = GLOBAL_ID++;
+            command.Type = (int)CommandType.Option;
+            command.Data.Add(text);
+            return command;
+        }
+
     }
 }

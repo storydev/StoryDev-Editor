@@ -181,6 +181,7 @@ namespace StoryDev.Forms
                     convo += "convo " + cmbBranches.Items[i] + "\r\n";
                     convo += convoData[i] + "\r\n";
                     var _choices = choices.Where((c) => c.CurrentIndex == i);
+                    var options = "";
                     foreach (var choice in _choices)
                     {
                         if (!string.IsNullOrEmpty(choice.Condition))
@@ -188,9 +189,11 @@ namespace StoryDev.Forms
 
                         var _goto = branchDesignerUI1.GetNameByIndex(choice.ChildIndex);
 
+                        options += "= PRIORITY " + choice.Priority + "\r\n";
                         convo += "> " + branchDesignerUI1.GetNameByIndex(choice.ChildIndex) + " -> goto(\"" + _goto + "\"); " + choice.Code;
                         convo += "\r\n";
                     }
+                    convo += options;
                     convo += "\r\n";
                 }
 
@@ -237,6 +240,7 @@ namespace StoryDev.Forms
                     var blocks = sdParser.GetBlocks();
                     var convo = "";
                     var choice = new ChoiceData();
+                    var choicePriorities = new List<int>();
                     for (int i = 0; i < blocks.Count; i++)
                     {
                         var b = blocks[i];
@@ -253,10 +257,16 @@ namespace StoryDev.Forms
                             {
                                 case (int)CommandType.Choices:
                                     {
-                                        foreach (var ch in command.Data)
+                                        for (int k = 0; k < command.Data.Count; k++)
                                         {
+                                            var ch = command.Data[k];
+                                            var priority = 0;
+                                            if (k < choicePriorities.Count)
+                                               priority = choicePriorities[k];
+
                                             var split = ch.Split('|');
                                             choice.ChildIndex = branchDesignerUI1.GetNameIndex(split[0]);
+                                            choice.Priority = priority;
 
                                             var gotol = ("goto(\"" + split[0] + "\");").Length;
                                             if (gotol < split[1].Length)
@@ -270,6 +280,8 @@ namespace StoryDev.Forms
                                             choice = new ChoiceData();
                                             choice.CurrentIndex = temp;
                                         }
+
+                                        choicePriorities.Clear();
                                     } break;
                                 case (int)CommandType.CodeLine:
                                     {
@@ -293,15 +305,45 @@ namespace StoryDev.Forms
                                     {
                                         if (j + 1 < b.Commands.Count)
                                         {
-                                            var next = b.Commands[j + 1];
-                                            if (next.Type == (int)CommandType.Choices)
+                                            var found = false;
+                                            for (int k = j + 1; k < b.Commands.Count; k++)
                                             {
-                                                choice.Condition = command.Data[0];
+                                                var next = b.Commands[k];
+                                                if (next.Type == (int)CommandType.BlockStart || 
+                                                    next.Type == (int)CommandType.Character ||
+                                                    next.Type == (int)CommandType.CodeLine ||
+                                                    next.Type == (int)CommandType.Dialogue ||
+                                                    next.Type == (int)CommandType.DialogueBlock ||
+                                                    next.Type == (int)CommandType.Goto ||
+                                                    next.Type == (int)CommandType.InternalDialogue ||
+                                                    next.Type == (int)CommandType.Narrative ||
+                                                    next.Type == (int)CommandType.NewConvo ||
+                                                    next.Type == (int)CommandType.OverlayTitle ||
+                                                    next.Type == (int)CommandType.OptionConditional)
+                                                {
+                                                    found = true;
+                                                    break;
+                                                }
                                             }
-                                            else
+
+                                            if (found)
                                             {
                                                 convo += "=! " + command.Data[0] + "\r\n";
                                             }
+                                            else
+                                            {
+                                                choice.Condition = command.Data[0];
+                                            }
+                                        }
+                                    } break;
+                                case (int)CommandType.Option:
+                                    {
+                                        var text = command.Data[0];
+                                        if (text.StartsWith("PRIORITY"))
+                                        {
+                                            var priorityText = text.Substring("PRIORITY ".Length);
+                                            var priority = int.Parse(priorityText);
+                                            choicePriorities.Add(priority);
                                         }
                                     } break;
                             }

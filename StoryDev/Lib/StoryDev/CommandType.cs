@@ -19,6 +19,7 @@ namespace StoryDev.Lib.StoryDev
         Choices,
         DialogueBlock,
         Goto,
+        Option,
         OptionConditional
     }
 }
