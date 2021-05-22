@@ -270,6 +270,14 @@ namespace StoryDev
 
         public static List<Conversation> Conversations { get; private set; }
 
+        public static StoryOrder StoryOrder { get; private set; }
+
+        public static void SaveStoryOrder()
+        {
+            var content = JsonConvert.SerializeObject(StoryOrder);
+            File.WriteAllText(CurrentProjectFolder + "\\story-order.json", content);
+        }
+
         public static List<string> Chapters { get; private set; }
 
         public static void ReloadChapters()
@@ -964,6 +972,17 @@ namespace StoryDev
             {
                 Simulation = new SimulationOptions();
                 SaveSimulationOptions();
+            }
+
+            // Load Story Order data
+            if (File.Exists(path + "\\story-order.json"))
+            {
+                var content = File.ReadAllText(path + "\\story-order.json");
+                StoryOrder = JsonConvert.DeserializeObject<StoryOrder>(content);
+            }
+            else
+            {
+                StoryOrder = new StoryOrder();
             }
         }
 

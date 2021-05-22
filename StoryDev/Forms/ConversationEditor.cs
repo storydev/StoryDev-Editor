@@ -589,6 +589,11 @@ namespace StoryDev.Forms
             simulation.Dispose();
             simulation = null;
         }
+
+        private void storyOrderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new StoryOrderForm().ShowDialog();
+        }
     }
 
     class ChoiceData

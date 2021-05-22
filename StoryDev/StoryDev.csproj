@@ -523,6 +523,7 @@
     <Compile Include="Data\SearchRelationship.cs" />
     <Compile Include="Data\SpecialFeature.cs" />
     <Compile Include="Data\SpecialScenario.cs" />
+    <Compile Include="Data\StoryOrder.cs" />
     <Compile Include="Data\VendorItem.cs" />
     <Compile Include="Forms\AddJournalInlineCodeForm.cs">
       <SubType>Form</SubType>
