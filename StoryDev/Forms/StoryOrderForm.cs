@@ -13,9 +13,17 @@ namespace StoryDev.Forms
 {
     partial class StoryOrderForm : Form
     {
+
+        private int selectedJournal = -1;
+
         public StoryOrderForm()
         {
             InitializeComponent();
+
+            foreach (var journal in Globals.Journals)
+            {
+
+            }
 
             PopulateOrders();
             PopulateAllFiles();

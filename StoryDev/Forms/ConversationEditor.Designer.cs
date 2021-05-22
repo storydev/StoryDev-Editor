@@ -37,6 +37,7 @@ namespace StoryDev.Forms
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveConversationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.simulationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.storyOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.simulationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,7 +54,6 @@ namespace StoryDev.Forms
             this.pnlTools = new System.Windows.Forms.Panel();
             this.cmbBranches = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.storyOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -125,23 +125,30 @@ namespace StoryDev.Forms
             this.simulationToolStripMenuItem.Size = new System.Drawing.Size(76, 22);
             this.simulationToolStripMenuItem.Text = "Simulation";
             // 
+            // storyOrderToolStripMenuItem
+            // 
+            this.storyOrderToolStripMenuItem.Name = "storyOrderToolStripMenuItem";
+            this.storyOrderToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.storyOrderToolStripMenuItem.Text = "Story Order...";
+            this.storyOrderToolStripMenuItem.Click += new System.EventHandler(this.storyOrderToolStripMenuItem_Click);
+            // 
             // simulationsToolStripMenuItem
             // 
             this.simulationsToolStripMenuItem.CheckOnClick = true;
             this.simulationsToolStripMenuItem.Name = "simulationsToolStripMenuItem";
-            this.simulationsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.simulationsToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.simulationsToolStripMenuItem.Text = "Simulations...";
             this.simulationsToolStripMenuItem.Click += new System.EventHandler(this.simulationsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(142, 6);
             // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.optionsToolStripMenuItem.Text = "Options...";
             this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
             // 
@@ -149,7 +156,7 @@ namespace StoryDev.Forms
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 24);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -173,7 +180,7 @@ namespace StoryDev.Forms
             this.pnlDesigner.Controls.Add(this.branchDesignerUI1);
             this.pnlDesigner.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlDesigner.Location = new System.Drawing.Point(0, 28);
-            this.pnlDesigner.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlDesigner.Margin = new System.Windows.Forms.Padding(2);
             this.pnlDesigner.Name = "pnlDesigner";
             this.pnlDesigner.Size = new System.Drawing.Size(500, 435);
             this.pnlDesigner.TabIndex = 0;
@@ -183,7 +190,7 @@ namespace StoryDev.Forms
             this.branchDesignerUI1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.branchDesignerUI1.Enabled = false;
             this.branchDesignerUI1.Location = new System.Drawing.Point(0, 0);
-            this.branchDesignerUI1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.branchDesignerUI1.Margin = new System.Windows.Forms.Padding(1);
             this.branchDesignerUI1.Name = "branchDesignerUI1";
             this.branchDesignerUI1.Size = new System.Drawing.Size(500, 435);
             this.branchDesignerUI1.Snapping = false;
@@ -202,7 +209,7 @@ namespace StoryDev.Forms
             this.panel1.Controls.Add(this.cmbView);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(500, 28);
             this.panel1.TabIndex = 0;
@@ -212,7 +219,7 @@ namespace StoryDev.Forms
             this.chbSnapping.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chbSnapping.AutoSize = true;
             this.chbSnapping.Location = new System.Drawing.Point(304, 6);
-            this.chbSnapping.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chbSnapping.Margin = new System.Windows.Forms.Padding(2);
             this.chbSnapping.Name = "chbSnapping";
             this.chbSnapping.Size = new System.Drawing.Size(71, 17);
             this.chbSnapping.TabIndex = 3;
@@ -240,7 +247,7 @@ namespace StoryDev.Forms
             "Branch",
             "List"});
             this.cmbView.Location = new System.Drawing.Point(418, 5);
-            this.cmbView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbView.Margin = new System.Windows.Forms.Padding(2);
             this.cmbView.Name = "cmbView";
             this.cmbView.Size = new System.Drawing.Size(82, 21);
             this.cmbView.TabIndex = 1;
@@ -270,10 +277,11 @@ namespace StoryDev.Forms
             this.storyEditor.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.storyEditor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.storyEditor.Enabled = false;
+            this.storyEditor.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.storyEditor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
             this.storyEditor.IsReplaceMode = false;
             this.storyEditor.Location = new System.Drawing.Point(0, 28);
-            this.storyEditor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.storyEditor.Margin = new System.Windows.Forms.Padding(2);
             this.storyEditor.Name = "storyEditor";
             this.storyEditor.Paddings = new System.Windows.Forms.Padding(0);
             this.storyEditor.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
@@ -292,7 +300,7 @@ namespace StoryDev.Forms
             this.pnlChoiceProperties.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlChoiceProperties.Enabled = false;
             this.pnlChoiceProperties.Location = new System.Drawing.Point(0, 310);
-            this.pnlChoiceProperties.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlChoiceProperties.Margin = new System.Windows.Forms.Padding(2);
             this.pnlChoiceProperties.Name = "pnlChoiceProperties";
             this.pnlChoiceProperties.Size = new System.Drawing.Size(410, 153);
             this.pnlChoiceProperties.TabIndex = 1;
@@ -303,7 +311,7 @@ namespace StoryDev.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlChoices.AutoScroll = true;
             this.pnlChoices.Location = new System.Drawing.Point(11, 4);
-            this.pnlChoices.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlChoices.Margin = new System.Windows.Forms.Padding(2);
             this.pnlChoices.Name = "pnlChoices";
             this.pnlChoices.Size = new System.Drawing.Size(328, 147);
             this.pnlChoices.TabIndex = 0;
@@ -315,7 +323,7 @@ namespace StoryDev.Forms
             this.pnlTools.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTools.Enabled = false;
             this.pnlTools.Location = new System.Drawing.Point(0, 0);
-            this.pnlTools.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlTools.Margin = new System.Windows.Forms.Padding(2);
             this.pnlTools.Name = "pnlTools";
             this.pnlTools.Size = new System.Drawing.Size(410, 28);
             this.pnlTools.TabIndex = 0;
@@ -325,7 +333,7 @@ namespace StoryDev.Forms
             this.cmbBranches.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbBranches.FormattingEnabled = true;
             this.cmbBranches.Location = new System.Drawing.Point(99, 5);
-            this.cmbBranches.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbBranches.Margin = new System.Windows.Forms.Padding(2);
             this.cmbBranches.Name = "cmbBranches";
             this.cmbBranches.Size = new System.Drawing.Size(166, 21);
             this.cmbBranches.TabIndex = 1;
@@ -341,13 +349,6 @@ namespace StoryDev.Forms
             this.label1.TabIndex = 0;
             this.label1.Text = "Dialogue Branch:";
             // 
-            // storyOrderToolStripMenuItem
-            // 
-            this.storyOrderToolStripMenuItem.Name = "storyOrderToolStripMenuItem";
-            this.storyOrderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.storyOrderToolStripMenuItem.Text = "Story Order...";
-            this.storyOrderToolStripMenuItem.Click += new System.EventHandler(this.storyOrderToolStripMenuItem_Click);
-            // 
             // ConversationEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -356,8 +357,9 @@ namespace StoryDev.Forms
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ConversationEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Conversation Editor";
