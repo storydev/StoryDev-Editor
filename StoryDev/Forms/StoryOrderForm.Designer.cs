@@ -81,6 +81,7 @@ namespace StoryDev.Forms
             this.btnAdd.TabIndex = 2;
             this.btnAdd.Text = ">";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnRemove
             // 
@@ -90,6 +91,7 @@ namespace StoryDev.Forms
             this.btnRemove.TabIndex = 3;
             this.btnRemove.Text = "<";
             this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // btnBottom
             // 
@@ -99,6 +101,7 @@ namespace StoryDev.Forms
             this.btnBottom.Size = new System.Drawing.Size(27, 23);
             this.btnBottom.TabIndex = 7;
             this.btnBottom.UseVisualStyleBackColor = true;
+            this.btnBottom.Click += new System.EventHandler(this.btnBottom_Click);
             // 
             // btnDown
             // 
@@ -108,6 +111,7 @@ namespace StoryDev.Forms
             this.btnDown.Size = new System.Drawing.Size(27, 23);
             this.btnDown.TabIndex = 6;
             this.btnDown.UseVisualStyleBackColor = true;
+            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
             // 
             // btnUp
             // 
@@ -117,6 +121,7 @@ namespace StoryDev.Forms
             this.btnUp.Size = new System.Drawing.Size(27, 23);
             this.btnUp.TabIndex = 5;
             this.btnUp.UseVisualStyleBackColor = true;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // btnTop
             // 
@@ -126,6 +131,7 @@ namespace StoryDev.Forms
             this.btnTop.Size = new System.Drawing.Size(27, 23);
             this.btnTop.TabIndex = 4;
             this.btnTop.UseVisualStyleBackColor = true;
+            this.btnTop.Click += new System.EventHandler(this.btnTop_Click);
             // 
             // lbStory
             // 

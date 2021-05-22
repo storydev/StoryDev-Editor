@@ -465,6 +465,11 @@ namespace StoryDev.Forms
                 fileShortName = file;
                 Text = "Conversation Editor - " + file;
 
+                convoData.Clear();
+                choices.Clear();
+                cmbBranches.Items.Clear();
+                branchDesignerUI1.Clear();
+
                 MarkAsUnsaved();
                 branchDesignerUI1.AddBranch(new PointF(50, 50), "Untitled");
                 cmbBranches.Items.Add("Untitled");
@@ -545,7 +550,8 @@ namespace StoryDev.Forms
                 }
             }
 
-            choices.RemoveAt(choices.Count - 1);
+            if (choices.Count > 0)
+                choices.RemoveAt(choices.Count - 1);
 
             storyEditor.TextChanged -= storyEditor_TextChanged;
             storyEditor.Text = "";

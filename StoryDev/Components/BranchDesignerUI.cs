@@ -108,6 +108,7 @@ namespace StoryDev.Components
 
         public void Clear()
         {
+            currentIndex = -1;
             selectedIndex = -1;
             movingIndex = -1;
 
