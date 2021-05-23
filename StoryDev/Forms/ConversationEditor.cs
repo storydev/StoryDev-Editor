@@ -237,6 +237,8 @@ namespace StoryDev.Forms
                 sdParser.Clear();
                 if (sdParser.ParseFile(currentFile + ".sdc") > -1)
                 {
+                    cmbBranches.Items.Clear();
+
                     var blocks = sdParser.GetBlocks();
                     var convo = "";
                     var choice = new ChoiceData();
