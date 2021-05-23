@@ -96,6 +96,9 @@ namespace StoryDev.Components
             else if (CurrentLanguage == Components.Language.StoryScript)
             {
                 e.ChangedRange.ClearStyle(ss_Keywords, ss_Dialogue, ss_Overlay, ss_PrefixedVar, ss_Code);
+                e.ChangedRange.ClearFoldingMarkers();
+
+                e.ChangedRange.SetFoldingMarkers("^=!", System.Text.RegularExpressions.RegexOptions.Multiline);
 
                 e.ChangedRange.SetStyle(ss_Keywords, @"\b(convo|char)\b");
                 e.ChangedRange.SetStyle(ss_Overlay, @"^~\s.+", System.Text.RegularExpressions.RegexOptions.Multiline);
