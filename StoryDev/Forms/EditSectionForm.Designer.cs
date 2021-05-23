@@ -278,6 +278,7 @@ namespace StoryDev.Forms
             this.cmbEnteredFromSection.Name = "cmbEnteredFromSection";
             this.cmbEnteredFromSection.Size = new System.Drawing.Size(154, 28);
             this.cmbEnteredFromSection.TabIndex = 16;
+            this.cmbEnteredFromSection.SelectedIndexChanged += new System.EventHandler(this.cmbEnteredFromSection_SelectedIndexChanged);
             // 
             // EditSectionForm
             // 

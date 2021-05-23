@@ -227,5 +227,18 @@ namespace StoryDev.Forms
             search.SearchSelected += (int index) => cmbEnteredFromPlace.SelectedIndex = index;
             search.ShowDialog();
         }
+
+        private void cmbEnteredFromSection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbEnteredFromSection.SelectedIndex > -1)
+            {
+                var _section = placeSections.ElementAt(cmbEnteredFromSection.SelectedIndex);
+                section.EnteredFromSection = _section.ID;
+            }
+            else
+            {
+                section.EnteredFromSection = -1;
+            }
+        }
     }
 }
