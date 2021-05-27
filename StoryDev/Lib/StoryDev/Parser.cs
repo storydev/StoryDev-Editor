@@ -102,6 +102,8 @@ namespace StoryDev.Lib.StoryDev
                 var arrow = false;
                 while (word != "")
                 {
+                    var escape = false;
+
                     switch (word)
                     {
                         case ">":
@@ -188,6 +190,7 @@ namespace StoryDev.Lib.StoryDev
                                         charColor = word;
                                     else if (isCode)
                                     {
+                                        escape = true;
                                         codeText += line;
                                         break;
                                     }
@@ -215,6 +218,9 @@ namespace StoryDev.Lib.StoryDev
                             }
                             break;
                     }
+
+                    if (escape)
+                        break;
 
                     // set the value to the rest of the line and get the next word.
                     line = data.Line;

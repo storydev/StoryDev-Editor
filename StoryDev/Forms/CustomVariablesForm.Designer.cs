@@ -31,61 +31,31 @@ namespace StoryDev.Forms
         {
             this.components = new System.ComponentModel.Container();
             this.sbtnAddVar = new StoryDev.Components.SplitButton();
-            this.cmsAddVars = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.booleanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.numberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.stringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbVars = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbChapters = new System.Windows.Forms.ComboBox();
             this.lvResults = new System.Windows.Forms.ListView();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnClose = new System.Windows.Forms.Button();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.cmsAddVars.SuspendLayout();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.cmsEditMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copyNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsEditMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // sbtnAddVar
             // 
             this.sbtnAddVar.Location = new System.Drawing.Point(26, 21);
-            this.sbtnAddVar.Menu = this.cmsAddVars;
             this.sbtnAddVar.Name = "sbtnAddVar";
             this.sbtnAddVar.Size = new System.Drawing.Size(136, 36);
             this.sbtnAddVar.TabIndex = 0;
             this.sbtnAddVar.Text = "Add";
             this.sbtnAddVar.UseVisualStyleBackColor = true;
-            // 
-            // cmsAddVars
-            // 
-            this.cmsAddVars.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.cmsAddVars.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.booleanToolStripMenuItem,
-            this.numberToolStripMenuItem,
-            this.stringToolStripMenuItem});
-            this.cmsAddVars.Name = "cmsAddVars";
-            this.cmsAddVars.Size = new System.Drawing.Size(162, 100);
-            // 
-            // booleanToolStripMenuItem
-            // 
-            this.booleanToolStripMenuItem.Name = "booleanToolStripMenuItem";
-            this.booleanToolStripMenuItem.Size = new System.Drawing.Size(161, 32);
-            this.booleanToolStripMenuItem.Text = "Boolean...";
-            // 
-            // numberToolStripMenuItem
-            // 
-            this.numberToolStripMenuItem.Name = "numberToolStripMenuItem";
-            this.numberToolStripMenuItem.Size = new System.Drawing.Size(161, 32);
-            this.numberToolStripMenuItem.Text = "Number...";
-            // 
-            // stringToolStripMenuItem
-            // 
-            this.stringToolStripMenuItem.Name = "stringToolStripMenuItem";
-            this.stringToolStripMenuItem.Size = new System.Drawing.Size(161, 32);
-            this.stringToolStripMenuItem.Text = "String...";
+            this.sbtnAddVar.Click += new System.EventHandler(this.sbtnAddVar_Click);
             // 
             // label1
             // 
@@ -109,6 +79,7 @@ namespace StoryDev.Forms
             this.cmbVars.Name = "cmbVars";
             this.cmbVars.Size = new System.Drawing.Size(123, 28);
             this.cmbVars.TabIndex = 3;
+            this.cmbVars.SelectedIndexChanged += new System.EventHandler(this.cmbVars_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -127,6 +98,7 @@ namespace StoryDev.Forms
             this.cmbChapters.Name = "cmbChapters";
             this.cmbChapters.Size = new System.Drawing.Size(191, 28);
             this.cmbChapters.TabIndex = 5;
+            this.cmbChapters.SelectedIndexChanged += new System.EventHandler(this.cmbChapters_SelectedIndexChanged);
             // 
             // lvResults
             // 
@@ -135,14 +107,37 @@ namespace StoryDev.Forms
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4});
+            this.lvResults.ContextMenuStrip = this.cmsEditMenu;
             this.lvResults.FullRowSelect = true;
             this.lvResults.HideSelection = false;
             this.lvResults.Location = new System.Drawing.Point(26, 63);
+            this.lvResults.MultiSelect = false;
             this.lvResults.Name = "lvResults";
             this.lvResults.Size = new System.Drawing.Size(711, 472);
             this.lvResults.TabIndex = 6;
             this.lvResults.UseCompatibleStateImageBehavior = false;
             this.lvResults.View = System.Windows.Forms.View.Details;
+            this.lvResults.DoubleClick += new System.EventHandler(this.lvResults_DoubleClick);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Name";
+            this.columnHeader1.Width = 200;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Type";
+            this.columnHeader2.Width = 120;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Declared";
+            this.columnHeader3.Width = 150;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Default Value";
+            this.columnHeader4.Width = 142;
             // 
             // label3
             // 
@@ -163,25 +158,22 @@ namespace StoryDev.Forms
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // columnHeader1
+            // cmsEditMenu
             // 
-            this.columnHeader1.Text = "Name";
-            this.columnHeader1.Width = 200;
+            this.cmsEditMenu.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.cmsEditMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyNameToolStripMenuItem});
+            this.cmsEditMenu.Name = "cmsEditMenu";
+            this.cmsEditMenu.Size = new System.Drawing.Size(241, 69);
+            this.cmsEditMenu.Opening += new System.ComponentModel.CancelEventHandler(this.cmsEditMenu_Opening);
             // 
-            // columnHeader2
+            // copyNameToolStripMenuItem
             // 
-            this.columnHeader2.Text = "Type";
-            this.columnHeader2.Width = 120;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Declared";
-            this.columnHeader3.Width = 150;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Default Value";
-            this.columnHeader4.Width = 150;
+            this.copyNameToolStripMenuItem.Enabled = false;
+            this.copyNameToolStripMenuItem.Name = "copyNameToolStripMenuItem";
+            this.copyNameToolStripMenuItem.Size = new System.Drawing.Size(178, 32);
+            this.copyNameToolStripMenuItem.Text = "Copy Name";
+            this.copyNameToolStripMenuItem.Click += new System.EventHandler(this.copyNameToolStripMenuItem_Click);
             // 
             // CustomVariablesForm
             // 
@@ -204,7 +196,7 @@ namespace StoryDev.Forms
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Custom Variables";
-            this.cmsAddVars.ResumeLayout(false);
+            this.cmsEditMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -213,10 +205,6 @@ namespace StoryDev.Forms
         #endregion
 
         private Components.SplitButton sbtnAddVar;
-        private System.Windows.Forms.ContextMenuStrip cmsAddVars;
-        private System.Windows.Forms.ToolStripMenuItem booleanToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem numberToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem stringToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbVars;
         private System.Windows.Forms.Label label2;
@@ -228,5 +216,7 @@ namespace StoryDev.Forms
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.ContextMenuStrip cmsEditMenu;
+        private System.Windows.Forms.ToolStripMenuItem copyNameToolStripMenuItem;
     }
 }

@@ -190,7 +190,11 @@ namespace StoryDev.Forms
                         var _goto = branchDesignerUI1.GetNameByIndex(choice.ChildIndex);
 
                         options += "= PRIORITY " + choice.Priority + "\r\n";
-                        convo += "> " + branchDesignerUI1.GetNameByIndex(choice.ChildIndex) + " -> goto(\"" + _goto + "\"); " + choice.Code;
+                        var code = "";
+                        if (!string.IsNullOrEmpty(choice.Code))
+                            code = choice.Code;
+
+                        convo += "> " + branchDesignerUI1.GetNameByIndex(choice.ChildIndex) + " -> goto(\"" + _goto + "\"); " + code;
                         convo += "\r\n";
                     }
                     convo += options;
@@ -601,6 +605,11 @@ namespace StoryDev.Forms
         private void storyOrderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new StoryOrderForm().ShowDialog();
+        }
+
+        private void customVariablesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new CustomVariablesForm().Show(this);
         }
     }
 

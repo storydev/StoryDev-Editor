@@ -527,6 +527,7 @@
     <Compile Include="Data\SpecialFeature.cs" />
     <Compile Include="Data\SpecialScenario.cs" />
     <Compile Include="Data\StoryOrder.cs" />
+    <Compile Include="Data\Variable.cs" />
     <Compile Include="Data\VendorItem.cs" />
     <Compile Include="Forms\AddJournalInlineCodeForm.cs">
       <SubType>Form</SubType>
@@ -593,6 +594,12 @@
     </Compile>
     <Compile Include="Forms\EditSectionForm.Designer.cs">
       <DependentUpon>EditSectionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EditVarForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EditVarForm.Designer.cs">
+      <DependentUpon>EditVarForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\EditVendorItemForm.cs">
       <SubType>Form</SubType>
@@ -936,6 +943,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EditSectionForm.resx">
       <DependentUpon>EditSectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EditVarForm.resx">
+      <DependentUpon>EditVarForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EditVendorItemForm.resx">
       <DependentUpon>EditVendorItemForm.cs</DependentUpon>

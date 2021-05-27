@@ -327,6 +327,14 @@ namespace StoryDev
             File.WriteAllText(CurrentProjectFolder + "\\simulation-options.json", content);
         }
 
+        public static List<Variable> Variables { get; private set; }
+
+        public static void SaveVariables()
+        {
+            var content = JsonConvert.SerializeObject(Variables);
+            File.WriteAllText(CurrentProjectFolder + "\\variables.json", content);
+        }
+
         //
         // Characters and Functions
         //
@@ -983,6 +991,16 @@ namespace StoryDev
             else
             {
                 StoryOrder = new StoryOrder();
+            }
+
+            if (File.Exists(path + "\\variables.json"))
+            {
+                var content = File.ReadAllText(path + "\\variables.json");
+                Variables = JsonConvert.DeserializeObject<List<Variable>>(content);
+            }
+            else
+            {
+                Variables = new List<Variable>();
             }
         }
 
