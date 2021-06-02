@@ -62,8 +62,18 @@ namespace StoryDev.Forms
 
                 Width = maxWidth + 20;
             }
+        }
 
-            
+        public void AddState(PlayerState state, int outcome)
+        {
+            if (outcome == 0)
+            {
+                bestOutcomeTracker.SetState(state);
+            }
+            else if (outcome == 1)
+            {
+                worstOutcomeTracker.SetState(state);
+            }
         }
     }
 }

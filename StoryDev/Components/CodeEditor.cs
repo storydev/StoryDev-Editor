@@ -10,16 +10,10 @@ using System.Windows.Forms;
 
 using FastColoredTextBoxNS;
 
-using hscript;
-
 namespace StoryDev.Components
 {
     partial class CodeEditor : FastColoredTextBox
     {
-
-        public static Parser parser { get; private set; }
-
-        public static Interp interp { get; private set; }
 
         public Language CurrentLanguage;
 
@@ -58,18 +52,6 @@ namespace StoryDev.Components
 
         public CodeEditor()
         {
-            if (parser == null)
-            {
-                parser = new Parser();
-                parser.allowJSON = true;
-                parser.allowTypes = true;
-            }
-
-            if (interp == null)
-            {
-                
-            }
-
             BackColor = Color.FromArgb(64, 64, 64);
             SelectionColor = Color.FromArgb(213, 218, 239);
             CaretColor = Color.FromArgb(216, 216, 216);

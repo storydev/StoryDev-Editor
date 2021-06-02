@@ -202,6 +202,8 @@ namespace StoryDev
             "AdvanceJournal",
             // Unlocks access to a special feature scenario by ID.
             "UnlockScenario",
+            // Completes the currently active scenario.
+            "CompleteCurrentScenario",
             // Starts a conversation
             "StartConversation",
             // Requests that the given character's vendor items is displayed.
@@ -224,6 +226,8 @@ namespace StoryDev
             "HasArtefactFragment",
             // Has the player fully completed finding all fragments for the given artefact.
             "HasArtefactCompleted",
+            // Has the player activated the given artefact.
+            "HasArtefactActivated",
             // Has the player unlocked the given place.
             "HasUnlockedPlace",
             // Has the given activity been progressed by a certain value.
@@ -1011,6 +1015,7 @@ namespace StoryDev
     class PlayerState
     {
 
+        public float Cash;
         public float Frequency;
         public List<int> ConversationCharacters;
         public int CharacterPointOfView;

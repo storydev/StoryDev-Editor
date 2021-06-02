@@ -30,99 +30,101 @@ namespace StoryDev.Forms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode48 = new System.Windows.Forms.TreeNode("Frequency");
-            System.Windows.Forms.TreeNode treeNode49 = new System.Windows.Forms.TreeNode("ConversationCharacters");
-            System.Windows.Forms.TreeNode treeNode50 = new System.Windows.Forms.TreeNode("CharacterPointOfView");
-            System.Windows.Forms.TreeNode treeNode51 = new System.Windows.Forms.TreeNode("CurrentConversationID");
-            System.Windows.Forms.TreeNode treeNode52 = new System.Windows.Forms.TreeNode("CurrentConversationPosition");
-            System.Windows.Forms.TreeNode treeNode53 = new System.Windows.Forms.TreeNode("CurrentPlace");
-            System.Windows.Forms.TreeNode treeNode54 = new System.Windows.Forms.TreeNode("CurrentSection");
-            System.Windows.Forms.TreeNode treeNode55 = new System.Windows.Forms.TreeNode("CurrentSpecialConvoID");
-            System.Windows.Forms.TreeNode treeNode56 = new System.Windows.Forms.TreeNode("CurrentSpecialConversationPosition");
-            System.Windows.Forms.TreeNode treeNode57 = new System.Windows.Forms.TreeNode("CurrentSpecialPlace");
-            System.Windows.Forms.TreeNode treeNode58 = new System.Windows.Forms.TreeNode("CurrentSpecialSection");
-            System.Windows.Forms.TreeNode treeNode59 = new System.Windows.Forms.TreeNode("Characters");
-            System.Windows.Forms.TreeNode treeNode60 = new System.Windows.Forms.TreeNode("ItemID");
-            System.Windows.Forms.TreeNode treeNode61 = new System.Windows.Forms.TreeNode("Quantity");
-            System.Windows.Forms.TreeNode treeNode62 = new System.Windows.Forms.TreeNode("Inventories", new System.Windows.Forms.TreeNode[] {
-            treeNode59,
-            treeNode60,
-            treeNode61});
-            System.Windows.Forms.TreeNode treeNode63 = new System.Windows.Forms.TreeNode("FragmentsDiscovered");
-            System.Windows.Forms.TreeNode treeNode64 = new System.Windows.Forms.TreeNode("ArtefactsUnlocked");
-            System.Windows.Forms.TreeNode treeNode65 = new System.Windows.Forms.TreeNode("ArtefactsActivated");
-            System.Windows.Forms.TreeNode treeNode66 = new System.Windows.Forms.TreeNode("Artefacts", new System.Windows.Forms.TreeNode[] {
-            treeNode63,
-            treeNode64,
-            treeNode65});
-            System.Windows.Forms.TreeNode treeNode67 = new System.Windows.Forms.TreeNode("Characters");
-            System.Windows.Forms.TreeNode treeNode68 = new System.Windows.Forms.TreeNode("Attitudes");
-            System.Windows.Forms.TreeNode treeNode69 = new System.Windows.Forms.TreeNode("HungerLevel");
-            System.Windows.Forms.TreeNode treeNode70 = new System.Windows.Forms.TreeNode("ThirstLevel");
-            System.Windows.Forms.TreeNode treeNode71 = new System.Windows.Forms.TreeNode("PhysicalLevel");
-            System.Windows.Forms.TreeNode treeNode72 = new System.Windows.Forms.TreeNode("MentalLevel");
-            System.Windows.Forms.TreeNode treeNode73 = new System.Windows.Forms.TreeNode("AttitudesTowards");
-            System.Windows.Forms.TreeNode treeNode74 = new System.Windows.Forms.TreeNode("Traits");
-            System.Windows.Forms.TreeNode treeNode75 = new System.Windows.Forms.TreeNode("TraitProgress");
-            System.Windows.Forms.TreeNode treeNode76 = new System.Windows.Forms.TreeNode("Characters", new System.Windows.Forms.TreeNode[] {
-            treeNode67,
-            treeNode68,
-            treeNode69,
-            treeNode70,
-            treeNode71,
-            treeNode72,
-            treeNode73,
-            treeNode74,
-            treeNode75});
-            System.Windows.Forms.TreeNode treeNode77 = new System.Windows.Forms.TreeNode("PlacesUnlocked");
-            System.Windows.Forms.TreeNode treeNode78 = new System.Windows.Forms.TreeNode("SectionsAccessible");
-            System.Windows.Forms.TreeNode treeNode79 = new System.Windows.Forms.TreeNode("GossipsAvailable");
-            System.Windows.Forms.TreeNode treeNode80 = new System.Windows.Forms.TreeNode("GossipOptionsAvailable");
-            System.Windows.Forms.TreeNode treeNode81 = new System.Windows.Forms.TreeNode("GossipOptionsHidden");
-            System.Windows.Forms.TreeNode treeNode82 = new System.Windows.Forms.TreeNode("Places", new System.Windows.Forms.TreeNode[] {
-            treeNode77,
-            treeNode78,
-            treeNode79,
-            treeNode80,
-            treeNode81});
-            System.Windows.Forms.TreeNode treeNode83 = new System.Windows.Forms.TreeNode("AchievementsUnlocked");
-            System.Windows.Forms.TreeNode treeNode84 = new System.Windows.Forms.TreeNode("JournalsUnlocked");
-            System.Windows.Forms.TreeNode treeNode85 = new System.Windows.Forms.TreeNode("JournalsAvailable");
-            System.Windows.Forms.TreeNode treeNode86 = new System.Windows.Forms.TreeNode("JournalsInactive");
-            System.Windows.Forms.TreeNode treeNode87 = new System.Windows.Forms.TreeNode("JournalsCompleted");
-            System.Windows.Forms.TreeNode treeNode88 = new System.Windows.Forms.TreeNode("JournalPagesCompleted");
-            System.Windows.Forms.TreeNode treeNode89 = new System.Windows.Forms.TreeNode("Journals", new System.Windows.Forms.TreeNode[] {
-            treeNode84,
-            treeNode85,
-            treeNode86,
-            treeNode87,
-            treeNode88});
-            System.Windows.Forms.TreeNode treeNode90 = new System.Windows.Forms.TreeNode("SpecialScenariosUnlocked");
-            System.Windows.Forms.TreeNode treeNode91 = new System.Windows.Forms.TreeNode("SpecialScenariosCompleted");
-            System.Windows.Forms.TreeNode treeNode92 = new System.Windows.Forms.TreeNode("SpecialScenarioScores");
-            System.Windows.Forms.TreeNode treeNode93 = new System.Windows.Forms.TreeNode("SpecialScenarios", new System.Windows.Forms.TreeNode[] {
-            treeNode90,
-            treeNode91,
-            treeNode92});
-            System.Windows.Forms.TreeNode treeNode94 = new System.Windows.Forms.TreeNode("PlayerState", new System.Windows.Forms.TreeNode[] {
-            treeNode48,
-            treeNode49,
-            treeNode50,
-            treeNode51,
-            treeNode52,
-            treeNode53,
-            treeNode54,
-            treeNode55,
-            treeNode56,
-            treeNode57,
-            treeNode58,
-            treeNode62,
-            treeNode66,
-            treeNode76,
-            treeNode82,
-            treeNode83,
-            treeNode89,
-            treeNode93});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Cash");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Frequency");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("ConversationCharacters");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("CharacterPointOfView");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("CurrentConversationID");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("CurrentConversationPosition");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("CurrentPlace");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("CurrentSection");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("CurrentSpecialConvoID");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("CurrentSpecialConversationPosition");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("CurrentSpecialPlace");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("CurrentSpecialSection");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Characters");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("ItemID");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Quantity");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Inventories", new System.Windows.Forms.TreeNode[] {
+            treeNode13,
+            treeNode14,
+            treeNode15});
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("FragmentsDiscovered");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("ArtefactsUnlocked");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("ArtefactsActivated");
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Artefacts", new System.Windows.Forms.TreeNode[] {
+            treeNode17,
+            treeNode18,
+            treeNode19});
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Characters");
+            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Attitudes");
+            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("HungerLevel");
+            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("ThirstLevel");
+            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("PhysicalLevel");
+            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("MentalLevel");
+            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("AttitudesTowards");
+            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("Traits");
+            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("TraitProgress");
+            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("Characters", new System.Windows.Forms.TreeNode[] {
+            treeNode21,
+            treeNode22,
+            treeNode23,
+            treeNode24,
+            treeNode25,
+            treeNode26,
+            treeNode27,
+            treeNode28,
+            treeNode29});
+            System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("PlacesUnlocked");
+            System.Windows.Forms.TreeNode treeNode32 = new System.Windows.Forms.TreeNode("SectionsAccessible");
+            System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("GossipsAvailable");
+            System.Windows.Forms.TreeNode treeNode34 = new System.Windows.Forms.TreeNode("GossipOptionsAvailable");
+            System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("GossipOptionsHidden");
+            System.Windows.Forms.TreeNode treeNode36 = new System.Windows.Forms.TreeNode("Places", new System.Windows.Forms.TreeNode[] {
+            treeNode31,
+            treeNode32,
+            treeNode33,
+            treeNode34,
+            treeNode35});
+            System.Windows.Forms.TreeNode treeNode37 = new System.Windows.Forms.TreeNode("AchievementsUnlocked");
+            System.Windows.Forms.TreeNode treeNode38 = new System.Windows.Forms.TreeNode("JournalsUnlocked");
+            System.Windows.Forms.TreeNode treeNode39 = new System.Windows.Forms.TreeNode("JournalsAvailable");
+            System.Windows.Forms.TreeNode treeNode40 = new System.Windows.Forms.TreeNode("JournalsInactive");
+            System.Windows.Forms.TreeNode treeNode41 = new System.Windows.Forms.TreeNode("JournalsCompleted");
+            System.Windows.Forms.TreeNode treeNode42 = new System.Windows.Forms.TreeNode("JournalPagesCompleted");
+            System.Windows.Forms.TreeNode treeNode43 = new System.Windows.Forms.TreeNode("Journals", new System.Windows.Forms.TreeNode[] {
+            treeNode38,
+            treeNode39,
+            treeNode40,
+            treeNode41,
+            treeNode42});
+            System.Windows.Forms.TreeNode treeNode44 = new System.Windows.Forms.TreeNode("SpecialScenariosUnlocked");
+            System.Windows.Forms.TreeNode treeNode45 = new System.Windows.Forms.TreeNode("SpecialScenariosCompleted");
+            System.Windows.Forms.TreeNode treeNode46 = new System.Windows.Forms.TreeNode("SpecialScenarioScores");
+            System.Windows.Forms.TreeNode treeNode47 = new System.Windows.Forms.TreeNode("SpecialScenarios", new System.Windows.Forms.TreeNode[] {
+            treeNode44,
+            treeNode45,
+            treeNode46});
+            System.Windows.Forms.TreeNode treeNode48 = new System.Windows.Forms.TreeNode("PlayerState", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode4,
+            treeNode5,
+            treeNode6,
+            treeNode7,
+            treeNode8,
+            treeNode9,
+            treeNode10,
+            treeNode11,
+            treeNode12,
+            treeNode16,
+            treeNode20,
+            treeNode30,
+            treeNode36,
+            treeNode37,
+            treeNode43,
+            treeNode47});
             this.tcMain = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnBrowse = new System.Windows.Forms.Button();
@@ -392,102 +394,104 @@ namespace StoryDev.Forms
             this.tvRecordingDetails.Location = new System.Drawing.Point(16, 28);
             this.tvRecordingDetails.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tvRecordingDetails.Name = "tvRecordingDetails";
-            treeNode48.Name = "Node1";
-            treeNode48.Text = "Frequency";
-            treeNode49.Name = "Node0";
-            treeNode49.Text = "ConversationCharacters";
-            treeNode50.Name = "Node1";
-            treeNode50.Text = "CharacterPointOfView";
-            treeNode51.Name = "Node2";
-            treeNode51.Text = "CurrentConversationID";
-            treeNode52.Name = "Node3";
-            treeNode52.Text = "CurrentConversationPosition";
-            treeNode53.Name = "Node4";
-            treeNode53.Text = "CurrentPlace";
-            treeNode54.Name = "Node5";
-            treeNode54.Text = "CurrentSection";
-            treeNode55.Name = "Node6";
-            treeNode55.Text = "CurrentSpecialConvoID";
-            treeNode56.Name = "Node7";
-            treeNode56.Text = "CurrentSpecialConversationPosition";
-            treeNode57.Name = "Node8";
-            treeNode57.Text = "CurrentSpecialPlace";
-            treeNode58.Name = "Node9";
-            treeNode58.Text = "CurrentSpecialSection";
-            treeNode59.Name = "Node17";
-            treeNode59.Text = "Characters";
-            treeNode60.Name = "Node18";
-            treeNode60.Text = "ItemID";
-            treeNode61.Name = "Node19";
-            treeNode61.Text = "Quantity";
-            treeNode62.Name = "Node10";
-            treeNode62.Text = "Inventories";
-            treeNode63.Name = "Node20";
-            treeNode63.Text = "FragmentsDiscovered";
-            treeNode64.Name = "Node21";
-            treeNode64.Text = "ArtefactsUnlocked";
-            treeNode65.Name = "Node22";
-            treeNode65.Text = "ArtefactsActivated";
-            treeNode66.Name = "Node11";
-            treeNode66.Text = "Artefacts";
-            treeNode67.Name = "Node23";
-            treeNode67.Text = "Characters";
-            treeNode68.Name = "Node24";
-            treeNode68.Text = "Attitudes";
-            treeNode69.Name = "Node25";
-            treeNode69.Text = "HungerLevel";
-            treeNode70.Name = "Node26";
-            treeNode70.Text = "ThirstLevel";
-            treeNode71.Name = "Node27";
-            treeNode71.Text = "PhysicalLevel";
-            treeNode72.Name = "Node28";
-            treeNode72.Text = "MentalLevel";
-            treeNode73.Name = "Node29";
-            treeNode73.Text = "AttitudesTowards";
-            treeNode74.Name = "Node30";
-            treeNode74.Text = "Traits";
-            treeNode75.Name = "Node31";
-            treeNode75.Text = "TraitProgress";
-            treeNode76.Name = "Node12";
-            treeNode76.Text = "Characters";
-            treeNode77.Name = "Node0";
-            treeNode77.Text = "PlacesUnlocked";
-            treeNode78.Name = "Node1";
-            treeNode78.Text = "SectionsAccessible";
-            treeNode79.Name = "Node2";
-            treeNode79.Text = "GossipsAvailable";
-            treeNode80.Name = "Node3";
-            treeNode80.Text = "GossipOptionsAvailable";
-            treeNode81.Name = "Node4";
-            treeNode81.Text = "GossipOptionsHidden";
-            treeNode82.Name = "Node13";
-            treeNode82.Text = "Places";
-            treeNode83.Name = "Node14";
-            treeNode83.Text = "AchievementsUnlocked";
-            treeNode84.Name = "Node5";
-            treeNode84.Text = "JournalsUnlocked";
-            treeNode85.Name = "Node6";
-            treeNode85.Text = "JournalsAvailable";
-            treeNode86.Name = "Node7";
-            treeNode86.Text = "JournalsInactive";
-            treeNode87.Name = "Node8";
-            treeNode87.Text = "JournalsCompleted";
-            treeNode88.Name = "Node9";
-            treeNode88.Text = "JournalPagesCompleted";
-            treeNode89.Name = "Node15";
-            treeNode89.Text = "Journals";
-            treeNode90.Name = "Node10";
-            treeNode90.Text = "SpecialScenariosUnlocked";
-            treeNode91.Name = "Node11";
-            treeNode91.Text = "SpecialScenariosCompleted";
-            treeNode92.Name = "Node12";
-            treeNode92.Text = "SpecialScenarioScores";
-            treeNode93.Name = "Node16";
-            treeNode93.Text = "SpecialScenarios";
-            treeNode94.Name = "Node0";
-            treeNode94.Text = "PlayerState";
+            treeNode1.Name = "Node0";
+            treeNode1.Text = "Cash";
+            treeNode2.Name = "Node1";
+            treeNode2.Text = "Frequency";
+            treeNode3.Name = "Node0";
+            treeNode3.Text = "ConversationCharacters";
+            treeNode4.Name = "Node1";
+            treeNode4.Text = "CharacterPointOfView";
+            treeNode5.Name = "Node2";
+            treeNode5.Text = "CurrentConversationID";
+            treeNode6.Name = "Node3";
+            treeNode6.Text = "CurrentConversationPosition";
+            treeNode7.Name = "Node4";
+            treeNode7.Text = "CurrentPlace";
+            treeNode8.Name = "Node5";
+            treeNode8.Text = "CurrentSection";
+            treeNode9.Name = "Node6";
+            treeNode9.Text = "CurrentSpecialConvoID";
+            treeNode10.Name = "Node7";
+            treeNode10.Text = "CurrentSpecialConversationPosition";
+            treeNode11.Name = "Node8";
+            treeNode11.Text = "CurrentSpecialPlace";
+            treeNode12.Name = "Node9";
+            treeNode12.Text = "CurrentSpecialSection";
+            treeNode13.Name = "Node17";
+            treeNode13.Text = "Characters";
+            treeNode14.Name = "Node18";
+            treeNode14.Text = "ItemID";
+            treeNode15.Name = "Node19";
+            treeNode15.Text = "Quantity";
+            treeNode16.Name = "Node10";
+            treeNode16.Text = "Inventories";
+            treeNode17.Name = "Node20";
+            treeNode17.Text = "FragmentsDiscovered";
+            treeNode18.Name = "Node21";
+            treeNode18.Text = "ArtefactsUnlocked";
+            treeNode19.Name = "Node22";
+            treeNode19.Text = "ArtefactsActivated";
+            treeNode20.Name = "Node11";
+            treeNode20.Text = "Artefacts";
+            treeNode21.Name = "Node23";
+            treeNode21.Text = "Characters";
+            treeNode22.Name = "Node24";
+            treeNode22.Text = "Attitudes";
+            treeNode23.Name = "Node25";
+            treeNode23.Text = "HungerLevel";
+            treeNode24.Name = "Node26";
+            treeNode24.Text = "ThirstLevel";
+            treeNode25.Name = "Node27";
+            treeNode25.Text = "PhysicalLevel";
+            treeNode26.Name = "Node28";
+            treeNode26.Text = "MentalLevel";
+            treeNode27.Name = "Node29";
+            treeNode27.Text = "AttitudesTowards";
+            treeNode28.Name = "Node30";
+            treeNode28.Text = "Traits";
+            treeNode29.Name = "Node31";
+            treeNode29.Text = "TraitProgress";
+            treeNode30.Name = "Node12";
+            treeNode30.Text = "Characters";
+            treeNode31.Name = "Node0";
+            treeNode31.Text = "PlacesUnlocked";
+            treeNode32.Name = "Node1";
+            treeNode32.Text = "SectionsAccessible";
+            treeNode33.Name = "Node2";
+            treeNode33.Text = "GossipsAvailable";
+            treeNode34.Name = "Node3";
+            treeNode34.Text = "GossipOptionsAvailable";
+            treeNode35.Name = "Node4";
+            treeNode35.Text = "GossipOptionsHidden";
+            treeNode36.Name = "Node13";
+            treeNode36.Text = "Places";
+            treeNode37.Name = "Node14";
+            treeNode37.Text = "AchievementsUnlocked";
+            treeNode38.Name = "Node5";
+            treeNode38.Text = "JournalsUnlocked";
+            treeNode39.Name = "Node6";
+            treeNode39.Text = "JournalsAvailable";
+            treeNode40.Name = "Node7";
+            treeNode40.Text = "JournalsInactive";
+            treeNode41.Name = "Node8";
+            treeNode41.Text = "JournalsCompleted";
+            treeNode42.Name = "Node9";
+            treeNode42.Text = "JournalPagesCompleted";
+            treeNode43.Name = "Node15";
+            treeNode43.Text = "Journals";
+            treeNode44.Name = "Node10";
+            treeNode44.Text = "SpecialScenariosUnlocked";
+            treeNode45.Name = "Node11";
+            treeNode45.Text = "SpecialScenariosCompleted";
+            treeNode46.Name = "Node12";
+            treeNode46.Text = "SpecialScenarioScores";
+            treeNode47.Name = "Node16";
+            treeNode47.Text = "SpecialScenarios";
+            treeNode48.Name = "Node0";
+            treeNode48.Text = "PlayerState";
             this.tvRecordingDetails.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode94});
+            treeNode48});
             this.tvRecordingDetails.PathSeparator = ".";
             this.tvRecordingDetails.Size = new System.Drawing.Size(379, 409);
             this.tvRecordingDetails.TabIndex = 4;

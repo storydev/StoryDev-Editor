@@ -63,8 +63,12 @@ namespace StoryDev.Components
             valueTypes = new System.Type[template.ActiveState.Count + 3];
             state = new PlayerState();
             this.template = template;
+        }
 
+        public void RefreshList()
+        {
             InitVars();
+            ConstructVariables();
         }
 
         private void InitVars()
@@ -72,6 +76,21 @@ namespace StoryDev.Components
             // base
 
             var kvs = template.ActiveState;
+
+            if (kvs.ContainsKey("PlayerState.Cash"))
+            {
+                if (kvs["PlayerState.Cash"])
+                {
+                    vars[initVar] = new Variable();
+                    vars[initVar].Name = "Cash";
+                    vars[initVar].FullPath = "PlayerState.Cash";
+                    vars[initVar].Reference = typeof(PlayerState).GetField("Cash");
+                    vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
+                    valueTypes[initVar] = vars[initVar].Value.GetType();
+
+                    initVar++;
+                }
+            }
 
             if (kvs.ContainsKey("PlayerState.Frequency"))
             {
@@ -943,8 +962,30 @@ namespace StoryDev.Components
                     }
                 }
             }
+        }
 
+        public void SetState(PlayerState state)
+        {
+            this.state = state;
+
+            InitVars();
             ConstructVariables();
+        }
+
+        public void UpdateVariable(string fullPath)
+        {
+            var root = tvVariables.Nodes[0];
+
+            for (int i = 0; i < vars.Length; i++)
+            {
+                if (vars[i] != null)
+                {
+                    if (vars[i].FullPath == fullPath)
+                    {
+                        ConstructVarIndex(i, root);
+                    }
+                }
+            }
         }
 
         private void ConstructVariables()

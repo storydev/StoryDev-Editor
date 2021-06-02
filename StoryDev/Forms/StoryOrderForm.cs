@@ -26,6 +26,7 @@ namespace StoryDev.Forms
                 cmbJournals.AutoCompleteCustomSource.Add(journal.Name);
             }
 
+            chbIncludeJournals.Checked = Globals.StoryOrder.IncludeJournals;
             PopulateOrders();
             PopulateAllFiles();
         }
@@ -417,6 +418,11 @@ namespace StoryDev.Forms
             {
 
             }
+        }
+
+        private void chbIncludeJournals_CheckedChanged(object sender, EventArgs e)
+        {
+            Globals.StoryOrder.IncludeJournals = chbIncludeJournals.Checked;
         }
     }
 }

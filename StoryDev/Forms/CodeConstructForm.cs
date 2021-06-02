@@ -869,6 +869,17 @@ namespace StoryDev.Forms
             condition.CodeStringAdded += Condition_CodeStringAdded;
             condition.ShowDialog();
         }
+
+        private void hasArtefactActivatedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var condition = new CodeComponentForm(new HasArtefactActivated()
+            {
+                Dock = DockStyle.Fill
+            });
+
+            condition.CodeStringAdded += Condition_CodeStringAdded;
+            condition.ShowDialog();
+        }
     }
 
     enum ConstructMethod

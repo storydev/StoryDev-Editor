@@ -12,6 +12,7 @@ namespace StoryDev.Data
         public List<string> MainStory;
         public Dictionary<int, List<string>> JournalStories;
         public Dictionary<int, int> JournalsAfterPart;
+        public bool IncludeJournals;
 
         public StoryOrder()
         {

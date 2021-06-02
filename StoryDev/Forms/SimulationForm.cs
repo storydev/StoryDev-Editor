@@ -26,6 +26,15 @@ namespace StoryDev.Forms
             }
         }
 
+        public void Interrupt()
+        {
+            if (isPlayingSimulation)
+            {
+                isPlayingSimulation = false;
+                btnPlayStop.BackgroundImage = Properties.Resources.Play;
+            }
+        }
+
         private void btnPlayStop_Click(object sender, EventArgs e)
         {
             if (selectedTemplate > -1)

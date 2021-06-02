@@ -49,6 +49,11 @@ namespace StoryDev.Lib.StoryDev
             return _blocks.Find((b) => b.ID == id);
         }
 
+        public int GetBlockIndexByTitle(string title)
+        {
+            return _blocks.FindIndex((b) => b.Title == title);
+        }
+
         public void Clear()
         {
             _blocks = new List<CommandBlock>();

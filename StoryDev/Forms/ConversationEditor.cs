@@ -4,10 +4,12 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
+using StoryDev.Simulation;
 using StoryDev.Components;
 using StoryDev.Lib.StoryDev;
 
@@ -15,6 +17,9 @@ namespace StoryDev.Forms
 {
     partial class ConversationEditor : Form
     {
+
+        private CancellationTokenSource simulationToken;
+        private Task<bool> runningSimulation;
 
         private string currentFile;
         private string fileShortName;
@@ -34,6 +39,8 @@ namespace StoryDev.Forms
 
             InitializeComponent();
 
+            simulationToken = new CancellationTokenSource();
+
             simulation = new SimulationForm();
             simulation.FormClosing += Simulation_FormClosing;
             simulation.SimulationStarted += Simulation_SimulationStarted;
@@ -50,19 +57,60 @@ namespace StoryDev.Forms
 
         private void Simulation_SimulationStopped()
         {
-            tracker.Close();
-            tracker = null;
+            if (runningSimulation != null)
+            {
+                if (runningSimulation.Status == TaskStatus.Running)
+                {
+                    simulationToken.Cancel();
+                }
+            }
         }
 
-        private void Simulation_SimulationStarted(StateTemplate template, List<int> outcomes)
+        private async void Simulation_SimulationStarted(StateTemplate template, List<int> outcomes)
         {
             if (tracker != null)
             {
                 tracker.Dispose();
             }
 
-            tracker = new VarTrackerForm(template, outcomes);
-            tracker.Show(this);
+            if (string.IsNullOrEmpty(currentFile))
+            {
+                MessageBox.Show("You must open a file to start the simulation.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                simulation.Interrupt();
+                return;
+            }
+
+            foreach (var outcome in outcomes)
+            {
+                if (outcome == 0)
+                {
+                    Engine.Instance.ProduceBestOutcome = true;
+                }
+
+                if (outcome == 1)
+                {
+                    Engine.Instance.ProduceWorstOutcome = true;
+                }
+            }
+
+            var sdcFile = currentFile.Substring(Globals.CurrentProjectFolder.Length + 1) + ".sdc";
+            if (await Engine.Instance.PlayAsync(sdcFile, simulationToken.Token))
+            {
+                tracker = new VarTrackerForm(template, outcomes);
+
+                if (Engine.Instance.ProduceBestOutcome)
+                {
+                    tracker.AddState(Engine.Instance.GetBestState(), 0);
+                }
+
+                if (Engine.Instance.ProduceWorstOutcome)
+                {
+                    tracker.AddState(Engine.Instance.GetWorstState(), 1);
+                }
+                
+                tracker.Show();
+
+            }
         }
 
         private void Simulation_FormClosing(object sender, FormClosingEventArgs e)
@@ -613,7 +661,7 @@ namespace StoryDev.Forms
         }
     }
 
-    class ChoiceData
+    class ChoiceData : IComparable<ChoiceData>
     {
 
         public int Priority;
@@ -627,5 +675,9 @@ namespace StoryDev.Forms
 
         }
 
+        public int CompareTo(ChoiceData other)
+        {
+            return other.Priority.CompareTo(this.Priority);
+        }
     }
 }

@@ -86,6 +86,7 @@ namespace StoryDev.Forms
             this.characterRequiresHealingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnChangeView = new System.Windows.Forms.Button();
             this.pnlContent = new System.Windows.Forms.Panel();
+            this.hasArtefactActivatedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.cmsExecute.SuspendLayout();
             this.cmsConditional.SuspendLayout();
@@ -360,6 +361,7 @@ namespace StoryDev.Forms
             this.isCurrentPOVToolStripMenuItem,
             this.hasArtefactFragmentToolStripMenuItem,
             this.hasArtefactCompletedToolStripMenuItem,
+            this.hasArtefactActivatedToolStripMenuItem,
             this.hasUnlockedPlaceToolStripMenuItem,
             this.hasActivityProgressToolStripMenuItem,
             this.hasActivityPartCompleteToolStripMenuItem,
@@ -379,7 +381,7 @@ namespace StoryDev.Forms
             this.isCharacterNourishedToolStripMenuItem,
             this.characterRequiresHealingToolStripMenuItem});
             this.cmsConditional.Name = "cmsConditional";
-            this.cmsConditional.Size = new System.Drawing.Size(318, 837);
+            this.cmsConditional.Size = new System.Drawing.Size(318, 869);
             // 
             // hasCharacterAttitudeToolStripMenuItem
             // 
@@ -603,6 +605,13 @@ namespace StoryDev.Forms
             this.pnlContent.Size = new System.Drawing.Size(1004, 892);
             this.pnlContent.TabIndex = 1;
             // 
+            // hasArtefactActivatedToolStripMenuItem
+            // 
+            this.hasArtefactActivatedToolStripMenuItem.Name = "hasArtefactActivatedToolStripMenuItem";
+            this.hasArtefactActivatedToolStripMenuItem.Size = new System.Drawing.Size(317, 32);
+            this.hasArtefactActivatedToolStripMenuItem.Text = "HasArtefactActivated";
+            this.hasArtefactActivatedToolStripMenuItem.Click += new System.EventHandler(this.hasArtefactActivatedToolStripMenuItem_Click);
+            // 
             // CodeConstructForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -683,5 +692,6 @@ namespace StoryDev.Forms
         private System.Windows.Forms.ToolStripMenuItem consumeItemToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem acquireFrequencyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem isWithinSectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hasArtefactActivatedToolStripMenuItem;
     }
 }

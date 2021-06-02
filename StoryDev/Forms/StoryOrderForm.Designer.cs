@@ -294,6 +294,7 @@ namespace StoryDev.Forms
             this.chbIncludeJournals.TabIndex = 16;
             this.chbIncludeJournals.Text = "Include Journals in Simulation";
             this.chbIncludeJournals.UseVisualStyleBackColor = true;
+            this.chbIncludeJournals.CheckedChanged += new System.EventHandler(this.chbIncludeJournals_CheckedChanged);
             // 
             // StoryOrderForm
             // 

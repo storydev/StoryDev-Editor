@@ -221,6 +221,12 @@
     <Compile Include="Components\CodeUI\HasActivityProgress.Designer.cs">
       <DependentUpon>HasActivityProgress.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\CodeUI\HasArtefactActivated.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\CodeUI\HasArtefactActivated.Designer.cs">
+      <DependentUpon>HasArtefactActivated.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\CodeUI\HasArtefactCompleted.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -680,42 +686,15 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Lib\Haxe\Array.cs" />
-    <Compile Include="Lib\Haxe\cs\Boot.cs" />
-    <Compile Include="Lib\Haxe\cs\internal\FieldLookup.cs" />
-    <Compile Include="Lib\Haxe\cs\internal\Function.cs" />
-    <Compile Include="Lib\Haxe\cs\internal\HxObject.cs" />
-    <Compile Include="Lib\Haxe\cs\internal\Runtime.cs" />
-    <Compile Include="Lib\Haxe\cs\internal\StringExt.cs" />
-    <Compile Include="Lib\Haxe\cs\Lib.cs" />
-    <Compile Include="Lib\Haxe\haxe\Constraints.cs" />
-    <Compile Include="Lib\Haxe\haxe\ds\BalancedTree.cs" />
-    <Compile Include="Lib\Haxe\haxe\ds\EnumValueMap.cs" />
-    <Compile Include="Lib\Haxe\haxe\ds\GenericStack.cs" />
-    <Compile Include="Lib\Haxe\haxe\ds\IntMap.cs" />
-    <Compile Include="Lib\Haxe\haxe\ds\ObjectMap.cs" />
-    <Compile Include="Lib\Haxe\haxe\ds\StringMap.cs" />
-    <Compile Include="Lib\Haxe\haxe\Exception.cs" />
-    <Compile Include="Lib\Haxe\haxe\iterators\ArrayIterator.cs" />
-    <Compile Include="Lib\Haxe\haxe\iterators\ArrayKeyValueIterator.cs" />
-    <Compile Include="Lib\Haxe\haxe\lang\Null.cs" />
-    <Compile Include="Lib\Haxe\haxe\Log.cs" />
-    <Compile Include="Lib\Haxe\haxe\ValueException.cs" />
-    <Compile Include="Lib\Haxe\hscript\Expr.cs" />
-    <Compile Include="Lib\Haxe\hscript\Interp.cs" />
-    <Compile Include="Lib\Haxe\hscript\Parser.cs" />
-    <Compile Include="Lib\Haxe\hscript\Tools.cs" />
-    <Compile Include="Lib\Haxe\IntIterator.cs" />
-    <Compile Include="Lib\Haxe\Reflect.cs" />
-    <Compile Include="Lib\Haxe\Std.cs" />
-    <Compile Include="Lib\Haxe\StringBuf.cs" />
-    <Compile Include="Lib\Haxe\Type.cs" />
     <Compile Include="Lib\StoryDev\Command.cs" />
     <Compile Include="Lib\StoryDev\CommandBlock.cs" />
     <Compile Include="Lib\StoryDev\CommandType.cs" />
     <Compile Include="Lib\StoryDev\Parser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Simulation\CallStack.cs" />
+    <Compile Include="Simulation\Engine.cs" />
+    <Compile Include="Simulation\Message.cs" />
     <EmbeddedResource Include="Components\AchievementsUI.resx">
       <DependentUpon>AchievementsUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -778,6 +757,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Components\CodeUI\HasActivityProgress.resx">
       <DependentUpon>HasActivityProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\CodeUI\HasArtefactActivated.resx">
+      <DependentUpon>HasArtefactActivated.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\CodeUI\HasArtefactCompleted.resx">
       <DependentUpon>HasArtefactCompleted.cs</DependentUpon>
