@@ -61,6 +61,8 @@ namespace StoryDev.Components
 
             TextChangedDelayed += CodeEditor_TextChangedDelayed;
             DelayedTextChangedInterval = 170;
+
+            WordWrap = Globals.Preferences.CodeSettings.WordWrap;
         }
 
         private void CodeEditor_TextChangedDelayed(object sender, TextChangedEventArgs e)

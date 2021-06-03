@@ -267,6 +267,36 @@ namespace StoryDev
         };
 
         //
+        // Cache and Other Data
+        //
+
+        public static Preferences Preferences { get; private set; }
+
+        private static string AppCacheFolder;
+
+        public static void GlobalInit()
+        {
+            AppCacheFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            AppCacheFolder += "\\StoryDev\\";
+
+            if (!Directory.Exists(AppCacheFolder))
+            {
+                Directory.CreateDirectory(AppCacheFolder);
+                Preferences = new Preferences();
+            }
+            else
+            {
+                Preferences = JsonConvert.DeserializeObject<Preferences>(File.ReadAllText(AppCacheFolder + "settings.json"));
+            }
+        }
+
+        public static void SavePreferences()
+        {
+            var content = JsonConvert.SerializeObject(Preferences);
+            File.WriteAllText(AppCacheFolder + "settings.json", content);
+        }
+
+        //
         // Basic Project Stuff
         //
 

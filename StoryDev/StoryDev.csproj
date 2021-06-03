@@ -489,6 +489,18 @@
     <Compile Include="Components\PlaceUI.Designer.cs">
       <DependentUpon>PlaceUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\Preferences\CodeEditorUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Preferences\CodeEditorUI.Designer.cs">
+      <DependentUpon>CodeEditorUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Preferences\GeneralUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Preferences\GeneralUI.Designer.cs">
+      <DependentUpon>GeneralUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\SpecialFeatureUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -527,6 +539,7 @@
     <Compile Include="Data\MainSourceData.cs" />
     <Compile Include="Data\MapSection.cs" />
     <Compile Include="Data\Place.cs" />
+    <Compile Include="Data\Preferences.cs" />
     <Compile Include="Data\SearchCustomDataSource.cs" />
     <Compile Include="Data\SearchOptions.cs" />
     <Compile Include="Data\SearchRelationship.cs" />
@@ -624,6 +637,12 @@
     </Compile>
     <Compile Include="Forms\IconSetsForm.Designer.cs">
       <DependentUpon>IconSetsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PreferencesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PreferencesForm.Designer.cs">
+      <DependentUpon>PreferencesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\SearchFiltersForm.cs">
       <SubType>Form</SubType>
@@ -887,6 +906,12 @@
     <EmbeddedResource Include="Components\PlaceUI.resx">
       <DependentUpon>PlaceUI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Components\Preferences\CodeEditorUI.resx">
+      <DependentUpon>CodeEditorUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Preferences\GeneralUI.resx">
+      <DependentUpon>GeneralUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Components\SpecialFeatureUI.resx">
       <DependentUpon>SpecialFeatureUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -940,6 +965,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PreferencesForm.resx">
+      <DependentUpon>PreferencesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SearchFiltersForm.resx">
       <DependentUpon>SearchFiltersForm.cs</DependentUpon>

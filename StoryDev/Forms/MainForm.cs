@@ -18,6 +18,8 @@ namespace StoryDev.Forms
         public MainForm()
         {
             InitializeComponent();
+
+            Globals.GlobalInit();
         }
 
         private void openProjectToolStripMenuItem_Click(object sender, EventArgs e)
@@ -208,6 +210,11 @@ namespace StoryDev.Forms
         private void conversationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new ConversationEditor().Show();
+        }
+
+        private void preferencesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new PreferencesForm().ShowDialog();
         }
     }
 }
