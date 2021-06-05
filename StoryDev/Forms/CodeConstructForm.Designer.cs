@@ -66,6 +66,7 @@ namespace StoryDev.Forms
             this.isCurrentPOVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hasArtefactFragmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hasArtefactCompletedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hasArtefactActivatedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hasUnlockedPlaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hasActivityProgressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hasActivityPartCompleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -86,7 +87,8 @@ namespace StoryDev.Forms
             this.characterRequiresHealingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnChangeView = new System.Windows.Forms.Button();
             this.pnlContent = new System.Windows.Forms.Panel();
-            this.hasArtefactActivatedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customVariableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.panel1.SuspendLayout();
             this.cmsExecute.SuspendLayout();
             this.cmsConditional.SuspendLayout();
@@ -379,9 +381,11 @@ namespace StoryDev.Forms
             this.hasSpokenWithToolStripMenuItem,
             this.hasGossipOptionChosenToolStripMenuItem,
             this.isCharacterNourishedToolStripMenuItem,
-            this.characterRequiresHealingToolStripMenuItem});
+            this.characterRequiresHealingToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.customVariableToolStripMenuItem});
             this.cmsConditional.Name = "cmsConditional";
-            this.cmsConditional.Size = new System.Drawing.Size(318, 869);
+            this.cmsConditional.Size = new System.Drawing.Size(318, 907);
             // 
             // hasCharacterAttitudeToolStripMenuItem
             // 
@@ -441,6 +445,13 @@ namespace StoryDev.Forms
             this.hasArtefactCompletedToolStripMenuItem.Text = "HasArtefactCompleted";
             this.hasArtefactCompletedToolStripMenuItem.ToolTipText = "Has the player fully completed finding all fragments for the given artefact.";
             this.hasArtefactCompletedToolStripMenuItem.Click += new System.EventHandler(this.hasArtefactCompletedToolStripMenuItem_Click);
+            // 
+            // hasArtefactActivatedToolStripMenuItem
+            // 
+            this.hasArtefactActivatedToolStripMenuItem.Name = "hasArtefactActivatedToolStripMenuItem";
+            this.hasArtefactActivatedToolStripMenuItem.Size = new System.Drawing.Size(317, 32);
+            this.hasArtefactActivatedToolStripMenuItem.Text = "HasArtefactActivated";
+            this.hasArtefactActivatedToolStripMenuItem.Click += new System.EventHandler(this.hasArtefactActivatedToolStripMenuItem_Click);
             // 
             // hasUnlockedPlaceToolStripMenuItem
             // 
@@ -605,12 +616,17 @@ namespace StoryDev.Forms
             this.pnlContent.Size = new System.Drawing.Size(1004, 892);
             this.pnlContent.TabIndex = 1;
             // 
-            // hasArtefactActivatedToolStripMenuItem
+            // customVariableToolStripMenuItem
             // 
-            this.hasArtefactActivatedToolStripMenuItem.Name = "hasArtefactActivatedToolStripMenuItem";
-            this.hasArtefactActivatedToolStripMenuItem.Size = new System.Drawing.Size(317, 32);
-            this.hasArtefactActivatedToolStripMenuItem.Text = "HasArtefactActivated";
-            this.hasArtefactActivatedToolStripMenuItem.Click += new System.EventHandler(this.hasArtefactActivatedToolStripMenuItem_Click);
+            this.customVariableToolStripMenuItem.Name = "customVariableToolStripMenuItem";
+            this.customVariableToolStripMenuItem.Size = new System.Drawing.Size(317, 32);
+            this.customVariableToolStripMenuItem.Text = "Custom Variable...";
+            this.customVariableToolStripMenuItem.Click += new System.EventHandler(this.customVariableToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(314, 6);
             // 
             // CodeConstructForm
             // 
@@ -693,5 +709,7 @@ namespace StoryDev.Forms
         private System.Windows.Forms.ToolStripMenuItem acquireFrequencyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem isWithinSectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hasArtefactActivatedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem customVariableToolStripMenuItem;
     }
 }

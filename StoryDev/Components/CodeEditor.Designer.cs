@@ -29,8 +29,20 @@ namespace StoryDev.Components
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // CodeEditor
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScrollMinSize = new System.Drawing.Size(35, 22);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.Name = "CodeEditor";
+            this.Load += new System.EventHandler(this.CodeEditor_Load);
+            ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         #endregion

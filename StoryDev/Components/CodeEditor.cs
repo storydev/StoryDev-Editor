@@ -61,8 +61,6 @@ namespace StoryDev.Components
 
             TextChangedDelayed += CodeEditor_TextChangedDelayed;
             DelayedTextChangedInterval = 170;
-
-            WordWrap = Globals.Preferences.CodeSettings.WordWrap;
         }
 
         private void CodeEditor_TextChangedDelayed(object sender, TextChangedEventArgs e)
@@ -91,6 +89,12 @@ namespace StoryDev.Components
                 e.ChangedRange.SetStyle(ss_Code, @"^(!|=!|=)\s.+", System.Text.RegularExpressions.RegexOptions.Multiline);
                 e.ChangedRange.SetStyle(ss_Dialogue, @"^([^:]+\s)?:\s.+", System.Text.RegularExpressions.RegexOptions.Multiline);
             }
+        }
+
+        private void CodeEditor_Load(object sender, EventArgs e)
+        {
+            if (Globals.Preferences != null)
+                WordWrap = Globals.Preferences.CodeSettings.WordWrap;
         }
     }
 

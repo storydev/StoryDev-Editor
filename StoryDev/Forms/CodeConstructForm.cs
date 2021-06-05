@@ -278,18 +278,32 @@ namespace StoryDev.Forms
         private void LaunchFormFromFuncString(string code)
         {
             code = code.TrimStart('\r', '\n');
-            var func = code.Substring(0, code.IndexOf('('));
-
-            var resolvedType = System.Type.GetType("StoryDev.Components.CodeUI." + func);
-            if (resolvedType != null)
+            var paranIndex = code.IndexOf('(');
+            if (paranIndex > -1)
             {
-                var uc = (UserControl)Activator.CreateInstance(resolvedType);
-                uc.Dock = DockStyle.Fill;
-                var component = (ICodeComponent)uc;
-                component.FromCodeString(code);
-                var instance = new CodeComponentForm(component);
-                instance.CodeStringAdded += Condition_CodeStringAdded;
-                instance.ShowDialog();
+                var func = code.Substring(0, paranIndex);
+                var resolvedType = Type.GetType("StoryDev.Components.CodeUI." + func);
+                if (resolvedType != null)
+                {
+                    var uc = (UserControl)Activator.CreateInstance(resolvedType);
+                    uc.Dock = DockStyle.Fill;
+                    var component = (ICodeComponent)uc;
+                    component.FromCodeString(code);
+                    var instance = new CodeComponentForm(component);
+                    instance.CodeStringAdded += Condition_CodeStringAdded;
+                    instance.ShowDialog();
+                }
+            }
+            else
+            {
+                var customVariable = new GetCustomVariable()
+                {
+                    Dock = DockStyle.Fill
+                };
+                customVariable.FromCodeString(code);
+                var condition = new CodeComponentForm(customVariable);
+                condition.CodeStringAdded += Condition_CodeStringAdded;
+                condition.ShowDialog();
             }
         }
 
@@ -873,6 +887,17 @@ namespace StoryDev.Forms
         private void hasArtefactActivatedToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var condition = new CodeComponentForm(new HasArtefactActivated()
+            {
+                Dock = DockStyle.Fill
+            });
+
+            condition.CodeStringAdded += Condition_CodeStringAdded;
+            condition.ShowDialog();
+        }
+
+        private void customVariableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var condition = new CodeComponentForm(new GetCustomVariable()
             {
                 Dock = DockStyle.Fill
             });

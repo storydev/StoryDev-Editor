@@ -203,6 +203,12 @@
     <Compile Include="Components\CodeUI\ConsumeItem.Designer.cs">
       <DependentUpon>ConsumeItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\CodeUI\GetCustomVariable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\CodeUI\GetCustomVariable.Designer.cs">
+      <DependentUpon>GetCustomVariable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\CodeUI\HasActivityComplete.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -732,6 +738,9 @@
     <EmbeddedResource Include="Components\ChoiceUI.resx">
       <DependentUpon>ChoiceUI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Components\CodeEditor.resx">
+      <DependentUpon>CodeEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Components\CodeUI\AccessSection.resx">
       <DependentUpon>AccessSection.cs</DependentUpon>
     </EmbeddedResource>
@@ -767,6 +776,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Components\CodeUI\ConsumeItem.resx">
       <DependentUpon>ConsumeItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\CodeUI\GetCustomVariable.resx">
+      <DependentUpon>GetCustomVariable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\CodeUI\HasActivityComplete.resx">
       <DependentUpon>HasActivityComplete.cs</DependentUpon>
