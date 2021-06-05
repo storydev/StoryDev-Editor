@@ -96,6 +96,9 @@ namespace StoryDev.Lib.StoryDev
             var option = false;
             var optionConditional = false;
             var codeText = "";
+            var fallThrough = false;
+            var fallThroughCode = "";
+            var fallThroughEnd = false;
 
             for (int i = 0; i < lines.Length; i++)
             {
@@ -116,6 +119,13 @@ namespace StoryDev.Lib.StoryDev
                                 if (first)
                                 {
                                     isAChoice = true;
+                                }
+
+                                if (fallThrough)
+                                {
+                                    fallThroughCode = text;
+                                    fallThroughEnd = true;
+                                    text = "";
                                 }
                             }
                             break;
@@ -138,6 +148,21 @@ namespace StoryDev.Lib.StoryDev
                                 if (!isCode)
                                     optionConditional = true;
 
+                            } break;
+                        case "|=":
+                            {
+                                if (first)
+                                {
+                                    fallThrough = true;
+                                }
+                            } break;
+                        case "|=>":
+                            {
+                                if (first)
+                                {
+                                    fallThrough = true;
+                                    fallThroughEnd = true;
+                                }
                             } break;
                         case "convo":
                         case "#":
@@ -185,7 +210,7 @@ namespace StoryDev.Lib.StoryDev
                             break;
                         default:
                             {
-                                if (isGoto || optionConditional)
+                                if (isGoto || optionConditional || fallThrough)
                                 {
                                     text += word;
                                 }
@@ -274,7 +299,9 @@ namespace StoryDev.Lib.StoryDev
                 }
                 else if (dialogue)
                 {
-                    text = text.Substring(0, text.Length - 1);
+                    if (!string.IsNullOrEmpty(text))
+                        text = text.Substring(0, text.Length - 1);
+
                     if (string.IsNullOrEmpty(charName))
                     {
                         PostError(string.Format("Invalid syntax on line {0}. Expected a dialogue.", i));
@@ -336,6 +363,19 @@ namespace StoryDev.Lib.StoryDev
                     currentBlock.Commands.Add(Command.CreateOptionConditional(text));
                     text = "";
                     optionConditional = false;
+                }
+                else if (fallThrough)
+                {
+                    currentBlock.Commands.Add(Command.CreateFallThrough(fallThroughCode));
+                    if (!fallThroughEnd)
+                    {
+                        PostError(string.Format("Line {0}: Fall through has not ended correctly. You must enter `>` to end the fall through.", i));
+                        return -1;
+                    }
+
+                    fallThroughCode = "";
+                    fallThrough = false;
+                    fallThroughEnd = false;
                 }
                 else if (isAChoice)
                 {

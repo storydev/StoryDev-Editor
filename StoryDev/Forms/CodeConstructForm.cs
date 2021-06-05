@@ -333,7 +333,10 @@ namespace StoryDev.Forms
                 }
                 else
                 {
-                    result += item;
+                    if (OnlyExecutables)
+                        result += item + ";";
+                    else
+                        result += item;
                 }
             }
             return result;

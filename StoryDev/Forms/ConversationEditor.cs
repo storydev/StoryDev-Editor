@@ -295,6 +295,7 @@ namespace StoryDev.Forms
                     var convo = "";
                     var choice = new ChoiceData();
                     var choicePriorities = new List<int>();
+                    var choiceConditionals = new List<string>();
                     for (int i = 0; i < blocks.Count; i++)
                     {
                         var b = blocks[i];
@@ -328,6 +329,8 @@ namespace StoryDev.Forms
                                                 var extracted = split[1].Substring(gotol);
                                                 choice.Code = extracted;
                                             }
+                                            choice.Condition = choiceConditionals[k];
+
                                             choices.Add(choice);
 
                                             var temp = choice.CurrentIndex;
@@ -335,6 +338,7 @@ namespace StoryDev.Forms
                                             choice.CurrentIndex = temp;
                                         }
 
+                                        choiceConditionals.Clear();
                                         choicePriorities.Clear();
                                     } break;
                                 case (int)CommandType.CodeLine:
@@ -355,6 +359,13 @@ namespace StoryDev.Forms
                                         convo += "~ " + command.Data[0] + "\r\n";
                                     }
                                     break;
+                                case (int)CommandType.FallThrough:
+                                    {
+                                        if (string.IsNullOrEmpty(command.Data[0]))
+                                            convo += "|=>\r\n";
+                                        else
+                                            convo += "|= " + command.Data[0] + " >\r\n";
+                                    } break;
                                 case (int)CommandType.OptionConditional:
                                     {
                                         if (j + 1 < b.Commands.Count)
@@ -372,8 +383,7 @@ namespace StoryDev.Forms
                                                     next.Type == (int)CommandType.InternalDialogue ||
                                                     next.Type == (int)CommandType.Narrative ||
                                                     next.Type == (int)CommandType.NewConvo ||
-                                                    next.Type == (int)CommandType.OverlayTitle ||
-                                                    next.Type == (int)CommandType.OptionConditional)
+                                                    next.Type == (int)CommandType.OverlayTitle)
                                                 {
                                                     found = true;
                                                     break;
@@ -386,7 +396,7 @@ namespace StoryDev.Forms
                                             }
                                             else
                                             {
-                                                choice.Condition = command.Data[0];
+                                                choiceConditionals.Add(command.Data[0]);
                                             }
                                         }
                                     } break;

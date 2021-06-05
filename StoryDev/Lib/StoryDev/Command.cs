@@ -147,5 +147,14 @@ namespace StoryDev.Lib.StoryDev
             return command;
         }
 
+        public static Command CreateFallThrough(string code)
+        {
+            var command = new Command();
+            command.ID = GLOBAL_ID++;
+            command.Type = (int)CommandType.FallThrough;
+            command.Data.Add(code);
+            return command;
+        }
+
     }
 }

@@ -20,6 +20,7 @@ namespace StoryDev.Lib.StoryDev
         DialogueBlock,
         Goto,
         Option,
-        OptionConditional
+        OptionConditional,
+        FallThrough
     }
 }
