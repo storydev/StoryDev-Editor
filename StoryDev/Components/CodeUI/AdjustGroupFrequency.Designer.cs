@@ -93,6 +93,11 @@ namespace StoryDev.Components.CodeUI
             0,
             0,
             0});
+            this.nudFrequency.Minimum = new decimal(new int[] {
+            15,
+            0,
+            0,
+            -2147483648});
             this.nudFrequency.Name = "nudFrequency";
             this.nudFrequency.Size = new System.Drawing.Size(109, 26);
             this.nudFrequency.TabIndex = 13;

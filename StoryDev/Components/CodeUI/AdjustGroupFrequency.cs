@@ -54,14 +54,14 @@ namespace StoryDev.Components.CodeUI
                 return "You must select a group.";
 
             if (nudFrequency.Value == 0.00m)
-                return "You must have a frequency value greater than zero.";
+                return "You must have a frequency value less than or greater than zero.";
 
             return "";
         }
 
         public bool IsValid()
         {
-            return cmbGroups.SelectedIndex > -1 && nudFrequency.Value > 0.00m;
+            return cmbGroups.SelectedIndex > -1 && nudFrequency.Value != 0.00m;
         }
 
         public string ToCodeString()
