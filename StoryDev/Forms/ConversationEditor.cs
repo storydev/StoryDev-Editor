@@ -68,11 +68,6 @@ namespace StoryDev.Forms
 
         private async void Simulation_SimulationStarted(StateTemplate template, List<int> outcomes)
         {
-            if (tracker != null)
-            {
-                tracker.Dispose();
-            }
-
             if (string.IsNullOrEmpty(currentFile))
             {
                 MessageBox.Show("You must open a file to start the simulation.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -92,28 +87,51 @@ namespace StoryDev.Forms
                     Engine.Instance.ProduceWorstOutcome = true;
                 }
             }
+            
+            Invoke((MethodInvoker)delegate { CreateTracker(template, outcomes); });
 
             var sdcFile = currentFile.Substring(Globals.CurrentProjectFolder.Length + 1) + ".sdc";
             if (await Engine.Instance.PlayAsync(sdcFile, simulationToken.Token))
             {
-                tracker = new VarTrackerForm(template, outcomes);
-
-                if (Engine.Instance.ProduceBestOutcome)
-                {
-                    tracker.AddState(Engine.Instance.GetBestState(), 0);
-                }
-
-                if (Engine.Instance.ProduceWorstOutcome)
-                {
-                    tracker.AddState(Engine.Instance.GetWorstState(), 1);
-                }
                 
-                tracker.Show(this);
             }
             else
             {
                 simulation.UpdateAllMessages();
             }
+        }
+
+        private void CreateTracker(StateTemplate template, List<int> outcomes)
+        {
+            var trackerOpen = false;
+            if (tracker == null)
+            {
+                tracker = new VarTrackerForm(template, outcomes);
+                tracker.FormClosing += Tracker_FormClosing;
+            }
+            else
+                trackerOpen = true;
+
+            Engine.Instance.CreateStates();
+
+            if (Engine.Instance.ProduceBestOutcome && !trackerOpen)
+            {
+                tracker.AddState(Engine.Instance.GetBestState(), 0);
+            }
+
+            if (Engine.Instance.ProduceWorstOutcome && !trackerOpen)
+            {
+                tracker.AddState(Engine.Instance.GetWorstState(), 1);
+            }
+
+            if (!tracker.Visible)
+                tracker.Show(this);
+        }
+
+        private void Tracker_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            tracker.Hide();
         }
 
         private void Simulation_FormClosing(object sender, FormClosingEventArgs e)

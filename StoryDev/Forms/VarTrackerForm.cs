@@ -75,5 +75,10 @@ namespace StoryDev.Forms
                 worstOutcomeTracker.SetState(state);
             }
         }
+
+        private void VarTrackerForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
+        }
     }
 }

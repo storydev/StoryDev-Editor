@@ -7,6 +7,7 @@ using System.Security;
 using System.IO;
 
 using StoryDev.Data;
+using StoryDev.Simulation;
 using Newtonsoft.Json;
 
 namespace StoryDev
@@ -23,6 +24,7 @@ namespace StoryDev
     delegate void OnBranchesLinked(int parent, int child);
     delegate void OnSimulationStarted(StateTemplate template, List<int> outcomes);
     delegate void OnSimulationStopped();
+    delegate void OnCallAdded(string path, int outcome);
 
     enum GameEvent
     {

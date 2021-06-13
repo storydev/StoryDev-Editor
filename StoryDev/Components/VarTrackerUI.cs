@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Windows.Forms;
 
 using StoryDev.Data;
+using StoryDev.Simulation;
 
 namespace StoryDev.Components
 {
@@ -60,9 +61,32 @@ namespace StoryDev.Components
             InitializeComponent();
 
             vars = new Variable[template.ActiveState.Count + 3];
-            valueTypes = new System.Type[template.ActiveState.Count + 3];
+            valueTypes = new Type[template.ActiveState.Count + 3];
             state = new PlayerState();
             this.template = template;
+
+            Engine.Instance.CallAdded += Instance_CallAdded;
+        }
+
+        private void Instance_CallAdded(string path, int outcome)
+        {
+            if (this.outcome != outcome)
+                return;
+
+            var call = Engine.Instance.CallStack.Calls[path];
+            object currentValue = null;
+            if (call.Count > 0)
+            {
+                currentValue = call[call.Count - 1].NewValue;
+            }
+
+            Invoke((MethodInvoker)(() => { UpdateItem(path, currentValue); }));
+        }
+
+        private void UpdateItem(string path, object currentValue)
+        {
+            if (Handle != null)
+                UpdateVariable(path, currentValue);
         }
 
         public void RefreshList()
@@ -1046,7 +1070,7 @@ namespace StoryDev.Components
             ConstructVariables();
         }
 
-        public void UpdateVariable(string fullPath)
+        public void UpdateVariable(string fullPath, object value)
         {
             var root = tvVariables.Nodes[0];
 
@@ -1056,7 +1080,11 @@ namespace StoryDev.Components
                 {
                     if (vars[i].FullPath == fullPath)
                     {
-                        ConstructVarIndex(i, root);
+                        if (!vars[i].CanExpand)
+                            vars[i].Value = value;
+
+                        ConstructVarIndex(i, root, true, true);
+                        break;
                     }
                 }
             }
@@ -1080,7 +1108,7 @@ namespace StoryDev.Components
             }
         }
 
-        private void ConstructVarIndex(int index, TreeNode parent)
+        private void ConstructVarIndex(int index, TreeNode parent, bool highlight = false, bool existing = false)
         {
             var _parent = parent;
             var variable = vars[index];
@@ -1092,9 +1120,22 @@ namespace StoryDev.Components
             // this is a simple variable
             if (!variable.CanExpand && variable.Value != null)
             {
-                var node = new TreeNode();
+                TreeNode node;
+                if (existing)
+                {
+                    node = GetNodeByPath(variable.FullPath);
+                }
+                else
+                {
+                    node = new TreeNode();
+                }
+
+                if (highlight)
+                    node.BackColor = Color.Yellow;
+
                 node.Text = variable.Name + " : " + variable.Value.ToString();
-                _parent.Nodes.Add(node);
+                if (!existing)
+                    _parent.Nodes.Add(node);
             }
             else if (variable.CanExpand)
             {
@@ -1133,7 +1174,20 @@ namespace StoryDev.Components
 
                         object[] data;
 
-                        var listNode = new TreeNode();
+                        TreeNode listNode;
+                        if (existing)
+                        {
+                            listNode = GetNodeByPath(variable.FullPath);
+                            listNode.Nodes.Clear();
+                        }
+                        else
+                        {
+                            listNode = new TreeNode();
+                        }
+
+                        if (highlight)
+                            listNode.BackColor = Color.Yellow;
+
                         listNode.Text = variable.Name;
 
                         var isFloat = false;
@@ -1198,12 +1252,23 @@ namespace StoryDev.Components
                             }
                         }
 
-                        _parent.Nodes.Add(listNode);
+                        if (!existing)
+                            _parent.Nodes.Add(listNode);
                     }
                     // for journal pages only
                     else if (field.FieldType == typeof(Dictionary<int, int>))
                     {
-                        var listNode = new TreeNode();
+                        TreeNode listNode;
+                        if (existing)
+                        {
+                            listNode = GetNodeByPath(variable.FullPath);
+                            listNode.Nodes.Clear();
+                        }
+                        else
+                        {
+                            listNode = new TreeNode();
+                        }
+
                         listNode.Text = variable.Name;
 
                         var source = Globals.Journals;
@@ -1216,11 +1281,23 @@ namespace StoryDev.Components
                             listNode.Nodes.Add(node);
                         }
 
-                        _parent.Nodes.Add(listNode);
+                        if (!existing)
+                            _parent.Nodes.Add(listNode);
                     }
                     else if (field.FieldType == typeof(Dictionary<int, List<int>>))
                     {
-                        var listNode = new TreeNode();
+                        TreeNode listNode;
+                        if (existing)
+                        {
+                            listNode = GetNodeByPath(variable.FullPath);
+                            listNode.Nodes.Clear();
+                        }
+                        else
+                        {
+                            listNode = new TreeNode();
+                        }
+
+
                         listNode.Text = variable.Name;
 
                         var source = Globals.Gossips;
@@ -1239,7 +1316,8 @@ namespace StoryDev.Components
                             }
                         }
 
-                        _parent.Nodes.Add(listNode);
+                        if (!existing)
+                            _parent.Nodes.Add(listNode);
                     }
                 }
                 else
@@ -1258,7 +1336,7 @@ namespace StoryDev.Components
             var splitted = path.Split('.');
             foreach (TreeNode node in tvVariables.Nodes)
             {
-                if (node.Text == splitted[0])
+                if (node.Text.StartsWith(splitted[0]))
                 {
                     if (splitted.Length - 1 <= 0)
                         return node;
@@ -1280,7 +1358,7 @@ namespace StoryDev.Components
         {
             foreach (TreeNode result in current.Nodes)
             {
-                if (result.Text == paths[0])
+                if (result.Text.StartsWith(paths[0]))
                 {
                     if (paths.Length - 1 <= 0)
                         return result;

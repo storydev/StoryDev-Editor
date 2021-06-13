@@ -44,6 +44,7 @@ namespace StoryDev.Forms
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tracker";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.VarTrackerForm_FormClosing);
             this.ResumeLayout(false);
 
         }

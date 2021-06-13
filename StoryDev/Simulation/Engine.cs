@@ -29,6 +29,7 @@ namespace StoryDev.Simulation
         private int currentIndex;
 
         private PlayerState currentState;
+        private int currentOutcome;
         private CallStack callStack;
         private Dictionary<string, List<Message>> messages;
 
@@ -69,6 +70,7 @@ namespace StoryDev.Simulation
         public Engine()
         {
             jEngine = new Jint.Engine();
+
             states = new List<PlayerState>();
             callStack = new CallStack();
             messages = new Dictionary<string, List<Message>>();
@@ -76,6 +78,25 @@ namespace StoryDev.Simulation
 
             InitScripts();
             RefreshVariableList();
+        }
+
+        public void CreateStates()
+        {
+            states.Clear();
+
+            currentIndex = 0;
+
+            if (ProduceBestOutcome)
+            {
+                states.Add(new PlayerState());
+                bestOutcomeIndex = currentIndex++;
+            }
+
+            if (ProduceWorstOutcome)
+            {
+                states.Add(new PlayerState());
+                worstOutcomeIndex = currentIndex++;
+            }
         }
 
         public PlayerState GetBestState()
@@ -105,25 +126,10 @@ namespace StoryDev.Simulation
         public async Task<bool> PlayAsync(string conversation, CancellationToken token)
         {
             conversations = new List<string>();
-            states = new List<PlayerState>();
             messages.Clear();
             callStack.Calls.Clear();
 
-            currentIndex = 0;
-
             conversation = conversation.Replace('\\', '/');
-
-            if (ProduceBestOutcome)
-            {
-                states.Add(new PlayerState());
-                bestOutcomeIndex = currentIndex++;
-            }
-
-            if (ProduceWorstOutcome)
-            {
-                states.Add(new PlayerState());
-                worstOutcomeIndex = currentIndex++;
-            }
 
             var currentMainStoryIndex = 0;
             var reached = false;
@@ -201,6 +207,8 @@ namespace StoryDev.Simulation
             return await Task.Run(ExecuteSimulation, token);
         }
 
+        public event OnCallAdded CallAdded;
+
         private bool ExecuteSimulation()
         {
             if (conversations.Count == 0)
@@ -211,6 +219,7 @@ namespace StoryDev.Simulation
             for (int i = 0; i < states.Count; i++)
             {
                 currentState = states[i];
+                currentOutcome = i;
                 
                 foreach (var convo in conversations)
                 {
@@ -219,6 +228,7 @@ namespace StoryDev.Simulation
 
                     sdParser.Clear();
                     sdParser.ParseFile(Globals.CurrentProjectFolder + "\\" + convo);
+                    currentFile = convo;
 
                     var choices = new List<ChoiceData>();
                     var choicePriorities = new List<int>();
@@ -244,6 +254,7 @@ namespace StoryDev.Simulation
                         for (int c = 0; c < block.Commands.Count; c++)
                         {
                             line++;
+                            currentLine = line;
                             var command = block.Commands[c];
 
                             if (command.Type == (int)CommandType.OptionConditional && executeUpToNextConditional == -1)
@@ -569,7 +580,8 @@ namespace StoryDev.Simulation
 
             if (EnableCallstack)
             {
-                callStack.Set("PlayerState.Frequency", currentFile, currentLine, temp, frequency);
+                callStack.Set("PlayerState.Frequency", currentFile, currentLine, temp, currentState.Frequency);
+                CallAdded?.Invoke("PlayerState.Frequency", currentOutcome);
             }
         }
 
@@ -585,6 +597,7 @@ namespace StoryDev.Simulation
                     if (EnableCallstack)
                     {
                         callStack.Set("PlayerState.Artefacts.FragmentsDiscovered", currentFile, currentLine, null, id);
+                        CallAdded?.Invoke("PlayerState.Artefacts.FragmentsDiscovered", currentOutcome);
                     }
                 }
                 else
