@@ -108,8 +108,11 @@ namespace StoryDev.Forms
                     tracker.AddState(Engine.Instance.GetWorstState(), 1);
                 }
                 
-                tracker.Show();
-
+                tracker.Show(this);
+            }
+            else
+            {
+                simulation.UpdateAllMessages();
             }
         }
 
@@ -329,7 +332,9 @@ namespace StoryDev.Forms
                                                 var extracted = split[1].Substring(gotol);
                                                 choice.Code = extracted;
                                             }
-                                            choice.Condition = choiceConditionals[k];
+
+                                            if (k < choiceConditionals.Count)
+                                                choice.Condition = choiceConditionals[k];
 
                                             choices.Add(choice);
 

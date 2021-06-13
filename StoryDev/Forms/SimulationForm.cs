@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using StoryDev.Simulation;
+
 namespace StoryDev.Forms
 {
     partial class SimulationForm : Form
@@ -33,6 +35,43 @@ namespace StoryDev.Forms
                 isPlayingSimulation = false;
                 btnPlayStop.BackgroundImage = Properties.Resources.Play;
             }
+        }
+
+        public void UpdateAllMessages()
+        {
+            lvErrors.Items.Clear();
+            lvMessages.Items.Clear();
+            lvWarnings.Items.Clear();
+
+            if (!Engine.Instance.Messages.ContainsKey(Engine.DEFAULT_MSG_VAR))
+                return;
+
+            var messages = Engine.Instance.Messages[Engine.DEFAULT_MSG_VAR];
+            foreach (var msg in messages)
+            {
+                var item = new ListViewItem();
+                item.Text = msg.OriginalFile;
+                item.SubItems.Add("" + msg.Line);
+                item.SubItems.Add(msg.Title);
+                item.SubItems.Add(msg.Description);
+
+                if (msg.Type == MessageType.Error)
+                {
+                    lvErrors.Items.Add(item);
+                }
+                else if (msg.Type == MessageType.Warning)
+                {
+                    lvWarnings.Items.Add(item);
+                }
+                else if (msg.Type == MessageType.Info)
+                {
+                    lvMessages.Items.Add(item);
+                }
+            }
+
+            lvErrors.Enabled = true;
+            lvMessages.Enabled = true;
+            lvWarnings.Enabled = true;
         }
 
         private void btnPlayStop_Click(object sender, EventArgs e)
@@ -76,5 +115,10 @@ namespace StoryDev.Forms
 
         public event OnSimulationStarted SimulationStarted;
         public event OnSimulationStopped SimulationStopped;
+
+        private void chbAutoTrack_CheckedChanged(object sender, EventArgs e)
+        {
+            Engine.Instance.EnableCallstack = chbAutoTrack.Checked;
+        }
     }
 }

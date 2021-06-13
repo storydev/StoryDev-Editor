@@ -20,6 +20,8 @@ namespace StoryDev.Simulation
         private const int CURRENT_BEST = 3;
         private const int CURRENT_WORST = 4;
 
+        public static readonly string DEFAULT_MSG_VAR = "Default";
+
         private Jint.Engine jEngine;
         private List<PlayerState> states;
         private int bestOutcomeIndex;
@@ -45,6 +47,11 @@ namespace StoryDev.Simulation
         public CallStack CallStack
         {
             get { return callStack; }
+        }
+
+        public Dictionary<string, List<Message>> Messages
+        {
+            get { return messages; }
         }
 
         public bool ProduceBestOutcome
@@ -99,6 +106,9 @@ namespace StoryDev.Simulation
         {
             conversations = new List<string>();
             states = new List<PlayerState>();
+            messages.Clear();
+            callStack.Calls.Clear();
+
             currentIndex = 0;
 
             conversation = conversation.Replace('\\', '/');
@@ -227,9 +237,9 @@ namespace StoryDev.Simulation
 
                         var line = 0;
                         var executeUpToNextConditional = -1;
+                        var skipToFallThrough = -1;
                         var skipNext = false;
                         var codeText = "";
-                        
 
                         for (int c = 0; c < block.Commands.Count; c++)
                         {
@@ -261,7 +271,7 @@ namespace StoryDev.Simulation
                                 }
                                 else if (result.IsNull() || result.IsUndefined())
                                 {
-                                    SetMessage("", new Message("Invalid Eval",
+                                    SetMessage(DEFAULT_MSG_VAR, new Message("Invalid Eval",
                                         string.Format("Code at {0}:({1}):{2} produced a null or undefined value.", convo, block.Title, c),
                                         MessageType.Error, convo, line));
                                     errorsProduced = true;
@@ -291,6 +301,7 @@ namespace StoryDev.Simulation
                                                     var extracted = split[1].Substring(gotol);
                                                     choice.Code = extracted;
                                                 }
+                                                
                                                 choices.Add(choice);
 
                                                 choice = new ChoiceData();
@@ -343,14 +354,12 @@ namespace StoryDev.Simulation
                                                     }
                                                     else if (result.IsNull() || result.IsUndefined())
                                                     {
-                                                        SetMessage("", new Message("Invalid Eval",
+                                                        SetMessage(DEFAULT_MSG_VAR, new Message("Invalid Eval",
                                                             string.Format("Code at {0}:({1}):{2} produced a null or undefined value.", convo, block.Title, c),
                                                             MessageType.Error, convo, line));
                                                         errorsProduced = true;
                                                         continue;
                                                     }
-
-                                                    
                                                 }
                                             }
                                         } break;
@@ -369,6 +378,39 @@ namespace StoryDev.Simulation
                                             if (!skipNext)
                                                 codeText += command.Data[0];
                                         } break;
+                                    case (int)CommandType.FallThrough:
+                                        {
+                                            var code = command.Data[0];
+                                            if (!string.IsNullOrEmpty(code))
+                                            {
+                                                var result = jEngine.Evaluate(code);
+                                                if (result.IsBoolean())
+                                                {
+                                                    if (result.AsBoolean())
+                                                    {
+                                                        skipNext = false;
+                                                        continue;
+                                                    }
+                                                    else
+                                                    {
+                                                        skipNext = true;
+                                                    }
+                                                }
+                                                else if (result.IsNull() || result.IsUndefined())
+                                                {
+                                                    SetMessage("", new Message("Invalid Eval",
+                                                        string.Format("Code at {0}:({1}):{2} produced a null or undefined value.", convo, block.Title, c),
+                                                        MessageType.Error, convo, line));
+                                                    errorsProduced = true;
+                                                    continue;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                skipNext = false;
+                                            }
+                                        }
+                                        break;
                                 }
                             }
 

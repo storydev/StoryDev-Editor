@@ -83,6 +83,8 @@ namespace StoryDev.Forms
                 {
                     if (template.ActiveState.ContainsKey(node.FullPath))
                         node.Checked = template.ActiveState[node.FullPath];
+                    else
+                        template.ActiveState.Add(node.FullPath, node.Checked);
 
                     if (node.Nodes.Count > 0)
                         CheckNodes(node.Nodes);
@@ -100,6 +102,8 @@ namespace StoryDev.Forms
             {
                 if (template.ActiveState.ContainsKey(node.FullPath))
                     node.Checked = template.ActiveState[node.FullPath];
+                else
+                    template.ActiveState.Add(node.FullPath, node.Checked);
 
                 if (node.Nodes.Count > 0)
                     CheckNodes(node.Nodes);

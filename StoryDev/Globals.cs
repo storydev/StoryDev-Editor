@@ -1059,6 +1059,7 @@ namespace StoryDev
         public int CurrentSpecialPlace;
         public int CurrentSpecialSection;
 
+        public GroupState Groups;
         public InventoryState Inventories;
         public ArtefactState Artefacts;
         public CharacterState Characters;
@@ -1069,20 +1070,21 @@ namespace StoryDev
 
         public PlayerState()
         {
+            Cash = 0.0f;
             Frequency = 3.0f;
-            ConversationCharacters = new List<int>();
-            ConversationCharacters.Add(1);
             CharacterPointOfView = -1;
             CurrentConversationID = -1;
             CurrentConversationPosition = -1;
             CurrentPlace = -1;
             CurrentSection = -1;
+            ConversationCharacters = new List<int>();
 
             CurrentSpecialConvoID = -1;
             CurrentSpecialConversationPosition = -1;
             CurrentSpecialPlace = -1;
             CurrentSpecialSection = -1;
 
+            Groups = new GroupState();
             Inventories = new InventoryState();
             Artefacts = new ArtefactState();
             Characters = new CharacterState();
@@ -1094,6 +1096,21 @@ namespace StoryDev
 
     }
 
+    class GroupState
+    {
+
+        public List<int> Groups;
+        public List<float> GroupFrequencies;
+        public List<float> GroupFrequencyRates;
+
+        public GroupState()
+        {
+            Groups = new List<int>();
+            GroupFrequencies = new List<float>();
+            GroupFrequencyRates = new List<float>();
+        }
+
+    }
     
     class InventoryState
     {

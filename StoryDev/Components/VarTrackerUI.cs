@@ -292,6 +292,80 @@ namespace StoryDev.Components
                 }
             }
 
+            if (kvs.ContainsKey("PlayerState.Groups"))
+            {
+                var inv = initVar;
+
+                if (kvs["PlayerState.Groups"])
+                {
+                    vars[initVar] = new Variable();
+                    vars[initVar].Name = "Groups";
+                    vars[initVar].FullPath = "PlayerState.Groups";
+                    vars[initVar].Reference = typeof(PlayerState).GetField("Groups");
+                    vars[initVar].Value = ((FieldInfo)vars[initVar].Reference).GetValue(state);
+                    vars[initVar].CanExpand = true;
+
+                    valueTypes[initVar] = vars[initVar].Value.GetType();
+
+                    initVar++;
+
+                    if (kvs.ContainsKey("PlayerState.Groups.Groups"))
+                    {
+                        if (kvs["PlayerState.Groups.Groups"])
+                        {
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "Groups";
+                            vars[initVar].FullPath = "PlayerState.Groups.Groups";
+                            vars[initVar].Parent = vars[inv];
+                            vars[initVar].Reference = typeof(GroupState).GetField("Groups");
+                            vars[initVar].CanExpand = true;
+                            vars[initVar].Relationship = typeof(CharacterGroup);
+                            vars[initVar].RelSource = "CharacterGroups";
+                            vars[initVar].RelPath = "ID";
+                            vars[initVar].RelDisplay = "Name";
+
+                            valueTypes[initVar] = typeof(List<int>);
+
+                            initVar++;
+                        }
+                    }
+
+                    if (kvs.ContainsKey("PlayerState.Groups.GroupFrequencies"))
+                    {
+                        if (kvs["PlayerState.Groups.GroupFrequencies"])
+                        {
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "GroupFrequencies";
+                            vars[initVar].FullPath = "PlayerState.Groups.GroupFrequencies";
+                            vars[initVar].Parent = vars[inv];
+                            vars[initVar].Reference = typeof(GroupState).GetField("GroupFrequencies");
+                            vars[initVar].CanExpand = true;
+
+                            valueTypes[initVar] = typeof(List<float>);
+
+                            initVar++;
+                        }
+                    }
+
+                    if (kvs.ContainsKey("PlayerState.Groups.GroupFrequencyRates"))
+                    {
+                        if (kvs["PlayerState.Groups.GroupFrequencyRates"])
+                        {
+                            vars[initVar] = new Variable();
+                            vars[initVar].Name = "GroupFrequencyRates";
+                            vars[initVar].FullPath = "PlayerState.Groups.GroupFrequencyRates";
+                            vars[initVar].Parent = vars[inv];
+                            vars[initVar].Reference = typeof(GroupState).GetField("GroupFrequencyRates");
+                            vars[initVar].CanExpand = true;
+
+                            valueTypes[initVar] = typeof(List<float>);
+
+                            initVar++;
+                        }
+                    }
+                }
+            }
+
             if (kvs.ContainsKey("PlayerState.Inventories"))
             {
                 var inv = initVar;
@@ -1057,50 +1131,74 @@ namespace StoryDev.Components
                             }
                         }
 
-                        if (valueTypes[index] == typeof(List<int>))
+                        object[] data;
+
+                        var listNode = new TreeNode();
+                        listNode.Text = variable.Name;
+
+                        var isFloat = false;
+                        if (field.FieldType == typeof(List<float>))
                         {
-                            var listNode = new TreeNode();
-                            listNode.Text = variable.Name;
-
-                            var data = (List<int>)field.GetValue(stateInstance);
-                            for (int i = 0; i < data.Count; i++)
+                            var _data = (List<float>)field.GetValue(stateInstance);
+                            data = new object[_data.Count];
+                            for (int i = 0; i < _data.Count; i++)
                             {
-                                var val = data[i];
-
-                                var node = new TreeNode();
-                                var actual = val.ToString();
-                                if (!string.IsNullOrEmpty(variable.SubPath))
-                                {
-                                    var ch = Globals.Characters.Find((c) => c.ID == val);
-                                    var pNode = new TreeNode();
-                                    pNode.Text = "[" + i + "]: " + ch.FirstName;
-                                    foreach (var attitude in ch.Attitudes)
-                                    {
-                                        var towards = Globals.Characters.Find((_c) => _c.ID == attitude.TowardsCharacter);
-                                        pNode.Nodes.Add(towards.FirstName + " : " + attitude.Attitude + " (" +
-                                            Globals.GetAttitudeName(attitude.Attitude) + ")");
-                                    }
-                                    listNode.Nodes.Add(pNode);
-                                }
-                                else if (prop != null)
-                                {
-                                    var relSource = (IEnumerable<DBObject>)prop.GetValue(null);
-                                    foreach (DBObject obj in relSource)
-                                    {
-                                        var value = (int)relPathField.GetValue(obj);
-                                        if (value == val)
-                                        {
-                                            actual = (string)relDisplayField.GetValue(obj);
-                                        }
-                                    }
-
-                                    node.Text = "[" + i + "] : " + actual;
-                                    listNode.Nodes.Add(node);
-                                }
+                                data[i] = _data[i];
                             }
-
-                            _parent.Nodes.Add(listNode);
+                            isFloat = true;
                         }
+                        else
+                        {
+                            var _data = (List<int>)field.GetValue(stateInstance);
+                            data = new object[_data.Count];
+                            for (int i = 0; i < _data.Count; i++)
+                            {
+                                data[i] = _data[i];
+                            }
+                        }
+
+                        for (int i = 0; i < data.Length; i++)
+                        {
+                            var val = data[i];
+
+                            var node = new TreeNode();
+                            var actual = val.ToString();
+                            if (!string.IsNullOrEmpty(variable.SubPath) && !isFloat)
+                            {
+                                var ch = Globals.Characters.Find((c) => c.ID == (int)val);
+                                var pNode = new TreeNode();
+                                pNode.Text = "[" + i + "]: " + ch.FirstName;
+                                foreach (var attitude in ch.Attitudes)
+                                {
+                                    var towards = Globals.Characters.Find((_c) => _c.ID == attitude.TowardsCharacter);
+                                    pNode.Nodes.Add(towards.FirstName + " : " + attitude.Attitude + " (" +
+                                        Globals.GetAttitudeName(attitude.Attitude) + ")");
+                                }
+                                listNode.Nodes.Add(pNode);
+                            }
+                            else if (prop != null && !isFloat)
+                            {
+                                var relSource = (IEnumerable<DBObject>)prop.GetValue(null);
+                                foreach (DBObject obj in relSource)
+                                {
+                                    var value = (int)relPathField.GetValue(obj);
+                                    if (value == (int)val)
+                                    {
+                                        actual = (string)relDisplayField.GetValue(obj);
+                                    }
+                                }
+
+                                node.Text = "[" + i + "] : " + actual;
+                                listNode.Nodes.Add(node);
+                            }
+                            else
+                            {
+                                node.Text = actual;
+                                listNode.Nodes.Add(node);
+                            }
+                        }
+
+                        _parent.Nodes.Add(listNode);
                     }
                     // for journal pages only
                     else if (field.FieldType == typeof(Dictionary<int, int>))
