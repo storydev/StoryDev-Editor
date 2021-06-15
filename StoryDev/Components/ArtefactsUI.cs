@@ -31,7 +31,7 @@ namespace StoryDev.Components
             btnFragmentIcon.Anchor = AnchorStyles.Top;
             btnFragmentIcon.IconSet = Globals.IconSetData.Artefacts;
             btnFragmentIcon.Click += BtnFragmentIcon_Click;
-            btnFragmentIcon.Location = new Point(95, 15);
+            btnFragmentIcon.Location = new System.Drawing.Point(95, 15);
             pnlFragments.Controls.Add(btnFragmentIcon);
 
             PopulateList();

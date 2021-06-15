@@ -543,6 +543,7 @@
     <Compile Include="Data\Item.cs" />
     <Compile Include="Data\Journal.cs" />
     <Compile Include="Data\MainSourceData.cs" />
+    <Compile Include="Data\Map.cs" />
     <Compile Include="Data\MapSection.cs" />
     <Compile Include="Data\Place.cs" />
     <Compile Include="Data\Preferences.cs" />
@@ -643,6 +644,12 @@
     </Compile>
     <Compile Include="Forms\IconSetsForm.Designer.cs">
       <DependentUpon>IconSetsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MapsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MapsForm.Designer.cs">
+      <DependentUpon>MapsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\PreferencesForm.cs">
       <SubType>Form</SubType>
@@ -977,6 +984,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MapsForm.resx">
+      <DependentUpon>MapsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PreferencesForm.resx">
       <DependentUpon>PreferencesForm.cs</DependentUpon>

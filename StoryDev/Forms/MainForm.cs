@@ -216,5 +216,10 @@ namespace StoryDev.Forms
         {
             new PreferencesForm().ShowDialog();
         }
+
+        private void mapsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new MapsForm().Show();
+        }
     }
 }

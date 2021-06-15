@@ -340,6 +340,7 @@ namespace StoryDev
             SaveIconSetData();
             SaveItems();
             SaveJournals();
+            SaveMaps();
             SavePlaces();
             SaveScenarios();
             SaveSections();
@@ -762,6 +763,18 @@ namespace StoryDev
         }
 
         //
+        // Maps
+        //
+
+        public static List<Map> Maps { get; private set; }
+
+        public static void SaveMaps()
+        {
+            var content = JsonConvert.SerializeObject(Maps);
+            File.WriteAllText(CurrentProjectFolder + "\\maps.json", content);
+        }
+
+        //
         // Global Data
         //
 
@@ -1029,6 +1042,7 @@ namespace StoryDev
                 StoryOrder = new StoryOrder();
             }
 
+            // Load Custom Variables
             if (File.Exists(path + "\\variables.json"))
             {
                 var content = File.ReadAllText(path + "\\variables.json");
@@ -1037,6 +1051,17 @@ namespace StoryDev
             else
             {
                 Variables = new List<Variable>();
+            }
+
+            // Load Maps
+            if (File.Exists(path + "\\maps.json"))
+            {
+                var content = File.ReadAllText(path + "\\maps.json");
+                Maps = JsonConvert.DeserializeObject<List<Map>>(content);
+            }
+            else
+            {
+                Maps = new List<Map>();
             }
         }
 

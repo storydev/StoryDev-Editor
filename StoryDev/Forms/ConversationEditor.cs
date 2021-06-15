@@ -144,9 +144,9 @@ namespace StoryDev.Forms
         private void cmbView_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbView.SelectedIndex == 0)
-                branchDesignerUI1.View = Components.BranchView.Branch;
+                branchDesignerUI1.View = BranchView.Branch;
             else if (cmbView.SelectedIndex == 1)
-                branchDesignerUI1.View = Components.BranchView.List;
+                branchDesignerUI1.View = BranchView.List;
         }
 
         private void chbSnapping_CheckedChanged(object sender, EventArgs e)

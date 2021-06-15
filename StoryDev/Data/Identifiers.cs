@@ -23,6 +23,7 @@ namespace StoryDev.Data
         public int MapSectionID;
         public int CharacterGossipID;
         public int AchievementID;
+        public int MapID;
 
         public Identifiers()
         {
@@ -40,6 +41,7 @@ namespace StoryDev.Data
             CharacterGossipID = 0;
             ScenarioID = 0;
             AchievementID = 0;
+            MapID = 0;
         }
 
     }

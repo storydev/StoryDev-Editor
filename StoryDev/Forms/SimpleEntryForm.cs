@@ -19,6 +19,11 @@ namespace StoryDev.Forms
             set { txtEnterField.Text = value; }
         }
 
+        public bool NotEmpty
+        {
+            get; set;
+        }
+
         public SimpleEntryForm()
         {
             InitializeComponent();
@@ -31,6 +36,15 @@ namespace StoryDev.Forms
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            if (NotEmpty)
+            {
+                if (txtEnterField.Text == "")
+                {
+                    MessageBox.Show("Field must not be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
             DialogResult = DialogResult.OK;
         }
     }
