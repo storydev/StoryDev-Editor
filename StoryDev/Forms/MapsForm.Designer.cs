@@ -30,8 +30,8 @@ namespace StoryDev.Forms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Regions", 0, 0);
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Points", 1, 1);
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Regions", 0, 0);
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Points", 1, 1);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MapsForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,9 +59,11 @@ namespace StoryDev.Forms
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel3 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.mapsCanvas = new StoryDev.Components.MapsCanvas();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spcMain)).BeginInit();
             this.spcMain.Panel1.SuspendLayout();
+            this.spcMain.Panel2.SuspendLayout();
             this.spcMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spcProperties)).BeginInit();
             this.spcProperties.Panel1.SuspendLayout();
@@ -76,7 +78,6 @@ namespace StoryDev.Forms
             // 
             // menuStrip1
             // 
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
@@ -159,6 +160,10 @@ namespace StoryDev.Forms
             // spcMain.Panel1
             // 
             this.spcMain.Panel1.Controls.Add(this.spcProperties);
+            // 
+            // spcMain.Panel2
+            // 
+            this.spcMain.Panel2.Controls.Add(this.mapsCanvas);
             this.spcMain.Size = new System.Drawing.Size(1209, 1069);
             this.spcMain.SplitterDistance = 309;
             this.spcMain.TabIndex = 1;
@@ -262,17 +267,17 @@ namespace StoryDev.Forms
             this.tvMapper.ImageList = this.imageList1;
             this.tvMapper.Location = new System.Drawing.Point(0, 35);
             this.tvMapper.Name = "tvMapper";
-            treeNode1.ImageIndex = 0;
-            treeNode1.Name = "Node0";
-            treeNode1.SelectedImageIndex = 0;
-            treeNode1.Text = "Regions";
-            treeNode2.ImageIndex = 1;
-            treeNode2.Name = "Node1";
-            treeNode2.SelectedImageIndex = 1;
-            treeNode2.Text = "Points";
+            treeNode3.ImageIndex = 0;
+            treeNode3.Name = "Node0";
+            treeNode3.SelectedImageIndex = 0;
+            treeNode3.Text = "Regions";
+            treeNode4.ImageIndex = 1;
+            treeNode4.Name = "Node1";
+            treeNode4.SelectedImageIndex = 1;
+            treeNode4.Text = "Points";
             this.tvMapper.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
+            treeNode3,
+            treeNode4});
             this.tvMapper.SelectedImageIndex = 0;
             this.tvMapper.Size = new System.Drawing.Size(309, 515);
             this.tvMapper.TabIndex = 1;
@@ -334,6 +339,16 @@ namespace StoryDev.Forms
             this.label2.Text = "Mapper";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // mapsCanvas
+            // 
+            this.mapsCanvas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mapsCanvas.Enabled = false;
+            this.mapsCanvas.ImagePath = null;
+            this.mapsCanvas.Location = new System.Drawing.Point(0, 0);
+            this.mapsCanvas.Name = "mapsCanvas";
+            this.mapsCanvas.Size = new System.Drawing.Size(896, 1069);
+            this.mapsCanvas.TabIndex = 0;
+            // 
             // MapsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -341,6 +356,7 @@ namespace StoryDev.Forms
             this.ClientSize = new System.Drawing.Size(1209, 1102);
             this.Controls.Add(this.spcMain);
             this.Controls.Add(this.menuStrip1);
+            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MapsForm";
@@ -349,6 +365,7 @@ namespace StoryDev.Forms
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.spcMain.Panel1.ResumeLayout(false);
+            this.spcMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spcMain)).EndInit();
             this.spcMain.ResumeLayout(false);
             this.spcProperties.Panel1.ResumeLayout(false);
@@ -394,5 +411,6 @@ namespace StoryDev.Forms
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem renameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private Components.MapsCanvas mapsCanvas;
     }
 }

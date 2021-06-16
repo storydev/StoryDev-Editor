@@ -808,6 +808,16 @@ namespace StoryDev
             return result;
         }
 
+        public static string GetResourcesPath()
+        {
+            if (!Directory.Exists(CurrentProjectFolder + "\\Resources"))
+            {
+                Directory.CreateDirectory(CurrentProjectFolder + "\\Resources");
+            }
+
+            return CurrentProjectFolder + "\\Resources";
+        }
+
         public static void SetProjectFolder(string path)
         {
             CurrentProjectFolder = path;

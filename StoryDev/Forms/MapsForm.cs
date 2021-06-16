@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -19,6 +20,8 @@ namespace StoryDev.Forms
 
         public MapsForm()
         {
+            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
+
             InitializeComponent();
         }
 
@@ -28,6 +31,7 @@ namespace StoryDev.Forms
             {
                 var map = Globals.Maps[selectedMap];
                 txtName.Text = map.Name;
+                mapsCanvas.ImagePath = map.ImagePath;
 
                 // Regions
                 var regionsNode = tvMapper.Nodes[0];
@@ -48,6 +52,7 @@ namespace StoryDev.Forms
                 pnlMainProperties.Enabled = true;
                 pnlMapper.Enabled = true;
                 tvMapper.Enabled = true;
+                mapsCanvas.Enabled = true;
             }
         }
 
@@ -77,7 +82,25 @@ namespace StoryDev.Forms
                 open.Multiselect = false;
                 if (open.ShowDialog() == DialogResult.OK)
                 {
-                    Globals.Maps[selectedMap].ImagePath = open.FileName;
+                    var resourcePath = Globals.GetResourcesPath();
+                    
+                    var fileName = open.FileName.Substring(open.FileName.LastIndexOf('\\'));
+                    if (!File.Exists(resourcePath + "\\" + fileName))
+                    {
+                        File.Copy(open.FileName, resourcePath + "\\" + fileName);
+                        Globals.Maps[selectedMap].ImagePath = resourcePath + "\\" + fileName;
+                        mapsCanvas.ImagePath = Globals.Maps[selectedMap].ImagePath;
+                    }
+                    else
+                    {
+                        var replace = new FileReplaceForm();
+                        replace.FileToCopy = open.FileName;
+                        if (replace.ShowDialog() == DialogResult.OK)
+                        {
+                            Globals.Maps[selectedMap].ImagePath = replace.ResultPath;
+                            mapsCanvas.ImagePath = Globals.Maps[selectedMap].ImagePath;
+                        }
+                    }
                 }
             }
         }
@@ -126,6 +149,7 @@ namespace StoryDev.Forms
         private void MapsForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Globals.SaveMaps();
+            mapsCanvas.FreeResources();
         }
     }
 }

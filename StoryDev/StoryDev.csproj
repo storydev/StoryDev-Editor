@@ -489,6 +489,12 @@
     <Compile Include="Components\JournalUI.Designer.cs">
       <DependentUpon>JournalUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\MapsCanvas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\MapsCanvas.Designer.cs">
+      <DependentUpon>MapsCanvas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\PlaceUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -632,6 +638,12 @@
     </Compile>
     <Compile Include="Forms\EditVendorItemForm.Designer.cs">
       <DependentUpon>EditVendorItemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FileReplaceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FileReplaceForm.Designer.cs">
+      <DependentUpon>FileReplaceForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\IconSelectorForm.cs">
       <SubType>Form</SubType>
@@ -922,6 +934,9 @@
     <EmbeddedResource Include="Components\JournalUI.resx">
       <DependentUpon>JournalUI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Components\MapsCanvas.resx">
+      <DependentUpon>MapsCanvas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Components\PlaceUI.resx">
       <DependentUpon>PlaceUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -975,6 +990,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EditVendorItemForm.resx">
       <DependentUpon>EditVendorItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FileReplaceForm.resx">
+      <DependentUpon>FileReplaceForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\IconSelectorForm.resx">
       <DependentUpon>IconSelectorForm.cs</DependentUpon>
