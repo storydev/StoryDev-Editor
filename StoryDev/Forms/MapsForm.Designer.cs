@@ -30,8 +30,7 @@ namespace StoryDev.Forms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Regions", 0, 0);
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Points", 1, 1);
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Points", 1, 1);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MapsForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,12 +38,14 @@ namespace StoryDev.Forms
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.journalMapperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.conversationMapperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.placeMapperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pointPropertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.spcMain = new System.Windows.Forms.SplitContainer();
             this.spcProperties = new System.Windows.Forms.SplitContainer();
             this.pnlMainProperties = new System.Windows.Forms.Panel();
+            this.clbMapFlags = new System.Windows.Forms.CheckedListBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cmbScope = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnChooseImage = new System.Windows.Forms.Button();
@@ -78,6 +79,7 @@ namespace StoryDev.Forms
             // 
             // menuStrip1
             // 
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
@@ -125,31 +127,19 @@ namespace StoryDev.Forms
             // viewToolStripMenuItem
             // 
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.journalMapperToolStripMenuItem,
-            this.conversationMapperToolStripMenuItem,
-            this.placeMapperToolStripMenuItem});
+            this.pointPropertiesToolStripMenuItem});
             this.viewToolStripMenuItem.Enabled = false;
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(65, 29);
             this.viewToolStripMenuItem.Text = "View";
             // 
-            // journalMapperToolStripMenuItem
+            // pointPropertiesToolStripMenuItem
             // 
-            this.journalMapperToolStripMenuItem.Name = "journalMapperToolStripMenuItem";
-            this.journalMapperToolStripMenuItem.Size = new System.Drawing.Size(285, 34);
-            this.journalMapperToolStripMenuItem.Text = "Journal Mapper";
-            // 
-            // conversationMapperToolStripMenuItem
-            // 
-            this.conversationMapperToolStripMenuItem.Name = "conversationMapperToolStripMenuItem";
-            this.conversationMapperToolStripMenuItem.Size = new System.Drawing.Size(285, 34);
-            this.conversationMapperToolStripMenuItem.Text = "Conversation Mapper";
-            // 
-            // placeMapperToolStripMenuItem
-            // 
-            this.placeMapperToolStripMenuItem.Name = "placeMapperToolStripMenuItem";
-            this.placeMapperToolStripMenuItem.Size = new System.Drawing.Size(285, 34);
-            this.placeMapperToolStripMenuItem.Text = "Place Mapper";
+            this.pointPropertiesToolStripMenuItem.CheckOnClick = true;
+            this.pointPropertiesToolStripMenuItem.Name = "pointPropertiesToolStripMenuItem";
+            this.pointPropertiesToolStripMenuItem.Size = new System.Drawing.Size(239, 34);
+            this.pointPropertiesToolStripMenuItem.Text = "Point Properties";
+            this.pointPropertiesToolStripMenuItem.Click += new System.EventHandler(this.pointPropertiesToolStripMenuItem_Click);
             // 
             // spcMain
             // 
@@ -183,11 +173,15 @@ namespace StoryDev.Forms
             // 
             this.spcProperties.Panel2.Controls.Add(this.pnlMapper);
             this.spcProperties.Size = new System.Drawing.Size(309, 1069);
-            this.spcProperties.SplitterDistance = 515;
+            this.spcProperties.SplitterDistance = 513;
             this.spcProperties.TabIndex = 0;
             // 
             // pnlMainProperties
             // 
+            this.pnlMainProperties.Controls.Add(this.clbMapFlags);
+            this.pnlMainProperties.Controls.Add(this.label5);
+            this.pnlMainProperties.Controls.Add(this.cmbScope);
+            this.pnlMainProperties.Controls.Add(this.label4);
             this.pnlMainProperties.Controls.Add(this.txtName);
             this.pnlMainProperties.Controls.Add(this.label3);
             this.pnlMainProperties.Controls.Add(this.btnChooseImage);
@@ -196,8 +190,53 @@ namespace StoryDev.Forms
             this.pnlMainProperties.Enabled = false;
             this.pnlMainProperties.Location = new System.Drawing.Point(0, 0);
             this.pnlMainProperties.Name = "pnlMainProperties";
-            this.pnlMainProperties.Size = new System.Drawing.Size(309, 515);
+            this.pnlMainProperties.Size = new System.Drawing.Size(309, 513);
             this.pnlMainProperties.TabIndex = 0;
+            // 
+            // clbMapFlags
+            // 
+            this.clbMapFlags.FormattingEnabled = true;
+            this.clbMapFlags.Items.AddRange(new object[] {
+            "Reset Temporary Data Always",
+            "Allow Interactions",
+            "Disable Interactions"});
+            this.clbMapFlags.Location = new System.Drawing.Point(12, 221);
+            this.clbMapFlags.Name = "clbMapFlags";
+            this.clbMapFlags.Size = new System.Drawing.Size(286, 165);
+            this.clbMapFlags.TabIndex = 7;
+            this.clbMapFlags.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbMapFlags_ItemCheck);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(8, 198);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(52, 20);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Flags:";
+            // 
+            // cmbScope
+            // 
+            this.cmbScope.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbScope.FormattingEnabled = true;
+            this.cmbScope.Items.AddRange(new object[] {
+            "World",
+            "Local",
+            "Dungeon"});
+            this.cmbScope.Location = new System.Drawing.Point(12, 167);
+            this.cmbScope.Name = "cmbScope";
+            this.cmbScope.Size = new System.Drawing.Size(286, 28);
+            this.cmbScope.TabIndex = 5;
+            this.cmbScope.SelectedIndexChanged += new System.EventHandler(this.cmbScope_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(8, 144);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(59, 20);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Scope:";
             // 
             // txtName
             // 
@@ -255,7 +294,7 @@ namespace StoryDev.Forms
             this.pnlMapper.Enabled = false;
             this.pnlMapper.Location = new System.Drawing.Point(0, 0);
             this.pnlMapper.Name = "pnlMapper";
-            this.pnlMapper.Size = new System.Drawing.Size(309, 550);
+            this.pnlMapper.Size = new System.Drawing.Size(309, 552);
             this.pnlMapper.TabIndex = 1;
             // 
             // tvMapper
@@ -267,20 +306,16 @@ namespace StoryDev.Forms
             this.tvMapper.ImageList = this.imageList1;
             this.tvMapper.Location = new System.Drawing.Point(0, 35);
             this.tvMapper.Name = "tvMapper";
-            treeNode3.ImageIndex = 0;
-            treeNode3.Name = "Node0";
-            treeNode3.SelectedImageIndex = 0;
-            treeNode3.Text = "Regions";
-            treeNode4.ImageIndex = 1;
-            treeNode4.Name = "Node1";
-            treeNode4.SelectedImageIndex = 1;
-            treeNode4.Text = "Points";
+            treeNode1.ImageIndex = 1;
+            treeNode1.Name = "Node1";
+            treeNode1.SelectedImageIndex = 1;
+            treeNode1.Text = "Points";
             this.tvMapper.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode4});
+            treeNode1});
             this.tvMapper.SelectedImageIndex = 0;
-            this.tvMapper.Size = new System.Drawing.Size(309, 515);
+            this.tvMapper.Size = new System.Drawing.Size(309, 517);
             this.tvMapper.TabIndex = 1;
+            this.tvMapper.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvMapper_AfterSelect);
             // 
             // cmsMapperOptions
             // 
@@ -298,6 +333,7 @@ namespace StoryDev.Forms
             this.newToolStripMenuItem1.Name = "newToolStripMenuItem1";
             this.newToolStripMenuItem1.Size = new System.Drawing.Size(159, 32);
             this.newToolStripMenuItem1.Text = "New...";
+            this.newToolStripMenuItem1.Click += new System.EventHandler(this.newToolStripMenuItem1_Click);
             // 
             // renameToolStripMenuItem
             // 
@@ -348,6 +384,9 @@ namespace StoryDev.Forms
             this.mapsCanvas.Name = "mapsCanvas";
             this.mapsCanvas.Size = new System.Drawing.Size(896, 1069);
             this.mapsCanvas.TabIndex = 0;
+            this.mapsCanvas.MapPointMoved += new StoryDev.OnMapPointMoved(this.mapsCanvas_MapPointMoved);
+            this.mapsCanvas.MapConnect += new StoryDev.OnMapConnect(this.mapsCanvas_MapConnect);
+            this.mapsCanvas.MapDisconnect += new StoryDev.OnMapDisconnect(this.mapsCanvas_MapDisconnect);
             // 
             // MapsForm
             // 
@@ -390,9 +429,6 @@ namespace StoryDev.Forms
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem journalMapperToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem conversationMapperToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem placeMapperToolStripMenuItem;
         private System.Windows.Forms.SplitContainer spcMain;
         private System.Windows.Forms.SplitContainer spcProperties;
         private System.Windows.Forms.Panel pnlMainProperties;
@@ -412,5 +448,10 @@ namespace StoryDev.Forms
         private System.Windows.Forms.ToolStripMenuItem renameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private Components.MapsCanvas mapsCanvas;
+        private System.Windows.Forms.ComboBox cmbScope;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckedListBox clbMapFlags;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ToolStripMenuItem pointPropertiesToolStripMenuItem;
     }
 }

@@ -657,6 +657,12 @@
     <Compile Include="Forms\IconSetsForm.Designer.cs">
       <DependentUpon>IconSetsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MapPointPropertiesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MapPointPropertiesForm.Designer.cs">
+      <DependentUpon>MapPointPropertiesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MapsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1002,6 +1008,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MapPointPropertiesForm.resx">
+      <DependentUpon>MapPointPropertiesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MapsForm.resx">
       <DependentUpon>MapsForm.cs</DependentUpon>

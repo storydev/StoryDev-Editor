@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using StoryDev.Data;
+using SPoint = StoryDev.Data.Point;
 
 namespace StoryDev.Forms
 {
@@ -17,12 +18,29 @@ namespace StoryDev.Forms
     {
 
         private int selectedMap;
+        private MapPointPropertiesForm properties;
 
         public MapsForm()
         {
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
 
             InitializeComponent();
+
+            properties = new MapPointPropertiesForm();
+            properties.MapAllowConnections += Properties_MapAllowConnections;
+            properties.FormClosing += Properties_FormClosing;
+        }
+
+        private void Properties_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            properties.Hide();
+            pointPropertiesToolStripMenuItem.Checked = false;
+        }
+
+        private void Properties_MapAllowConnections(int index)
+        {
+            mapsCanvas.StartConnections(index);
         }
 
         private void PopulateFields()
@@ -32,17 +50,18 @@ namespace StoryDev.Forms
                 var map = Globals.Maps[selectedMap];
                 txtName.Text = map.Name;
                 mapsCanvas.ImagePath = map.ImagePath;
+                cmbScope.SelectedIndex = map.Scope;
 
-                // Regions
-                var regionsNode = tvMapper.Nodes[0];
-                regionsNode.Nodes.Clear();
-                foreach (var region in map.Regions)
+                for (int i = 0; i < clbMapFlags.Items.Count; i++)
                 {
-                    regionsNode.Nodes.Add(region.Name);
+                    if ((map.Flags & (1 << i)) != 0)
+                    {
+                        clbMapFlags.SetItemChecked(i, true);
+                    }
                 }
 
-                // Points
-                var pointsNode = tvMapper.Nodes[1];
+                // Regions
+                var pointsNode = tvMapper.Nodes[0];
                 pointsNode.Nodes.Clear();
                 foreach (var point in map.Points)
                 {
@@ -53,6 +72,8 @@ namespace StoryDev.Forms
                 pnlMapper.Enabled = true;
                 tvMapper.Enabled = true;
                 mapsCanvas.Enabled = true;
+
+                viewToolStripMenuItem.Enabled = true;
             }
         }
 
@@ -111,6 +132,8 @@ namespace StoryDev.Forms
             search.SearchSelected += (int index) =>
             {
                 selectedMap = index;
+                properties.SetMapIndex(selectedMap);
+                mapsCanvas.SelectMap(index);
                 PopulateFields();
             };
             search.ShowDialog();
@@ -148,8 +171,110 @@ namespace StoryDev.Forms
 
         private void MapsForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            e.Cancel = false;
+
             Globals.SaveMaps();
             mapsCanvas.FreeResources();
+        }
+
+        private void newToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (selectedMap == -1)
+                return;
+
+            var node = tvMapper.SelectedNode;
+            if (tvMapper.Nodes[0] == node)
+            {
+                var entry = new SimpleEntryForm();
+                entry.Text = "New Map Point";
+                entry.NotEmpty = true;
+                if (entry.ShowDialog() == DialogResult.OK)
+                {
+                    var mapPoint = new MapPoint();
+                    mapPoint.Name = entry.Value;
+                    mapPoint.Point = new SPoint();
+                    mapPoint.Point.X = 0;
+                    mapPoint.Point.Y = 0;
+
+                    mapsCanvas.AddAndSelectPoint(mapPoint.Point.X, mapPoint.Point.Y);
+                    var map = Globals.Maps[selectedMap];
+                    map.Points.Add(mapPoint);
+
+                    tvMapper.Nodes[0].Nodes.Add(entry.Value);
+                }
+            }
+        }
+
+        private void mapsCanvas_MapPointMoved(int index)
+        {
+            var point = mapsCanvas.GetPointByIndex(index);
+            if (point != null && selectedMap > -1)
+            {
+                var map = Globals.Maps[selectedMap];
+                var mapPoint = map.Points[index];
+                mapPoint.Point.X = point.X;
+                mapPoint.Point.Y = point.Y;
+            }
+        }
+
+        private void tvMapper_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if (e.Node.Parent != null)
+            {
+                var index = e.Node.Index;
+                mapsCanvas.SelectPoint(index);
+                properties.SelectPoint(index);
+            }
+        }
+
+        private void cmbScope_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (selectedMap > -1)
+            {
+                Globals.Maps[selectedMap].Scope = cmbScope.SelectedIndex;
+            }
+        }
+
+        private void clbMapFlags_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            BeginInvoke((MethodInvoker)(
+            () => {
+                if (selectedMap > -1)
+                {
+                    var flags = 0;
+                    for (int i = 0; i < clbMapFlags.Items.Count; i++)
+                    {
+                        if (clbMapFlags.GetItemChecked(i))
+                        {
+                            flags |= (1 << i);
+                        }
+                    }
+
+                    Globals.Maps[selectedMap].Flags = flags;
+                }
+            }));
+        }
+
+        private void pointPropertiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (properties.Visible)
+            {
+                properties.Hide();
+            }
+            else
+            {
+                properties.Show(this);
+            }
+        }
+
+        private void mapsCanvas_MapConnect(int from, int to)
+        {
+            properties.Connect(from, to);
+        }
+
+        private void mapsCanvas_MapDisconnect(int from, int to)
+        {
+            properties.Disconnect(from, to);
         }
     }
 }

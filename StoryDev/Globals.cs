@@ -25,6 +25,10 @@ namespace StoryDev
     delegate void OnSimulationStarted(StateTemplate template, List<int> outcomes);
     delegate void OnSimulationStopped();
     delegate void OnCallAdded(string path, int outcome);
+    delegate void OnMapPointMoved(int index);
+    delegate void OnMapAllowConnections(int index);
+    delegate void OnMapConnect(int from, int to);
+    delegate void OnMapDisconnect(int from, int to);
 
     enum GameEvent
     {

@@ -17,10 +17,17 @@ namespace StoryDev.Components
     partial class MapsCanvas : UserControl
     {
 
+        private const float CIRCLE_DIAMETER = 48;
+
         private SPoint[] points;
-        private SPoint[][] regions;
+        private bool[][] pointLinks;
+        private int selectedPoint = -1;
+        private int startConnectingIndex = -1;
+        private int mouseX;
+        private int mouseY;
 
         private Graphics g;
+        private Pen connectionsPen;
         private Image img;
 
         private float actualOffsetX;
@@ -45,6 +52,10 @@ namespace StoryDev.Components
                 {
                     img = Image.FromFile(imagePath);
                 }
+                else
+                {
+                    img = null;
+                }
 
                 Invalidate();
             }
@@ -55,12 +66,23 @@ namespace StoryDev.Components
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
 
             InitializeComponent();
+
+            connectionsPen = new Pen(Brushes.Blue, 3f);
+            connectionsPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
         }
 
         public void FreeResources()
         {
             if (img != null)
                 img.Dispose();
+        }
+
+        public void StartConnections(int parent)
+        {
+            if (startConnectingIndex == parent)
+                startConnectingIndex = -1;
+            else 
+                startConnectingIndex = parent;
         }
 
         public void SelectMap(int index)
@@ -78,24 +100,76 @@ namespace StoryDev.Components
             }
 
             points = new SPoint[map.Points.Count];
+            pointLinks = new bool[map.Points.Count][];
             for (int i = 0; i < map.Points.Count; i++)
             {
                 var mp = map.Points[i];
                 points[i] = mp.Point;
-            }
-
-            regions = new SPoint[map.Regions.Count][];
-            for (int i = 0; i < map.Regions.Count; i++)
-            {
-                var region = map.Regions[i];
-                regions[i] = new SPoint[region.Points.Count];
-                for (int j = 0; j < region.Points.Count; j++)
+                pointLinks[i] = new bool[map.Points.Count];
+                for (int j = 0; j < mp.Connections.Count; j++)
                 {
-                    regions[i][j] = region.Points[j];
+                    pointLinks[i][mp.Connections[j]] = true;
                 }
             }
 
             Invalidate();
+        }
+
+        public void AddAndSelectPoint(int x, int y)
+        {
+            var temp = new SPoint[points.Length + 1];
+            var links = new bool[points.Length + 1][];
+            var count = temp.Length;
+            for (int i = 0; i < count; i++)
+            {
+                if (i + 1 <= count - 1)
+                {
+                    temp[i] = points[i];
+                    links[i] = new bool[points.Length + 1];
+                    for (int j = 0; j < points.Length; j++)
+                    {
+                        if (j + 1 <= count - 1)
+                            links[i][j] = pointLinks[i][j];
+                        else
+                            links[i][j] = false;
+                    }
+                }
+                else
+                {
+                    temp[i] = new SPoint();
+                    temp[i].X = x;
+                    temp[i].Y = y;
+
+                    links[i] = new bool[points.Length + 1];
+                    for (int j = 0; j < points.Length; j++)
+                    {
+                        if (j + 1 <= count - 1)
+                            links[i][j] = false;
+                    }
+                }
+            }
+
+            points = temp;
+            pointLinks = links;
+            selectedPoint = count - 1;
+
+            Invalidate();
+        }
+
+        public void SelectPoint(int index)
+        {
+            if (index < points.Length)
+                selectedPoint = index;
+
+            Invalidate();
+        }
+
+        public SPoint GetPointByIndex(int index)
+        {
+            if (index < points.Length)
+                return points[index];
+
+            return null;
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -140,18 +214,82 @@ namespace StoryDev.Components
 
                 g.DrawImage(img, -actualOffsetX, -actualOffsetY, img.PhysicalDimension.Width, img.PhysicalDimension.Height);
 
+                for (int i = 0; i < pointLinks.Length; i++)
+                {
+                    for (int j = 0; j < pointLinks[i].Length; j++)
+                    {
+                        if (pointLinks[i][j])
+                        {
+                            var from = points[i];
+                            var to = points[j];
 
+                            g.DrawLine(connectionsPen, from.X - actualOffsetX, from.Y - actualOffsetY, to.X - actualOffsetX, to.Y - actualOffsetY);
+                        }
+                    }
+                }
+
+                for (int i = 0; i < points.Length; i++)
+                {
+                    var p = points[i];
+                    var x = p.X - (CIRCLE_DIAMETER / 2) - actualOffsetX;
+                    var y = p.Y - (CIRCLE_DIAMETER / 2) - actualOffsetY;
+
+                    g.FillEllipse(Brushes.DarkGray, new RectangleF(x, y, CIRCLE_DIAMETER, CIRCLE_DIAMETER));
+
+                    if (selectedPoint == i)
+                    {
+                        var yellow = new Pen(Brushes.Yellow);
+                        yellow.Width = 2;
+
+                        g.DrawEllipse(yellow, new RectangleF(x, y, CIRCLE_DIAMETER, CIRCLE_DIAMETER));
+                    }
+                }
             }
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
-            
+            mouseX = e.X;
+            mouseY = e.Y;
         }
 
         protected override void OnMouseUp(MouseEventArgs e)
         {
-            
+            if (startConnectingIndex > -1 && e.Button == MouseButtons.Left)
+            {
+                for (int i = 0; i < points.Length; i++)
+                {
+                    var p = points[i];
+                    var x = p.X - (CIRCLE_DIAMETER / 2) - actualOffsetX;
+                    var y = p.Y - (CIRCLE_DIAMETER / 2) - actualOffsetY;
+
+                    if (IsMouseOver((int)x, (int)y, (int)CIRCLE_DIAMETER, (int)CIRCLE_DIAMETER))
+                    {
+                        var newValue = pointLinks[startConnectingIndex][i] = !pointLinks[startConnectingIndex][i];
+                        if (newValue)
+                            MapConnect?.Invoke(startConnectingIndex, i);
+                        else
+                            MapDisconnect?.Invoke(startConnectingIndex, i);
+
+                        Invalidate();
+                        break;
+                    }
+                }
+            }
+            else if (selectedPoint > -1 && e.Button == MouseButtons.Left)
+            {
+                var p = points[selectedPoint];
+                p.X = (int)(e.X + actualOffsetX);
+                p.Y = (int)(e.Y + actualOffsetY);
+                MapPointMoved?.Invoke(selectedPoint);
+                Invalidate();
+            }
+        }
+
+        private bool IsMouseOver(int x, int y, int width, int height)
+        {
+            var result = (mouseX > x && mouseX < x + width && mouseY > y && mouseY < y + height);
+            return result;
         }
 
         private void vScrollBar_Scroll(object sender, ScrollEventArgs e)
@@ -163,5 +301,10 @@ namespace StoryDev.Components
         {
             Invalidate();
         }
+
+        public event OnMapPointMoved MapPointMoved;
+        public event OnMapConnect MapConnect;
+        public event OnMapDisconnect MapDisconnect;
+
     }
 }
