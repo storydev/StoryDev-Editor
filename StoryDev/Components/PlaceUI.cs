@@ -137,6 +137,7 @@ namespace StoryDev.Components
                     var temp = lbResults.SelectedIndex;
                     selectedPlace = lbResults.SelectedIndex = -1;
                     Globals.Places.RemoveAt(temp);
+                    lbResults.Items.RemoveAt(temp);
                 }
             }
         }

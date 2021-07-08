@@ -18,6 +18,7 @@ namespace StoryDev.Forms
     {
 
         private int selectedMap;
+        private int selectedPoint;
         private MapPointPropertiesForm properties;
 
         public MapsForm()
@@ -149,6 +150,8 @@ namespace StoryDev.Forms
             newToolStripMenuItem1.Enabled = tvMapper.SelectedNode != null ? tvMapper.SelectedNode.Parent == null : false;
             renameToolStripMenuItem.Enabled = tvMapper.SelectedNode != null ? tvMapper.SelectedNode.Parent != null : false;
             deleteToolStripMenuItem.Enabled = tvMapper.SelectedNode != null ? tvMapper.SelectedNode.Parent != null : false;
+            createAssociatedPlaceToolStripMenuItem.Enabled = tvMapper.SelectedNode != null ? tvMapper.SelectedNode.Parent != null : false;
+            createAssociatedSectionToolStripMenuItem.Enabled = tvMapper.SelectedNode != null ? tvMapper.SelectedNode.Parent != null : false;
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -222,6 +225,7 @@ namespace StoryDev.Forms
             if (e.Node.Parent != null)
             {
                 var index = e.Node.Index;
+                selectedPoint = index;
                 mapsCanvas.SelectPoint(index);
                 properties.SelectPoint(index);
             }
@@ -275,6 +279,15 @@ namespace StoryDev.Forms
         private void mapsCanvas_MapDisconnect(int from, int to)
         {
             properties.Disconnect(from, to);
+        }
+
+        private void createAssociatedPlaceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var quickCreate = new QuickCreateForm<Place>();
+            if (quickCreate.ShowDialog() == DialogResult.OK)
+            {
+                properties.ChangePointPlaceIndex(quickCreate.LastInsertedIndex);
+            }
         }
     }
 }

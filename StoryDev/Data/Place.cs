@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StoryDev.Data
 {
-    [MainSourceData("Places", "Name")]
+    [MainSourceData("Places", "Name", IdentifierID = "PlaceID")]
     class Place : DBObject
     {
 

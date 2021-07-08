@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace StoryDev.Data
 {
-    [MainSourceData("Characters", "FirstName")]
+    [MainSourceData("Characters", "FirstName", IdentifierID = "CharacterID")]
     class Character : DBObject
     {
 

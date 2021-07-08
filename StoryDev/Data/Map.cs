@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace StoryDev.Data
 {
+    [MainSourceData("Maps", "Name", IdentifierID = "MapID")]
     class Map : DBObject
     {
 

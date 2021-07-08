@@ -13,7 +13,6 @@ namespace StoryDev.Data
         public int CharacterGroupID;
         public int CharacterTraitID;
         public int ActivityID;
-        public int ActivityPartID;
         public int ArtefactID;
         public int ArtefactFragmentID;
         public int ItemID;
@@ -31,7 +30,6 @@ namespace StoryDev.Data
             CharacterGroupID = 0;
             CharacterTraitID = 0;
             ActivityID = 0;
-            ActivityPartID = 0;
             ArtefactID = 0;
             ArtefactFragmentID = 0;
             ItemID = 0;

@@ -675,6 +675,12 @@
     <Compile Include="Forms\PreferencesForm.Designer.cs">
       <DependentUpon>PreferencesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\QuickCreateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\QuickCreateForm.Designer.cs">
+      <DependentUpon>QuickCreateForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SearchFiltersForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1017,6 +1023,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PreferencesForm.resx">
       <DependentUpon>PreferencesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\QuickCreateForm.resx">
+      <DependentUpon>QuickCreateForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SearchFiltersForm.resx">
       <DependentUpon>SearchFiltersForm.cs</DependentUpon>

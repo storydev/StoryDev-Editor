@@ -12,6 +12,7 @@ namespace StoryDev.Data
 
         public string SourceData;
         public string PrimaryDisplay;
+        public string IdentifierID;
 
         public MainSourceData(string sourceData, string primaryDisplay)
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StoryDev.Data
 {
-    [MainSourceData("Fragments", "Name")]
+    [MainSourceData("Fragments", "Name", IdentifierID = "ArtefactFragmentID")]
     class ArtefactFragment : DBObject
     {
 

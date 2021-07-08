@@ -24,13 +24,17 @@ namespace StoryDev.Forms
         {
             InitializeComponent();
 
+            PopulatePlaces();
+        }
+
+        private void PopulatePlaces()
+        {
+            cmbPlaces.Items.Clear();
             foreach (var place in Globals.Places)
             {
                 cmbPlaces.Items.Add(place.Name);
                 cmbPlaces.AutoCompleteCustomSource.Add(place.Name);
             }
-
-
         }
 
         public void SetMapIndex(int index)
@@ -62,6 +66,16 @@ namespace StoryDev.Forms
 
                 pnlBasicProperties.Enabled = true;
                 tcMain.Enabled = true;
+            }
+        }
+
+        public void ChangePointPlaceIndex(int index)
+        {
+            PopulatePlaces();
+
+            if (selectedMap > -1 && selectedPoint > -1)
+            {
+                cmbPlaces.SelectedIndex = index;
             }
         }
 

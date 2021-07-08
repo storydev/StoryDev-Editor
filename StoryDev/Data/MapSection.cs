@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StoryDev.Data
 {
-    [MainSourceData("Sections", "Name")]
+    [MainSourceData("Sections", "Name", IdentifierID = "MapSectionID")]
     class MapSection : DBObject
     {
 

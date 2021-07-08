@@ -57,6 +57,9 @@ namespace StoryDev.Forms
             this.newToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.createAssociatedPlaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createAssociatedSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel3 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
@@ -323,29 +326,50 @@ namespace StoryDev.Forms
             this.cmsMapperOptions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newToolStripMenuItem1,
             this.renameToolStripMenuItem,
-            this.deleteToolStripMenuItem});
+            this.deleteToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.createAssociatedPlaceToolStripMenuItem,
+            this.createAssociatedSectionToolStripMenuItem});
             this.cmsMapperOptions.Name = "cmsMapperOptions";
-            this.cmsMapperOptions.Size = new System.Drawing.Size(160, 100);
+            this.cmsMapperOptions.Size = new System.Drawing.Size(301, 203);
             this.cmsMapperOptions.Opening += new System.ComponentModel.CancelEventHandler(this.cmsMapperOptions_Opening);
             // 
             // newToolStripMenuItem1
             // 
             this.newToolStripMenuItem1.Name = "newToolStripMenuItem1";
-            this.newToolStripMenuItem1.Size = new System.Drawing.Size(159, 32);
+            this.newToolStripMenuItem1.Size = new System.Drawing.Size(300, 32);
             this.newToolStripMenuItem1.Text = "New...";
             this.newToolStripMenuItem1.Click += new System.EventHandler(this.newToolStripMenuItem1_Click);
             // 
             // renameToolStripMenuItem
             // 
             this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
-            this.renameToolStripMenuItem.Size = new System.Drawing.Size(159, 32);
+            this.renameToolStripMenuItem.Size = new System.Drawing.Size(300, 32);
             this.renameToolStripMenuItem.Text = "Rename...";
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(159, 32);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(300, 32);
             this.deleteToolStripMenuItem.Text = "Delete";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(297, 6);
+            // 
+            // createAssociatedPlaceToolStripMenuItem
+            // 
+            this.createAssociatedPlaceToolStripMenuItem.Name = "createAssociatedPlaceToolStripMenuItem";
+            this.createAssociatedPlaceToolStripMenuItem.Size = new System.Drawing.Size(300, 32);
+            this.createAssociatedPlaceToolStripMenuItem.Text = "Create Associated Place...";
+            this.createAssociatedPlaceToolStripMenuItem.Click += new System.EventHandler(this.createAssociatedPlaceToolStripMenuItem_Click);
+            // 
+            // createAssociatedSectionToolStripMenuItem
+            // 
+            this.createAssociatedSectionToolStripMenuItem.Name = "createAssociatedSectionToolStripMenuItem";
+            this.createAssociatedSectionToolStripMenuItem.Size = new System.Drawing.Size(300, 32);
+            this.createAssociatedSectionToolStripMenuItem.Text = "Create Associated Section...";
             // 
             // imageList1
             // 
@@ -453,5 +477,8 @@ namespace StoryDev.Forms
         private System.Windows.Forms.CheckedListBox clbMapFlags;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ToolStripMenuItem pointPropertiesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem createAssociatedPlaceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createAssociatedSectionToolStripMenuItem;
     }
 }
