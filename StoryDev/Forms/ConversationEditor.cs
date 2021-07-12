@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
+using StoryDev.Data;
 using StoryDev.Simulation;
 using StoryDev.Components;
 using StoryDev.Lib.StoryDev;
@@ -310,6 +311,18 @@ namespace StoryDev.Forms
                 sdParser.Clear();
                 if (sdParser.ParseFile(currentFile + ".sdc") > -1)
                 {
+                    var convoLink = Globals.ConvoMapLinks.Where((link) => link.ConversationFile == currentFile);
+                    if (convoLink.Count() > 0)
+                    {
+                        var link = convoLink.First();
+                        var actualMap = Globals.Maps.Find((m) => m.ID == link.MapID);
+                        txtMapPointAssoc.Text = actualMap.Name + ": " + actualMap.Points[link.MapPoint].Name;
+                    }
+                    else
+                    {
+                        txtMapPointAssoc.Text = "";
+                    }
+
                     cmbBranches.Items.Clear();
 
                     var blocks = sdParser.GetBlocks();
@@ -691,6 +704,34 @@ namespace StoryDev.Forms
         private void customVariablesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new CustomVariablesForm().Show(this);
+        }
+
+        private void btnBrowseMaps_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(currentFile))
+            {
+                var browser = new MapBrowserForm();
+                browser.MapSelected += Browser_MapSelected;
+                browser.ShowDialog();
+            }
+        }
+
+        private void Browser_MapSelected(int map, int point)
+        {
+            var convoLink = Globals.ConvoMapLinks.Where((link) => link.ConversationFile == currentFile);
+            if (convoLink.Count() == 0)
+            {
+                var link = new ConvoMapLink();
+                link.ConversationFile = currentFile;
+                link.MapID = map;
+                link.MapPoint = point;
+                Globals.ConvoMapLinks.Add(link);
+                Globals.SaveConvoMapLinks();
+
+                var actualMap = Globals.Maps.Find((m) => m.ID == map);
+
+                txtMapPointAssoc.Text = actualMap.Name + ": " + actualMap.Points[point].Name;
+            }
         }
     }
 

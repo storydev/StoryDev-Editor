@@ -29,6 +29,7 @@ namespace StoryDev
     delegate void OnMapAllowConnections(int index);
     delegate void OnMapConnect(int from, int to);
     delegate void OnMapDisconnect(int from, int to);
+    delegate void OnMapSelected(int map, int point);
 
     enum GameEvent
     {
@@ -778,6 +779,14 @@ namespace StoryDev
             File.WriteAllText(CurrentProjectFolder + "\\maps.json", content);
         }
 
+        public static List<ConvoMapLink> ConvoMapLinks { get; private set; }
+
+        public static void SaveConvoMapLinks()
+        {
+            var content = JsonConvert.SerializeObject(ConvoMapLinks);
+            File.WriteAllText(CurrentProjectFolder + "\\map-convo-links.json", content);
+        }
+
         //
         // Global Data
         //
@@ -1076,6 +1085,17 @@ namespace StoryDev
             else
             {
                 Maps = new List<Map>();
+            }
+
+            // Load Map Convo Links
+            if (File.Exists(path + "\\map-convo-links.json"))
+            {
+                var content = File.ReadAllText(path + "\\map-convo-links.json");
+                ConvoMapLinks = JsonConvert.DeserializeObject<List<ConvoMapLink>>(content);
+            }
+            else
+            {
+                ConvoMapLinks = new List<ConvoMapLink>();
             }
         }
 

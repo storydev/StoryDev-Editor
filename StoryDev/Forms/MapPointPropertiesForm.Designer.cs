@@ -39,13 +39,19 @@ namespace StoryDev.Forms
             this.label1 = new System.Windows.Forms.Label();
             this.tcMain = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnRemoveJournal = new System.Windows.Forms.Button();
+            this.btnAddJournal = new System.Windows.Forms.Button();
+            this.lbJournals = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.lbConversations = new System.Windows.Forms.ListBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.lbConnections = new System.Windows.Forms.ListBox();
             this.chbStartConnecting = new System.Windows.Forms.CheckBox();
             this.pnlBasicProperties.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tcMain.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -147,6 +153,9 @@ namespace StoryDev.Forms
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btnRemoveJournal);
+            this.tabPage2.Controls.Add(this.btnAddJournal);
+            this.tabPage2.Controls.Add(this.lbJournals);
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -155,8 +164,39 @@ namespace StoryDev.Forms
             this.tabPage2.Text = "Journals";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // btnRemoveJournal
+            // 
+            this.btnRemoveJournal.Enabled = false;
+            this.btnRemoveJournal.Location = new System.Drawing.Point(218, 7);
+            this.btnRemoveJournal.Name = "btnRemoveJournal";
+            this.btnRemoveJournal.Size = new System.Drawing.Size(134, 33);
+            this.btnRemoveJournal.TabIndex = 7;
+            this.btnRemoveJournal.Text = "Remove";
+            this.btnRemoveJournal.UseVisualStyleBackColor = true;
+            this.btnRemoveJournal.Click += new System.EventHandler(this.btnRemoveJournal_Click);
+            // 
+            // btnAddJournal
+            // 
+            this.btnAddJournal.Location = new System.Drawing.Point(10, 6);
+            this.btnAddJournal.Name = "btnAddJournal";
+            this.btnAddJournal.Size = new System.Drawing.Size(134, 33);
+            this.btnAddJournal.TabIndex = 6;
+            this.btnAddJournal.Text = "Add Journal...";
+            this.btnAddJournal.UseVisualStyleBackColor = true;
+            // 
+            // lbJournals
+            // 
+            this.lbJournals.FormattingEnabled = true;
+            this.lbJournals.ItemHeight = 20;
+            this.lbJournals.Location = new System.Drawing.Point(10, 46);
+            this.lbJournals.Name = "lbJournals";
+            this.lbJournals.Size = new System.Drawing.Size(342, 724);
+            this.lbJournals.TabIndex = 1;
+            this.lbJournals.SelectedIndexChanged += new System.EventHandler(this.lbJournals_SelectedIndexChanged);
+            // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.lbConversations);
             this.tabPage3.Location = new System.Drawing.Point(4, 29);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -164,6 +204,15 @@ namespace StoryDev.Forms
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Conversations";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // lbConversations
+            // 
+            this.lbConversations.FormattingEnabled = true;
+            this.lbConversations.ItemHeight = 20;
+            this.lbConversations.Location = new System.Drawing.Point(8, 18);
+            this.lbConversations.Name = "lbConversations";
+            this.lbConversations.Size = new System.Drawing.Size(342, 744);
+            this.lbConversations.TabIndex = 0;
             // 
             // tabPage1
             // 
@@ -217,6 +266,8 @@ namespace StoryDev.Forms
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.tcMain.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
@@ -239,5 +290,9 @@ namespace StoryDev.Forms
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.ListBox lbConnections;
         private System.Windows.Forms.CheckBox chbStartConnecting;
+        private System.Windows.Forms.ListBox lbConversations;
+        private System.Windows.Forms.Button btnRemoveJournal;
+        private System.Windows.Forms.Button btnAddJournal;
+        private System.Windows.Forms.ListBox lbJournals;
     }
 }

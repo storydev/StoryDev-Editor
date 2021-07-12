@@ -61,6 +61,16 @@ namespace StoryDev.Components
             }
         }
 
+        public bool BrowseOnly { get; set; }
+
+        public int SelectedPoint 
+        { 
+            get
+            {
+                return selectedPoint;
+            }
+        }
+
         public MapsCanvas()
         {
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
@@ -69,6 +79,8 @@ namespace StoryDev.Components
 
             connectionsPen = new Pen(Brushes.Blue, 3f);
             connectionsPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+
+            BrowseOnly = false;
         }
 
         public void FreeResources()
@@ -93,7 +105,8 @@ namespace StoryDev.Components
             {
                 img.Dispose();
             }
-            
+
+            imagePath = map.ImagePath;
             if (File.Exists(map.ImagePath))
             {
                 img = Image.FromFile(map.ImagePath);
@@ -255,7 +268,39 @@ namespace StoryDev.Components
 
         protected override void OnMouseUp(MouseEventArgs e)
         {
-            if (startConnectingIndex > -1 && e.Button == MouseButtons.Left)
+            if (!BrowseOnly)
+            {
+                if (startConnectingIndex > -1 && e.Button == MouseButtons.Left)
+                {
+                    for (int i = 0; i < points.Length; i++)
+                    {
+                        var p = points[i];
+                        var x = p.X - (CIRCLE_DIAMETER / 2) - actualOffsetX;
+                        var y = p.Y - (CIRCLE_DIAMETER / 2) - actualOffsetY;
+
+                        if (IsMouseOver((int)x, (int)y, (int)CIRCLE_DIAMETER, (int)CIRCLE_DIAMETER))
+                        {
+                            var newValue = pointLinks[startConnectingIndex][i] = !pointLinks[startConnectingIndex][i];
+                            if (newValue)
+                                MapConnect?.Invoke(startConnectingIndex, i);
+                            else
+                                MapDisconnect?.Invoke(startConnectingIndex, i);
+
+                            Invalidate();
+                            break;
+                        }
+                    }
+                }
+                else if (selectedPoint > -1 && e.Button == MouseButtons.Left)
+                {
+                    var p = points[selectedPoint];
+                    p.X = (int)(e.X + actualOffsetX);
+                    p.Y = (int)(e.Y + actualOffsetY);
+                    MapPointMoved?.Invoke(selectedPoint);
+                    Invalidate();
+                }
+            }
+            else
             {
                 for (int i = 0; i < points.Length; i++)
                 {
@@ -265,23 +310,11 @@ namespace StoryDev.Components
 
                     if (IsMouseOver((int)x, (int)y, (int)CIRCLE_DIAMETER, (int)CIRCLE_DIAMETER))
                     {
-                        var newValue = pointLinks[startConnectingIndex][i] = !pointLinks[startConnectingIndex][i];
-                        if (newValue)
-                            MapConnect?.Invoke(startConnectingIndex, i);
-                        else
-                            MapDisconnect?.Invoke(startConnectingIndex, i);
-
-                        Invalidate();
+                        selectedPoint = i;
                         break;
                     }
                 }
-            }
-            else if (selectedPoint > -1 && e.Button == MouseButtons.Left)
-            {
-                var p = points[selectedPoint];
-                p.X = (int)(e.X + actualOffsetX);
-                p.Y = (int)(e.Y + actualOffsetY);
-                MapPointMoved?.Invoke(selectedPoint);
+
                 Invalidate();
             }
         }

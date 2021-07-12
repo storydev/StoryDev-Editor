@@ -19,6 +19,7 @@ namespace StoryDev.Forms
         private int selectedPoint = -1;
 
         private IEnumerable<MapSection> sections;
+        private IEnumerable<ConvoMapLink> convoLinks;
 
         public MapPointPropertiesForm()
         {
@@ -35,6 +36,24 @@ namespace StoryDev.Forms
                 cmbPlaces.Items.Add(place.Name);
                 cmbPlaces.AutoCompleteCustomSource.Add(place.Name);
             }
+        }
+
+        private void PopulateConversations()
+        {
+            convoLinks = Globals.ConvoMapLinks.Where((link) =>
+            {
+                var map = Globals.Maps[selectedMap];
+                return map.ID == link.MapID && link.MapPoint == selectedPoint;
+            });
+
+            lbConversations.Items.Clear();
+            foreach (var link in convoLinks)
+            {
+                var lastName = link.ConversationFile;
+                lastName = lastName.Substring((Globals.CurrentProjectFolder + "\\Chapters\\").Length);
+                lbConversations.Items.Add(lastName);
+            }
+
         }
 
         public void SetMapIndex(int index)
@@ -63,6 +82,7 @@ namespace StoryDev.Forms
                     cmbSections.SelectedIndex = -1;
 
                 PopulateConnections();
+                PopulateConversations();
 
                 pnlBasicProperties.Enabled = true;
                 tcMain.Enabled = true;
@@ -186,5 +206,18 @@ namespace StoryDev.Forms
         }
 
         public event OnMapAllowConnections MapAllowConnections;
+
+        private void lbJournals_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnRemoveJournal.Enabled = lbJournals.SelectedIndex > -1;
+        }
+
+        private void btnRemoveJournal_Click(object sender, EventArgs e)
+        {
+            if (lbJournals.SelectedIndex > -1)
+            {
+
+            }
+        }
     }
 }

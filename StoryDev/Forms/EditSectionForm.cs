@@ -68,7 +68,6 @@ namespace StoryDev.Forms
 
             cmbEnteredFromPlace.SelectedIndexChanged += cmbEnteredFromPlace_SelectedIndexChanged;
 
-
             PopulateGossips();
         }
 
