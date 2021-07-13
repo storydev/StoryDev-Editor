@@ -787,6 +787,14 @@ namespace StoryDev
             File.WriteAllText(CurrentProjectFolder + "\\map-convo-links.json", content);
         }
 
+        public static List<JournalMapLink> JournalMapLinks { get; private set; }
+
+        public static void SaveJournalMapLinks()
+        {
+            var content = JsonConvert.SerializeObject(JournalMapLinks);
+            File.WriteAllText(CurrentProjectFolder + "\\map-journal-links.json", content);
+        }
+
         //
         // Global Data
         //
@@ -1097,9 +1105,18 @@ namespace StoryDev
             {
                 ConvoMapLinks = new List<ConvoMapLink>();
             }
-        }
 
-        
+            // Load Map Journal Links
+            if (File.Exists(path + "\\map-journal-links.json"))
+            {
+                var content = File.ReadAllText(path + "\\map-journal-links.json");
+                JournalMapLinks = JsonConvert.DeserializeObject<List<JournalMapLink>>(content);
+            }
+            else
+            {
+                JournalMapLinks = new List<JournalMapLink>();
+            }
+        }
 
     }
 

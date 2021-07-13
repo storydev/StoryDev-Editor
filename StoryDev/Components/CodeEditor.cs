@@ -61,6 +61,9 @@ namespace StoryDev.Components
 
             TextChangedDelayed += CodeEditor_TextChangedDelayed;
             DelayedTextChangedInterval = 170;
+
+            if (Globals.Preferences != null)
+                WordWrap = Globals.Preferences.CodeSettings.WordWrap;
         }
 
         private void CodeEditor_TextChangedDelayed(object sender, TextChangedEventArgs e)
@@ -93,8 +96,7 @@ namespace StoryDev.Components
 
         private void CodeEditor_Load(object sender, EventArgs e)
         {
-            if (Globals.Preferences != null)
-                WordWrap = Globals.Preferences.CodeSettings.WordWrap;
+            
         }
     }
 

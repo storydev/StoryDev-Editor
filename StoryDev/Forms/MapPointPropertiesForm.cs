@@ -20,6 +20,7 @@ namespace StoryDev.Forms
 
         private IEnumerable<MapSection> sections;
         private IEnumerable<ConvoMapLink> convoLinks;
+        private IEnumerable<JournalMapLink> journalLinks;
 
         public MapPointPropertiesForm()
         {
@@ -53,7 +54,26 @@ namespace StoryDev.Forms
                 lastName = lastName.Substring((Globals.CurrentProjectFolder + "\\Chapters\\").Length);
                 lbConversations.Items.Add(lastName);
             }
+        }
 
+        private void PopulateJournals()
+        {
+            journalLinks = Globals.JournalMapLinks.Where((link) =>
+            {
+                var map = Globals.Maps[selectedMap];
+                return link.MapID == map.ID && link.MapPoint == selectedPoint;
+            });
+
+            lbJournals.Items.Clear();
+            foreach (var link in journalLinks)
+            {
+                var journals = Globals.Journals.Where((j) => j.ID == link.JournalID);
+                if (journals.Count() > 0)
+                {
+                    var journal = journals.First();
+                    lbJournals.Items.Add(journal.Name);
+                }
+            }
         }
 
         public void SetMapIndex(int index)
@@ -83,6 +103,7 @@ namespace StoryDev.Forms
 
                 PopulateConnections();
                 PopulateConversations();
+                PopulateJournals();
 
                 pnlBasicProperties.Enabled = true;
                 tcMain.Enabled = true;
@@ -216,7 +237,66 @@ namespace StoryDev.Forms
         {
             if (lbJournals.SelectedIndex > -1)
             {
+                var link = journalLinks.ElementAt(lbJournals.SelectedIndex);
+                var gIndex = Globals.JournalMapLinks.FindIndex((jl) => jl.JournalID == link.JournalID && jl.MapID == link.MapID && jl.MapPoint == link.MapPoint);
+                Globals.JournalMapLinks.RemoveAt(gIndex);
 
+                PopulateJournals();
+            }
+        }
+
+        private void btnAddJournal_Click(object sender, EventArgs e)
+        {
+            if (selectedMap > -1 && selectedPoint > -1)
+            {
+                var search = new SearchForm<Journal>("Journals");
+                search.SearchSelected += Search_SearchSelected;
+                search.ShowDialog();
+            }
+        }
+
+        private void Search_SearchSelected(int index)
+        {
+            var map = Globals.Maps[selectedMap];
+
+            var existing = Globals.JournalMapLinks.Where((ml) => ml.MapID == map.ID && ml.MapPoint == selectedPoint && ml.JournalID == Globals.Journals[index].ID);
+            if (existing.Count() == 0)
+            {
+                var journalLink = new JournalMapLink();
+                journalLink.JournalID = Globals.Journals[index].ID;
+                journalLink.MapID = map.ID;
+                journalLink.MapPoint = selectedPoint;
+                Globals.JournalMapLinks.Add(journalLink);
+                Globals.SaveJournalMapLinks();
+                PopulateJournals();
+            }
+        }
+
+        private void lbConversations_DoubleClick(object sender, EventArgs e)
+        {
+            if (lbConversations.SelectedIndex > -1)
+            {
+                var convoLink = convoLinks.ElementAt(lbConversations.SelectedIndex);
+                var editor = new ConversationEditor();
+                editor.OpenFile(convoLink.ConversationFile);
+                editor.Show();
+            }
+        }
+
+        private void lbJournals_DoubleClick(object sender, EventArgs e)
+        {
+            if (lbJournals.SelectedIndex > -1)
+            {
+                foreach (var frm in Application.OpenForms)
+                {
+                    if (frm.GetType() == typeof(MainForm))
+                    {
+                        var casted = (MainForm)frm;
+                        var journal = Globals.Journals.FindIndex((j) => journalLinks.ElementAt(lbJournals.SelectedIndex).JournalID == j.ID);
+                        casted.SelectJournal(journal);
+                        casted.BringToFront();
+                    }
+                }
             }
         }
     }

@@ -22,6 +22,28 @@ namespace StoryDev.Forms
             Globals.GlobalInit();
         }
 
+        public void SelectJournal(int index)
+        {
+            foreach (TabPage tp in tcMain.TabPages)
+            {
+                if (tp.Text == "Journals")
+                {
+                    var ui = (JournalUI)tp.Controls[0];
+                    ui.SelectJournalIndex(index);
+                    tcMain.SelectedTab = tp;
+                    return;
+                }
+            }
+
+            var tab = new TabPage();
+            tab.Text = "Journals";
+            var journalUI = new JournalUI() { Dock = DockStyle.Fill };
+            journalUI.SelectJournalIndex(index);
+            tab.Controls.Add(journalUI);
+
+            tcMain.TabPages.Add(tab);
+        }
+
         private void openProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var openFolder = new VistaFolderBrowserDialog();

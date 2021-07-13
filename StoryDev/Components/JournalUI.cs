@@ -26,6 +26,11 @@ namespace StoryDev.Components
             PopulateJournals();
         }
 
+        public void SelectJournalIndex(int index)
+        {
+            lbResults.SelectedIndex = index;
+        }
+
         private void PopulateJournals()
         {
             lbResults.SelectedIndexChanged -= lbResults_SelectedIndexChanged;

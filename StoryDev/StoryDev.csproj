@@ -549,6 +549,7 @@
     <Compile Include="Data\Identifiers.cs" />
     <Compile Include="Data\Item.cs" />
     <Compile Include="Data\Journal.cs" />
+    <Compile Include="Data\JournalMapLink.cs" />
     <Compile Include="Data\MainSourceData.cs" />
     <Compile Include="Data\Map.cs" />
     <Compile Include="Data\MapSection.cs" />

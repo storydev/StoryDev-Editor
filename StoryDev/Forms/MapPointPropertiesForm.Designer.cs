@@ -183,6 +183,7 @@ namespace StoryDev.Forms
             this.btnAddJournal.TabIndex = 6;
             this.btnAddJournal.Text = "Add Journal...";
             this.btnAddJournal.UseVisualStyleBackColor = true;
+            this.btnAddJournal.Click += new System.EventHandler(this.btnAddJournal_Click);
             // 
             // lbJournals
             // 
@@ -193,6 +194,7 @@ namespace StoryDev.Forms
             this.lbJournals.Size = new System.Drawing.Size(342, 724);
             this.lbJournals.TabIndex = 1;
             this.lbJournals.SelectedIndexChanged += new System.EventHandler(this.lbJournals_SelectedIndexChanged);
+            this.lbJournals.DoubleClick += new System.EventHandler(this.lbJournals_DoubleClick);
             // 
             // tabPage3
             // 
@@ -213,6 +215,7 @@ namespace StoryDev.Forms
             this.lbConversations.Name = "lbConversations";
             this.lbConversations.Size = new System.Drawing.Size(342, 744);
             this.lbConversations.TabIndex = 0;
+            this.lbConversations.DoubleClick += new System.EventHandler(this.lbConversations_DoubleClick);
             // 
             // tabPage1
             // 

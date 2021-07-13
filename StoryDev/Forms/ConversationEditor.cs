@@ -56,6 +56,16 @@ namespace StoryDev.Forms
             choices = new List<ChoiceData>();
         }
 
+        public void OpenFile(string path)
+        {
+            convoData.Clear();
+            choices.Clear();
+
+            currentFile = path;
+            fileShortName = currentFile.Substring(currentFile.LastIndexOf('\\') + 1);
+            LoadCurrent();
+        }
+
         private void Simulation_SimulationStopped()
         {
             if (runningSimulation != null)
