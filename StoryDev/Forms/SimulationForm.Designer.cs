@@ -228,6 +228,7 @@ namespace StoryDev.Forms
             this.lvErrors.TabIndex = 0;
             this.lvErrors.UseCompatibleStateImageBehavior = false;
             this.lvErrors.View = System.Windows.Forms.View.Details;
+            this.lvErrors.DoubleClick += new System.EventHandler(this.lvErrors_DoubleClick);
             // 
             // columnHeader2
             // 

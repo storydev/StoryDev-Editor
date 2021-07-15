@@ -120,5 +120,10 @@ namespace StoryDev.Forms
         {
             Engine.Instance.EnableCallstack = chbAutoTrack.Checked;
         }
+
+        private void lvErrors_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
     }
 }

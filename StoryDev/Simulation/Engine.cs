@@ -138,56 +138,88 @@ namespace StoryDev.Simulation
             {
                 var parts = new List<int>();
                 var partIndex = new List<int>();
-                foreach (var part in Globals.StoryOrder.JournalsAfterPart)
-                {
-                    parts.Add(part.Value);
-                    partIndex.Add(part.Key);
-                }
 
-                parts.Sort();
-                partIndex.Join(parts, i => i, d => d, (i, d) => d);
-
-                for (int i = 0; i < parts.Count; i++)
+                for (int i = 0; i < Globals.StoryOrder.JournalsAfterPart.Count; i++)
                 {
-                    if (parts[i] >= currentMainStoryIndex)
+                    var kv = Globals.StoryOrder.JournalsAfterPart.ElementAt(i);
+                    if (kv.Value == -1)
+                        continue;
+
+                    var insertAt = 0;
+                    if (partIndex.Count > 0)
                     {
-                        for (int j = 0; j < parts[i]; j++)
+                        for (int j = 0; j < partIndex.Count; j++)
                         {
-                            if (Globals.StoryOrder.MainStory[j] != conversation)
+                            if (kv.Value.CompareTo(partIndex[j]) <= 0)
                             {
-                                conversations.Add(Globals.StoryOrder.MainStory[j]);
+                                insertAt = j;
                             }
-                            else
+                            else if (kv.Value.CompareTo(partIndex[j]) > 0)
                             {
-                                reached = true;
+                                partIndex.Insert(insertAt, kv.Value);
+                                parts.Insert(insertAt, kv.Key);
+                                break;
+                            }
+
+                            if (insertAt == partIndex.Count - 1)
+                            {
+                                partIndex.Add(kv.Value);
+                                parts.Add(kv.Key);
                                 break;
                             }
                         }
-
-                        if (reached)
-                            break;
                     }
                     else
                     {
-                        var key = partIndex[i];
-                        var list = Globals.StoryOrder.JournalStories[key];
-                        foreach (var order in list)
-                        {
-                            if (order != conversation)
-                            {
-                                conversations.Add(order);
-                            }
-                            else
-                            {
-                                reached = true;
-                                break;
-                            }
-                        }
-
-                        if (reached)
-                            break;
+                        parts.Add(kv.Key);
+                        partIndex.Add(kv.Value);
                     }
                 }
+
+                parts.Reverse();
+                partIndex.Reverse();
+
+                for (int j = currentMainStoryIndex; j < Globals.StoryOrder.MainStory[j].Length; j++)
+                {
+                    for (int i = 0; i < partIndex.Count; i++)
+                    {
+                        if (partIndex[i] == currentMainStoryIndex - 1)
+                        {
+                            var key = parts[i];
+                            var list = Globals.StoryOrder.JournalStories[key];
+                            foreach (var order in list)
+                            {
+                                if (order != conversation)
+                                {
+                                    conversations.Add(order);
+                                }
+                                else
+                                {
+                                    reached = true;
+                                    break;
+                                }
+                            }
+
+                            if (reached)
+                                break;
+                        }
+                    }
+
+                    if (Globals.StoryOrder.MainStory[j] != conversation)
+                    {
+                        conversations.Add(Globals.StoryOrder.MainStory[j]);
+                        currentMainStoryIndex++;
+                    }
+                    else
+                    {
+                        reached = true;
+                        break;
+                    }
+
+                    if (reached)
+                        break;
+                }
+                
             }
             else
             {
