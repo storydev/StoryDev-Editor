@@ -612,7 +612,7 @@ namespace StoryDev.Simulation
 
             if (EnableCallstack)
             {
-                callStack.Set("PlayerState.Frequency", currentFile, currentLine, temp, currentState.Frequency);
+                callStack.Set("PlayerState.Frequency", currentFile, currentLine, temp, currentState.Frequency, currentOutcome);
                 CallAdded?.Invoke("PlayerState.Frequency", currentOutcome);
             }
         }
@@ -628,7 +628,7 @@ namespace StoryDev.Simulation
 
                     if (EnableCallstack)
                     {
-                        callStack.Set("PlayerState.Artefacts.FragmentsDiscovered", currentFile, currentLine, null, id);
+                        callStack.Set("PlayerState.Artefacts.FragmentsDiscovered", currentFile, currentLine, null, id, currentOutcome);
                         CallAdded?.Invoke("PlayerState.Artefacts.FragmentsDiscovered", currentOutcome);
                     }
                 }

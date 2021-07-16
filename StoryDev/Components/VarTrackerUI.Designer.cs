@@ -34,7 +34,7 @@ namespace StoryDev.Components
             this.lblOutcomeName = new System.Windows.Forms.Label();
             this.tvVariables = new System.Windows.Forms.TreeView();
             this.cmsVarOptions = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.openCallstackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openChangesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.cmsVarOptions.SuspendLayout();
             this.SuspendLayout();
@@ -63,6 +63,7 @@ namespace StoryDev.Components
             // tvVariables
             // 
             this.tvVariables.CheckBoxes = true;
+            this.tvVariables.ContextMenuStrip = this.cmsVarOptions;
             this.tvVariables.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tvVariables.FullRowSelect = true;
             this.tvVariables.Location = new System.Drawing.Point(0, 37);
@@ -76,15 +77,16 @@ namespace StoryDev.Components
             // 
             this.cmsVarOptions.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.cmsVarOptions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openCallstackToolStripMenuItem});
+            this.openChangesToolStripMenuItem});
             this.cmsVarOptions.Name = "cmsVarOptions";
-            this.cmsVarOptions.Size = new System.Drawing.Size(202, 36);
+            this.cmsVarOptions.Size = new System.Drawing.Size(241, 69);
             // 
-            // openCallstackToolStripMenuItem
+            // openChangesToolStripMenuItem
             // 
-            this.openCallstackToolStripMenuItem.Name = "openCallstackToolStripMenuItem";
-            this.openCallstackToolStripMenuItem.Size = new System.Drawing.Size(201, 32);
-            this.openCallstackToolStripMenuItem.Text = "Open Callstack";
+            this.openChangesToolStripMenuItem.Name = "openChangesToolStripMenuItem";
+            this.openChangesToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
+            this.openChangesToolStripMenuItem.Text = "Open Changes";
+            this.openChangesToolStripMenuItem.Click += new System.EventHandler(this.openChangesToolStripMenuItem_Click);
             // 
             // VarTrackerUI
             // 
@@ -107,6 +109,6 @@ namespace StoryDev.Components
         private System.Windows.Forms.TreeView tvVariables;
         private System.Windows.Forms.Label lblOutcomeName;
         private System.Windows.Forms.ContextMenuStrip cmsVarOptions;
-        private System.Windows.Forms.ToolStripMenuItem openCallstackToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openChangesToolStripMenuItem;
     }
 }

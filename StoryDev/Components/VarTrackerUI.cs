@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Windows.Forms;
 
 using StoryDev.Data;
+using StoryDev.Forms;
 using StoryDev.Simulation;
 
 namespace StoryDev.Components
@@ -1403,6 +1404,16 @@ namespace StoryDev.Components
 
             }
 
+        }
+
+        private void openChangesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (tvVariables.SelectedNode != null)
+            {
+                var changesForm = new VariableChangesForm();
+                changesForm.PopulateList(tvVariables.SelectedNode.FullPath, outcome);
+                changesForm.ShowDialog();
+            }
         }
     }
 }
