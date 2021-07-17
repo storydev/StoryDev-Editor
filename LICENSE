@@ -1,0 +1,52 @@
+The StoryDev Editor is copyrighted under relevant international copyright laws and
+UK copyright legislation.
+
+By using the source code of this software or the executable binaries, or any
+derivatives thereof, and included with it the documentation files, you agree 
+to be bound by the terms of this license "Agreement".
+
+For the purposes of this Agreement, the "Editor" - this project and any related source
+code - shall be construed as the Editor, and "Server" - an alternative, yet to be
+developed software application that can be used in conjunction with the Editor - shall
+be construed as the Server. In both definitions, this also includes any documentation
+files.
+
+By using the Editor, you agree to the following terms:
+
+ 1. Any and all source code, either in its original form or derivatives thereof, excluding
+    derivatives developed by a third party, shall be bound by this Agreement.
+ 1.1 We will not be held liable for any malicious code, found in the source or binaries of
+     derivatives developed by a third party.
+ 1.2 Where you are the owner or contributor to a derivative of this Editor, you agree that
+     all sections in this Agreement shall remain in force.
+ 2. You may release derivative forms of this Editor, as long as the release does not
+    include the release of the Server software or any derivatives thereof, or copycat source 
+    code or binaries that assume the role of the Server even if entirely source code of your own.
+ 3. You may use this Editor for its intended purposes, including but not limited to the development
+    of personal or commercial projects, no matter its form, with or without attribution to
+    this Editor or the creators or contributors of this Editor.
+ 4. You may not sell, trade or distribute electronic copies of this Editor or derivatives thereof, 
+    whether in whole or in part, including on a physical medium such as a disc, hard drive or 
+    other electronic storage device, for a commercial purpose.
+ 5. All projects developed through the use of the Editor, are free to be used or distributed
+    for any purposes, including for a commercial gain, without restriction and may be sublicensed,
+    relicensed, copied, sold, modified and published and without any conditions or requirements.
+
+This Editor uses third-party libraries that offer benefits to the Editor, including:
+
+ 1. FastColoredTextBox which is licensed under the LGPL license.
+ 2. Jint which is licensed under the BSD 2-clause license.
+ 3. Newtonsoft.Json which is licensed under the MIT license.
+ 4. Ookii.Dialogs.WinForms which is licensed under the BSD 3-clause license.
+ 5. Cyotek.Windows.Forms.ColorPicker which is licensed under the MIT license.
+
+The third party libraries used in this project may change from time-to-time.
+
+DISCLAIMER
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
