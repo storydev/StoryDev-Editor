@@ -58,7 +58,6 @@ namespace StoryDev.Forms
                 viewToolStripMenuItem.Enabled = true;
                 resourcesToolStripMenuItem.Enabled = true;
                 saveAllToolStripMenuItem.Enabled = true;
-                projectToolStripMenuItem.Enabled = true;
             }
         }
 
