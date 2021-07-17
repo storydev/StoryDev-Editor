@@ -9,6 +9,11 @@ Current features include:
  * Create and design maps for a visual aid to managing your story, as well as being a method for designing and creating Places and Sections.
  * Simulation options to allow debugging of your conversations -- know at any point in your story what your Best and Worst outcomes will be.
 
+## Installation
+To install the Software, you must have .NET Framework 4.7.2 or later installed. You must also have a Windows operating system that supports this version of the .NET Framework.
+
+You can download and install the runtime [here](https://dotnet.microsoft.com/download/dotnet-framework/net472). Windows 10 comes with .NET Framework 4.7 already installed.
+
 ## Beta
 As this is a Beta, please note that not all features have been implemented or certain features may appear missing or incomplete.
 
