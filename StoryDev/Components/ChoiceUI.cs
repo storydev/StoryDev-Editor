@@ -17,6 +17,16 @@ namespace StoryDev.Components
 
         private ChoiceData data;
 
+        public string GoToName
+        {
+            get
+            {
+                string result = "";
+                result = lblGoingTo.Text.Substring("Going To: ".Length);
+                return result;
+            }
+        }
+
         public ChoiceUI(ChoiceData data)
         {
             InitializeComponent();

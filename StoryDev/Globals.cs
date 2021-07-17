@@ -30,6 +30,7 @@ namespace StoryDev
     delegate void OnMapConnect(int from, int to);
     delegate void OnMapDisconnect(int from, int to);
     delegate void OnMapSelected(int map, int point);
+    delegate void OnGoToConversation(string file, string blockName, int line);
 
     enum GameEvent
     {

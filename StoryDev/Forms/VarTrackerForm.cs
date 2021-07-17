@@ -36,6 +36,7 @@ namespace StoryDev.Forms
                         savedStateTracker = new VarTrackerUI(template);
                         savedStateTracker.Outcome = -1;
                         savedStateTracker.Dock = DockStyle.Left;
+                        savedStateTracker.GoToConversation += StateTracker_GoToConversation;
                         Controls.Add(savedStateTracker);
 
                         maxWidth += savedStateTracker.Width;
@@ -45,6 +46,7 @@ namespace StoryDev.Forms
                         bestOutcomeTracker = new VarTrackerUI(template);
                         bestOutcomeTracker.Dock = DockStyle.Left;
                         bestOutcomeTracker.Outcome = 0;
+                        bestOutcomeTracker.GoToConversation += StateTracker_GoToConversation;
                         Controls.Add(bestOutcomeTracker);
 
                         maxWidth += bestOutcomeTracker.Width;
@@ -54,6 +56,7 @@ namespace StoryDev.Forms
                         worstOutcomeTracker = new VarTrackerUI(template);
                         worstOutcomeTracker.Dock = DockStyle.Left;
                         worstOutcomeTracker.Outcome = 1;
+                        worstOutcomeTracker.GoToConversation += StateTracker_GoToConversation;
                         Controls.Add(worstOutcomeTracker);
 
                         maxWidth += worstOutcomeTracker.Width;
@@ -80,5 +83,12 @@ namespace StoryDev.Forms
         {
             
         }
+
+        private void StateTracker_GoToConversation(string file, string blockName, int line)
+        {
+            GoToConversation?.Invoke(file, blockName, line);
+        }
+
+        public event OnGoToConversation GoToConversation;
     }
 }

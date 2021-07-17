@@ -16,16 +16,16 @@ namespace StoryDev.Simulation
             Calls = new Dictionary<string, List<CallInfo>>();
         }
 
-        public void Set(string variable, string file, int line, object last, object value, int forOutcome)
+        public void Set(string variable, CallInfo info)
         {
             if (Calls.ContainsKey(variable))
             {
-                Calls[variable].Add(new CallInfo(file, line, last, value, forOutcome));
+                Calls[variable].Add(info);
             }
             else
             {
                 Calls.Add(variable, new List<CallInfo>());
-                Calls[variable].Add(new CallInfo(file, line, last, value, forOutcome));
+                Calls[variable].Add(info);
             }
         }
 
@@ -39,14 +39,11 @@ namespace StoryDev.Simulation
         public object LastValue;
         public object NewValue;
         public int ForOutcome;
+        public string BlockName;
 
-        public CallInfo(string file, int line, object last, object value, int outcome)
+        public CallInfo()
         {
-            OriginalFile = file;
-            Line = line;
-            LastValue = last;
-            NewValue = value;
-            ForOutcome = outcome;
+
         }
 
     }

@@ -62,8 +62,27 @@ namespace StoryDev.Forms
             choices.Clear();
 
             currentFile = path;
-            fileShortName = currentFile.Substring(currentFile.LastIndexOf('\\') + 1);
             LoadCurrent();
+        }
+
+        private string ShortenName(string path)
+        {
+            string result = "";
+            int startIndex = 0;
+            for (int i = path.Length - 1; i > -1; i--)
+            {
+                if (path[i] == '\\' || path[i] == '/')
+                {
+                    startIndex = i + 1;
+                    break;
+                }
+            }
+
+            for (int i = startIndex; i < path.Length; i++)
+            {
+                result += path[i];
+            }
+            return result;
         }
 
         private void Simulation_SimulationStopped()
@@ -119,6 +138,7 @@ namespace StoryDev.Forms
             {
                 tracker = new VarTrackerForm(template, outcomes);
                 tracker.FormClosing += Tracker_FormClosing;
+                tracker.GoToConversation += Tracker_GoToConversation;
             }
             else
                 trackerOpen = true;
@@ -137,6 +157,36 @@ namespace StoryDev.Forms
 
             if (!tracker.Visible)
                 tracker.Show(this);
+        }
+
+        private void Tracker_GoToConversation(string file, string blockName, int line)
+        {
+            var actualPath = file;
+            actualPath = actualPath.Substring(0, actualPath.LastIndexOf('.'));
+
+            OpenFile(Globals.CurrentProjectFolder + "\\" + actualPath);
+            for (int i = 0; i < cmbBranches.Items.Count; i++)
+            {
+                if ((string)cmbBranches.Items[i] == blockName)
+                {
+                    cmbBranches.SelectedIndex = i;
+                }
+            }
+
+            if (line < storyEditor.LinesCount)
+            {
+                var range = storyEditor.GetLine(line);
+                storyEditor.SelectionStart = range.Start.iChar;
+            }
+            else
+            {
+                var rem = line - storyEditor.LinesCount - 1;
+
+                if (rem < pnlChoices.Controls.Count)
+                {
+                    pnlChoices.Controls[rem].BackColor = Color.Orange;
+                }
+            }
         }
 
         private void Tracker_FormClosing(object sender, FormClosingEventArgs e)
@@ -464,7 +514,7 @@ namespace StoryDev.Forms
                 }
             }
 
-            var file = currentFile.Substring(currentFile.LastIndexOf('\\') + 1);
+            var file = ShortenName(currentFile);
             fileShortName = file;
             Text = "Conversation Editor - " + file;
 

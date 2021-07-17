@@ -34,6 +34,7 @@ namespace StoryDev.Forms
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lvResults
@@ -41,6 +42,7 @@ namespace StoryDev.Forms
             this.lvResults.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
+            this.columnHeader5,
             this.columnHeader3,
             this.columnHeader4});
             this.lvResults.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -52,6 +54,7 @@ namespace StoryDev.Forms
             this.lvResults.TabIndex = 0;
             this.lvResults.UseCompatibleStateImageBehavior = false;
             this.lvResults.View = System.Windows.Forms.View.Details;
+            this.lvResults.DoubleClick += new System.EventHandler(this.lvResults_DoubleClick);
             // 
             // columnHeader1
             // 
@@ -72,6 +75,12 @@ namespace StoryDev.Forms
             // 
             this.columnHeader4.Text = "New Value";
             this.columnHeader4.Width = 150;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.DisplayIndex = 1;
+            this.columnHeader5.Text = "Block Title";
+            this.columnHeader5.Width = 125;
             // 
             // VariableChangesForm
             // 
@@ -97,5 +106,6 @@ namespace StoryDev.Forms
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
     }
 }

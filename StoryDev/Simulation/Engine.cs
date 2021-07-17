@@ -34,6 +34,7 @@ namespace StoryDev.Simulation
         private Dictionary<string, List<Message>> messages;
 
         private string currentFile;
+        private string currentBlock;
         private int currentLine;
 
         private List<string> conversations;
@@ -270,6 +271,7 @@ namespace StoryDev.Simulation
                     for (int j = 0; j < sdParser.GetBlocks().Count; j++)
                     {
                         var block = sdParser.GetBlocks()[j];
+                        currentBlock = block.Title;
 
                         if (nextBlockIndex > -1)
                         {
@@ -287,6 +289,7 @@ namespace StoryDev.Simulation
                         {
                             line++;
                             currentLine = line;
+                            
                             var command = block.Commands[c];
 
                             if (command.Type == (int)CommandType.OptionConditional && executeUpToNextConditional == -1)
@@ -612,7 +615,15 @@ namespace StoryDev.Simulation
 
             if (EnableCallstack)
             {
-                callStack.Set("PlayerState.Frequency", currentFile, currentLine, temp, currentState.Frequency, currentOutcome);
+                callStack.Set("PlayerState.Frequency", new CallInfo()
+                {
+                    OriginalFile = currentFile, 
+                    Line = currentLine, 
+                    LastValue = temp, 
+                    NewValue = currentState.Frequency,
+                    ForOutcome = currentOutcome,
+                    BlockName = currentBlock
+                });
                 CallAdded?.Invoke("PlayerState.Frequency", currentOutcome);
             }
         }
@@ -628,7 +639,16 @@ namespace StoryDev.Simulation
 
                     if (EnableCallstack)
                     {
-                        callStack.Set("PlayerState.Artefacts.FragmentsDiscovered", currentFile, currentLine, null, id, currentOutcome);
+                        callStack.Set("PlayerState.Artefacts.FragmentsDiscovered", new CallInfo()
+                        {
+                            OriginalFile = currentFile,
+                            Line = currentLine,
+                            LastValue = null,
+                            NewValue = id,
+                            ForOutcome = currentOutcome,
+                            BlockName = currentBlock
+                        });
+
                         CallAdded?.Invoke("PlayerState.Artefacts.FragmentsDiscovered", currentOutcome);
                     }
                 }

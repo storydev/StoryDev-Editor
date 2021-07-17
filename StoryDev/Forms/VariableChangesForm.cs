@@ -38,6 +38,10 @@ namespace StoryDev.Forms
                     });
                     item.SubItems.Add(new ListViewItem.ListViewSubItem()
                     {
+                        Text = "" + call.BlockName
+                    });
+                    item.SubItems.Add(new ListViewItem.ListViewSubItem()
+                    {
                         Text = call.LastValue.ToString()
                     });
                     item.SubItems.Add(new ListViewItem.ListViewSubItem()
@@ -48,5 +52,21 @@ namespace StoryDev.Forms
                 }
             }
         }
+
+        private void lvResults_DoubleClick(object sender, EventArgs e)
+        {
+            if (lvResults.SelectedIndices.Count > 0)
+            {
+                var index = lvResults.SelectedIndices[0];
+                var blockName = lvResults.Items[index].SubItems[2].Text;
+                var file = lvResults.Items[index].Text;
+                var line = lvResults.Items[index].SubItems[1].Text;
+
+                GoToConversation?.Invoke(file, blockName, int.Parse(line));
+                Close();
+            }
+        }
+
+        public event OnGoToConversation GoToConversation;
     }
 }

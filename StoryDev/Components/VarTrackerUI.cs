@@ -1412,8 +1412,16 @@ namespace StoryDev.Components
             {
                 var changesForm = new VariableChangesForm();
                 changesForm.PopulateList(tvVariables.SelectedNode.FullPath, outcome);
+                changesForm.GoToConversation += ChangesForm_GoToConversation;
                 changesForm.ShowDialog();
             }
         }
+
+        private void ChangesForm_GoToConversation(string file, string blockName, int line)
+        {
+            GoToConversation?.Invoke(file, blockName, line);
+        }
+
+        public event OnGoToConversation GoToConversation;
     }
 }
