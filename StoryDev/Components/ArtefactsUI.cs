@@ -113,6 +113,19 @@ namespace StoryDev.Components
 
             fragments = Globals.Fragments.FindAll((f) => f.ArtefactID == artefact.ID);
 
+            if (fragments.Count == 0)
+            {
+                btnRemoveFragment.Enabled = false;
+                pnlFragments.Enabled = false;
+
+                txtFragmentName.TextChanged -= txtFragmentName_TextChanged;
+                txtFragmentName.Text = "";
+                txtFragmentName.TextChanged += txtFragmentName_TextChanged;
+
+                btnFragmentIcon.IconIndex = -1;
+                btnFragmentIcon.Invalidate();
+            }
+
             selectedFragment = -1;
             lbFragments.Items.Clear();
             foreach (var frag in fragments)
