@@ -58,6 +58,7 @@ namespace StoryDev.Forms
                 viewToolStripMenuItem.Enabled = true;
                 resourcesToolStripMenuItem.Enabled = true;
                 saveAllToolStripMenuItem.Enabled = true;
+                scriptsToolStripMenuItem.Enabled = true;
             }
         }
 
@@ -241,6 +242,25 @@ namespace StoryDev.Forms
         private void mapsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new MapsForm().Show();
+        }
+
+        private void managerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (TabPage tp in tcMain.TabPages)
+            {
+                if (tp.Text == "Script Manager")
+                {
+                    tcMain.SelectedTab = tp;
+                    return;
+                }
+            }
+
+            var tab = new TabPage();
+            tab.Text = "Script Manager";
+            tab.Controls.Add(new ScriptManager() { Dock = DockStyle.Fill });
+
+            tcMain.TabPages.Add(tab);
+            tcMain.SelectedTab = tab;
         }
     }
 }

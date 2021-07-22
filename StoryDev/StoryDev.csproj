@@ -533,6 +533,12 @@
     <Compile Include="Components\Preferences\GeneralUI.Designer.cs">
       <DependentUpon>GeneralUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\ScriptManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\ScriptManager.Designer.cs">
+      <DependentUpon>ScriptManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\SpecialFeatureUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -782,6 +788,8 @@
     <Compile Include="Lib\StoryDev\Parser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scripting\Module.cs" />
+    <Compile Include="Scripting\ScriptEngine.cs" />
     <Compile Include="Simulation\CallStack.cs" />
     <Compile Include="Simulation\Engine.cs" />
     <Compile Include="Simulation\Message.cs" />
@@ -992,6 +1000,9 @@
     <EmbeddedResource Include="Components\Preferences\GeneralUI.resx">
       <DependentUpon>GeneralUI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Components\ScriptManager.resx">
+      <DependentUpon>ScriptManager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Components\SpecialFeatureUI.resx">
       <DependentUpon>SpecialFeatureUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -1183,6 +1194,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\HXS File Icon.png" />
+    <None Include="Resources\Folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Scripting\Modules\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

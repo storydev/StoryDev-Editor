@@ -274,6 +274,26 @@ namespace StoryDev
             "CharacterRequiresHealing"
         };
 
+        public static string ShortenName(string path)
+        {
+            string result = "";
+            int startIndex = 0;
+            for (int i = path.Length - 1; i > -1; i--)
+            {
+                if (path[i] == '\\' || path[i] == '/')
+                {
+                    startIndex = i + 1;
+                    break;
+                }
+            }
+
+            for (int i = startIndex; i < path.Length; i++)
+            {
+                result += path[i];
+            }
+            return result;
+        }
+
         //
         // Cache and Other Data
         //
@@ -853,6 +873,21 @@ namespace StoryDev
             {
                 Chapters = new List<string>();
                 ReloadChapters();
+            }
+
+            if (!Directory.Exists(path + "\\Scripts"))
+            {
+                Directory.CreateDirectory(path + "\\Scripts");
+            }
+
+            if (!Directory.Exists(path + "\\Events"))
+            {
+                Directory.CreateDirectory(path + "\\Events");
+            }
+
+            if (!Directory.Exists(path + "\\Data Modules"))
+            {
+                Directory.CreateDirectory(path + "\\Data Modules");
             }
 
             if (File.Exists(path + "\\identifiers.json"))

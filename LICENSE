@@ -11,6 +11,23 @@ developed software application that can be used in conjunction with the Editor -
 be construed as the Server. In both definitions, this also includes any documentation
 files.
 
+The Server software itself, when released as a binary under a proprietary license,
+may be used in conjunction with the Editor to perform tasks suitable in teams of one or
+more people. The Server software may perform any or all of the following tasks:
+
+ 1. Establish "Communication Protocols" that allows back and forth communication between
+    the Server and Editor.
+ 2. As above, "Communication Protocols" are networking communications, whether over the
+    Internet or via the use of a LAN network, in whole or in part, using relevant
+    communication methods to produce messages for either the Editor or Server that
+    subsequently performs a particular task.
+ 3. Through these Communication Protocols, the Server would perform the storage, maintenance,
+    backup, restore and modification of files and database transactions, including but not
+    limited to:
+ 3.1 User Management - login credentials, access privileges and control mechanisms.
+ 3.2 Task Management - manage and create tasks, lists and write comments on to collaborate
+     in a team on any given project with this Server software.
+
 By using the Editor, you agree to the following terms:
 
  1. Any and all source code, either in its original form or derivatives thereof, excluding

@@ -65,26 +65,6 @@ namespace StoryDev.Forms
             LoadCurrent();
         }
 
-        private string ShortenName(string path)
-        {
-            string result = "";
-            int startIndex = 0;
-            for (int i = path.Length - 1; i > -1; i--)
-            {
-                if (path[i] == '\\' || path[i] == '/')
-                {
-                    startIndex = i + 1;
-                    break;
-                }
-            }
-
-            for (int i = startIndex; i < path.Length; i++)
-            {
-                result += path[i];
-            }
-            return result;
-        }
-
         private void Simulation_SimulationStopped()
         {
             if (runningSimulation != null)
@@ -514,7 +494,7 @@ namespace StoryDev.Forms
                 }
             }
 
-            var file = ShortenName(currentFile);
+            var file = Globals.ShortenName(currentFile);
             fileShortName = file;
             Text = "Conversation Editor - " + file;
 
