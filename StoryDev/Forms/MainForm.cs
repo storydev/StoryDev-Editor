@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Ookii.Dialogs.WinForms;
 
 using StoryDev.Components;
+using StoryDev.Scripting;
 
 namespace StoryDev.Forms
 {
@@ -59,6 +60,15 @@ namespace StoryDev.Forms
                 resourcesToolStripMenuItem.Enabled = true;
                 saveAllToolStripMenuItem.Enabled = true;
                 scriptsToolStripMenuItem.Enabled = true;
+
+                var moduleCount = ScriptEngine.Instance.DataModules.Count;
+                modulesToolStripMenuItem.Visible = moduleCount > 0;
+                foreach (var module in ScriptEngine.Instance.DataModules)
+                {
+                    var menuItem = new ToolStripMenuItem();
+                    menuItem.Text = module.Name + "...";
+                    modulesToolStripMenuItem.DropDownItems.Add(menuItem);
+                }
             }
         }
 
@@ -257,7 +267,26 @@ namespace StoryDev.Forms
 
             var tab = new TabPage();
             tab.Text = "Script Manager";
-            tab.Controls.Add(new ScriptManager() { Dock = DockStyle.Fill });
+            var ui = new ScriptManager() { Dock = DockStyle.Fill };
+            ui.TabNameChanged += (string text) =>
+            {
+                tab.Text = "Script Manager - " + text;
+            };
+            ui.SaveStateChanged += (bool value) =>
+            {
+                if (value)
+                {
+                    if (!tab.Text.StartsWith("*"))
+                        tab.Text = "*" + tab.Text;
+                }
+                else
+                {
+                    if (tab.Text.StartsWith("*"))
+                        tab.Text = tab.Text.Substring(1);
+                }
+            };
+
+            tab.Controls.Add(ui);
 
             tcMain.TabPages.Add(tab);
             tcMain.SelectedTab = tab;

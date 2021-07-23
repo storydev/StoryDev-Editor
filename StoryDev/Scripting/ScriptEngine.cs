@@ -35,9 +35,9 @@ namespace StoryDev.Scripting
 
         private void InitDataModules()
         {
-            if (Directory.Exists(Globals.CurrentProjectFolder + "\\Scripts\\Data Modules\\"))
+            if (Directory.Exists(Globals.CurrentProjectFolder + "\\Data Modules\\"))
             {
-                var files = Directory.GetFiles(Globals.CurrentProjectFolder + "\\Scripts\\Data Modules\\", "*.hxs");
+                var files = Directory.GetFiles(Globals.CurrentProjectFolder + "\\Data Modules\\", "*.hxs");
                 foreach (var file in files)
                 {
                     var content = File.ReadAllText(file);

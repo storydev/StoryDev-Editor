@@ -31,6 +31,8 @@ namespace StoryDev
     delegate void OnMapDisconnect(int from, int to);
     delegate void OnMapSelected(int map, int point);
     delegate void OnGoToConversation(string file, string blockName, int line);
+    delegate void OnTabNameChange(string text);
+    delegate void OnSaveStateChanged(bool state);
 
     enum GameEvent
     {

@@ -44,8 +44,8 @@ namespace StoryDev.Components
             this.tvScripts = new System.Windows.Forms.TreeView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.spcContent = new System.Windows.Forms.SplitContainer();
-            this.pnlFileOptions = new System.Windows.Forms.Panel();
             this.editor = new StoryDev.Components.CodeEditor();
+            this.pnlFileOptions = new System.Windows.Forms.Panel();
             this.cmsRootOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spcMain)).BeginInit();
             this.spcMain.Panel1.SuspendLayout();
@@ -81,7 +81,7 @@ namespace StoryDev.Components
             // 
             this.folderToolStripMenuItem.Image = global::StoryDev.Properties.Resources.Folder;
             this.folderToolStripMenuItem.Name = "folderToolStripMenuItem";
-            this.folderToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.folderToolStripMenuItem.Size = new System.Drawing.Size(190, 34);
             this.folderToolStripMenuItem.Text = "Folder";
             this.folderToolStripMenuItem.Click += new System.EventHandler(this.folderToolStripMenuItem_Click);
             // 
@@ -89,7 +89,7 @@ namespace StoryDev.Components
             // 
             this.scriptFileToolStripMenuItem.Image = global::StoryDev.Properties.Resources.HXS_File_Icon;
             this.scriptFileToolStripMenuItem.Name = "scriptFileToolStripMenuItem";
-            this.scriptFileToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.scriptFileToolStripMenuItem.Size = new System.Drawing.Size(190, 34);
             this.scriptFileToolStripMenuItem.Text = "Script File";
             this.scriptFileToolStripMenuItem.Click += new System.EventHandler(this.scriptFileToolStripMenuItem_Click);
             // 
@@ -144,6 +144,7 @@ namespace StoryDev.Components
             this.tvScripts.SelectedImageIndex = 0;
             this.tvScripts.Size = new System.Drawing.Size(270, 786);
             this.tvScripts.TabIndex = 0;
+            this.tvScripts.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.tvScripts_BeforeSelect);
             this.tvScripts.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvScripts_AfterSelect);
             // 
             // imageList1
@@ -172,15 +173,6 @@ namespace StoryDev.Components
             this.spcContent.SplitterDistance = 595;
             this.spcContent.TabIndex = 0;
             // 
-            // pnlFileOptions
-            // 
-            this.pnlFileOptions.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlFileOptions.Enabled = false;
-            this.pnlFileOptions.Location = new System.Drawing.Point(0, 0);
-            this.pnlFileOptions.Name = "pnlFileOptions";
-            this.pnlFileOptions.Size = new System.Drawing.Size(898, 187);
-            this.pnlFileOptions.TabIndex = 0;
-            // 
             // editor
             // 
             this.editor.AutoCompleteBracketsList = new char[] {
@@ -205,6 +197,7 @@ namespace StoryDev.Components
             this.editor.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.editor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.editor.Enabled = false;
+            this.editor.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.editor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
             this.editor.IsReplaceMode = false;
             this.editor.Location = new System.Drawing.Point(0, 0);
@@ -216,6 +209,17 @@ namespace StoryDev.Components
             this.editor.TabIndex = 0;
             this.editor.Text = "codeEditor1";
             this.editor.Zoom = 100;
+            this.editor.TextChanging += new System.EventHandler<FastColoredTextBoxNS.TextChangingEventArgs>(this.editor_TextChanging);
+            this.editor.KeyUp += new System.Windows.Forms.KeyEventHandler(this.editor_KeyUp);
+            // 
+            // pnlFileOptions
+            // 
+            this.pnlFileOptions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlFileOptions.Enabled = false;
+            this.pnlFileOptions.Location = new System.Drawing.Point(0, 0);
+            this.pnlFileOptions.Name = "pnlFileOptions";
+            this.pnlFileOptions.Size = new System.Drawing.Size(898, 187);
+            this.pnlFileOptions.TabIndex = 0;
             // 
             // ScriptManager
             // 

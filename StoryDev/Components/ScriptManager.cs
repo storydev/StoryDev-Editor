@@ -17,6 +17,9 @@ namespace StoryDev.Components
     {
 
         private TreeNode lastSelected;
+        private TreeNode lastFileNode;
+        private string lastFile;
+        private bool requiresSave;
 
         public ScriptManager()
         {
@@ -27,6 +30,8 @@ namespace StoryDev.Components
             PopulateFolder(Globals.CurrentProjectFolder + "\\Events\\", tvScripts.Nodes[1]);
             PopulateFolder(Globals.CurrentProjectFolder + "\\Data Modules\\", tvScripts.Nodes[2]);
             tvScripts.ResumeLayout();
+
+            editor.CurrentLanguage = Language.HaxeScript;
         }
 
         private void PopulateFolder(string folder, TreeNode parent)
@@ -40,6 +45,7 @@ namespace StoryDev.Components
                 node.Text = dirName;
                 node.ImageIndex = 0;
                 node.SelectedImageIndex = 0;
+                node.ContextMenuStrip = cmsRootOptions;
 
                 parent.Nodes.Add(node);
 
@@ -98,6 +104,8 @@ namespace StoryDev.Components
                         tvScripts.SuspendLayout();
                         PopulateFolder(Globals.CurrentProjectFolder + "\\" + currentPath + "\\", lastSelected);
                         tvScripts.ResumeLayout();
+
+                        lastSelected.Expand();
                     }
                 }
             }
@@ -106,6 +114,59 @@ namespace StoryDev.Components
         private void tvScripts_AfterSelect(object sender, TreeViewEventArgs e)
         {
             lastSelected = e.Node;
+
+            if (lastSelected.FullPath.EndsWith(".hxs"))
+            {
+                var contents = File.ReadAllText(Globals.CurrentProjectFolder + "\\" + lastSelected.FullPath);
+                editor.Text = contents;
+
+                lastFile = Globals.CurrentProjectFolder + "\\" + lastSelected.FullPath;
+                lastFileNode = lastSelected;
+
+                editor.Enabled = true;
+                TabNameChanged?.Invoke(lastSelected.Text);
+                SaveStateChanged?.Invoke(false);
+            }
         }
+
+        private void editor_TextChanging(object sender, FastColoredTextBoxNS.TextChangingEventArgs e)
+        {
+            requiresSave = true;
+            SaveStateChanged?.Invoke(requiresSave);
+        }
+
+        private void editor_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.S)
+            {
+                requiresSave = false;
+                SaveStateChanged?.Invoke(requiresSave);
+                File.WriteAllText(lastFile, editor.Text);
+            }
+        }
+
+        private void tvScripts_BeforeSelect(object sender, TreeViewCancelEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(lastFile) && requiresSave)
+            {
+                var response = MessageBox.Show("Would you like to save the script before continuing?", "Warning", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                if (response == DialogResult.Yes)
+                {
+                    requiresSave = false;
+                    File.WriteAllText(lastFile, editor.Text);
+                }
+                else if (response == DialogResult.No)
+                {
+                    requiresSave = false;
+                }
+                else if (response == DialogResult.Cancel)
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
+
+        public event OnTabNameChange TabNameChanged;
+        public event OnSaveStateChanged SaveStateChanged;
     }
 }
