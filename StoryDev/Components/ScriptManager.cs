@@ -115,6 +115,19 @@ namespace StoryDev.Components
         {
             lastSelected = e.Node;
 
+            pnlFileOptions.Controls.Clear();
+
+            if (lastSelected.FullPath == "Data Modules")
+            {
+                var properties = new Scripting.DataModuleFolderProperties() { Dock = DockStyle.Fill };
+                properties.RequestDataModuleRefresh += () =>
+                {
+                    RequestDataModuleRefresh?.Invoke();
+                };
+                pnlFileOptions.Controls.Add(properties);
+                pnlFileOptions.Enabled = true;
+            }
+
             if (lastSelected.FullPath.EndsWith(".hxs"))
             {
                 var contents = File.ReadAllText(Globals.CurrentProjectFolder + "\\" + lastSelected.FullPath);
@@ -168,5 +181,6 @@ namespace StoryDev.Components
 
         public event OnTabNameChange TabNameChanged;
         public event OnSaveStateChanged SaveStateChanged;
+        public event OnRequestDataModuleRefresh RequestDataModuleRefresh;
     }
 }

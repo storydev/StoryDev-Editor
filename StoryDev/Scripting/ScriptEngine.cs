@@ -27,6 +27,12 @@ namespace StoryDev.Scripting
             InitDataModules();
         }
 
+        public void ExecuteDataModules()
+        {
+            DataModules.Clear();
+            InitDataModules();
+        }
+
         private void InitScripts()
         {
             jEngine.SetValue("CreateDataModule", new Func<string, string, Module>(CreateDataModule));

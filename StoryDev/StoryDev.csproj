@@ -533,6 +533,12 @@
     <Compile Include="Components\Preferences\GeneralUI.Designer.cs">
       <DependentUpon>GeneralUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\Scripting\DataModuleFolderProperties.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Scripting\DataModuleFolderProperties.Designer.cs">
+      <DependentUpon>DataModuleFolderProperties.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\ScriptManager.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -999,6 +1005,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Components\Preferences\GeneralUI.resx">
       <DependentUpon>GeneralUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Scripting\DataModuleFolderProperties.resx">
+      <DependentUpon>DataModuleFolderProperties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\ScriptManager.resx">
       <DependentUpon>ScriptManager.cs</DependentUpon>

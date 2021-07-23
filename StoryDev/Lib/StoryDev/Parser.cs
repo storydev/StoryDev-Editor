@@ -366,12 +366,13 @@ namespace StoryDev.Lib.StoryDev
                 }
                 else if (fallThrough)
                 {
-                    currentBlock.Commands.Add(Command.CreateFallThrough(fallThroughCode));
                     if (!fallThroughEnd)
                     {
                         PostError(string.Format("Line {0}: Fall through has not ended correctly. You must enter `>` to end the fall through.", i));
                         return -1;
                     }
+
+                    currentBlock.Commands.Add(Command.CreateFallThrough(fallThroughCode));
 
                     fallThroughCode = "";
                     fallThrough = false;
@@ -397,7 +398,12 @@ namespace StoryDev.Lib.StoryDev
                     choiceInstruction = "";
                     codeText = "";
                 }
-                
+                else if (isCode)
+                {
+                    currentBlock.Commands.Add(Command.CreateCodeLine(codeText));
+                    codeText = "";
+                    isCode = false;
+                }
                 else
                 {
                     PostError(string.Format("Invalid syntax at line {0}. What we're you trying to do?", i));

@@ -61,14 +61,21 @@ namespace StoryDev.Forms
                 saveAllToolStripMenuItem.Enabled = true;
                 scriptsToolStripMenuItem.Enabled = true;
 
-                var moduleCount = ScriptEngine.Instance.DataModules.Count;
-                modulesToolStripMenuItem.Visible = moduleCount > 0;
-                foreach (var module in ScriptEngine.Instance.DataModules)
-                {
-                    var menuItem = new ToolStripMenuItem();
-                    menuItem.Text = module.Name + "...";
-                    modulesToolStripMenuItem.DropDownItems.Add(menuItem);
-                }
+                RefreshModuleList();
+            }
+        }
+
+        private void RefreshModuleList()
+        {
+            modulesToolStripMenuItem.DropDownItems.Clear();
+
+            var moduleCount = ScriptEngine.Instance.DataModules.Count;
+            modulesToolStripMenuItem.Visible = moduleCount > 0;
+            foreach (var module in ScriptEngine.Instance.DataModules)
+            {
+                var menuItem = new ToolStripMenuItem();
+                menuItem.Text = module.Name + "...";
+                modulesToolStripMenuItem.DropDownItems.Add(menuItem);
             }
         }
 
@@ -284,6 +291,11 @@ namespace StoryDev.Forms
                     if (tab.Text.StartsWith("*"))
                         tab.Text = tab.Text.Substring(1);
                 }
+            };
+            ui.RequestDataModuleRefresh += () =>
+            {
+                ScriptEngine.Instance.ExecuteDataModules();
+                RefreshModuleList();
             };
 
             tab.Controls.Add(ui);

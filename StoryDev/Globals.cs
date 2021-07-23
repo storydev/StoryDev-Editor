@@ -33,6 +33,7 @@ namespace StoryDev
     delegate void OnGoToConversation(string file, string blockName, int line);
     delegate void OnTabNameChange(string text);
     delegate void OnSaveStateChanged(bool state);
+    delegate void OnRequestDataModuleRefresh();
 
     enum GameEvent
     {
