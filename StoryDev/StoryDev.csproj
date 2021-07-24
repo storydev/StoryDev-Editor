@@ -795,6 +795,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scripting\Module.cs" />
+    <Compile Include="Scripting\Modules\DataField.cs" />
+    <Compile Include="Scripting\Modules\DataOptions.cs" />
+    <Compile Include="Scripting\Modules\DataType.cs" />
     <Compile Include="Scripting\ScriptEngine.cs" />
     <Compile Include="Simulation\CallStack.cs" />
     <Compile Include="Simulation\Engine.cs" />
@@ -1206,8 +1209,6 @@
     <None Include="Resources\HXS File Icon.png" />
     <None Include="Resources\Folder.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scripting\Modules\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

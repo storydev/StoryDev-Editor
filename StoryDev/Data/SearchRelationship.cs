@@ -11,12 +11,12 @@ namespace StoryDev.Data
     class SearchRelationship : Attribute
     {
 
-        public System.Type Type;
+        public Type Type;
         public string FieldName;
         public string DisplayField;
         public string SourceName;
 
-        public SearchRelationship(System.Type type, string fieldName, string displayField, string sourceName = "")
+        public SearchRelationship(Type type, string fieldName, string displayField, string sourceName = "")
         {
             Type = type;
             FieldName = fieldName;
