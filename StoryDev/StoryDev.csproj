@@ -487,6 +487,12 @@
     <Compile Include="Components\Data\FilterString.Designer.cs">
       <DependentUpon>FilterString.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\FormDesignerUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\FormDesignerUI.Designer.cs">
+      <DependentUpon>FormDesignerUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\ICodeComponent.cs" />
     <Compile Include="Components\IconsCanvas.cs">
       <SubType>UserControl</SubType>
