@@ -357,7 +357,7 @@ namespace StoryDev.Simulation
                                         } break;
                                     case (int)CommandType.OptionConditional:
                                         {
-                                            if (j + 1 < block.Commands.Count)
+                                            if (c + 1 < block.Commands.Count)
                                             {
                                                 var found = false;
                                                 for (int k = j + 1; k < block.Commands.Count; k++)
