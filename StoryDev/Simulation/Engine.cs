@@ -360,7 +360,7 @@ namespace StoryDev.Simulation
                                             if (c + 1 < block.Commands.Count)
                                             {
                                                 var found = false;
-                                                for (int k = j + 1; k < block.Commands.Count; k++)
+                                                for (int k = c + 1; k < block.Commands.Count; k++)
                                                 {
                                                     var next = block.Commands[k];
                                                     if (next.Type == (int)CommandType.BlockStart ||
