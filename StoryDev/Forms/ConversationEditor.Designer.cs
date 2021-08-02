@@ -58,6 +58,10 @@ namespace StoryDev.Forms
             this.pnlTools = new System.Windows.Forms.Panel();
             this.cmbBranches = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.dynamicsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.attitudesHereToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupFrequenciesHereToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextsHereToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -76,7 +80,8 @@ namespace StoryDev.Forms
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.simulationToolStripMenuItem});
+            this.simulationToolStripMenuItem,
+            this.dynamicsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1499, 33);
@@ -312,7 +317,6 @@ namespace StoryDev.Forms
             this.storyEditor.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.storyEditor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.storyEditor.Enabled = false;
-            this.storyEditor.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.storyEditor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
             this.storyEditor.IsReplaceMode = false;
             this.storyEditor.Location = new System.Drawing.Point(0, 43);
@@ -377,6 +381,34 @@ namespace StoryDev.Forms
             this.label1.TabIndex = 0;
             this.label1.Text = "Dialogue Branch:";
             // 
+            // dynamicsToolStripMenuItem
+            // 
+            this.dynamicsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.attitudesHereToolStripMenuItem,
+            this.groupFrequenciesHereToolStripMenuItem,
+            this.contextsHereToolStripMenuItem});
+            this.dynamicsToolStripMenuItem.Name = "dynamicsToolStripMenuItem";
+            this.dynamicsToolStripMenuItem.Size = new System.Drawing.Size(105, 29);
+            this.dynamicsToolStripMenuItem.Text = "Dynamics";
+            // 
+            // attitudesHereToolStripMenuItem
+            // 
+            this.attitudesHereToolStripMenuItem.Name = "attitudesHereToolStripMenuItem";
+            this.attitudesHereToolStripMenuItem.Size = new System.Drawing.Size(316, 34);
+            this.attitudesHereToolStripMenuItem.Text = "Attitudes Here...";
+            // 
+            // groupFrequenciesHereToolStripMenuItem
+            // 
+            this.groupFrequenciesHereToolStripMenuItem.Name = "groupFrequenciesHereToolStripMenuItem";
+            this.groupFrequenciesHereToolStripMenuItem.Size = new System.Drawing.Size(316, 34);
+            this.groupFrequenciesHereToolStripMenuItem.Text = "Group Frequencies Here...";
+            // 
+            // contextsHereToolStripMenuItem
+            // 
+            this.contextsHereToolStripMenuItem.Name = "contextsHereToolStripMenuItem";
+            this.contextsHereToolStripMenuItem.Size = new System.Drawing.Size(316, 34);
+            this.contextsHereToolStripMenuItem.Text = "Contexts Here...";
+            // 
             // ConversationEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -439,5 +471,9 @@ namespace StoryDev.Forms
         private System.Windows.Forms.Button btnBrowseMaps;
         private System.Windows.Forms.TextBox txtMapPointAssoc;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ToolStripMenuItem dynamicsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem attitudesHereToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem groupFrequenciesHereToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem contextsHereToolStripMenuItem;
     }
 }

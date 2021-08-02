@@ -303,5 +303,10 @@ namespace StoryDev.Forms
             tcMain.TabPages.Add(tab);
             tcMain.SelectedTab = tab;
         }
+
+        private void formDesignerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new DataModuleDesignerForm().ShowDialog();
+        }
     }
 }
