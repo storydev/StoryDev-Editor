@@ -61,6 +61,9 @@ namespace StoryDev.Components
             var tempWidths = staticWidths[row];
             var tempGrid = grid[row];
 
+            if (column == -1)
+                column = 0;
+
             float totalWidth = Width - sides - gutter / 2;
             float remWidth = totalWidth;
 
@@ -217,6 +220,16 @@ namespace StoryDev.Components
 
             var cellIndex = 0;
 
+            // Work out if a static width is greater than -1.
+            // If greater than -1, use this as the pixel width for the column
+            // in each row.
+            // If -1, use the grid[][] values as percentage values.
+            // When using percentage values, use the remaining width from the total width
+            // of the container to determine it's pixel size.
+            // e.g. if we have three values: 200 pixels, 40% and 60% with a total width
+            // of 800 pixels, the widths are as follows:
+            // 200 pixels, 240 pixels and 360 pixels = 800
+
             float totalWidth = Width - sides - gutter / 2;
             float remWidth = totalWidth;
 
@@ -265,7 +278,7 @@ namespace StoryDev.Components
                     startX += width;
 
                     cellSizes[cellIndex] = new SizeF(width, height);
-                    cellLocations[cellIndex] = new Point(i, j);
+                    cellLocations[cellIndex] = new Point(j, i);
                     cellIndex++;
                 }
 
@@ -281,8 +294,8 @@ namespace StoryDev.Components
                 if (mouseX > cells[i].X && mouseX < cells[i].X + cellSizes[i].Width &&
                     mouseY > cells[i].Y && mouseY < cells[i].Y + cellSizes[i].Height)
                 {
-                    currentRow = cellLocations[i].X;
-                    currentColumn = cellLocations[i].Y;
+                    currentRow = cellLocations[i].Y;
+                    currentColumn = cellLocations[i].X;
                     return;
                 }
             }
@@ -296,75 +309,20 @@ namespace StoryDev.Components
             var g = e.Graphics;
 
             g.Clear(Color.White);
-
-            // Work out if a static width is greater than -1.
-            // If greater than -1, use this as the pixel width for the column
-            // in each row.
-            // If -1, use the grid[][] values as percentage values.
-            // When using percentage values, use the remaining width from the total width
-            // of the container to determine it's pixel size.
-            // e.g. if we have three values: 200 pixels, 40% and 60% with a total width
-            // of 800 pixels, the widths are as follows:
-            // 200 pixels, 240 pixels and 360 pixels = 800
-
-            float totalWidth = Width - sides - gutter / 2;
-            float startX = sides, startY = sides;
             
-            // draw the row
-            for (int i = 0; i < staticWidths.Length; i++)
+            // draw the rows
+            for (int i = 0; i < cells.Length; i++)
             {
-                var offsetX = 0f;
-                var height = 0f;
+                var position = cells[i];
+                var size = cellSizes[i];
+                var location = cellLocations[i];
 
-                float remWidth = totalWidth;
-
-                for (int j = 0; j < staticWidths[i].Length; j++)
+                if (currentRow == location.Y && currentColumn == location.X)
                 {
-                    if (staticWidths[i][j] > -1)
-                    {
-                        remWidth -= staticWidths[i][j];
-                    }
+                    g.FillRectangle(new SolidBrush(Color.FromArgb(125, 0, 40, 195)), position.X, position.Y, size.Width, size.Height);
                 }
 
-                if (staticHeights[i] > -1)
-                {
-                    height = staticHeights[i];
-                }
-                else
-                {
-                    // @TODO: Need elements to progress.
-                    // Temporary for testing
-                    height = 100f;
-                }
-
-                for (int j = 0; j < staticWidths[i].Length; j++)
-                {
-                    if (staticWidths[i][j] > -1)
-                    {
-                        if (currentRow == i && currentColumn == j)
-                        {
-                            g.FillRectangle(new SolidBrush(Color.FromArgb(125, 0, 40, 195)), startX + offsetX, startY, staticWidths[i][j], height);
-                        }
-
-                        g.DrawRectangle(mainBorderPen, startX + offsetX, startY, staticWidths[i][j], height);
-
-                        offsetX += staticWidths[i][j];
-                    }
-                    else
-                    {
-                        var perc = grid[i][j];
-                        var width = perc * remWidth;
-
-                        if (currentRow == i && currentColumn == j)
-                        {
-                            g.FillRectangle(new SolidBrush(Color.FromArgb(125, 0, 40, 195)), startX + offsetX, startY, width, height);
-                        }
-
-                        g.DrawRectangle(mainBorderPen, startX + offsetX, startY, width, height);
-                    }
-                }
-
-                startY += height;
+                g.DrawRectangle(mainBorderPen, position.X, position.Y, size.Width, size.Height);
             }
         }
 
@@ -427,6 +385,12 @@ namespace StoryDev.Components
                     fixedWidthToolStripMenuItem.Enabled =
                     len > 1;
             }
+        }
+
+        private void addColumnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddColumn(currentRow, currentColumn == 0 ? -1 : currentColumn);
+            RecalculateCells();
         }
     }
 }

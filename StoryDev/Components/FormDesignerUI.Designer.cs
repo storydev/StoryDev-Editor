@@ -65,6 +65,7 @@ namespace StoryDev.Components
             this.addColumnToolStripMenuItem.Name = "addColumnToolStripMenuItem";
             this.addColumnToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
             this.addColumnToolStripMenuItem.Text = "Add Column";
+            this.addColumnToolStripMenuItem.Click += new System.EventHandler(this.addColumnToolStripMenuItem_Click);
             // 
             // addRowBeforeToolStripMenuItem
             // 
