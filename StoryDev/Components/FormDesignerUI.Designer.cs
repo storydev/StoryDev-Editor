@@ -35,12 +35,12 @@ namespace StoryDev.Components
             this.addRowBeforeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addRowAfterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.insertComponentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.percentageWidthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.txtPercentageWidth = new System.Windows.Forms.ToolStripTextBox();
             this.fixedWidthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtFixedWidth = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.insertComponentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,23 +70,19 @@ namespace StoryDev.Components
             this.addRowBeforeToolStripMenuItem.Name = "addRowBeforeToolStripMenuItem";
             this.addRowBeforeToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
             this.addRowBeforeToolStripMenuItem.Text = "Add Row Before";
+            this.addRowBeforeToolStripMenuItem.Click += new System.EventHandler(this.addRowBeforeToolStripMenuItem_Click);
             // 
             // addRowAfterToolStripMenuItem
             // 
             this.addRowAfterToolStripMenuItem.Name = "addRowAfterToolStripMenuItem";
             this.addRowAfterToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
             this.addRowAfterToolStripMenuItem.Text = "Add Row After";
+            this.addRowAfterToolStripMenuItem.Click += new System.EventHandler(this.addRowAfterToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(237, 6);
-            // 
-            // insertComponentToolStripMenuItem
-            // 
-            this.insertComponentToolStripMenuItem.Name = "insertComponentToolStripMenuItem";
-            this.insertComponentToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
-            this.insertComponentToolStripMenuItem.Text = "Insert Component...";
             // 
             // percentageWidthToolStripMenuItem
             // 
@@ -98,11 +94,6 @@ namespace StoryDev.Components
             this.percentageWidthToolStripMenuItem.Name = "percentageWidthToolStripMenuItem";
             this.percentageWidthToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
             this.percentageWidthToolStripMenuItem.Text = "Percentage Width";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(237, 6);
             // 
             // txtPercentageWidth
             // 
@@ -125,10 +116,22 @@ namespace StoryDev.Components
             this.txtFixedWidth.Name = "txtFixedWidth";
             this.txtFixedWidth.Size = new System.Drawing.Size(100, 31);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(237, 6);
+            // 
+            // insertComponentToolStripMenuItem
+            // 
+            this.insertComponentToolStripMenuItem.Name = "insertComponentToolStripMenuItem";
+            this.insertComponentToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
+            this.insertComponentToolStripMenuItem.Text = "Insert Component...";
+            // 
             // FormDesignerUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ContextMenuStrip = this.cmsMain;
             this.Name = "FormDesignerUI";
             this.Size = new System.Drawing.Size(485, 345);
             this.cmsMain.ResumeLayout(false);

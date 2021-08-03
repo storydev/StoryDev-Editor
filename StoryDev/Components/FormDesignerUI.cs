@@ -151,6 +151,55 @@ namespace StoryDev.Components
             Invalidate();
         }
 
+        private void AddRow(int row = -1, bool before = false)
+        {
+            var tempRows = staticHeights;
+            var tempGridRows = grid;
+            var tempWidthRows = staticWidths;
+
+            var newRows = new int[tempRows.Length + 1];
+            var newGridRows = new float[tempGridRows.Length + 1][];
+            var newWidthRows = new int[tempWidthRows.Length + 1][];
+
+            var offset = 0;
+            for (int i = 0; i < newRows.Length; i++)
+            {
+                if (row > -1)
+                {
+                    if (before && row == i + 1)
+                    {
+                        offset = 1;
+                        newRows[i] = -1;
+                        newGridRows[i] = new float[1];
+                        newGridRows[i][0] = 1.0f;
+                        newWidthRows[i] = new int[1];
+                        newWidthRows[i][0] = -1;
+                        continue;
+                    }
+                    else if (row == i)
+                    {
+                        offset = 1;
+                        newRows[i] = -1;
+                        newGridRows[i] = new float[1];
+                        newGridRows[i][0] = 1.0f;
+                        newWidthRows[i] = new int[1];
+                        newWidthRows[i][0] = -1;
+                        continue;
+                    }
+                }
+
+                newRows[i] = staticHeights[i - offset];
+                newGridRows[i] = grid[i - offset];
+                newWidthRows[i] = staticWidths[i - offset];
+            }
+
+            staticHeights = newRows;
+            grid = newGridRows;
+            staticWidths = newWidthRows;
+
+            Invalidate();
+        }
+
         private void RecalculateCells()
         {
             if (staticWidths == null)
@@ -221,6 +270,7 @@ namespace StoryDev.Components
                 }
 
                 startX = gapSize;
+                startY += height;
             }
         }
 
@@ -351,6 +401,18 @@ namespace StoryDev.Components
         {
             base.OnResize(e);
 
+            RecalculateCells();
+        }
+
+        private void addRowBeforeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddRow(currentRow, true);
+            RecalculateCells();
+        }
+
+        private void addRowAfterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddRow(currentRow);
             RecalculateCells();
         }
     }
