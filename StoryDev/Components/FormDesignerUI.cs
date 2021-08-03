@@ -415,5 +415,18 @@ namespace StoryDev.Components
             AddRow(currentRow);
             RecalculateCells();
         }
+
+        private void cmsMain_Opening(object sender, CancelEventArgs e)
+        {
+            e.Cancel = currentRow == -1 || currentColumn == -1;
+
+            if (!e.Cancel)
+            {
+                var len = staticWidths[currentRow].Length;
+                percentageWidthToolStripMenuItem.Enabled =
+                    fixedWidthToolStripMenuItem.Enabled =
+                    len > 1;
+            }
+        }
     }
 }

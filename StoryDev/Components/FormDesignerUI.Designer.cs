@@ -57,7 +57,8 @@ namespace StoryDev.Components
             this.toolStripSeparator2,
             this.insertComponentToolStripMenuItem});
             this.cmsMain.Name = "contextMenuStrip1";
-            this.cmsMain.Size = new System.Drawing.Size(241, 208);
+            this.cmsMain.Size = new System.Drawing.Size(241, 241);
+            this.cmsMain.Opening += new System.ComponentModel.CancelEventHandler(this.cmsMain_Opening);
             // 
             // addColumnToolStripMenuItem
             // 
@@ -98,6 +99,7 @@ namespace StoryDev.Components
             // txtPercentageWidth
             // 
             this.txtPercentageWidth.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPercentageWidth.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtPercentageWidth.Name = "txtPercentageWidth";
             this.txtPercentageWidth.Size = new System.Drawing.Size(100, 31);
             // 
@@ -113,6 +115,7 @@ namespace StoryDev.Components
             // txtFixedWidth
             // 
             this.txtFixedWidth.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtFixedWidth.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtFixedWidth.Name = "txtFixedWidth";
             this.txtFixedWidth.Size = new System.Drawing.Size(100, 31);
             // 
