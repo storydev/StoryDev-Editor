@@ -384,6 +384,19 @@ namespace StoryDev.Components
                 percentageWidthToolStripMenuItem.Enabled =
                     fixedWidthToolStripMenuItem.Enabled =
                     len > 1;
+
+                if (staticWidths[currentRow][currentColumn] > -1)
+                {
+                    fixedWidthToolStripMenuItem.Checked = true;
+                    percentageWidthToolStripMenuItem.Checked = false;
+                    txtFixedWidth.Text = "" + staticWidths[currentRow][currentColumn];
+                }
+                else
+                {
+                    fixedWidthToolStripMenuItem.Checked = false;
+                    percentageWidthToolStripMenuItem.Checked = true;
+                    txtPercentageWidth.Text = "" + (grid[currentRow][currentColumn] * 100);
+                }
             }
         }
 
@@ -391,6 +404,76 @@ namespace StoryDev.Components
         {
             AddColumn(currentRow, currentColumn == 0 ? -1 : currentColumn);
             RecalculateCells();
+        }
+
+        private void txtPercentageWidth_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (int.TryParse(txtPercentageWidth.Text, out int result))
+                {
+                    float percentage = (float)result / (float)100;
+                    
+                    fixedWidthToolStripMenuItem.Checked = false;
+                    percentageWidthToolStripMenuItem.Checked = true;
+
+                    grid[currentRow][currentColumn] = percentage;
+
+                    RecalculateCells();
+                    Invalidate();
+
+                    cmsMain.Hide();
+                    txtPercentageWidth.Text = "";
+                }
+                else
+                {
+                    MessageBox.Show("You must enter a valid numerical value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void evenDistributionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var len = grid[currentRow].Length;
+            var fixedNum = 0;
+            for (int i = 0; i < len; i++)
+            {
+                if (staticWidths[currentRow][i] > -1)
+                {
+                    fixedNum++;
+                }
+            }
+
+            len -= fixedNum;
+            float percentage = (float)Math.Round(1.0f / (float)len, 2);
+
+            for (int i = 0; i < grid[currentRow].Length; i++)
+            {
+                grid[currentRow][i] = percentage;
+            }
+
+            RecalculateCells();
+            Invalidate();
+        }
+
+        private void txtFixedWidth_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (int.TryParse(txtFixedWidth.Text, out int result))
+                {
+                    fixedWidthToolStripMenuItem.Checked = true;
+                    percentageWidthToolStripMenuItem.Checked = false;
+
+                    staticWidths[currentRow][currentColumn] = result;
+
+                    RecalculateCells();
+                    Invalidate();
+
+                    cmsMain.Hide();
+                    txtFixedWidth.Text = "";
+                }
+            }
         }
     }
 }

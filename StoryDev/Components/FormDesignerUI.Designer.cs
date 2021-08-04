@@ -37,6 +37,8 @@ namespace StoryDev.Components
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.percentageWidthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtPercentageWidth = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.evenDistributionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fixedWidthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtFixedWidth = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -57,34 +59,34 @@ namespace StoryDev.Components
             this.toolStripSeparator2,
             this.insertComponentToolStripMenuItem});
             this.cmsMain.Name = "contextMenuStrip1";
-            this.cmsMain.Size = new System.Drawing.Size(241, 241);
+            this.cmsMain.Size = new System.Drawing.Size(339, 208);
             this.cmsMain.Opening += new System.ComponentModel.CancelEventHandler(this.cmsMain_Opening);
             // 
             // addColumnToolStripMenuItem
             // 
             this.addColumnToolStripMenuItem.Name = "addColumnToolStripMenuItem";
-            this.addColumnToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
+            this.addColumnToolStripMenuItem.Size = new System.Drawing.Size(338, 32);
             this.addColumnToolStripMenuItem.Text = "Add Column";
             this.addColumnToolStripMenuItem.Click += new System.EventHandler(this.addColumnToolStripMenuItem_Click);
             // 
             // addRowBeforeToolStripMenuItem
             // 
             this.addRowBeforeToolStripMenuItem.Name = "addRowBeforeToolStripMenuItem";
-            this.addRowBeforeToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
+            this.addRowBeforeToolStripMenuItem.Size = new System.Drawing.Size(338, 32);
             this.addRowBeforeToolStripMenuItem.Text = "Add Row Before";
             this.addRowBeforeToolStripMenuItem.Click += new System.EventHandler(this.addRowBeforeToolStripMenuItem_Click);
             // 
             // addRowAfterToolStripMenuItem
             // 
             this.addRowAfterToolStripMenuItem.Name = "addRowAfterToolStripMenuItem";
-            this.addRowAfterToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
+            this.addRowAfterToolStripMenuItem.Size = new System.Drawing.Size(338, 32);
             this.addRowAfterToolStripMenuItem.Text = "Add Row After";
             this.addRowAfterToolStripMenuItem.Click += new System.EventHandler(this.addRowAfterToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(237, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(335, 6);
             // 
             // percentageWidthToolStripMenuItem
             // 
@@ -92,9 +94,11 @@ namespace StoryDev.Components
             this.percentageWidthToolStripMenuItem.CheckOnClick = true;
             this.percentageWidthToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.percentageWidthToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.txtPercentageWidth});
+            this.txtPercentageWidth,
+            this.toolStripSeparator3,
+            this.evenDistributionToolStripMenuItem});
             this.percentageWidthToolStripMenuItem.Name = "percentageWidthToolStripMenuItem";
-            this.percentageWidthToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
+            this.percentageWidthToolStripMenuItem.Size = new System.Drawing.Size(338, 32);
             this.percentageWidthToolStripMenuItem.Text = "Percentage Width";
             // 
             // txtPercentageWidth
@@ -103,6 +107,19 @@ namespace StoryDev.Components
             this.txtPercentageWidth.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtPercentageWidth.Name = "txtPercentageWidth";
             this.txtPercentageWidth.Size = new System.Drawing.Size(100, 31);
+            this.txtPercentageWidth.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPercentageWidth_KeyUp);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(267, 6);
+            // 
+            // evenDistributionToolStripMenuItem
+            // 
+            this.evenDistributionToolStripMenuItem.Name = "evenDistributionToolStripMenuItem";
+            this.evenDistributionToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.evenDistributionToolStripMenuItem.Text = "Even Distribution";
+            this.evenDistributionToolStripMenuItem.Click += new System.EventHandler(this.evenDistributionToolStripMenuItem_Click);
             // 
             // fixedWidthToolStripMenuItem
             // 
@@ -110,7 +127,7 @@ namespace StoryDev.Components
             this.fixedWidthToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.txtFixedWidth});
             this.fixedWidthToolStripMenuItem.Name = "fixedWidthToolStripMenuItem";
-            this.fixedWidthToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
+            this.fixedWidthToolStripMenuItem.Size = new System.Drawing.Size(338, 32);
             this.fixedWidthToolStripMenuItem.Text = "Fixed Width";
             // 
             // txtFixedWidth
@@ -119,16 +136,18 @@ namespace StoryDev.Components
             this.txtFixedWidth.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtFixedWidth.Name = "txtFixedWidth";
             this.txtFixedWidth.Size = new System.Drawing.Size(100, 31);
+            this.txtFixedWidth.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtFixedWidth_KeyUp);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(237, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(335, 6);
             // 
             // insertComponentToolStripMenuItem
             // 
             this.insertComponentToolStripMenuItem.Name = "insertComponentToolStripMenuItem";
-            this.insertComponentToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
+            this.insertComponentToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Space)));
+            this.insertComponentToolStripMenuItem.Size = new System.Drawing.Size(338, 32);
             this.insertComponentToolStripMenuItem.Text = "Insert Component...";
             // 
             // FormDesignerUI
@@ -156,5 +175,7 @@ namespace StoryDev.Components
         private System.Windows.Forms.ToolStripMenuItem fixedWidthToolStripMenuItem;
         private System.Windows.Forms.ToolStripTextBox txtFixedWidth;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem evenDistributionToolStripMenuItem;
     }
 }
