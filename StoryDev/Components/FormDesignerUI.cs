@@ -418,6 +418,7 @@ namespace StoryDev.Components
                     percentageWidthToolStripMenuItem.Checked = true;
 
                     grid[currentRow][currentColumn] = percentage;
+                    staticWidths[currentRow][currentColumn] = -1;
 
                     RecalculateCells();
                     Invalidate();
