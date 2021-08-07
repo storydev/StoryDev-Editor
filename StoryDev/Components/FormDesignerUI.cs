@@ -16,7 +16,7 @@ namespace StoryDev.Components
         private int mouseX;
         private int mouseY;
 
-
+        private Pen elementHighlightPen;
         private Pen mainBorderPen;
 
         private float gutter = 5;
@@ -29,9 +29,17 @@ namespace StoryDev.Components
         private int currentColumn;
         private int currentRow;
 
+        private Font elementFont;
+        private float elementLabelHeight;
+        private float elementHeight;
+
         private PointF[] cells;
         private SizeF[] cellSizes;
         private Point[] cellLocations;
+
+        private ElementType[] elementTypes;
+        private Point[] elementLocations;
+        private bool recalcElements = false;
 
         public FormDesignerUI()
         {
@@ -41,6 +49,10 @@ namespace StoryDev.Components
 
             mainBorderPen = new Pen(Color.FromArgb(12, 73, 158));
             mainBorderPen.Width = gutter;
+
+            elementHighlightPen = new Pen(Color.FromArgb(190, 211, 27), 2f);
+
+            elementFont = new Font("Verdana", 12.0f);
 
             grid = new float[1][];
             grid[0] = new float[1];
@@ -53,7 +65,36 @@ namespace StoryDev.Components
             staticHeights = new int[1];
             staticHeights[0] = -1;
 
+            elementTypes = new ElementType[0];
+            elementLocations = new Point[0];
+
             RecalculateCells();
+        }
+
+        private void AddElement(ElementType type, int cellX, int cellY)
+        {
+            var tempElements = elementTypes;
+            var tempElementLocations = elementLocations;
+
+            var newElements = new ElementType[tempElements.Length + 1];
+            var newElementLocations = new Point[tempElementLocations.Length + 1];
+
+            for (int i = 0; i < newElements.Length; i++)
+            {
+                if (i == newElements.Length - 1)
+                {
+                    newElements[i] = type;
+                    newElementLocations[i] = new Point(cellX, cellY);
+                }
+                else
+                {
+                    newElements[i] = tempElements[i];
+                    newElementLocations[i] = tempElementLocations[i];
+                }
+            }
+
+            elementTypes = newElements;
+            elementLocations = newElementLocations;
         }
 
         private void AddColumn(int row, int column = -1)
@@ -94,7 +135,7 @@ namespace StoryDev.Components
                     // When adding a column, this is the location we add it to.
                     // Check if the width at this location in the previous state
                     // is -1 or greater.
-                    //
+                    // 
 
                     if (width > -1)
                     {
@@ -246,9 +287,29 @@ namespace StoryDev.Components
                 }
                 else
                 {
-                    // @TODO: Need elements to progress.
-                    // Temporary for testing
-                    height = 100f;
+                    var autoHeights = new int[grid[i].Length];
+                    var padding = 10;
+
+                    for (int e = 0; e < elementTypes.Length; e++)
+                    {
+                        var location = elementLocations[e];
+                        if (location.Y == i)
+                        {
+                            autoHeights[location.X] += GetHeightByType(elementTypes[e]) + padding;
+                        }
+                    }
+
+                    var maxHeight = 0;
+                    foreach (var auto in autoHeights)
+                    {
+                        if (maxHeight < auto)
+                            maxHeight = auto;
+                    }
+
+                    if (maxHeight < 100f)
+                        height = 100f;
+                    else
+                        height = maxHeight + padding;
                 }
 
                 // calculate remainder width
@@ -304,12 +365,63 @@ namespace StoryDev.Components
             currentColumn = -1;
         }
 
+        private int GetCellIndexByLocation(int x, int y)
+        {
+            for (int i = 0; i < cellLocations.Length; i++)
+            {
+                if (cellLocations[i].X == x && cellLocations[i].Y == y)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
         protected override void OnPaint(PaintEventArgs e)
         {
             var g = e.Graphics;
 
+            if (elementLabelHeight == 0)
+            {
+                elementLabelHeight = g.MeasureString("M", elementFont).Height;
+            }
+
             g.Clear(Color.White);
-            
+
+            var cellCompleteSizes = new float[grid.Length][];
+            for (int i = 0; i < grid.Length; i++)
+            {
+                cellCompleteSizes[i] = new float[grid[i].Length];
+            }
+
+            var startingElements = new float[grid.Length][];
+            // draw the elements
+            for (int i = 0; i < elementTypes.Length; i++)
+            {
+                var type = elementTypes[i];
+                var location = elementLocations[i];
+                var padding = 10;
+
+                var cellIndex = GetCellIndexByLocation(location.X, location.Y);
+                if (cellIndex > -1)
+                {
+                    if (startingElements[location.Y] == null)
+                    {
+                        startingElements[location.Y] = new float[grid[location.Y].Length];
+                    }
+
+                    var cellPosition = cells[cellIndex];
+                    var cellSize = cellSizes[cellIndex];
+                    var height = GetHeightByType(type);
+
+                    var startY = startingElements[location.Y][location.X];
+
+                    g.DrawRectangle(elementHighlightPen, cellPosition.X + padding, cellPosition.Y + padding + startY, cellSize.Width - (padding * 2), height);
+
+                    startingElements[location.Y][location.X] += height + padding;
+                }
+            }
+
             // draw the rows
             for (int i = 0; i < cells.Length; i++)
             {
@@ -324,6 +436,8 @@ namespace StoryDev.Components
 
                 g.DrawRectangle(mainBorderPen, position.X, position.Y, size.Width, size.Height);
             }
+
+            
         }
 
         protected override void OnMouseClick(MouseEventArgs e)
@@ -476,5 +590,52 @@ namespace StoryDev.Components
                 }
             }
         }
+
+        private enum ElementType
+        {
+            _TEST,
+            // Basic Elements
+            InputSingle,
+            InputMultiline,
+            InputCode,
+            Button,
+            CheckBox,
+            CheckList,
+            ComboBox,
+            Numeric,
+            SliderH,
+            SliderV,
+            ListBox,
+            DatePicker,
+            Label,
+            IconSelector,
+            // Advanced Elements
+            TreeView,
+            ListView,
+            SingleLink,
+            LinkedDetailedView,
+        }
+
+        private int GetHeightByType(ElementType type)
+        {
+            switch (type)
+            {
+                case ElementType._TEST:
+                    return (int)(elementLabelHeight + elementHeight);
+                default:
+                    break;
+            }
+
+            return 0;
+        }
+
+        private void insertComponentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddElement(ElementType._TEST, currentColumn, currentRow);
+            RecalculateCells();
+            Invalidate();
+        }
     }
+
+    
 }

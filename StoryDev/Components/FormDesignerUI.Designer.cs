@@ -59,7 +59,7 @@ namespace StoryDev.Components
             this.toolStripSeparator2,
             this.insertComponentToolStripMenuItem});
             this.cmsMain.Name = "contextMenuStrip1";
-            this.cmsMain.Size = new System.Drawing.Size(339, 208);
+            this.cmsMain.Size = new System.Drawing.Size(339, 241);
             this.cmsMain.Opening += new System.ComponentModel.CancelEventHandler(this.cmsMain_Opening);
             // 
             // addColumnToolStripMenuItem
@@ -112,12 +112,12 @@ namespace StoryDev.Components
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(267, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(246, 6);
             // 
             // evenDistributionToolStripMenuItem
             // 
             this.evenDistributionToolStripMenuItem.Name = "evenDistributionToolStripMenuItem";
-            this.evenDistributionToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.evenDistributionToolStripMenuItem.Size = new System.Drawing.Size(249, 34);
             this.evenDistributionToolStripMenuItem.Text = "Even Distribution";
             this.evenDistributionToolStripMenuItem.Click += new System.EventHandler(this.evenDistributionToolStripMenuItem_Click);
             // 
@@ -149,6 +149,7 @@ namespace StoryDev.Components
             this.insertComponentToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Space)));
             this.insertComponentToolStripMenuItem.Size = new System.Drawing.Size(338, 32);
             this.insertComponentToolStripMenuItem.Text = "Insert Component...";
+            this.insertComponentToolStripMenuItem.Click += new System.EventHandler(this.insertComponentToolStripMenuItem_Click);
             // 
             // FormDesignerUI
             // 
