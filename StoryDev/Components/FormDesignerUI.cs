@@ -625,13 +625,14 @@ namespace StoryDev.Components
         CheckList,
         ComboBox,
         Numeric,
-        ListBox,
         DatePicker,
         Label,
         IconSelector,
         // Advanced Elements
+        ListBox,
         SingleLink,
         LinkedDetailedView,
+        TabControl
     }
 
 

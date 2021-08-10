@@ -1219,6 +1219,9 @@ namespace StoryDev
                 case ElementType.SingleLink:
                     result = "Single Link";
                     break;
+                case ElementType.TabControl:
+                    result = "Tab Control";
+                    break;
                 default:
                     result = "";
                     break;
@@ -1390,6 +1393,18 @@ namespace StoryDev
             {
                 var comp = new FormComponent();
                 comp.FieldType = (int)ElementType.SingleLink;
+                comp.DefaultWidth = -1;
+                comp.DefaultHeight = -1;
+                comp.LabelPosition = (int)LabelPosition.Top;
+                result.Add(comp);
+            }
+
+            //
+            // Tab Control Component
+            //
+            {
+                var comp = new FormComponent();
+                comp.FieldType = (int)ElementType.TabControl;
                 comp.DefaultWidth = -1;
                 comp.DefaultHeight = -1;
                 comp.LabelPosition = (int)LabelPosition.Top;
