@@ -591,31 +591,6 @@ namespace StoryDev.Components
             }
         }
 
-        private enum ElementType
-        {
-            _TEST,
-            // Basic Elements
-            InputSingle,
-            InputMultiline,
-            InputCode,
-            Button,
-            CheckBox,
-            CheckList,
-            ComboBox,
-            Numeric,
-            SliderH,
-            SliderV,
-            ListBox,
-            DatePicker,
-            Label,
-            IconSelector,
-            // Advanced Elements
-            TreeView,
-            ListView,
-            SingleLink,
-            LinkedDetailedView,
-        }
-
         private int GetHeightByType(ElementType type)
         {
             switch (type)
@@ -637,5 +612,27 @@ namespace StoryDev.Components
         }
     }
 
-    
+    enum ElementType
+    {
+        _TEST,
+        // Basic Elements
+        InputSingle,
+        InputMultiline,
+        InputCode,
+        Button,
+        CheckBox,
+        CheckList,
+        ComboBox,
+        Numeric,
+        ListBox,
+        DatePicker,
+        Label,
+        IconSelector,
+        // Advanced Elements
+        ListView,
+        SingleLink,
+        LinkedDetailedView,
+    }
+
+
 }

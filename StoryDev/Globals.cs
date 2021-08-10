@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Security;
 using System.IO;
 
+using StoryDev.Components;
 using StoryDev.Data;
 using StoryDev.Simulation;
 using Newtonsoft.Json;
@@ -95,6 +96,15 @@ namespace StoryDev
         RangedCombat,
         Misc
     }
+
+    enum LabelPosition
+    { 
+        Top,
+        Left,
+        Right,
+        Bottom
+    }
+
 
     class Globals
     {
@@ -1155,6 +1165,253 @@ namespace StoryDev
             {
                 JournalMapLinks = new List<JournalMapLink>();
             }
+        }
+
+        //
+        // Misc Utilities
+        //
+
+        public static string GetFormFieldComponentName(ElementType type)
+        {
+            string result;
+
+            switch (type)
+            {
+                case ElementType.Button:
+                    result = "Button";
+                    break;
+                case ElementType.CheckBox:
+                    result = "Check Box";
+                    break;
+                case ElementType.CheckList:
+                    result = "Check List";
+                    break;
+                case ElementType.ComboBox:
+                    result = "Combo Box";
+                    break;
+                case ElementType.DatePicker:
+                    result = "Date Picker";
+                    break;
+                case ElementType.IconSelector:
+                    result = "Icon Selector";
+                    break;
+                case ElementType.InputCode:
+                    result = "Input Code";
+                    break;
+                case ElementType.InputMultiline:
+                    result = "Input Multiline";
+                    break;
+                case ElementType.InputSingle:
+                    result = "Input Single";
+                    break;
+                case ElementType.Label:
+                    result = "Label";
+                    break;
+                case ElementType.LinkedDetailedView:
+                    result = "Linked Detailed View";
+                    break;
+                case ElementType.ListBox:
+                    result = "List Box";
+                    break;
+                case ElementType.ListView:
+                    result = "List View";
+                    break;
+                case ElementType.Numeric:
+                    result = "Numeric";
+                    break;
+                case ElementType.SingleLink:
+                    result = "Single Link";
+                    break;
+                default:
+                    result = "";
+                    break;
+            }
+
+            return result;
+        }
+
+        public static List<FormComponent> GetDefaultComponentSettings()
+        {
+            var result = new List<FormComponent>();
+
+            //
+            // Button Component
+            //
+            {
+                var comp = new FormComponent();
+                comp.FieldType = (int)ElementType.Button;
+                comp.DefaultWidth = -1;
+                comp.DefaultHeight = -1;
+                result.Add(comp);
+            }
+
+            //
+            // CheckBox Component
+            //
+            {
+                var comp = new FormComponent();
+                comp.FieldType = (int)ElementType.CheckBox;
+                comp.DefaultWidth = -1;
+                comp.DefaultHeight = -1;
+                result.Add(comp);
+            }
+
+            //
+            // Check List Component
+            //
+            {
+                var comp = new FormComponent();
+                comp.FieldType = (int)ElementType.CheckList;
+                comp.DefaultWidth = -1;
+                comp.DefaultHeight = 250;
+                comp.LabelPosition = (int)LabelPosition.Top;
+                result.Add(comp);
+            }
+
+            //
+            // Combo Box Component
+            //
+            {
+                var comp = new FormComponent();
+                comp.FieldType = (int)ElementType.ComboBox;
+                comp.DefaultWidth = -1;
+                comp.DefaultHeight = -1;
+                comp.LabelPosition = (int)LabelPosition.Top;
+                result.Add(comp);
+            }
+
+            //
+            // Date Picker Component
+            //
+            {
+                var comp = new FormComponent();
+                comp.FieldType = (int)ElementType.DatePicker;
+                comp.DefaultWidth = -1;
+                comp.DefaultHeight = -1;
+                comp.LabelPosition = (int)LabelPosition.Top;
+                result.Add(comp);
+            }
+
+            //
+            // Icon Selector Component
+            //
+            {
+                var comp = new FormComponent();
+                comp.FieldType = (int)ElementType.IconSelector;
+                comp.DefaultWidth = 64;
+                comp.DefaultHeight = 64;
+                comp.LabelPosition = (int)LabelPosition.Top;
+                result.Add(comp);
+            }
+
+            //
+            // Input Code Component
+            //
+            {
+                var comp = new FormComponent();
+                comp.FieldType = (int)ElementType.InputCode;
+                comp.DefaultWidth = -1;
+                comp.DefaultHeight = 500;
+                comp.LabelPosition = (int)LabelPosition.Top;
+                result.Add(comp);
+            }
+
+            //
+            // Input Multiline Component
+            //
+            {
+                var comp = new FormComponent();
+                comp.FieldType = (int)ElementType.InputMultiline;
+                comp.DefaultWidth = -1;
+                comp.DefaultHeight = 250;
+                comp.LabelPosition = (int)LabelPosition.Top;
+                result.Add(comp);
+            }
+
+            //
+            // Input Single Component
+            //
+            {
+                var comp = new FormComponent();
+                comp.FieldType = (int)ElementType.InputSingle;
+                comp.DefaultWidth = -1;
+                comp.DefaultHeight = -1;
+                comp.LabelPosition = (int)LabelPosition.Top;
+                result.Add(comp);
+            }
+
+            //
+            // Label Component
+            //
+            {
+                var comp = new FormComponent();
+                comp.FieldType = (int)ElementType.Label;
+                comp.DefaultWidth = -1;
+                comp.DefaultHeight = -1;
+                result.Add(comp);
+            }
+
+            //
+            // Linked Detailed View Component
+            //
+            {
+                var comp = new FormComponent();
+                comp.FieldType = (int)ElementType.LinkedDetailedView;
+                comp.DefaultWidth = -1;
+                comp.DefaultHeight = 300;
+                comp.LabelPosition = (int)LabelPosition.Top;
+                result.Add(comp);
+            }
+
+            //
+            // List Box Component
+            //
+            {
+                var comp = new FormComponent();
+                comp.FieldType = (int)ElementType.ListBox;
+                comp.DefaultWidth = -1;
+                comp.DefaultHeight = 250;
+                comp.LabelPosition = (int)LabelPosition.Top;
+                result.Add(comp);
+            }
+
+            //
+            // List View Component
+            //
+            {
+                var comp = new FormComponent();
+                comp.FieldType = (int)ElementType.ListView;
+                comp.DefaultWidth = -1;
+                comp.DefaultHeight = 300;
+                comp.LabelPosition = (int)LabelPosition.Top;
+                result.Add(comp);
+            }
+
+            //
+            // Numeric Component
+            //
+            {
+                var comp = new FormComponent();
+                comp.FieldType = (int)ElementType.Numeric;
+                comp.DefaultWidth = -1;
+                comp.DefaultHeight = -1;
+                comp.LabelPosition = (int)LabelPosition.Top;
+                result.Add(comp);
+            }
+
+            //
+            // Single Link Component
+            //
+            {
+                var comp = new FormComponent();
+                comp.FieldType = (int)ElementType.SingleLink;
+                comp.DefaultWidth = -1;
+                comp.DefaultHeight = -1;
+                comp.LabelPosition = (int)LabelPosition.Top;
+                result.Add(comp);
+            }
+
+            return result;
         }
 
     }

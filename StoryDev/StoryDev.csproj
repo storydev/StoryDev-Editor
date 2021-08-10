@@ -582,6 +582,8 @@
     <Compile Include="Data\DBFilter.cs" />
     <Compile Include="Data\DBObject.cs" />
     <Compile Include="Data\DBOperator.cs" />
+    <Compile Include="Data\FormComponent.cs" />
+    <Compile Include="Data\FormProperties.cs" />
     <Compile Include="Data\GlobalSettings.cs" />
     <Compile Include="Data\IconSets.cs" />
     <Compile Include="Data\Identifiers.cs" />
@@ -613,11 +615,23 @@
     <Compile Include="Forms\DataModuleDesignerForm.Designer.cs">
       <DependentUpon>DataModuleDesignerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DataModuleFormPropertiesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DataModuleFormPropertiesForm.Designer.cs">
+      <DependentUpon>DataModuleFormPropertiesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DynamicsAttitudeForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\DynamicsAttitudeForm.Designer.cs">
       <DependentUpon>DynamicsAttitudeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EditDataModuleComponentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EditDataModuleComponentForm.Designer.cs">
+      <DependentUpon>EditDataModuleComponentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\VariableChangesForm.cs">
       <SubType>Form</SubType>
@@ -1048,8 +1062,14 @@
     <EmbeddedResource Include="Forms\DataModuleDesignerForm.resx">
       <DependentUpon>DataModuleDesignerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DataModuleFormPropertiesForm.resx">
+      <DependentUpon>DataModuleFormPropertiesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DynamicsAttitudeForm.resx">
       <DependentUpon>DynamicsAttitudeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EditDataModuleComponentForm.resx">
+      <DependentUpon>EditDataModuleComponentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\VariableChangesForm.resx">
       <DependentUpon>VariableChangesForm.cs</DependentUpon>

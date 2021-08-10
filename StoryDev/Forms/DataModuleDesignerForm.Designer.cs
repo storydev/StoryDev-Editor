@@ -32,14 +32,19 @@ namespace StoryDev.Forms
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataModuleDesignerForm));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnEditSettings = new System.Windows.Forms.Button();
+            this.txtInstanceName = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtFormName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.tcMain = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.editor = new StoryDev.Components.CodeEditor();
             this.Designer = new StoryDev.Components.FormDesignerUI();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.editor = new StoryDev.Components.CodeEditor();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -59,6 +64,11 @@ namespace StoryDev.Forms
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.btnEditSettings);
+            this.splitContainer1.Panel1.Controls.Add(this.txtInstanceName);
+            this.splitContainer1.Panel1.Controls.Add(this.label3);
+            this.splitContainer1.Panel1.Controls.Add(this.txtFormName);
+            this.splitContainer1.Panel1.Controls.Add(this.label2);
             this.splitContainer1.Panel1.Controls.Add(this.panel1);
             // 
             // splitContainer1.Panel2
@@ -67,6 +77,52 @@ namespace StoryDev.Forms
             this.splitContainer1.Size = new System.Drawing.Size(1318, 952);
             this.splitContainer1.SplitterDistance = 303;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // btnEditSettings
+            // 
+            this.btnEditSettings.Location = new System.Drawing.Point(25, 167);
+            this.btnEditSettings.Name = "btnEditSettings";
+            this.btnEditSettings.Size = new System.Drawing.Size(145, 33);
+            this.btnEditSettings.TabIndex = 5;
+            this.btnEditSettings.Text = "Edit Settings";
+            this.btnEditSettings.UseVisualStyleBackColor = true;
+            this.btnEditSettings.Click += new System.EventHandler(this.btnEditSettings_Click);
+            // 
+            // txtInstanceName
+            // 
+            this.txtInstanceName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtInstanceName.Location = new System.Drawing.Point(25, 135);
+            this.txtInstanceName.Name = "txtInstanceName";
+            this.txtInstanceName.Size = new System.Drawing.Size(259, 26);
+            this.txtInstanceName.TabIndex = 4;
+            this.txtInstanceName.Leave += new System.EventHandler(this.txtInstanceName_Leave);
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(25, 109);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(259, 23);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Instance Name:";
+            // 
+            // txtFormName
+            // 
+            this.txtFormName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFormName.Location = new System.Drawing.Point(25, 80);
+            this.txtFormName.Name = "txtFormName";
+            this.txtFormName.Size = new System.Drawing.Size(259, 26);
+            this.txtFormName.TabIndex = 2;
+            this.txtFormName.TextChanged += new System.EventHandler(this.txtFormName_TextChanged);
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(25, 54);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(259, 23);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Form Name:";
             // 
             // panel1
             // 
@@ -79,6 +135,7 @@ namespace StoryDev.Forms
             // 
             // label1
             // 
+            this.label1.BackColor = System.Drawing.Color.SandyBrown;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(0, 0);
@@ -112,6 +169,14 @@ namespace StoryDev.Forms
             this.tabPage1.Text = "Designer";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // Designer
+            // 
+            this.Designer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Designer.Location = new System.Drawing.Point(3, 3);
+            this.Designer.Name = "Designer";
+            this.Designer.Size = new System.Drawing.Size(997, 913);
+            this.Designer.TabIndex = 0;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.editor);
@@ -122,16 +187,6 @@ namespace StoryDev.Forms
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Code";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 4);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1003, 919);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Preview";
-            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // editor
             // 
@@ -156,7 +211,6 @@ namespace StoryDev.Forms
             this.editor.DelayedTextChangedInterval = 170;
             this.editor.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.editor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.editor.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.editor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
             this.editor.IsReplaceMode = false;
             this.editor.Location = new System.Drawing.Point(3, 3);
@@ -170,13 +224,15 @@ namespace StoryDev.Forms
             this.editor.Text = "codeEditor1";
             this.editor.Zoom = 100;
             // 
-            // Designer
+            // tabPage3
             // 
-            this.Designer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Designer.Location = new System.Drawing.Point(3, 3);
-            this.Designer.Name = "Designer";
-            this.Designer.Size = new System.Drawing.Size(997, 913);
-            this.Designer.TabIndex = 0;
+            this.tabPage3.Location = new System.Drawing.Point(4, 4);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(1003, 919);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Preview";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // DataModuleDesignerForm
             // 
@@ -190,6 +246,7 @@ namespace StoryDev.Forms
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Data Module Designer";
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
@@ -209,9 +266,14 @@ namespace StoryDev.Forms
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private Components.CodeEditor editor;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabPage tabPage3;
         private Components.FormDesignerUI Designer;
+        private System.Windows.Forms.TextBox txtInstanceName;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtFormName;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnEditSettings;
     }
 }

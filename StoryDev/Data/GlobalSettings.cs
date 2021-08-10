@@ -10,10 +10,12 @@ namespace StoryDev.Data
     {
 
         public Dictionary<string, int> ArtefactContextNames;
+        public List<FormComponent> FormComponents;
 
         public GlobalSettings()
         {
             ArtefactContextNames = new Dictionary<string, int>();
+            FormComponents = new List<FormComponent>();
         }
 
     }
