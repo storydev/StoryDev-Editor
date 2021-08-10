@@ -39,7 +39,6 @@ namespace StoryDev.Components
 
         private ElementType[] elementTypes;
         private Point[] elementLocations;
-        private bool recalcElements = false;
 
         public FormDesignerUI()
         {
@@ -70,6 +69,8 @@ namespace StoryDev.Components
 
             RecalculateCells();
         }
+
+
 
         private void AddElement(ElementType type, int cellX, int cellY)
         {
@@ -629,7 +630,6 @@ namespace StoryDev.Components
         Label,
         IconSelector,
         // Advanced Elements
-        ListView,
         SingleLink,
         LinkedDetailedView,
     }

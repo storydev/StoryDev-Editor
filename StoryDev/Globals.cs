@@ -1213,9 +1213,6 @@ namespace StoryDev
                 case ElementType.ListBox:
                     result = "List Box";
                     break;
-                case ElementType.ListView:
-                    result = "List View";
-                    break;
                 case ElementType.Numeric:
                     result = "Numeric";
                     break;
@@ -1371,18 +1368,6 @@ namespace StoryDev
                 comp.FieldType = (int)ElementType.ListBox;
                 comp.DefaultWidth = -1;
                 comp.DefaultHeight = 250;
-                comp.LabelPosition = (int)LabelPosition.Top;
-                result.Add(comp);
-            }
-
-            //
-            // List View Component
-            //
-            {
-                var comp = new FormComponent();
-                comp.FieldType = (int)ElementType.ListView;
-                comp.DefaultWidth = -1;
-                comp.DefaultHeight = 300;
                 comp.LabelPosition = (int)LabelPosition.Top;
                 result.Add(comp);
             }

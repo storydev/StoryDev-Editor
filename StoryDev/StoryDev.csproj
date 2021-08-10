@@ -603,6 +603,12 @@
     <Compile Include="Data\StoryOrder.cs" />
     <Compile Include="Data\Variable.cs" />
     <Compile Include="Data\VendorItem.cs" />
+    <Compile Include="Forms\AddElementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddElementForm.Designer.cs">
+      <DependentUpon>AddElementForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AddJournalInlineCodeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1055,6 +1061,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Components\VarTrackerUI.resx">
       <DependentUpon>VarTrackerUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddElementForm.resx">
+      <DependentUpon>AddElementForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddJournalInlineCodeForm.resx">
       <DependentUpon>AddJournalInlineCodeForm.cs</DependentUpon>
