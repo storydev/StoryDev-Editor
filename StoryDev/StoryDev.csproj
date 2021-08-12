@@ -487,6 +487,12 @@
     <Compile Include="Components\Data\FilterString.Designer.cs">
       <DependentUpon>FilterString.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\ElementAdditionals\LinkedDetailedAdditional.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\ElementAdditionals\LinkedDetailedAdditional.Designer.cs">
+      <DependentUpon>LinkedDetailedAdditional.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\ElementAdditionals\ListBoxAdditional.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1034,6 +1040,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Components\Data\FilterString.resx">
       <DependentUpon>FilterString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\ElementAdditionals\LinkedDetailedAdditional.resx">
+      <DependentUpon>LinkedDetailedAdditional.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\ElementAdditionals\ListBoxAdditional.resx">
       <DependentUpon>ListBoxAdditional.cs</DependentUpon>

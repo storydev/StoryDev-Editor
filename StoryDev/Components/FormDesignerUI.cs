@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using StoryDev.Forms;
+
 namespace StoryDev.Components
 {
     partial class FormDesignerUI : UserControl
@@ -607,9 +609,13 @@ namespace StoryDev.Components
 
         private void insertComponentToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddElement(ElementType._TEST, currentColumn, currentRow);
-            RecalculateCells();
-            Invalidate();
+            var insertForm = new AddElementForm();
+            if (insertForm.ShowDialog() == DialogResult.OK)
+            {
+                AddElement(ElementType._TEST, currentColumn, currentRow);
+                RecalculateCells();
+                Invalidate();
+            }
         }
     }
 

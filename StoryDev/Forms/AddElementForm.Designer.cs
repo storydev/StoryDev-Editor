@@ -30,106 +30,110 @@ namespace StoryDev.Forms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Basic Components", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Advanced Components", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewItem listViewItem16 = new System.Windows.Forms.ListViewItem("Input Single", 8);
-            System.Windows.Forms.ListViewItem listViewItem17 = new System.Windows.Forms.ListViewItem("Input Multiline", 7);
-            System.Windows.Forms.ListViewItem listViewItem18 = new System.Windows.Forms.ListViewItem("Input Code", 6);
-            System.Windows.Forms.ListViewItem listViewItem19 = new System.Windows.Forms.ListViewItem("Button", 0);
-            System.Windows.Forms.ListViewItem listViewItem20 = new System.Windows.Forms.ListViewItem("Check Box", 1);
-            System.Windows.Forms.ListViewItem listViewItem21 = new System.Windows.Forms.ListViewItem("Check List", 2);
-            System.Windows.Forms.ListViewItem listViewItem22 = new System.Windows.Forms.ListViewItem("Combo Box", 3);
-            System.Windows.Forms.ListViewItem listViewItem23 = new System.Windows.Forms.ListViewItem("Numeric", 12);
-            System.Windows.Forms.ListViewItem listViewItem24 = new System.Windows.Forms.ListViewItem("List Box", 11);
-            System.Windows.Forms.ListViewItem listViewItem25 = new System.Windows.Forms.ListViewItem("Date Picker", 4);
-            System.Windows.Forms.ListViewItem listViewItem26 = new System.Windows.Forms.ListViewItem("Label", 9);
-            System.Windows.Forms.ListViewItem listViewItem27 = new System.Windows.Forms.ListViewItem("Icon Selector", 5);
-            System.Windows.Forms.ListViewItem listViewItem28 = new System.Windows.Forms.ListViewItem("Single Link", 13);
-            System.Windows.Forms.ListViewItem listViewItem29 = new System.Windows.Forms.ListViewItem("Linked Detailed View", 10);
-            System.Windows.Forms.ListViewItem listViewItem30 = new System.Windows.Forms.ListViewItem("Tab Control", 14);
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Basic Components", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Advanced Components", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Button", 0);
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Check Box", 1);
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Check List", 2);
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("Combo Box", 3);
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("Date Picker", 4);
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("Icon Selector", 5);
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("Input Code", 6);
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("Input Multiline", 7);
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("Input Single", 8);
+            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("Label", 9);
+            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("Linked Detailed View", 10);
+            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("List Box", 11);
+            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem("Numeric", 12);
+            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem("Single Link", 13);
+            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem("Tab Control", 14);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddElementForm));
             this.lvElements = new System.Windows.Forms.ListView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.txtFieldName = new System.Windows.Forms.TextBox();
             this.pnlFieldReference = new System.Windows.Forms.Panel();
+            this.btnEditModuleFields = new System.Windows.Forms.Button();
+            this.btnEditField = new System.Windows.Forms.Button();
             this.cmbReference = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnEditField = new System.Windows.Forms.Button();
-            this.btnEditModuleFields = new System.Windows.Forms.Button();
             this.pnlAdditionalOptions = new System.Windows.Forms.Panel();
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.pnlCustomDataSource = new System.Windows.Forms.Panel();
-            this.chbCustomDataSource = new System.Windows.Forms.CheckBox();
-            this.btnEnterManualDataSource = new System.Windows.Forms.Button();
             this.btnEnterScriptDataSource = new System.Windows.Forms.Button();
+            this.btnEnterManualDataSource = new System.Windows.Forms.Button();
+            this.chbCustomDataSource = new System.Windows.Forms.CheckBox();
             this.pnlFieldReference.SuspendLayout();
             this.pnlCustomDataSource.SuspendLayout();
             this.SuspendLayout();
             // 
             // lvElements
             // 
-            listViewGroup3.Header = "Basic Components";
-            listViewGroup3.Name = "listViewGroup1";
-            listViewGroup4.Header = "Advanced Components";
-            listViewGroup4.Name = "listViewGroup2";
+            listViewGroup1.Header = "Basic Components";
+            listViewGroup1.Name = "listViewGroup1";
+            listViewGroup2.Header = "Advanced Components";
+            listViewGroup2.Name = "listViewGroup2";
             this.lvElements.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup3,
-            listViewGroup4});
+            listViewGroup1,
+            listViewGroup2});
+            this.lvElements.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvElements.HideSelection = false;
-            listViewItem16.Group = listViewGroup3;
-            listViewItem16.Tag = "_InputSingle";
-            listViewItem17.Group = listViewGroup3;
-            listViewItem17.Tag = "_InputMultiline";
-            listViewItem18.Group = listViewGroup3;
-            listViewItem18.Tag = "_InputCode";
-            listViewItem19.Group = listViewGroup3;
-            listViewItem19.Tag = "_Button";
-            listViewItem20.Group = listViewGroup3;
-            listViewItem20.Tag = "_CheckBox";
-            listViewItem21.Group = listViewGroup3;
-            listViewItem21.Tag = "_CheckList";
-            listViewItem22.Group = listViewGroup3;
-            listViewItem22.Tag = "_ComboBox";
-            listViewItem23.Group = listViewGroup3;
-            listViewItem23.Tag = "_Numeric";
-            listViewItem24.Group = listViewGroup4;
-            listViewItem24.Tag = "_ListBox";
-            listViewItem25.Group = listViewGroup3;
-            listViewItem25.Tag = "_DatePicker";
-            listViewItem26.Group = listViewGroup3;
-            listViewItem26.Tag = "_Label";
-            listViewItem27.Group = listViewGroup3;
-            listViewItem27.Tag = "_IconSelector";
-            listViewItem28.Group = listViewGroup4;
-            listViewItem28.Tag = "_SingleLink";
-            listViewItem29.Group = listViewGroup4;
-            listViewItem29.Tag = "_LinkedDetailedView";
-            listViewItem30.Group = listViewGroup4;
-            listViewItem30.Tag = "_TabControl";
+            listViewItem1.Group = listViewGroup1;
+            listViewItem1.Tag = "_Button";
+            listViewItem2.Group = listViewGroup1;
+            listViewItem2.Tag = "_CheckBox";
+            listViewItem3.Group = listViewGroup1;
+            listViewItem3.Tag = "_CheckList";
+            listViewItem4.Group = listViewGroup1;
+            listViewItem4.Tag = "_ComboBox";
+            listViewItem5.Group = listViewGroup1;
+            listViewItem5.Tag = "_DatePicker";
+            listViewItem6.Group = listViewGroup1;
+            listViewItem6.Tag = "_IconSelector";
+            listViewItem7.Group = listViewGroup1;
+            listViewItem7.Tag = "_InputCode";
+            listViewItem8.Group = listViewGroup1;
+            listViewItem8.Tag = "_InputMultiline";
+            listViewItem9.Group = listViewGroup1;
+            listViewItem9.Tag = "_InputSingle";
+            listViewItem10.Group = listViewGroup1;
+            listViewItem10.Tag = "_Label";
+            listViewItem11.Group = listViewGroup2;
+            listViewItem11.Tag = "_LinkedDetailedView";
+            listViewItem12.Group = listViewGroup2;
+            listViewItem12.Tag = "_ListBox";
+            listViewItem13.Group = listViewGroup1;
+            listViewItem13.Tag = "_Numeric";
+            listViewItem14.Group = listViewGroup2;
+            listViewItem14.Tag = "_SingleLink";
+            listViewItem15.Group = listViewGroup2;
+            listViewItem15.Tag = "_TabControl";
             this.lvElements.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem16,
-            listViewItem17,
-            listViewItem18,
-            listViewItem19,
-            listViewItem20,
-            listViewItem21,
-            listViewItem22,
-            listViewItem23,
-            listViewItem24,
-            listViewItem25,
-            listViewItem26,
-            listViewItem27,
-            listViewItem28,
-            listViewItem29,
-            listViewItem30});
+            listViewItem1,
+            listViewItem2,
+            listViewItem3,
+            listViewItem4,
+            listViewItem5,
+            listViewItem6,
+            listViewItem7,
+            listViewItem8,
+            listViewItem9,
+            listViewItem10,
+            listViewItem11,
+            listViewItem12,
+            listViewItem13,
+            listViewItem14,
+            listViewItem15});
             this.lvElements.LargeImageList = this.imageList1;
             this.lvElements.Location = new System.Drawing.Point(33, 23);
+            this.lvElements.MultiSelect = false;
             this.lvElements.Name = "lvElements";
             this.lvElements.Size = new System.Drawing.Size(1015, 571);
+            this.lvElements.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvElements.TabIndex = 0;
             this.lvElements.UseCompatibleStateImageBehavior = false;
+            this.lvElements.SelectedIndexChanged += new System.EventHandler(this.lvElements_SelectedIndexChanged);
             // 
             // imageList1
             // 
@@ -178,6 +182,24 @@ namespace StoryDev.Forms
             this.pnlFieldReference.Size = new System.Drawing.Size(382, 37);
             this.pnlFieldReference.TabIndex = 3;
             // 
+            // btnEditModuleFields
+            // 
+            this.btnEditModuleFields.Location = new System.Drawing.Point(339, 3);
+            this.btnEditModuleFields.Name = "btnEditModuleFields";
+            this.btnEditModuleFields.Size = new System.Drawing.Size(40, 28);
+            this.btnEditModuleFields.TabIndex = 8;
+            this.btnEditModuleFields.Text = "...";
+            this.btnEditModuleFields.UseVisualStyleBackColor = true;
+            // 
+            // btnEditField
+            // 
+            this.btnEditField.Location = new System.Drawing.Point(282, 3);
+            this.btnEditField.Name = "btnEditField";
+            this.btnEditField.Size = new System.Drawing.Size(51, 28);
+            this.btnEditField.TabIndex = 7;
+            this.btnEditField.Text = "Edit";
+            this.btnEditField.UseVisualStyleBackColor = true;
+            // 
             // cmbReference
             // 
             this.cmbReference.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -195,24 +217,6 @@ namespace StoryDev.Forms
             this.label2.Size = new System.Drawing.Size(88, 20);
             this.label2.TabIndex = 5;
             this.label2.Text = "Reference:";
-            // 
-            // btnEditField
-            // 
-            this.btnEditField.Location = new System.Drawing.Point(282, 3);
-            this.btnEditField.Name = "btnEditField";
-            this.btnEditField.Size = new System.Drawing.Size(51, 28);
-            this.btnEditField.TabIndex = 7;
-            this.btnEditField.Text = "Edit";
-            this.btnEditField.UseVisualStyleBackColor = true;
-            // 
-            // btnEditModuleFields
-            // 
-            this.btnEditModuleFields.Location = new System.Drawing.Point(339, 3);
-            this.btnEditModuleFields.Name = "btnEditModuleFields";
-            this.btnEditModuleFields.Size = new System.Drawing.Size(40, 28);
-            this.btnEditModuleFields.TabIndex = 8;
-            this.btnEditModuleFields.Text = "...";
-            this.btnEditModuleFields.UseVisualStyleBackColor = true;
             // 
             // pnlAdditionalOptions
             // 
@@ -250,15 +254,14 @@ namespace StoryDev.Forms
             this.pnlCustomDataSource.Size = new System.Drawing.Size(382, 100);
             this.pnlCustomDataSource.TabIndex = 7;
             // 
-            // chbCustomDataSource
+            // btnEnterScriptDataSource
             // 
-            this.chbCustomDataSource.AutoSize = true;
-            this.chbCustomDataSource.Location = new System.Drawing.Point(14, 13);
-            this.chbCustomDataSource.Name = "chbCustomDataSource";
-            this.chbCustomDataSource.Size = new System.Drawing.Size(217, 24);
-            this.chbCustomDataSource.TabIndex = 0;
-            this.chbCustomDataSource.Text = "Set Custom Data Source:\r\n";
-            this.chbCustomDataSource.UseVisualStyleBackColor = true;
+            this.btnEnterScriptDataSource.Location = new System.Drawing.Point(189, 43);
+            this.btnEnterScriptDataSource.Name = "btnEnterScriptDataSource";
+            this.btnEnterScriptDataSource.Size = new System.Drawing.Size(169, 31);
+            this.btnEnterScriptDataSource.TabIndex = 2;
+            this.btnEnterScriptDataSource.Text = "Script Defined";
+            this.btnEnterScriptDataSource.UseVisualStyleBackColor = true;
             // 
             // btnEnterManualDataSource
             // 
@@ -269,14 +272,15 @@ namespace StoryDev.Forms
             this.btnEnterManualDataSource.Text = "Manually Define";
             this.btnEnterManualDataSource.UseVisualStyleBackColor = true;
             // 
-            // btnEnterScriptDataSource
+            // chbCustomDataSource
             // 
-            this.btnEnterScriptDataSource.Location = new System.Drawing.Point(189, 43);
-            this.btnEnterScriptDataSource.Name = "btnEnterScriptDataSource";
-            this.btnEnterScriptDataSource.Size = new System.Drawing.Size(169, 31);
-            this.btnEnterScriptDataSource.TabIndex = 2;
-            this.btnEnterScriptDataSource.Text = "Script Defined";
-            this.btnEnterScriptDataSource.UseVisualStyleBackColor = true;
+            this.chbCustomDataSource.AutoSize = true;
+            this.chbCustomDataSource.Location = new System.Drawing.Point(14, 13);
+            this.chbCustomDataSource.Name = "chbCustomDataSource";
+            this.chbCustomDataSource.Size = new System.Drawing.Size(217, 24);
+            this.chbCustomDataSource.TabIndex = 0;
+            this.chbCustomDataSource.Text = "Set Custom Data Source:\r\n";
+            this.chbCustomDataSource.UseVisualStyleBackColor = true;
             // 
             // AddElementForm
             // 

@@ -24,12 +24,19 @@ namespace StoryDev.Forms
             InitializeComponent();
 
             properties = new FormProperties();
-            
-            if (Globals.Settings.FormComponents != null)
+
+            if (Globals.Settings != null)
             {
-                if (Globals.Settings.FormComponents.Count > 0)
+                if (Globals.Settings.FormComponents != null)
                 {
-                    properties.FormComponents = Globals.Settings.FormComponents;
+                    if (Globals.Settings.FormComponents.Count > 0)
+                    {
+                        properties.FormComponents = Globals.Settings.FormComponents;
+                    }
+                    else
+                    {
+                        properties.FormComponents = Globals.GetDefaultComponentSettings();
+                    }
                 }
                 else
                 {
