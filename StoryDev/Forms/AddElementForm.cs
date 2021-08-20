@@ -66,5 +66,10 @@ namespace StoryDev.Forms
                 SelectElement((string)item.Tag);
             }
         }
+
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

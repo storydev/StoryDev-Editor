@@ -445,6 +445,88 @@
     <Compile Include="Components\CodeUI\UnlockSection.Designer.cs">
       <DependentUpon>UnlockSection.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\DataModule\FieldButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\DataModule\FieldButton.Designer.cs">
+      <DependentUpon>FieldButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\DataModule\FieldCheckBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\DataModule\FieldCheckList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\DataModule\FieldCheckList.Designer.cs">
+      <DependentUpon>FieldCheckList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\DataModule\FieldComboBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\DataModule\FieldComboBox.Designer.cs">
+      <DependentUpon>FieldComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\DataModule\FieldDatePicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\DataModule\FieldDatePicker.Designer.cs">
+      <DependentUpon>FieldDatePicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\DataModule\FieldIconSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\DataModule\FieldIconSelector.Designer.cs">
+      <DependentUpon>FieldIconSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\DataModule\FieldInputCode.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\DataModule\FieldInputCode.Designer.cs">
+      <DependentUpon>FieldInputCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\DataModule\FieldInputMultiline.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\DataModule\FieldInputMultiline.Designer.cs">
+      <DependentUpon>FieldInputMultiline.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\DataModule\FieldInputSingle.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\DataModule\FieldInputSingle.Designer.cs">
+      <DependentUpon>FieldInputSingle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\DataModule\FieldLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\DataModule\FieldLinkedDetailedView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\DataModule\FieldLinkedDetailedView.Designer.cs">
+      <DependentUpon>FieldLinkedDetailedView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\DataModule\FieldListBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\DataModule\FieldListBox.Designer.cs">
+      <DependentUpon>FieldListBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\DataModule\FieldNumeric.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\DataModule\FieldNumeric.Designer.cs">
+      <DependentUpon>FieldNumeric.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\DataModule\FieldSingleLink.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\DataModule\FieldSingleLink.Designer.cs">
+      <DependentUpon>FieldSingleLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\DataModule\FieldTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\DataModule\IField.cs" />
     <Compile Include="Components\Data\FilterBool.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -848,6 +930,7 @@
     <Compile Include="Scripting\Modules\DataField.cs" />
     <Compile Include="Scripting\Modules\DataOptions.cs" />
     <Compile Include="Scripting\Modules\DataType.cs" />
+    <Compile Include="Scripting\Modules\FormElement.cs" />
     <Compile Include="Scripting\ScriptEngine.cs" />
     <Compile Include="Simulation\CallStack.cs" />
     <Compile Include="Simulation\Engine.cs" />
@@ -1019,6 +1102,39 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Components\CodeUI\UnlockSection.resx">
       <DependentUpon>UnlockSection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\DataModule\FieldCheckList.resx">
+      <DependentUpon>FieldCheckList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\DataModule\FieldComboBox.resx">
+      <DependentUpon>FieldComboBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\DataModule\FieldDatePicker.resx">
+      <DependentUpon>FieldDatePicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\DataModule\FieldIconSelector.resx">
+      <DependentUpon>FieldIconSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\DataModule\FieldInputCode.resx">
+      <DependentUpon>FieldInputCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\DataModule\FieldInputMultiline.resx">
+      <DependentUpon>FieldInputMultiline.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\DataModule\FieldInputSingle.resx">
+      <DependentUpon>FieldInputSingle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\DataModule\FieldLinkedDetailedView.resx">
+      <DependentUpon>FieldLinkedDetailedView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\DataModule\FieldListBox.resx">
+      <DependentUpon>FieldListBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\DataModule\FieldNumeric.resx">
+      <DependentUpon>FieldNumeric.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\DataModule\FieldSingleLink.resx">
+      <DependentUpon>FieldSingleLink.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\Data\FilterBool.resx">
       <DependentUpon>FilterBool.cs</DependentUpon>
