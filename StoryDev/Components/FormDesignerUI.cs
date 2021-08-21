@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using StoryDev.Data;
 using StoryDev.Forms;
+using System.Drawing;
+using Point = System.Drawing.Point;
 
 namespace StoryDev.Components
 {
@@ -41,6 +43,9 @@ namespace StoryDev.Components
 
         private ElementType[] elementTypes;
         private Point[] elementLocations;
+        private string[] elementFieldNames;
+
+        public FormProperties Properties { get; set; }
 
         public FormDesignerUI()
         {
@@ -68,19 +73,20 @@ namespace StoryDev.Components
 
             elementTypes = new ElementType[0];
             elementLocations = new Point[0];
+            elementFieldNames = new string[0];
 
             RecalculateCells();
         }
 
-
-
-        private void AddElement(ElementType type, int cellX, int cellY)
+        private void AddElement(ElementType type, int cellX, int cellY, string fieldName)
         {
             var tempElements = elementTypes;
             var tempElementLocations = elementLocations;
+            var tempElementFieldNames = elementFieldNames;
 
             var newElements = new ElementType[tempElements.Length + 1];
             var newElementLocations = new Point[tempElementLocations.Length + 1];
+            var newElementFieldNames = new string[tempElementFieldNames.Length + 1];
 
             for (int i = 0; i < newElements.Length; i++)
             {
@@ -88,16 +94,19 @@ namespace StoryDev.Components
                 {
                     newElements[i] = type;
                     newElementLocations[i] = new Point(cellX, cellY);
+                    newElementFieldNames[i] = fieldName;
                 }
                 else
                 {
                     newElements[i] = tempElements[i];
                     newElementLocations[i] = tempElementLocations[i];
+                    newElementFieldNames[i] = tempElementFieldNames[i];
                 }
             }
 
             elementTypes = newElements;
             elementLocations = newElementLocations;
+            elementFieldNames = newElementFieldNames;
         }
 
         private void AddColumn(int row, int column = -1)
@@ -612,7 +621,8 @@ namespace StoryDev.Components
             var insertForm = new AddElementForm();
             if (insertForm.ShowDialog() == DialogResult.OK)
             {
-                AddElement(ElementType._TEST, currentColumn, currentRow);
+                
+
                 RecalculateCells();
                 Invalidate();
             }

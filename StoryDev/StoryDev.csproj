@@ -684,6 +684,7 @@
     <Compile Include="Data\Item.cs" />
     <Compile Include="Data\Journal.cs" />
     <Compile Include="Data\JournalMapLink.cs" />
+    <Compile Include="Data\LinkedAdditionalData.cs" />
     <Compile Include="Data\MainSourceData.cs" />
     <Compile Include="Data\Map.cs" />
     <Compile Include="Data\MapSection.cs" />
@@ -732,6 +733,12 @@
     </Compile>
     <Compile Include="Forms\EditDataModuleComponentForm.Designer.cs">
       <DependentUpon>EditDataModuleComponentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LinkedDataEditColumnsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LinkedDataEditColumnsForm.Designer.cs">
+      <DependentUpon>LinkedDataEditColumnsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\VariableChangesForm.cs">
       <SubType>Form</SubType>
@@ -1213,6 +1220,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EditDataModuleComponentForm.resx">
       <DependentUpon>EditDataModuleComponentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LinkedDataEditColumnsForm.resx">
+      <DependentUpon>LinkedDataEditColumnsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\VariableChangesForm.resx">
       <DependentUpon>VariableChangesForm.cs</DependentUpon>

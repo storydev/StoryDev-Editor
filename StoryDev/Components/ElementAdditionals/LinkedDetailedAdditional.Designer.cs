@@ -39,11 +39,13 @@ namespace StoryDev.Components.ElementAdditionals
             // cmbRelationship
             // 
             this.cmbRelationship.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRelationship.Enabled = false;
             this.cmbRelationship.FormattingEnabled = true;
             this.cmbRelationship.Location = new System.Drawing.Point(234, 51);
             this.cmbRelationship.Name = "cmbRelationship";
             this.cmbRelationship.Size = new System.Drawing.Size(241, 28);
             this.cmbRelationship.TabIndex = 11;
+            this.cmbRelationship.SelectedIndexChanged += new System.EventHandler(this.cmbRelationship_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -62,6 +64,7 @@ namespace StoryDev.Components.ElementAdditionals
             this.cmbModuleReference.Name = "cmbModuleReference";
             this.cmbModuleReference.Size = new System.Drawing.Size(241, 28);
             this.cmbModuleReference.TabIndex = 7;
+            this.cmbModuleReference.SelectedIndexChanged += new System.EventHandler(this.cmbModuleReference_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -74,12 +77,14 @@ namespace StoryDev.Components.ElementAdditionals
             // 
             // btnEditDisplayColumns
             // 
+            this.btnEditDisplayColumns.Enabled = false;
             this.btnEditDisplayColumns.Location = new System.Drawing.Point(22, 100);
             this.btnEditDisplayColumns.Name = "btnEditDisplayColumns";
             this.btnEditDisplayColumns.Size = new System.Drawing.Size(188, 33);
             this.btnEditDisplayColumns.TabIndex = 12;
             this.btnEditDisplayColumns.Text = "Edit Display Columns";
             this.btnEditDisplayColumns.UseVisualStyleBackColor = true;
+            this.btnEditDisplayColumns.Click += new System.EventHandler(this.btnEditDisplayColumns_Click);
             // 
             // LinkedDetailedAdditional
             // 
