@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Jint;
 
+using StoryDev.Data;
 using StoryDev.Forms;
 using StoryDev.Lib.StoryDev;
 
@@ -242,12 +243,19 @@ namespace StoryDev.Simulation
 
         public event OnCallAdded CallAdded;
 
+        private List<string> charactersInConvo;
+        private IEnumerable<Character> playerCharacters;
+        private string currentPOV;
+
         private bool ExecuteSimulation()
         {
             if (conversations.Count == 0)
                 return false;
 
             var errorsProduced = false;
+
+            charactersInConvo = new List<string>();
+            playerCharacters = Globals.Characters.Where((ch) => ch.PlayerCharacter);
 
             for (int i = 0; i < states.Count; i++)
             {
@@ -261,6 +269,8 @@ namespace StoryDev.Simulation
 
                     sdParser.Clear();
                     sdParser.ParseFile(Globals.CurrentProjectFolder + "\\" + convo);
+
+                    charactersInConvo.Clear();
                     currentFile = convo;
 
                     var choices = new List<ChoiceData>();
@@ -328,6 +338,13 @@ namespace StoryDev.Simulation
                             {
                                 switch (command.Type)
                                 {
+                                    case (int)CommandType.Dialogue:
+                                        {
+                                            if (charactersInConvo.Where((ch) => ch == command.Data[0]).Count() == 0)
+                                            {
+                                                charactersInConvo.Add(command.Data[0]);
+                                            }
+                                        } break;
                                     case (int)CommandType.Choices:
                                         {
                                             for (int k = 0; k < command.Data.Count; k++)
@@ -412,7 +429,11 @@ namespace StoryDev.Simulation
                                     case (int)CommandType.Option:
                                         {
                                             var text = command.Data[0];
-                                            if (text.StartsWith("PRIORITY"))
+                                            if (text.StartsWith("POV"))
+                                            {
+                                                currentPOV = text.Substring("POV ".Length);
+                                            }
+                                            else if (text.StartsWith("PRIORITY"))
                                             {
                                                 var priorityText = text.Substring("PRIORITY ".Length);
                                                 var priority = int.Parse(priorityText);
@@ -463,6 +484,23 @@ namespace StoryDev.Simulation
                             // end of block, execute choices/conditionals
                             if (c + 1 == block.Commands.Count)
                             {
+                                var found = false;
+                                foreach (var characters in charactersInConvo)
+                                {
+                                    if (characters == currentPOV)
+                                    {
+                                        found = true;
+                                        break;
+                                    }
+                                }
+
+                                if (!found)
+                                {
+                                    SetMessage("", new Message("Point of View",
+                                        string.Format("Point of View, {0}, does not appear in this conversation.", currentPOV),
+                                        MessageType.Warning, convo, line));
+                                }
+
                                 jEngine.Execute(codeText);
                                 choices.Sort();
 
@@ -670,12 +708,45 @@ namespace StoryDev.Simulation
 
         private void UnlockArtefact(int id)
         {
+            if (Globals.Artefacts.FindIndex((a) => a.ID == id) > -1)
+            {
+                if (!currentState.Artefacts.ArtefactsUnlocked.Contains(id))
+                {
+                    currentState.Artefacts.ArtefactsUnlocked.Add(id);
 
+                    if (EnableCallstack)
+                    {
+                        callStack.Set("PlayerState.Artefacts.ArtefactsUnlocked", new CallInfo()
+                        {
+                            OriginalFile = currentFile,
+                            Line = currentLine,
+                            LastValue = null,
+                            NewValue = id,
+                            ForOutcome = currentOutcome,
+                            BlockName = currentBlock
+                        });
+
+                        CallAdded?.Invoke("PlayerState.Artefacts.ArtefactsUnlocked", currentOutcome);
+                    }
+                }
+                else
+                {
+                    SetMessage("PlayerState.Artefacts.ArtefactsUnlocked", new Message("UnlockArtefact",
+                        string.Format("Artefact ID {0} has already been unlocked.", id),
+                        MessageType.Warning, currentFile, currentLine));
+                }
+            }
+            else
+            {
+                SetMessage("PlayerState.Artefacts.ArtefactsUnlocked", new Message("UnlockArtefact",
+                        string.Format("Could not find artefact with the ID of {0}.", id),
+                        MessageType.Error, currentFile, currentLine));
+            }
         }
 
         private void AdjustCharacterAttitudeTowards(int character, int towards, int value)
         {
-
+            
         }
 
         private void SetCharacterAttitudeTowards(int character, int towards, int value)
