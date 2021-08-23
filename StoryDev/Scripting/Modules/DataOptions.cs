@@ -25,6 +25,10 @@ namespace StoryDev.Scripting.Modules
         public string FieldName;
         public string DisplayField;
         public string SourceName;
+        //
+        // Grouping
+        //
+        public string Group;
 
         public DataOptions()
         {
@@ -37,6 +41,8 @@ namespace StoryDev.Scripting.Modules
             SourceName = "";
 
             CustomDataSource = "";
+
+            Group = "";
         }
 
     }
