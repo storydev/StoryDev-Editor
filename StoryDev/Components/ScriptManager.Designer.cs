@@ -186,7 +186,7 @@ namespace StoryDev.Components
         '\"',
         '\'',
         '\''};
-            this.editor.AutoScrollMinSize = new System.Drawing.Size(167, 22);
+            this.editor.AutoScrollMinSize = new System.Drawing.Size(35, 22);
             this.editor.BackBrush = null;
             this.editor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.editor.CaretColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(216)))), ((int)(((byte)(216)))));
@@ -197,7 +197,6 @@ namespace StoryDev.Components
             this.editor.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.editor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.editor.Enabled = false;
-            this.editor.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.editor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
             this.editor.IsReplaceMode = false;
             this.editor.Location = new System.Drawing.Point(0, 0);
@@ -207,7 +206,6 @@ namespace StoryDev.Components
             this.editor.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("editor.ServiceColors")));
             this.editor.Size = new System.Drawing.Size(898, 595);
             this.editor.TabIndex = 0;
-            this.editor.Text = "codeEditor1";
             this.editor.Zoom = 100;
             this.editor.TextChanging += new System.EventHandler<FastColoredTextBoxNS.TextChangingEventArgs>(this.editor_TextChanging);
             this.editor.KeyUp += new System.Windows.Forms.KeyEventHandler(this.editor_KeyUp);

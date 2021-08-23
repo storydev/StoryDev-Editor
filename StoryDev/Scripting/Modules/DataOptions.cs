@@ -28,7 +28,15 @@ namespace StoryDev.Scripting.Modules
 
         public DataOptions()
         {
+            ColumnWidth = 100;
+            HiddenInSearch = false;
 
+            RelationshipTypeName = "";
+            FieldName = "";
+            DisplayField = "";
+            SourceName = "";
+
+            CustomDataSource = "";
         }
 
     }

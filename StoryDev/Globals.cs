@@ -105,6 +105,12 @@ namespace StoryDev
         Bottom
     }
 
+    enum DataModuleView
+    { 
+        Code,
+        WYSIWYG
+    }
+
 
     class Globals
     {

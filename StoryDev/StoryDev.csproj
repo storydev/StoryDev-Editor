@@ -445,6 +445,12 @@
     <Compile Include="Components\CodeUI\UnlockSection.Designer.cs">
       <DependentUpon>UnlockSection.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\DataModule\DataModuleEditUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\DataModule\DataModuleEditUI.Designer.cs">
+      <DependentUpon>DataModuleEditUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\DataModule\FieldButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -632,6 +638,12 @@
     </Compile>
     <Compile Include="Components\Preferences\GeneralUI.Designer.cs">
       <DependentUpon>GeneralUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Scripting\DataModuleFileProperties.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Scripting\DataModuleFileProperties.Designer.cs">
+      <DependentUpon>DataModuleFileProperties.cs</DependentUpon>
     </Compile>
     <Compile Include="Components\Scripting\DataModuleFolderProperties.cs">
       <SubType>UserControl</SubType>
@@ -1110,6 +1122,9 @@
     <EmbeddedResource Include="Components\CodeUI\UnlockSection.resx">
       <DependentUpon>UnlockSection.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Components\DataModule\DataModuleEditUI.resx">
+      <DependentUpon>DataModuleEditUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Components\DataModule\FieldCheckList.resx">
       <DependentUpon>FieldCheckList.cs</DependentUpon>
     </EmbeddedResource>
@@ -1190,6 +1205,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Components\Preferences\GeneralUI.resx">
       <DependentUpon>GeneralUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Scripting\DataModuleFileProperties.resx">
+      <DependentUpon>DataModuleFileProperties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\Scripting\DataModuleFolderProperties.resx">
       <DependentUpon>DataModuleFolderProperties.cs</DependentUpon>
