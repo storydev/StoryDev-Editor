@@ -128,7 +128,7 @@ namespace StoryDev.Components.DataModule
                     foreach (var column in field.Options.DisplayColumns)
                     {
                         result += "{";
-                        result += "var column = "
+                        result += "var column = ";
 
                         result += "}";
                     }
