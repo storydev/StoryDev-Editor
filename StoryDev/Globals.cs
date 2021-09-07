@@ -855,6 +855,14 @@ namespace StoryDev
             File.WriteAllText(CurrentProjectFolder + "\\settings.json", content);
         }
 
+        public static Dictionary<string, string> CustomSources { get; private set; }
+
+        public static void SaveCustomSources()
+        {
+            var content = JsonConvert.SerializeObject(CustomSources);
+            File.WriteAllText(CurrentProjectFolder + "\\custom-sources.json", content);
+        }
+
 
         public static string PurgeFilePath(string path)
         {
@@ -1170,6 +1178,17 @@ namespace StoryDev
             else
             {
                 JournalMapLinks = new List<JournalMapLink>();
+            }
+
+            // Load Custom Sources
+            if (File.Exists(path + "\\custom-sources.json"))
+            {
+                var content = File.ReadAllText(path + "\\custom-sources.json");
+                CustomSources = JsonConvert.DeserializeObject<Dictionary<string, string>>(content);
+            }
+            else
+            {
+                CustomSources = new Dictionary<string, string>();
             }
         }
 

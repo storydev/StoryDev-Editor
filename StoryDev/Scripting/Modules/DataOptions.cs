@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using StoryDev.Data;
+
 namespace StoryDev.Scripting.Modules
 {
     class DataOptions
@@ -24,11 +26,14 @@ namespace StoryDev.Scripting.Modules
         public string RelationshipTypeName;
         public string FieldName;
         public string DisplayField;
-        public string SourceName;
+
+        public bool IsResultList;
+        public List<LinkedColumn> DisplayColumns;
         //
-        // Grouping
+        // Appearance
         //
         public string Group;
+        public LabelPosition LabelPosition;
 
         public DataOptions()
         {
@@ -38,11 +43,13 @@ namespace StoryDev.Scripting.Modules
             RelationshipTypeName = "";
             FieldName = "";
             DisplayField = "";
-            SourceName = "";
+            IsResultList = false;
+            DisplayColumns = new List<LinkedColumn>();
 
             CustomDataSource = "";
 
             Group = "";
+            LabelPosition = LabelPosition.Top;
         }
 
     }

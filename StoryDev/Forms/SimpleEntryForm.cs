@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -20,6 +21,16 @@ namespace StoryDev.Forms
         }
 
         public bool NotEmpty
+        {
+            get; set;
+        }
+
+        public string RegexPattern
+        {
+            get; set;
+        }
+
+        public string ErrorValue
         {
             get; set;
         }
@@ -41,6 +52,22 @@ namespace StoryDev.Forms
                 if (txtEnterField.Text == "")
                 {
                     MessageBox.Show("Field must not be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(RegexPattern))
+            {
+                var regex = new Regex(RegexPattern);
+                if (!regex.IsMatch(txtEnterField.Text))
+                {
+                    var error = "";
+                    if (!string.IsNullOrEmpty(ErrorValue))
+                        error = ErrorValue;
+                    else
+                        error = "The value entered does not follow the given pattern: " + RegexPattern + ".";
+
+                    MessageBox.Show(error, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }

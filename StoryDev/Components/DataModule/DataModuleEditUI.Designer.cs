@@ -119,26 +119,27 @@ namespace StoryDev.Components.DataModule
             this.editToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.cmsOptions.Name = "cmsOptions";
-            this.cmsOptions.Size = new System.Drawing.Size(135, 100);
+            this.cmsOptions.Size = new System.Drawing.Size(241, 133);
             // 
             // addToolStripMenuItem
             // 
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(134, 32);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
             this.addToolStripMenuItem.Text = "Add...";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Enabled = false;
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(134, 32);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
             this.editToolStripMenuItem.Text = "Edit...";
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Enabled = false;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(134, 32);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
             this.deleteToolStripMenuItem.Text = "Delete";
             // 
             // DataModuleEditUI

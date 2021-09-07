@@ -58,6 +58,11 @@ namespace StoryDev.Scripting
             jEngine.SetValue("TYPE_UINT32", DataType.UINT32);
             jEngine.SetValue("TYPE_UINT64", DataType.UINT64);
             jEngine.SetValue("TYPE_UINT8", DataType.UINT8);
+
+            jEngine.SetValue("LABEL_POS_TOP", LabelPosition.Top);
+            jEngine.SetValue("LABEL_POS_LEFT", LabelPosition.Left);
+            jEngine.SetValue("LABEL_POS_RIGHT", LabelPosition.Right);
+            jEngine.SetValue("LABEL_POS_BOTTOM", LabelPosition.Bottom);
         }
 
         private void InitDataModules()
