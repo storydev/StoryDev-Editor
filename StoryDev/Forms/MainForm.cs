@@ -61,7 +61,7 @@ namespace StoryDev.Forms
                 saveAllToolStripMenuItem.Enabled = true;
                 scriptsToolStripMenuItem.Enabled = true;
 
-                RefreshModuleList();
+                //RefreshModuleList();
             }
         }
 
@@ -306,7 +306,7 @@ namespace StoryDev.Forms
 
         private void formDesignerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new DataModuleDesignerForm().ShowDialog();
+            //new DataModuleDesignerForm().ShowDialog();
         }
     }
 }
