@@ -333,7 +333,8 @@ namespace StoryDev
             }
             else
             {
-                Preferences = JsonConvert.DeserializeObject<Preferences>(File.ReadAllText(AppCacheFolder + "settings.json"));
+                if (File.Exists(AppCacheFolder + "settings.json"))
+                    Preferences = JsonConvert.DeserializeObject<Preferences>(File.ReadAllText(AppCacheFolder + "settings.json"));
             }
         }
 
@@ -391,6 +392,7 @@ namespace StoryDev
             SaveSections();
             SaveSettings();
             SaveTraits();
+            SaveScriptData();
         }
 
         public static IconSets IconSetData { get; private set; }
@@ -836,6 +838,18 @@ namespace StoryDev
         }
 
         //
+        // Script Files
+        //
+
+        public static Dictionary<string, ScriptFileData> ScriptData { get; private set; }
+
+        public static void SaveScriptData()
+        {
+            var content = JsonConvert.SerializeObject(ScriptData);
+            File.WriteAllText(CurrentProjectFolder + "\\script-data.json", content);
+        }
+
+        //
         // Global Data
         //
 
@@ -1189,6 +1203,17 @@ namespace StoryDev
             else
             {
                 CustomSources = new Dictionary<string, string>();
+            }
+
+            // Load Script Data
+            if (File.Exists(path + "\\script-data.json"))
+            {
+                var content = File.ReadAllText(path + "\\script-data.json");
+                ScriptData = JsonConvert.DeserializeObject<Dictionary<string, ScriptFileData>>(content);
+            }
+            else
+            {
+                ScriptData = new Dictionary<string, ScriptFileData>();
             }
         }
 

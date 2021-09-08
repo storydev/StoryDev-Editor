@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using StoryDev.Forms;
+using StoryDev.Data;
 
 namespace StoryDev.Components
 {
@@ -130,6 +131,24 @@ namespace StoryDev.Components
 
             if (lastSelected.FullPath.EndsWith(".hxs"))
             {
+                if (lastSelected.FullPath.StartsWith("Scripts"))
+                {
+                    ScriptFileData data;
+                    if (!Globals.ScriptData.ContainsKey(lastSelected.FullPath))
+                    {
+                        Globals.ScriptData.Add(lastSelected.FullPath, new ScriptFileData());
+                    }
+
+                    data = Globals.ScriptData[lastSelected.FullPath];
+
+                    var properties = new Scripting.ScriptFileProperties(data);
+                    properties.Dock = DockStyle.Fill;
+                    pnlFileOptions.Controls.Add(properties);
+                    pnlFileOptions.Enabled = true;
+
+                    Globals.SaveScriptData();
+                }
+
                 var contents = File.ReadAllText(Globals.CurrentProjectFolder + "\\" + lastSelected.FullPath);
                 editor.Text = contents;
 
