@@ -10,10 +10,13 @@ namespace StoryDev.Data
     {
 
         public CodeSettings CodeSettings;
+        public string KhaPath;
 
         public Preferences()
         {
             CodeSettings = new CodeSettings();
+
+            KhaPath = "Tools/Kha/";
         }
 
     }

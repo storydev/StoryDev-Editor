@@ -25,7 +25,7 @@ namespace StoryDev.Forms
 
             if (lbPages.SelectedIndex == 0)
             {
-                pnlContent.Controls.Add(new GeneralUI());
+                pnlContent.Controls.Add(new GeneralUI(Globals.Preferences));
             }
             else if (lbPages.SelectedIndex == 1)
             {
