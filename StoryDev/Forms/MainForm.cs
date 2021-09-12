@@ -308,5 +308,10 @@ namespace StoryDev.Forms
         {
             //new DataModuleDesignerForm().ShowDialog();
         }
+
+        private void scenesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new SceneDesignerForm().Show();
+        }
     }
 }
