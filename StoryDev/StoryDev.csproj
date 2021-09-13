@@ -1467,6 +1467,23 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\AlignTop.png" />
+    <None Include="Resources\AlignRight.png" />
+    <None Include="Resources\AlignObjectTop.png" />
+    <None Include="Resources\AlignObjectRight.png" />
+    <None Include="Resources\AlignObjectLeft.png" />
+    <None Include="Resources\AlignObjectBottom.png" />
+    <None Include="Resources\AlignLeft.png" />
+    <None Include="Resources\AlignCenterVertical.png" />
+    <None Include="Resources\AlignCenterHorizontal.png" />
+    <None Include="Resources\AlignBottom.png" />
+    <None Include="Resources\Shapes.png" />
+    <None Include="Resources\DrawTriangle.png" />
+    <None Include="Resources\DrawText.png" />
+    <None Include="Resources\DrawRect.png" />
+    <None Include="Resources\DrawLine.png" />
+    <None Include="Resources\DrawImage.png" />
+    <None Include="Resources\DrawCircle.png" />
     <None Include="Resources\HXS File Icon.png" />
     <None Include="Resources\Folder.png" />
   </ItemGroup>

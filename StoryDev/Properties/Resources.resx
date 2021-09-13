@@ -118,73 +118,124 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Cut" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Cut.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="RotateAntiClockwise" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RotateAntiClockwise.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="pen" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RotateClockwise" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RotateClockwise.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Fill" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Fill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ToBottom" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ToBottom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Down" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DrawLine" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DrawLine.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Redo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Redo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="FlipHorizontal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\FlipHorizontal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Paste" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Paste.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RotateAntiClockwise" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RotateAntiClockwise.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Record" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Record.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Up" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="FlipVertical" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FlipVertical.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Play" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ToTop" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ToTop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Paste" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Paste.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Stop" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Stop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="FlipVertical" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\FlipVertical.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="cog" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cog.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="code" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\code.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Undo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Undo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Select" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Select.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Copy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="RotateClockwise" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RotateClockwise.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Folder" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Folder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Undo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Undo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ToTop" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ToTop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Copy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DrawRect" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DrawRect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ToBottom" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ToBottom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DrawTriangle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DrawTriangle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Shapes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Shapes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Stop" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Stop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DrawImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DrawImage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="HXS File Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HXS File Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DrawCircle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DrawCircle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Cut" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cut.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Select" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Select.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="code" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\code.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FlipHorizontal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FlipHorizontal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Fill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Fill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DrawText" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DrawText.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cog" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cog.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Record" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Record.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AlignBottom" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AlignBottom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AlignCenterHorizontal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AlignCenterHorizontal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AlignCenterVertical" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AlignCenterVertical.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AlignLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AlignLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AlignObjectBottom" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AlignObjectBottom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AlignObjectLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AlignObjectLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AlignObjectRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AlignObjectRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AlignObjectTop" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AlignObjectTop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AlignRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AlignRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AlignTop" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AlignTop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
