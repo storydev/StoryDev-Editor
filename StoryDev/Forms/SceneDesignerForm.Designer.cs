@@ -69,9 +69,11 @@ namespace StoryDev.Forms
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.pgSelectedObject = new System.Windows.Forms.PropertyGrid();
+            this.sceneDesignerUI1 = new StoryDev.Components.SceneDesignerUI();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spcMain)).BeginInit();
             this.spcMain.Panel1.SuspendLayout();
+            this.spcMain.Panel2.SuspendLayout();
             this.spcMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spcExplorer)).BeginInit();
             this.spcExplorer.Panel1.SuspendLayout();
@@ -217,6 +219,10 @@ namespace StoryDev.Forms
             // 
             this.spcMain.Panel1.Controls.Add(this.spcExplorer);
             this.spcMain.Panel1MinSize = 300;
+            // 
+            // spcMain.Panel2
+            // 
+            this.spcMain.Panel2.Controls.Add(this.sceneDesignerUI1);
             this.spcMain.Panel2MinSize = 450;
             this.spcMain.Size = new System.Drawing.Size(1541, 922);
             this.spcMain.SplitterDistance = 300;
@@ -408,6 +414,14 @@ namespace StoryDev.Forms
             this.pgSelectedObject.Size = new System.Drawing.Size(300, 436);
             this.pgSelectedObject.TabIndex = 2;
             // 
+            // sceneDesignerUI1
+            // 
+            this.sceneDesignerUI1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sceneDesignerUI1.Location = new System.Drawing.Point(0, 0);
+            this.sceneDesignerUI1.Name = "sceneDesignerUI1";
+            this.sceneDesignerUI1.Size = new System.Drawing.Size(1237, 922);
+            this.sceneDesignerUI1.TabIndex = 0;
+            // 
             // SceneDesignerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -423,6 +437,7 @@ namespace StoryDev.Forms
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.spcMain.Panel1.ResumeLayout(false);
+            this.spcMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spcMain)).EndInit();
             this.spcMain.ResumeLayout(false);
             this.spcExplorer.Panel1.ResumeLayout(false);
@@ -477,5 +492,6 @@ namespace StoryDev.Forms
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem propertiesToolStripMenuItem;
+        private Components.SceneDesignerUI sceneDesignerUI1;
     }
 }

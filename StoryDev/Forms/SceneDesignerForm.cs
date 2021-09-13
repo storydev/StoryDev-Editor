@@ -10,11 +10,15 @@ using System.Windows.Forms;
 
 namespace StoryDev.Forms
 {
-    public partial class SceneDesignerForm : Form
+    partial class SceneDesignerForm : Form
     {
         public SceneDesignerForm()
         {
+            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
+
             InitializeComponent();
+
+
         }
     }
 }

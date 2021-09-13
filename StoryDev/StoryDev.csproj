@@ -639,6 +639,12 @@
     <Compile Include="Components\Preferences\GeneralUI.Designer.cs">
       <DependentUpon>GeneralUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\SceneDesignerUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\SceneDesignerUI.Designer.cs">
+      <DependentUpon>SceneDesignerUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\Scripting\DataModuleFileProperties.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1464,6 +1470,8 @@
     <None Include="Resources\HXS File Icon.png" />
     <None Include="Resources\Folder.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Components\SceneDesign\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
