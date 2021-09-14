@@ -14,6 +14,9 @@ namespace StoryDev.Forms
 {
     partial class SceneDesignerForm : Form
     {
+
+        
+
         public SceneDesignerForm()
         {
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
@@ -25,7 +28,7 @@ namespace StoryDev.Forms
 
         private void tsbForeColor_Click(object sender, EventArgs e)
         {
-            var picker = new ColorDialog();
+            var picker = new ColorPickerDialog();
             picker.Color = tsbForeColor.BackColor;
             if (picker.ShowDialog() == DialogResult.OK)
             {
@@ -37,7 +40,7 @@ namespace StoryDev.Forms
 
         private void tsbBackColor_Click(object sender, EventArgs e)
         {
-            var picker = new ColorDialog();
+            var picker = new ColorPickerDialog();
             picker.Color = tsbBackColor.BackColor;
             if (picker.ShowDialog() == DialogResult.OK)
             {
@@ -46,5 +49,24 @@ namespace StoryDev.Forms
                 sceneDesigner.DrawBackColor = color;
             }
         }
+
+        private void tsbDrawLine_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void tsbDrawLine_CheckStateChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsbDrawLine_CheckedChanged(object sender, EventArgs e)
+        {
+            if (tsbDrawLine.Checked)
+                sceneDesigner.StartDrawElement(Components.SceneElementType.DrawLine);
+            else
+                sceneDesigner.StartDrawElement(Components.SceneElementType.DrawNone);
+        }
     }
+
 }

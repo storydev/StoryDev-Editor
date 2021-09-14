@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,21 @@ namespace StoryDev.Components
     {
 
         private Graphics g;
+        private Bitmap buffer;
+        private bool redrawNeeded;
+        private bool mouseDown;
+
+        // SOA for faster caching.
+
+        private SceneElementType[] elementTypes;
+        private PointF[] elementStarts;
+        private PointF[] elementEnds;
+        private Color[] elementForeColors;
+        private Color[] elementBackColors;
+
+        private SceneElementType drawType;
+        private PointF drawBegin;
+        private PointF drawEnd;
 
         private readonly float canvasMargin = 75;
         private readonly float canvasCellSize = 64;
@@ -27,7 +43,43 @@ namespace StoryDev.Components
 
             InitializeComponent();
 
+            elementTypes = new SceneElementType[0];
+            elementBackColors = new Color[0];
+            elementEnds = new PointF[0];
+            elementForeColors = new Color[0];
+            elementStarts = new PointF[0];
 
+            buffer = new Bitmap(1024, 768);
+            redrawNeeded = true;
+        }
+
+        public void FreeResources()
+        {
+            buffer.Dispose();
+        }
+
+        public void StartDrawElement(SceneElementType type)
+        {
+            drawType = type;
+        }
+
+
+        private void AddElement(SceneElementType type)
+        {
+            PushArray(ref elementTypes, type);
+            PushArray(ref elementStarts, new PointF(drawBegin.X - canvasMargin, drawBegin.Y - canvasMargin));
+            PushArray(ref elementEnds, new PointF(drawEnd.X - canvasMargin, drawEnd.Y - canvasMargin));
+            PushArray(ref elementForeColors, Color.FromArgb(DrawForeColor.A, DrawForeColor.R, DrawForeColor.G, DrawForeColor.B));
+            PushArray(ref elementBackColors, Color.FromArgb(DrawBackColor.A, DrawBackColor.R, DrawBackColor.G, DrawBackColor.B));
+
+        }
+
+        private void PushArray<T>(ref T[] arr, T obj)
+        {
+            var temp = new T[arr.Length + 1];
+            for (int i = 0; i < arr.Length; i++) temp[i] = arr[i];
+            temp[arr.Length] = obj;
+            arr = temp;
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -39,6 +91,7 @@ namespace StoryDev.Components
             var colCount = Math.Ceiling(Width / canvasCellSize);
             var rowCount = Math.Ceiling(Height / canvasCellSize);
 
+            // draw grid
             for (int y = 0; y < rowCount; y++)
             {
                 g.DrawLine(new Pen(Color.FromArgb(48, 48, 48)), 0, y * canvasCellSize, Width, y * canvasCellSize);
@@ -49,8 +102,90 @@ namespace StoryDev.Components
                 g.DrawLine(new Pen(Color.FromArgb(48, 48, 48)), x * canvasCellSize, 0, x * canvasCellSize, Height);
             }
 
+            if (redrawNeeded)
+            {
+                using (Graphics backBuffer = Graphics.FromImage(buffer))
+                {
+                    backBuffer.Clear(Color.Black);
+                    // draw elements
+                    for (int i = 0; i < elementTypes.Length; i++)
+                    {
+                        var type = elementTypes[i];
+                        var foreColor = elementForeColors[i];
+                        var start = elementStarts[i];
+                        var end = elementEnds[i];
+
+                        if (type == SceneElementType.DrawLine)
+                        {
+                            backBuffer.DrawLine(new Pen(foreColor), start.X, start.Y, 
+                                end.X, end.Y);
+                        }
+                    }
+                }
+
+                redrawNeeded = false;
+            }
+
+            g.DrawImageUnscaled(buffer, (int)canvasMargin, (int)canvasMargin);
+
+            // draw canvas boundaries
             g.DrawLine(new Pen(Color.FromArgb(160, 160, 160), 2), canvasMargin, 0, canvasMargin, Height);
             g.DrawLine(new Pen(Color.FromArgb(160, 160, 160), 2), 0, canvasMargin, Width, canvasMargin);
+
+            if (drawType != SceneElementType.DrawNone)
+            {
+                if (drawType == SceneElementType.DrawLine)
+                {
+                    g.DrawLine(new Pen(DrawForeColor), drawBegin.X, drawBegin.Y, drawEnd.X, drawEnd.Y);
+                }
+            }
         }
+
+        protected override void OnMouseDown(MouseEventArgs e)
+        {
+            if (drawType != SceneElementType.DrawNone && e.Button == MouseButtons.Left)
+            {
+                drawBegin = new PointF(e.X, e.Y);
+                drawEnd = new PointF(e.X, e.Y);
+                Invalidate();
+            }
+
+            mouseDown = true;
+        }
+
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            if (drawType != SceneElementType.DrawNone && mouseDown)
+            {
+                drawEnd = new PointF(e.X, e.Y);
+                Invalidate();
+            }
+        }
+
+        protected override void OnMouseUp(MouseEventArgs e)
+        {
+            if (drawType != SceneElementType.DrawNone)
+            {
+                AddElement(drawType);
+                drawBegin = new PointF(-1, -1);
+                drawEnd = new PointF(-1, -1);
+                redrawNeeded = true;
+
+                Invalidate();
+            }
+
+            mouseDown = false;
+        }
+    }
+
+    enum SceneElementType
+    {
+        DrawNone,
+        DrawLine,
+        DrawRect,
+        DrawCircle,
+        DrawTriangle,
+        DrawImage,
+        DrawText
     }
 }
