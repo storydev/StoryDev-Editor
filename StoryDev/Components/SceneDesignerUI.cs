@@ -18,6 +18,9 @@ namespace StoryDev.Components
         private readonly float canvasMargin = 75;
         private readonly float canvasCellSize = 64;
 
+        public Color DrawBackColor;
+        public Color DrawForeColor;
+
         public SceneDesignerUI()
         {
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);

@@ -70,7 +70,7 @@ namespace StoryDev.Forms
             this.pgSelectedObject = new System.Windows.Forms.PropertyGrid();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.sceneDesignerUI1 = new StoryDev.Components.SceneDesignerUI();
+            this.sceneDesigner = new StoryDev.Components.SceneDesignerUI();
             this.tsBasicOptions = new System.Windows.Forms.ToolStrip();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.tsbOpen = new System.Windows.Forms.ToolStripButton();
@@ -126,6 +126,7 @@ namespace StoryDev.Forms
             // 
             // menuStrip1
             // 
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
@@ -151,14 +152,14 @@ namespace StoryDev.Forms
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(235, 34);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.newToolStripMenuItem.Text = "New...";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(235, 34);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.openToolStripMenuItem.Text = "Open...";
             // 
             // saveToolStripMenuItem
@@ -166,14 +167,14 @@ namespace StoryDev.Forms
             this.saveToolStripMenuItem.Enabled = false;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(235, 34);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.saveToolStripMenuItem.Text = "Save...";
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Enabled = false;
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(235, 34);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.closeToolStripMenuItem.Text = "Close";
             // 
             // editToolStripMenuItem
@@ -196,7 +197,7 @@ namespace StoryDev.Forms
             this.undoToolStripMenuItem.Image = global::StoryDev.Properties.Resources.Undo;
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
             this.undoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.undoToolStripMenuItem.Size = new System.Drawing.Size(219, 34);
+            this.undoToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.undoToolStripMenuItem.Text = "Undo";
             // 
             // redoToolStripMenuItem
@@ -205,13 +206,13 @@ namespace StoryDev.Forms
             this.redoToolStripMenuItem.Image = global::StoryDev.Properties.Resources.Redo;
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
             this.redoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.redoToolStripMenuItem.Size = new System.Drawing.Size(219, 34);
+            this.redoToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.redoToolStripMenuItem.Text = "Redo";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(216, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(267, 6);
             // 
             // cutToolStripMenuItem
             // 
@@ -219,7 +220,7 @@ namespace StoryDev.Forms
             this.cutToolStripMenuItem.Image = global::StoryDev.Properties.Resources.Cut;
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
             this.cutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(219, 34);
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.cutToolStripMenuItem.Text = "Cut";
             // 
             // copyToolStripMenuItem
@@ -228,7 +229,7 @@ namespace StoryDev.Forms
             this.copyToolStripMenuItem.Image = global::StoryDev.Properties.Resources.Copy;
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
             this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(219, 34);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.copyToolStripMenuItem.Text = "Copy";
             // 
             // pasteToolStripMenuItem
@@ -237,7 +238,7 @@ namespace StoryDev.Forms
             this.pasteToolStripMenuItem.Image = global::StoryDev.Properties.Resources.Paste;
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
             this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(219, 34);
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.pasteToolStripMenuItem.Text = "Paste";
             // 
             // deleteToolStripMenuItem
@@ -245,7 +246,7 @@ namespace StoryDev.Forms
             this.deleteToolStripMenuItem.Enabled = false;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             this.deleteToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(219, 34);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.deleteToolStripMenuItem.Text = "Delete";
             // 
             // cmsSceneObjects
@@ -392,7 +393,7 @@ namespace StoryDev.Forms
             // 
             // spcMain.Panel2
             // 
-            this.spcMain.Panel2.Controls.Add(this.sceneDesignerUI1);
+            this.spcMain.Panel2.Controls.Add(this.sceneDesigner);
             this.spcMain.Panel2MinSize = 450;
             this.spcMain.Size = new System.Drawing.Size(1541, 823);
             this.spcMain.SplitterDistance = 300;
@@ -474,13 +475,13 @@ namespace StoryDev.Forms
             this.label2.Text = "Properties";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // sceneDesignerUI1
+            // sceneDesigner
             // 
-            this.sceneDesignerUI1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sceneDesignerUI1.Location = new System.Drawing.Point(0, 0);
-            this.sceneDesignerUI1.Name = "sceneDesignerUI1";
-            this.sceneDesignerUI1.Size = new System.Drawing.Size(1237, 823);
-            this.sceneDesignerUI1.TabIndex = 0;
+            this.sceneDesigner.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sceneDesigner.Location = new System.Drawing.Point(0, 0);
+            this.sceneDesigner.Name = "sceneDesigner";
+            this.sceneDesigner.Size = new System.Drawing.Size(1237, 823);
+            this.sceneDesigner.TabIndex = 0;
             // 
             // tsBasicOptions
             // 
@@ -567,7 +568,7 @@ namespace StoryDev.Forms
             this.tsbBackColor});
             this.tsDrawOptions.Location = new System.Drawing.Point(4, 33);
             this.tsDrawOptions.Name = "tsDrawOptions";
-            this.tsDrawOptions.Size = new System.Drawing.Size(458, 33);
+            this.tsDrawOptions.Size = new System.Drawing.Size(504, 33);
             this.tsDrawOptions.TabIndex = 1;
             // 
             // tsbDrawLine
@@ -789,6 +790,7 @@ namespace StoryDev.Forms
             this.tsbForeColor.Name = "tsbForeColor";
             this.tsbForeColor.Size = new System.Drawing.Size(34, 28);
             this.tsbForeColor.ToolTipText = "Set Foreground Colour";
+            this.tsbForeColor.Click += new System.EventHandler(this.tsbForeColor_Click);
             // 
             // toolStripLabel2
             // 
@@ -805,6 +807,7 @@ namespace StoryDev.Forms
             this.tsbBackColor.Name = "tsbBackColor";
             this.tsbBackColor.Size = new System.Drawing.Size(34, 28);
             this.tsbBackColor.ToolTipText = "Set Background Colour";
+            this.tsbBackColor.Click += new System.EventHandler(this.tsbBackColor_Click);
             // 
             // SceneDesignerForm
             // 
@@ -888,7 +891,7 @@ namespace StoryDev.Forms
         private System.Windows.Forms.PropertyGrid pgSelectedObject;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label2;
-        private Components.SceneDesignerUI sceneDesignerUI1;
+        private Components.SceneDesignerUI sceneDesigner;
         private System.Windows.Forms.ToolStrip tsBasicOptions;
         private System.Windows.Forms.ToolStripButton tsbNew;
         private System.Windows.Forms.ToolStripButton tsbOpen;
