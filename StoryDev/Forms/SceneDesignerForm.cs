@@ -67,6 +67,14 @@ namespace StoryDev.Forms
             else
                 sceneDesigner.StartDrawElement(Components.SceneElementType.DrawNone);
         }
+
+        private void rectangleToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (rectangleToolStripMenuItem1.Checked)
+                sceneDesigner.StartDrawElement(Components.SceneElementType.DrawRect);
+            else
+                sceneDesigner.StartDrawElement(Components.SceneElementType.DrawNone);
+        }
     }
 
 }

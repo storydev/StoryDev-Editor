@@ -70,6 +70,7 @@ namespace StoryDev.Forms
             this.pgSelectedObject = new System.Windows.Forms.PropertyGrid();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.sceneDesigner = new StoryDev.Components.SceneDesignerUI();
             this.tsBasicOptions = new System.Windows.Forms.ToolStrip();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.tsbOpen = new System.Windows.Forms.ToolStripButton();
@@ -103,7 +104,6 @@ namespace StoryDev.Forms
             this.tsbAlignObjectLeft = new System.Windows.Forms.ToolStripButton();
             this.tsbAlignObjectRight = new System.Windows.Forms.ToolStripButton();
             this.tsbAlignObjectBottom = new System.Windows.Forms.ToolStripButton();
-            this.sceneDesigner = new StoryDev.Components.SceneDesignerUI();
             this.menuStrip1.SuspendLayout();
             this.cmsSceneObjects.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -126,13 +126,14 @@ namespace StoryDev.Forms
             // 
             // menuStrip1
             // 
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1541, 36);
+            this.menuStrip1.Size = new System.Drawing.Size(1541, 33);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -144,21 +145,21 @@ namespace StoryDev.Forms
             this.saveToolStripMenuItem,
             this.closeToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(54, 30);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(54, 29);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(235, 34);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.newToolStripMenuItem.Text = "New...";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(235, 34);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.openToolStripMenuItem.Text = "Open...";
             // 
             // saveToolStripMenuItem
@@ -166,14 +167,14 @@ namespace StoryDev.Forms
             this.saveToolStripMenuItem.Enabled = false;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(235, 34);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.saveToolStripMenuItem.Text = "Save...";
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Enabled = false;
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(235, 34);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.closeToolStripMenuItem.Text = "Close";
             // 
             // editToolStripMenuItem
@@ -187,7 +188,7 @@ namespace StoryDev.Forms
             this.pasteToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(58, 30);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(58, 29);
             this.editToolStripMenuItem.Text = "Edit";
             // 
             // undoToolStripMenuItem
@@ -196,7 +197,7 @@ namespace StoryDev.Forms
             this.undoToolStripMenuItem.Image = global::StoryDev.Properties.Resources.Undo;
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
             this.undoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.undoToolStripMenuItem.Size = new System.Drawing.Size(219, 34);
+            this.undoToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.undoToolStripMenuItem.Text = "Undo";
             // 
             // redoToolStripMenuItem
@@ -205,13 +206,13 @@ namespace StoryDev.Forms
             this.redoToolStripMenuItem.Image = global::StoryDev.Properties.Resources.Redo;
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
             this.redoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.redoToolStripMenuItem.Size = new System.Drawing.Size(219, 34);
+            this.redoToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.redoToolStripMenuItem.Text = "Redo";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(216, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(267, 6);
             // 
             // cutToolStripMenuItem
             // 
@@ -219,7 +220,7 @@ namespace StoryDev.Forms
             this.cutToolStripMenuItem.Image = global::StoryDev.Properties.Resources.Cut;
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
             this.cutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(219, 34);
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.cutToolStripMenuItem.Text = "Cut";
             // 
             // copyToolStripMenuItem
@@ -228,7 +229,7 @@ namespace StoryDev.Forms
             this.copyToolStripMenuItem.Image = global::StoryDev.Properties.Resources.Copy;
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
             this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(219, 34);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.copyToolStripMenuItem.Text = "Copy";
             // 
             // pasteToolStripMenuItem
@@ -237,7 +238,7 @@ namespace StoryDev.Forms
             this.pasteToolStripMenuItem.Image = global::StoryDev.Properties.Resources.Paste;
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
             this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(219, 34);
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.pasteToolStripMenuItem.Text = "Paste";
             // 
             // deleteToolStripMenuItem
@@ -245,7 +246,7 @@ namespace StoryDev.Forms
             this.deleteToolStripMenuItem.Enabled = false;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             this.deleteToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(219, 34);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.deleteToolStripMenuItem.Text = "Delete";
             // 
             // cmsSceneObjects
@@ -364,11 +365,11 @@ namespace StoryDev.Forms
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this.spcMain);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1541, 886);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1541, 823);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toolStripContainer1.Location = new System.Drawing.Point(0, 36);
+            this.toolStripContainer1.Location = new System.Drawing.Point(0, 33);
             this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(1541, 919);
+            this.toolStripContainer1.Size = new System.Drawing.Size(1541, 922);
             this.toolStripContainer1.TabIndex = 1;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
@@ -393,7 +394,7 @@ namespace StoryDev.Forms
             // 
             this.spcMain.Panel2.Controls.Add(this.sceneDesigner);
             this.spcMain.Panel2MinSize = 450;
-            this.spcMain.Size = new System.Drawing.Size(1541, 886);
+            this.spcMain.Size = new System.Drawing.Size(1541, 823);
             this.spcMain.SplitterDistance = 300;
             this.spcMain.TabIndex = 2;
             // 
@@ -413,8 +414,8 @@ namespace StoryDev.Forms
             // 
             this.spcExplorer.Panel2.Controls.Add(this.pgSelectedObject);
             this.spcExplorer.Panel2.Controls.Add(this.panel2);
-            this.spcExplorer.Size = new System.Drawing.Size(300, 886);
-            this.spcExplorer.SplitterDistance = 436;
+            this.spcExplorer.Size = new System.Drawing.Size(300, 823);
+            this.spcExplorer.SplitterDistance = 404;
             this.spcExplorer.TabIndex = 0;
             // 
             // tvSceneObjects
@@ -423,7 +424,7 @@ namespace StoryDev.Forms
             this.tvSceneObjects.Enabled = false;
             this.tvSceneObjects.Location = new System.Drawing.Point(0, 27);
             this.tvSceneObjects.Name = "tvSceneObjects";
-            this.tvSceneObjects.Size = new System.Drawing.Size(300, 409);
+            this.tvSceneObjects.Size = new System.Drawing.Size(300, 377);
             this.tvSceneObjects.TabIndex = 1;
             // 
             // panel1
@@ -452,7 +453,7 @@ namespace StoryDev.Forms
             this.pgSelectedObject.Enabled = false;
             this.pgSelectedObject.Location = new System.Drawing.Point(0, 27);
             this.pgSelectedObject.Name = "pgSelectedObject";
-            this.pgSelectedObject.Size = new System.Drawing.Size(300, 419);
+            this.pgSelectedObject.Size = new System.Drawing.Size(300, 388);
             this.pgSelectedObject.TabIndex = 2;
             // 
             // panel2
@@ -475,6 +476,14 @@ namespace StoryDev.Forms
             this.label2.Text = "Properties";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // sceneDesigner
+            // 
+            this.sceneDesigner.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sceneDesigner.Location = new System.Drawing.Point(0, 0);
+            this.sceneDesigner.Name = "sceneDesigner";
+            this.sceneDesigner.Size = new System.Drawing.Size(1237, 823);
+            this.sceneDesigner.TabIndex = 0;
+            // 
             // tsBasicOptions
             // 
             this.tsBasicOptions.Dock = System.Windows.Forms.DockStyle.None;
@@ -486,7 +495,7 @@ namespace StoryDev.Forms
             this.tsbCut,
             this.tsbCopy,
             this.tsbPaste});
-            this.tsBasicOptions.Location = new System.Drawing.Point(8, 0);
+            this.tsBasicOptions.Location = new System.Drawing.Point(4, 66);
             this.tsBasicOptions.Name = "tsBasicOptions";
             this.tsBasicOptions.Size = new System.Drawing.Size(194, 33);
             this.tsBasicOptions.TabIndex = 0;
@@ -558,9 +567,9 @@ namespace StoryDev.Forms
             this.tsbForeColor,
             this.toolStripLabel2,
             this.tsbBackColor});
-            this.tsDrawOptions.Location = new System.Drawing.Point(206, 0);
+            this.tsDrawOptions.Location = new System.Drawing.Point(4, 33);
             this.tsDrawOptions.Name = "tsDrawOptions";
-            this.tsDrawOptions.Size = new System.Drawing.Size(458, 33);
+            this.tsDrawOptions.Size = new System.Drawing.Size(504, 33);
             this.tsDrawOptions.TabIndex = 1;
             // 
             // tsbDrawLine
@@ -581,7 +590,6 @@ namespace StoryDev.Forms
             this.rectangleToolStripMenuItem1,
             this.circleToolStripMenuItem1,
             this.triangleToolStripMenuItem1});
-            this.tssbShapes.Enabled = false;
             this.tssbShapes.Image = global::StoryDev.Properties.Resources.Shapes;
             this.tssbShapes.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tssbShapes.Name = "tssbShapes";
@@ -590,23 +598,27 @@ namespace StoryDev.Forms
             // 
             // rectangleToolStripMenuItem1
             // 
+            this.rectangleToolStripMenuItem1.CheckOnClick = true;
             this.rectangleToolStripMenuItem1.Image = global::StoryDev.Properties.Resources.DrawRect;
             this.rectangleToolStripMenuItem1.Name = "rectangleToolStripMenuItem1";
-            this.rectangleToolStripMenuItem1.Size = new System.Drawing.Size(190, 34);
+            this.rectangleToolStripMenuItem1.Size = new System.Drawing.Size(270, 34);
             this.rectangleToolStripMenuItem1.Text = "Rectangle";
+            this.rectangleToolStripMenuItem1.Click += new System.EventHandler(this.rectangleToolStripMenuItem1_Click);
             // 
             // circleToolStripMenuItem1
             // 
+            this.circleToolStripMenuItem1.CheckOnClick = true;
             this.circleToolStripMenuItem1.Image = global::StoryDev.Properties.Resources.DrawCircle;
             this.circleToolStripMenuItem1.Name = "circleToolStripMenuItem1";
-            this.circleToolStripMenuItem1.Size = new System.Drawing.Size(190, 34);
+            this.circleToolStripMenuItem1.Size = new System.Drawing.Size(270, 34);
             this.circleToolStripMenuItem1.Text = "Circle";
             // 
             // triangleToolStripMenuItem1
             // 
+            this.triangleToolStripMenuItem1.CheckOnClick = true;
             this.triangleToolStripMenuItem1.Image = global::StoryDev.Properties.Resources.DrawTriangle;
             this.triangleToolStripMenuItem1.Name = "triangleToolStripMenuItem1";
-            this.triangleToolStripMenuItem1.Size = new System.Drawing.Size(190, 34);
+            this.triangleToolStripMenuItem1.Size = new System.Drawing.Size(270, 34);
             this.triangleToolStripMenuItem1.Text = "Triangle";
             // 
             // tsbDrawImage
@@ -684,7 +696,7 @@ namespace StoryDev.Forms
             this.tsbAlignObjectLeft,
             this.tsbAlignObjectRight,
             this.tsbAlignObjectBottom});
-            this.tsbFormatOptions.Location = new System.Drawing.Point(664, 0);
+            this.tsbFormatOptions.Location = new System.Drawing.Point(4, 0);
             this.tsbFormatOptions.Name = "tsbFormatOptions";
             this.tsbFormatOptions.Size = new System.Drawing.Size(370, 33);
             this.tsbFormatOptions.TabIndex = 2;
@@ -799,14 +811,6 @@ namespace StoryDev.Forms
             this.tsbAlignObjectBottom.Name = "tsbAlignObjectBottom";
             this.tsbAlignObjectBottom.Size = new System.Drawing.Size(34, 28);
             this.tsbAlignObjectBottom.ToolTipText = "Align to Bottom of Object";
-            // 
-            // sceneDesigner
-            // 
-            this.sceneDesigner.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sceneDesigner.Location = new System.Drawing.Point(0, 0);
-            this.sceneDesigner.Name = "sceneDesigner";
-            this.sceneDesigner.Size = new System.Drawing.Size(1237, 886);
-            this.sceneDesigner.TabIndex = 0;
             // 
             // SceneDesignerForm
             // 

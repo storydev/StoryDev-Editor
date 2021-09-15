@@ -112,6 +112,7 @@ namespace StoryDev.Components
                     {
                         var type = elementTypes[i];
                         var foreColor = elementForeColors[i];
+                        var backColor = elementBackColors[i];
                         var start = elementStarts[i];
                         var end = elementEnds[i];
 
@@ -119,6 +120,32 @@ namespace StoryDev.Components
                         {
                             backBuffer.DrawLine(new Pen(foreColor), start.X, start.Y, 
                                 end.X, end.Y);
+                        }
+                        else if (type == SceneElementType.DrawRect)
+                        {
+                            var x = start.X;
+                            var y = start.Y;
+                            var w = 0f;
+                            var h = 0f;
+
+                            if (end.X < x)
+                            {
+                                x = end.X;
+                                w = start.X - end.X;
+                            }
+                            else
+                                w = end.X - start.X;
+
+                            if (end.Y < y)
+                            {
+                                y = end.Y;
+                                h = start.Y - end.Y;
+                            }
+                            else
+                                h = end.Y - start.Y;
+
+                            backBuffer.FillRectangle(new SolidBrush(backColor), x, y, w, h);
+                            backBuffer.DrawRectangle(new Pen(foreColor), x, y, w, h);
                         }
                     }
                 }
@@ -137,6 +164,32 @@ namespace StoryDev.Components
                 if (drawType == SceneElementType.DrawLine)
                 {
                     g.DrawLine(new Pen(DrawForeColor), drawBegin.X, drawBegin.Y, drawEnd.X, drawEnd.Y);
+                }
+                else if (drawType == SceneElementType.DrawRect)
+                {
+                    var x = drawBegin.X;
+                    var y = drawBegin.Y;
+                    var w = 0f;
+                    var h = 0f;
+
+                    if (drawEnd.X < x)
+                    {
+                        x = drawEnd.X;
+                        w = drawBegin.X - drawEnd.X;
+                    }
+                    else
+                        w = drawEnd.X - drawBegin.X;
+
+                    if (drawEnd.Y < y)
+                    {
+                        y = drawEnd.Y;
+                        h = drawBegin.Y - drawEnd.Y;
+                    }
+                    else
+                        h = drawEnd.Y - drawBegin.Y;
+
+                    g.FillRectangle(new SolidBrush(DrawBackColor), x, y, w, h);
+                    g.DrawRectangle(new Pen(DrawForeColor), x, y, w, h);
                 }
             }
         }
