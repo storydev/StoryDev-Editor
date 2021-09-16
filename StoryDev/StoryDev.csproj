@@ -735,6 +735,12 @@
     <Compile Include="Forms\AddJournalInlineCodeForm.Designer.cs">
       <DependentUpon>AddJournalInlineCodeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ArtManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ArtManagerForm.Designer.cs">
+      <DependentUpon>ArtManagerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DataModuleDesignerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1260,6 +1266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddJournalInlineCodeForm.resx">
       <DependentUpon>AddJournalInlineCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ArtManagerForm.resx">
+      <DependentUpon>ArtManagerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DataModuleDesignerForm.resx">
       <DependentUpon>DataModuleDesignerForm.cs</DependentUpon>

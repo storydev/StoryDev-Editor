@@ -126,7 +126,6 @@ namespace StoryDev.Forms
             // 
             // menuStrip1
             // 
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
@@ -375,9 +374,9 @@ namespace StoryDev.Forms
             // 
             // toolStripContainer1.TopToolStripPanel
             // 
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.tsBasicOptions);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.tsDrawOptions);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.tsbFormatOptions);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.tsBasicOptions);
             // 
             // spcMain
             // 
@@ -415,7 +414,7 @@ namespace StoryDev.Forms
             this.spcExplorer.Panel2.Controls.Add(this.pgSelectedObject);
             this.spcExplorer.Panel2.Controls.Add(this.panel2);
             this.spcExplorer.Size = new System.Drawing.Size(300, 886);
-            this.spcExplorer.SplitterDistance = 434;
+            this.spcExplorer.SplitterDistance = 433;
             this.spcExplorer.TabIndex = 0;
             // 
             // tvSceneObjects
@@ -424,7 +423,7 @@ namespace StoryDev.Forms
             this.tvSceneObjects.Enabled = false;
             this.tvSceneObjects.Location = new System.Drawing.Point(0, 27);
             this.tvSceneObjects.Name = "tvSceneObjects";
-            this.tvSceneObjects.Size = new System.Drawing.Size(300, 407);
+            this.tvSceneObjects.Size = new System.Drawing.Size(300, 406);
             this.tvSceneObjects.TabIndex = 1;
             // 
             // panel1
@@ -453,7 +452,7 @@ namespace StoryDev.Forms
             this.pgSelectedObject.Enabled = false;
             this.pgSelectedObject.Location = new System.Drawing.Point(0, 27);
             this.pgSelectedObject.Name = "pgSelectedObject";
-            this.pgSelectedObject.Size = new System.Drawing.Size(300, 421);
+            this.pgSelectedObject.Size = new System.Drawing.Size(300, 422);
             this.pgSelectedObject.TabIndex = 2;
             // 
             // panel2
@@ -593,7 +592,7 @@ namespace StoryDev.Forms
             this.rectangleToolStripMenuItem1.CheckOnClick = true;
             this.rectangleToolStripMenuItem1.Image = global::StoryDev.Properties.Resources.DrawRect;
             this.rectangleToolStripMenuItem1.Name = "rectangleToolStripMenuItem1";
-            this.rectangleToolStripMenuItem1.Size = new System.Drawing.Size(270, 34);
+            this.rectangleToolStripMenuItem1.Size = new System.Drawing.Size(190, 34);
             this.rectangleToolStripMenuItem1.Text = "Rectangle";
             this.rectangleToolStripMenuItem1.Click += new System.EventHandler(this.rectangleToolStripMenuItem1_Click);
             // 
@@ -602,7 +601,7 @@ namespace StoryDev.Forms
             this.circleToolStripMenuItem1.CheckOnClick = true;
             this.circleToolStripMenuItem1.Image = global::StoryDev.Properties.Resources.DrawCircle;
             this.circleToolStripMenuItem1.Name = "circleToolStripMenuItem1";
-            this.circleToolStripMenuItem1.Size = new System.Drawing.Size(270, 34);
+            this.circleToolStripMenuItem1.Size = new System.Drawing.Size(190, 34);
             this.circleToolStripMenuItem1.Text = "Circle";
             this.circleToolStripMenuItem1.Click += new System.EventHandler(this.circleToolStripMenuItem1_Click);
             // 
@@ -611,13 +610,12 @@ namespace StoryDev.Forms
             this.triangleToolStripMenuItem1.CheckOnClick = true;
             this.triangleToolStripMenuItem1.Image = global::StoryDev.Properties.Resources.DrawTriangle;
             this.triangleToolStripMenuItem1.Name = "triangleToolStripMenuItem1";
-            this.triangleToolStripMenuItem1.Size = new System.Drawing.Size(270, 34);
+            this.triangleToolStripMenuItem1.Size = new System.Drawing.Size(190, 34);
             this.triangleToolStripMenuItem1.Text = "Triangle";
             // 
             // tsbDrawImage
             // 
             this.tsbDrawImage.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbDrawImage.Enabled = false;
             this.tsbDrawImage.Image = global::StoryDev.Properties.Resources.DrawImage;
             this.tsbDrawImage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbDrawImage.Name = "tsbDrawImage";
