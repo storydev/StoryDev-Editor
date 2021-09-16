@@ -75,6 +75,14 @@ namespace StoryDev.Forms
             else
                 sceneDesigner.StartDrawElement(Components.SceneElementType.DrawNone);
         }
+
+        private void circleToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (circleToolStripMenuItem1.Checked)
+                sceneDesigner.StartDrawElement(Components.SceneElementType.DrawCircle);
+            else
+                sceneDesigner.StartDrawElement(Components.SceneElementType.DrawNone);
+        }
     }
 
 }

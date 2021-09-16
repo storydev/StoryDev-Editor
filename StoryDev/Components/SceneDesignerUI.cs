@@ -67,11 +67,33 @@ namespace StoryDev.Components
         private void AddElement(SceneElementType type)
         {
             PushArray(ref elementTypes, type);
-            PushArray(ref elementStarts, new PointF(drawBegin.X - canvasMargin, drawBegin.Y - canvasMargin));
-            PushArray(ref elementEnds, new PointF(drawEnd.X - canvasMargin, drawEnd.Y - canvasMargin));
+
+            var startX = drawBegin.X;
+            var startY = drawBegin.Y;
+            var endX = drawEnd.X;
+            var endY = drawEnd.Y;
+
+            if (type == SceneElementType.DrawCircle)
+            {
+                var centerX = drawBegin.X;
+                var centerY = drawBegin.Y;
+                var radius = 0f;
+
+                if (drawEnd.X >= drawEnd.Y)
+                    radius = drawEnd.X - centerX;
+                else
+                    radius = drawEnd.Y - centerY;
+
+                startX = centerX - radius;
+                startY = centerY - radius;
+                endX = radius * 2;
+                endY = radius * 2;
+            }
+
+            PushArray(ref elementStarts, new PointF(startX - canvasMargin, startY - canvasMargin));
+            PushArray(ref elementEnds, new PointF(endX - canvasMargin, endY - canvasMargin));
             PushArray(ref elementForeColors, Color.FromArgb(DrawForeColor.A, DrawForeColor.R, DrawForeColor.G, DrawForeColor.B));
             PushArray(ref elementBackColors, Color.FromArgb(DrawBackColor.A, DrawBackColor.R, DrawBackColor.G, DrawBackColor.B));
-
         }
 
         private void PushArray<T>(ref T[] arr, T obj)
@@ -147,6 +169,11 @@ namespace StoryDev.Components
                             backBuffer.FillRectangle(new SolidBrush(backColor), x, y, w, h);
                             backBuffer.DrawRectangle(new Pen(foreColor), x, y, w, h);
                         }
+                        else if (type == SceneElementType.DrawCircle)
+                        {
+                            backBuffer.FillEllipse(new SolidBrush(backColor), start.X, start.Y, end.X, end.Y);
+                            backBuffer.DrawEllipse(new Pen(foreColor), start.X, start.Y, end.X, end.Y);
+                        }
                     }
                 }
 
@@ -190,6 +217,20 @@ namespace StoryDev.Components
 
                     g.FillRectangle(new SolidBrush(DrawBackColor), x, y, w, h);
                     g.DrawRectangle(new Pen(DrawForeColor), x, y, w, h);
+                }
+                else if (drawType == SceneElementType.DrawCircle)
+                {
+                    var centerX = drawBegin.X;
+                    var centerY = drawBegin.Y;
+                    var radius = 0f;
+
+                    if (drawEnd.X >= drawEnd.Y)
+                        radius = drawEnd.X - centerX;
+                    else
+                        radius = drawEnd.Y - centerY;
+
+                    g.FillEllipse(new SolidBrush(DrawBackColor), centerX - radius, centerY - radius, radius * 2, radius * 2);
+                    g.DrawEllipse(new Pen(DrawForeColor), centerX - radius, centerY - radius, radius * 2, radius * 2);
                 }
             }
         }
