@@ -84,14 +84,25 @@ namespace StoryDev.Components
                 else
                     radius = drawEnd.Y - centerY;
 
-                startX = centerX - radius;
-                startY = centerY - radius;
+                if (radius < 0)
+                    radius = -radius;
+
+                startX = centerX - (radius * 2);
+                startY = centerY - (radius * 2);
                 endX = radius * 2;
                 endY = radius * 2;
             }
+            else
+            {
+                startX -= canvasMargin;
+                startY -= canvasMargin;
+                endX -= canvasMargin;
+                endY -= canvasMargin;
+            }
 
-            PushArray(ref elementStarts, new PointF(startX - canvasMargin, startY - canvasMargin));
-            PushArray(ref elementEnds, new PointF(endX - canvasMargin, endY - canvasMargin));
+
+            PushArray(ref elementStarts, new PointF(startX, startY));
+            PushArray(ref elementEnds, new PointF(endX, endY));
             PushArray(ref elementForeColors, Color.FromArgb(DrawForeColor.A, DrawForeColor.R, DrawForeColor.G, DrawForeColor.B));
             PushArray(ref elementBackColors, Color.FromArgb(DrawBackColor.A, DrawBackColor.R, DrawBackColor.G, DrawBackColor.B));
         }
@@ -228,6 +239,9 @@ namespace StoryDev.Components
                         radius = drawEnd.X - centerX;
                     else
                         radius = drawEnd.Y - centerY;
+
+                    if (radius < 0)
+                        radius = -radius;
 
                     g.FillEllipse(new SolidBrush(DrawBackColor), centerX - radius, centerY - radius, radius * 2, radius * 2);
                     g.DrawEllipse(new Pen(DrawForeColor), centerX - radius, centerY - radius, radius * 2, radius * 2);
