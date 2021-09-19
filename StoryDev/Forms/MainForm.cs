@@ -313,5 +313,10 @@ namespace StoryDev.Forms
         {
             new SceneDesignerForm().Show();
         }
+
+        private void artToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new ArtManagerForm().ShowDialog();
+        }
     }
 }

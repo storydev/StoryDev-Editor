@@ -55,16 +55,17 @@ namespace StoryDev.Forms
             this.managerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resourcesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iconSetsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.artToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.formDesignerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tcMain = new System.Windows.Forms.TabControl();
-            this.artToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
@@ -245,7 +246,7 @@ namespace StoryDev.Forms
             // managerToolStripMenuItem
             // 
             this.managerToolStripMenuItem.Name = "managerToolStripMenuItem";
-            this.managerToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.managerToolStripMenuItem.Size = new System.Drawing.Size(184, 34);
             this.managerToolStripMenuItem.Text = "Manager";
             this.managerToolStripMenuItem.Click += new System.EventHandler(this.managerToolStripMenuItem_Click);
             // 
@@ -265,6 +266,13 @@ namespace StoryDev.Forms
             this.iconSetsToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.iconSetsToolStripMenuItem.Text = "Icon Sets...";
             this.iconSetsToolStripMenuItem.Click += new System.EventHandler(this.iconSetsToolStripMenuItem_Click);
+            // 
+            // artToolStripMenuItem
+            // 
+            this.artToolStripMenuItem.Name = "artToolStripMenuItem";
+            this.artToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.artToolStripMenuItem.Text = "Art...";
+            this.artToolStripMenuItem.Click += new System.EventHandler(this.artToolStripMenuItem_Click);
             // 
             // modulesToolStripMenuItem
             // 
@@ -297,12 +305,6 @@ namespace StoryDev.Forms
             this.tcMain.SelectedIndex = 0;
             this.tcMain.Size = new System.Drawing.Size(1179, 716);
             this.tcMain.TabIndex = 1;
-            // 
-            // artToolStripMenuItem
-            // 
-            this.artToolStripMenuItem.Name = "artToolStripMenuItem";
-            this.artToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.artToolStripMenuItem.Text = "Art...";
             // 
             // MainForm
             // 

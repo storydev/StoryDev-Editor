@@ -121,6 +121,12 @@
     <Compile Include="Components\ArtefactsUI.Designer.cs">
       <DependentUpon>ArtefactsUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\ArtPreviewUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\ArtPreviewUI.Designer.cs">
+      <DependentUpon>ArtPreviewUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\BranchDesignerUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
