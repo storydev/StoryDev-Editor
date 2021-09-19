@@ -747,6 +747,12 @@
     <Compile Include="Forms\ArtManagerForm.Designer.cs">
       <DependentUpon>ArtManagerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ArtManager\StandardSheetPropertiesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ArtManager\StandardSheetPropertiesForm.Designer.cs">
+      <DependentUpon>StandardSheetPropertiesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DataModuleDesignerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1275,6 +1281,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ArtManagerForm.resx">
       <DependentUpon>ArtManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ArtManager\StandardSheetPropertiesForm.resx">
+      <DependentUpon>StandardSheetPropertiesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DataModuleDesignerForm.resx">
       <DependentUpon>DataModuleDesignerForm.cs</DependentUpon>

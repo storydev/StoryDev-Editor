@@ -102,6 +102,35 @@ namespace StoryDev.Forms
                 if (File.Exists(Globals.GetResourcesPath() + "\\" + tvArtFiles.SelectedNode.FullPath))
                 {
                     artPreview.Image = Image.FromFile(Globals.GetResourcesPath() + "\\" + tvArtFiles.SelectedNode.FullPath);
+
+                    var dataFile = Globals.GetResourcesPath() + "\\" + tvArtFiles.SelectedNode.FullPath + ".sdd";
+                    if (File.Exists(dataFile))
+                    {
+                        var content = File.ReadAllLines(dataFile);
+                        if (content.Length > 0)
+                        {
+                            for (int i = 0; i < content.Length; i++)
+                            {
+                                if (i == 0)
+                                {
+                                    if (int.TryParse(content[i], out int type))
+                                    {
+                                        cmbImageType.SelectedIndex = type;
+                                        btnProperties.Enabled = cmbImageType.SelectedIndex > 0;
+                                    }
+                                }
+                                else
+                                {
+                                    if (cmbImageType.SelectedIndex == 1)
+                                    {
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    pnlImageProperties.Enabled = true;
                 }
             }
 
