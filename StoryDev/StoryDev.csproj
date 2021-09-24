@@ -695,6 +695,8 @@
     <Compile Include="Data\ActivityPart.cs" />
     <Compile Include="Data\Artefact.cs" />
     <Compile Include="Data\ArtefactFragment.cs" />
+    <Compile Include="Data\Art\Scale9Rect.cs" />
+    <Compile Include="Data\Art\SheetCell.cs" />
     <Compile Include="Data\Character.cs" />
     <Compile Include="Data\CharacterAttitude.cs" />
     <Compile Include="Data\CharacterGossip.cs" />

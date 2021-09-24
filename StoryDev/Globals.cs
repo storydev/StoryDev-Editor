@@ -1221,6 +1221,14 @@ namespace StoryDev
         // Misc Utilities
         //
 
+        public static void PushArray<T>(ref T[] arr, T obj)
+        {
+            var temp = new T[arr.Length + 1];
+            for (int i = 0; i < arr.Length; i++) temp[i] = arr[i];
+            temp[arr.Length] = obj;
+            arr = temp;
+        }
+
         public static string GetFormFieldComponentName(ElementType type)
         {
             string result;
