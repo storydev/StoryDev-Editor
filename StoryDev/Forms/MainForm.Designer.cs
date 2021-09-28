@@ -56,6 +56,8 @@ namespace StoryDev.Forms
             this.resourcesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iconSetsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tcMain = new System.Windows.Forms.TabControl();
+            this.previewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startPreviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,7 +68,8 @@ namespace StoryDev.Forms
             this.fileToolStripMenuItem,
             this.viewToolStripMenuItem,
             this.scriptsToolStripMenuItem,
-            this.resourcesToolStripMenuItem});
+            this.resourcesToolStripMenuItem,
+            this.previewToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1179, 33);
@@ -87,7 +90,7 @@ namespace StoryDev.Forms
             // openProjectToolStripMenuItem
             // 
             this.openProjectToolStripMenuItem.Name = "openProjectToolStripMenuItem";
-            this.openProjectToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.openProjectToolStripMenuItem.Size = new System.Drawing.Size(229, 34);
             this.openProjectToolStripMenuItem.Text = "Open Project...";
             this.openProjectToolStripMenuItem.Click += new System.EventHandler(this.openProjectToolStripMenuItem_Click);
             // 
@@ -95,19 +98,19 @@ namespace StoryDev.Forms
             // 
             this.saveAllToolStripMenuItem.Enabled = false;
             this.saveAllToolStripMenuItem.Name = "saveAllToolStripMenuItem";
-            this.saveAllToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.saveAllToolStripMenuItem.Size = new System.Drawing.Size(229, 34);
             this.saveAllToolStripMenuItem.Text = "Save all...";
             this.saveAllToolStripMenuItem.Click += new System.EventHandler(this.saveAllToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(267, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(226, 6);
             // 
             // preferencesToolStripMenuItem
             // 
             this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
-            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(229, 34);
             this.preferencesToolStripMenuItem.Text = "Preferences...";
             this.preferencesToolStripMenuItem.Click += new System.EventHandler(this.preferencesToolStripMenuItem_Click);
             // 
@@ -255,7 +258,7 @@ namespace StoryDev.Forms
             // iconSetsToolStripMenuItem
             // 
             this.iconSetsToolStripMenuItem.Name = "iconSetsToolStripMenuItem";
-            this.iconSetsToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.iconSetsToolStripMenuItem.Size = new System.Drawing.Size(198, 34);
             this.iconSetsToolStripMenuItem.Text = "Icon Sets...";
             this.iconSetsToolStripMenuItem.Click += new System.EventHandler(this.iconSetsToolStripMenuItem_Click);
             // 
@@ -267,6 +270,21 @@ namespace StoryDev.Forms
             this.tcMain.SelectedIndex = 0;
             this.tcMain.Size = new System.Drawing.Size(1179, 716);
             this.tcMain.TabIndex = 1;
+            // 
+            // previewToolStripMenuItem
+            // 
+            this.previewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.startPreviewToolStripMenuItem});
+            this.previewToolStripMenuItem.Enabled = false;
+            this.previewToolStripMenuItem.Name = "previewToolStripMenuItem";
+            this.previewToolStripMenuItem.Size = new System.Drawing.Size(88, 29);
+            this.previewToolStripMenuItem.Text = "Preview";
+            // 
+            // startPreviewToolStripMenuItem
+            // 
+            this.startPreviewToolStripMenuItem.Name = "startPreviewToolStripMenuItem";
+            this.startPreviewToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.startPreviewToolStripMenuItem.Text = "Start Preview...";
             // 
             // MainForm
             // 
@@ -314,6 +332,8 @@ namespace StoryDev.Forms
         private System.Windows.Forms.ToolStripMenuItem scriptsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem managerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem scenesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem previewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem startPreviewToolStripMenuItem;
     }
 }
 

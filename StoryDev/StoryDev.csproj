@@ -451,6 +451,12 @@
     <Compile Include="Components\CodeUI\UnlockSection.Designer.cs">
       <DependentUpon>UnlockSection.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Previews\PreviewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Previews\PreviewForm.Designer.cs">
+      <DependentUpon>PreviewForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Legacy\Components\DataModule\DataModuleEditUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1172,6 +1178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Components\CodeUI\UnlockSection.resx">
       <DependentUpon>UnlockSection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Previews\PreviewForm.resx">
+      <DependentUpon>PreviewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Legacy\Components\DataModule\DataModuleEditUI.resx">
       <DependentUpon>DataModuleEditUI.cs</DependentUpon>
