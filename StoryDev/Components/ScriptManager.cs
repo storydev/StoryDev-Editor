@@ -18,7 +18,6 @@ namespace StoryDev.Components
     {
 
         private TreeNode lastSelected;
-        private TreeNode lastFileNode;
         private string lastFile;
         private bool requiresSave;
 
@@ -28,8 +27,6 @@ namespace StoryDev.Components
 
             tvScripts.SuspendLayout();
             PopulateFolder(Globals.CurrentProjectFolder + "\\Scripts\\", tvScripts.Nodes[0]);
-            PopulateFolder(Globals.CurrentProjectFolder + "\\Events\\", tvScripts.Nodes[1]);
-            PopulateFolder(Globals.CurrentProjectFolder + "\\Data Modules\\", tvScripts.Nodes[2]);
             tvScripts.ResumeLayout();
 
             editor.CurrentLanguage = Language.HaxeScript;
@@ -115,50 +112,6 @@ namespace StoryDev.Components
         private void tvScripts_AfterSelect(object sender, TreeViewEventArgs e)
         {
             lastSelected = e.Node;
-
-            pnlFileOptions.Controls.Clear();
-
-            if (lastSelected.FullPath == "Data Modules")
-            {
-                var properties = new Scripting.DataModuleFolderProperties() { Dock = DockStyle.Fill };
-                properties.RequestDataModuleRefresh += () =>
-                {
-                    RequestDataModuleRefresh?.Invoke();
-                };
-                pnlFileOptions.Controls.Add(properties);
-                pnlFileOptions.Enabled = true;
-            }
-
-            if (lastSelected.FullPath.EndsWith(".hxs"))
-            {
-                if (lastSelected.FullPath.StartsWith("Scripts"))
-                {
-                    ScriptFileData data;
-                    if (!Globals.ScriptData.ContainsKey(lastSelected.FullPath))
-                    {
-                        Globals.ScriptData.Add(lastSelected.FullPath, new ScriptFileData());
-                    }
-
-                    data = Globals.ScriptData[lastSelected.FullPath];
-
-                    var properties = new Scripting.ScriptFileProperties(data);
-                    properties.Dock = DockStyle.Fill;
-                    pnlFileOptions.Controls.Add(properties);
-                    pnlFileOptions.Enabled = true;
-
-                    Globals.SaveScriptData();
-                }
-
-                var contents = File.ReadAllText(Globals.CurrentProjectFolder + "\\" + lastSelected.FullPath);
-                editor.Text = contents;
-
-                lastFile = Globals.CurrentProjectFolder + "\\" + lastSelected.FullPath;
-                lastFileNode = lastSelected;
-
-                editor.Enabled = true;
-                TabNameChanged?.Invoke(lastSelected.Text);
-                SaveStateChanged?.Invoke(false);
-            }
         }
 
         private void editor_TextChanging(object sender, FastColoredTextBoxNS.TextChangingEventArgs e)

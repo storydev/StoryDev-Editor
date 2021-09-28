@@ -55,25 +55,18 @@ namespace StoryDev.Forms
             this.managerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resourcesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iconSetsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.artToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.modulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.formDesignerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tcMain = new System.Windows.Forms.TabControl();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.viewToolStripMenuItem,
             this.scriptsToolStripMenuItem,
-            this.resourcesToolStripMenuItem,
-            this.modulesToolStripMenuItem,
-            this.testToolStripMenuItem});
+            this.resourcesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1179, 33);
@@ -94,7 +87,7 @@ namespace StoryDev.Forms
             // openProjectToolStripMenuItem
             // 
             this.openProjectToolStripMenuItem.Name = "openProjectToolStripMenuItem";
-            this.openProjectToolStripMenuItem.Size = new System.Drawing.Size(229, 34);
+            this.openProjectToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.openProjectToolStripMenuItem.Text = "Open Project...";
             this.openProjectToolStripMenuItem.Click += new System.EventHandler(this.openProjectToolStripMenuItem_Click);
             // 
@@ -102,19 +95,19 @@ namespace StoryDev.Forms
             // 
             this.saveAllToolStripMenuItem.Enabled = false;
             this.saveAllToolStripMenuItem.Name = "saveAllToolStripMenuItem";
-            this.saveAllToolStripMenuItem.Size = new System.Drawing.Size(229, 34);
+            this.saveAllToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.saveAllToolStripMenuItem.Text = "Save all...";
             this.saveAllToolStripMenuItem.Click += new System.EventHandler(this.saveAllToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(226, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(267, 6);
             // 
             // preferencesToolStripMenuItem
             // 
             this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
-            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(229, 34);
+            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.preferencesToolStripMenuItem.Text = "Preferences...";
             this.preferencesToolStripMenuItem.Click += new System.EventHandler(this.preferencesToolStripMenuItem_Click);
             // 
@@ -253,8 +246,7 @@ namespace StoryDev.Forms
             // resourcesToolStripMenuItem
             // 
             this.resourcesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.iconSetsToolStripMenuItem,
-            this.artToolStripMenuItem});
+            this.iconSetsToolStripMenuItem});
             this.resourcesToolStripMenuItem.Enabled = false;
             this.resourcesToolStripMenuItem.Name = "resourcesToolStripMenuItem";
             this.resourcesToolStripMenuItem.Size = new System.Drawing.Size(107, 29);
@@ -266,36 +258,6 @@ namespace StoryDev.Forms
             this.iconSetsToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.iconSetsToolStripMenuItem.Text = "Icon Sets...";
             this.iconSetsToolStripMenuItem.Click += new System.EventHandler(this.iconSetsToolStripMenuItem_Click);
-            // 
-            // artToolStripMenuItem
-            // 
-            this.artToolStripMenuItem.Name = "artToolStripMenuItem";
-            this.artToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.artToolStripMenuItem.Text = "Art...";
-            this.artToolStripMenuItem.Click += new System.EventHandler(this.artToolStripMenuItem_Click);
-            // 
-            // modulesToolStripMenuItem
-            // 
-            this.modulesToolStripMenuItem.Name = "modulesToolStripMenuItem";
-            this.modulesToolStripMenuItem.Size = new System.Drawing.Size(97, 29);
-            this.modulesToolStripMenuItem.Text = "Modules";
-            this.modulesToolStripMenuItem.Visible = false;
-            // 
-            // testToolStripMenuItem
-            // 
-            this.testToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.formDesignerToolStripMenuItem});
-            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(58, 29);
-            this.testToolStripMenuItem.Text = "Test";
-            this.testToolStripMenuItem.Visible = false;
-            // 
-            // formDesignerToolStripMenuItem
-            // 
-            this.formDesignerToolStripMenuItem.Name = "formDesignerToolStripMenuItem";
-            this.formDesignerToolStripMenuItem.Size = new System.Drawing.Size(231, 34);
-            this.formDesignerToolStripMenuItem.Text = "Form Designer";
-            this.formDesignerToolStripMenuItem.Click += new System.EventHandler(this.formDesignerToolStripMenuItem_Click);
             // 
             // tcMain
             // 
@@ -351,11 +313,7 @@ namespace StoryDev.Forms
         private System.Windows.Forms.ToolStripMenuItem mapsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem scriptsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem managerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem modulesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem formDesignerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem scenesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem artToolStripMenuItem;
     }
 }
 

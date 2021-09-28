@@ -10,12 +10,12 @@ namespace StoryDev.Data
     {
 
         public Dictionary<string, int> ArtefactContextNames;
+        [Obsolete("Not to be used in any context. Removed in a later patch.", true)]
         public List<FormComponent> FormComponents;
 
         public GlobalSettings()
         {
             ArtefactContextNames = new Dictionary<string, int>();
-            FormComponents = new List<FormComponent>();
         }
 
     }

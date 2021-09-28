@@ -1229,6 +1229,7 @@ namespace StoryDev
             arr = temp;
         }
 
+        [Obsolete("Not to be used in any context. Removed in a later patch.", true)]
         public static string GetFormFieldComponentName(ElementType type)
         {
             string result;
@@ -1288,6 +1289,7 @@ namespace StoryDev
             return result;
         }
 
+        [Obsolete("Not to be used in any context. Removed in a later patch.", true)]
         public static List<FormComponent> GetDefaultComponentSettings()
         {
             var result = new List<FormComponent>();

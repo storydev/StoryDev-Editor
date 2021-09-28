@@ -451,94 +451,94 @@
     <Compile Include="Components\CodeUI\UnlockSection.Designer.cs">
       <DependentUpon>UnlockSection.cs</DependentUpon>
     </Compile>
-    <Compile Include="Components\DataModule\DataModuleEditUI.cs">
+    <Compile Include="Legacy\Components\DataModule\DataModuleEditUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Components\DataModule\DataModuleEditUI.Designer.cs">
+    <Compile Include="Legacy\Components\DataModule\DataModuleEditUI.Designer.cs">
       <DependentUpon>DataModuleEditUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="Components\DataModule\FieldButton.cs">
+    <Compile Include="Legacy\Components\DataModule\FieldButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Components\DataModule\FieldButton.Designer.cs">
+    <Compile Include="Legacy\Components\DataModule\FieldButton.Designer.cs">
       <DependentUpon>FieldButton.cs</DependentUpon>
     </Compile>
-    <Compile Include="Components\DataModule\FieldCheckBox.cs">
+    <Compile Include="Legacy\Components\DataModule\FieldCheckBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Components\DataModule\FieldCheckList.cs">
+    <Compile Include="Legacy\Components\DataModule\FieldCheckList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Components\DataModule\FieldCheckList.Designer.cs">
+    <Compile Include="Legacy\Components\DataModule\FieldCheckList.Designer.cs">
       <DependentUpon>FieldCheckList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Components\DataModule\FieldComboBox.cs">
+    <Compile Include="Legacy\Components\DataModule\FieldComboBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Components\DataModule\FieldComboBox.Designer.cs">
+    <Compile Include="Legacy\Components\DataModule\FieldComboBox.Designer.cs">
       <DependentUpon>FieldComboBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Components\DataModule\FieldDatePicker.cs">
+    <Compile Include="Legacy\Components\DataModule\FieldDatePicker.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Components\DataModule\FieldDatePicker.Designer.cs">
+    <Compile Include="Legacy\Components\DataModule\FieldDatePicker.Designer.cs">
       <DependentUpon>FieldDatePicker.cs</DependentUpon>
     </Compile>
-    <Compile Include="Components\DataModule\FieldIconSelector.cs">
+    <Compile Include="Legacy\Components\DataModule\FieldIconSelector.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Components\DataModule\FieldIconSelector.Designer.cs">
+    <Compile Include="Legacy\Components\DataModule\FieldIconSelector.Designer.cs">
       <DependentUpon>FieldIconSelector.cs</DependentUpon>
     </Compile>
-    <Compile Include="Components\DataModule\FieldInputCode.cs">
+    <Compile Include="Legacy\Components\DataModule\FieldInputCode.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Components\DataModule\FieldInputCode.Designer.cs">
+    <Compile Include="Legacy\Components\DataModule\FieldInputCode.Designer.cs">
       <DependentUpon>FieldInputCode.cs</DependentUpon>
     </Compile>
-    <Compile Include="Components\DataModule\FieldInputMultiline.cs">
+    <Compile Include="Legacy\Components\DataModule\FieldInputMultiline.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Components\DataModule\FieldInputMultiline.Designer.cs">
+    <Compile Include="Legacy\Components\DataModule\FieldInputMultiline.Designer.cs">
       <DependentUpon>FieldInputMultiline.cs</DependentUpon>
     </Compile>
-    <Compile Include="Components\DataModule\FieldInputSingle.cs">
+    <Compile Include="Legacy\Components\DataModule\FieldInputSingle.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Components\DataModule\FieldInputSingle.Designer.cs">
+    <Compile Include="Legacy\Components\DataModule\FieldInputSingle.Designer.cs">
       <DependentUpon>FieldInputSingle.cs</DependentUpon>
     </Compile>
-    <Compile Include="Components\DataModule\FieldLabel.cs">
+    <Compile Include="Legacy\Components\DataModule\FieldLabel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Components\DataModule\FieldLinkedDetailedView.cs">
+    <Compile Include="Legacy\Components\DataModule\FieldLinkedDetailedView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Components\DataModule\FieldLinkedDetailedView.Designer.cs">
+    <Compile Include="Legacy\Components\DataModule\FieldLinkedDetailedView.Designer.cs">
       <DependentUpon>FieldLinkedDetailedView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Components\DataModule\FieldListBox.cs">
+    <Compile Include="Legacy\Components\DataModule\FieldListBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Components\DataModule\FieldListBox.Designer.cs">
+    <Compile Include="Legacy\Components\DataModule\FieldListBox.Designer.cs">
       <DependentUpon>FieldListBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Components\DataModule\FieldNumeric.cs">
+    <Compile Include="Legacy\Components\DataModule\FieldNumeric.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Components\DataModule\FieldNumeric.Designer.cs">
+    <Compile Include="Legacy\Components\DataModule\FieldNumeric.Designer.cs">
       <DependentUpon>FieldNumeric.cs</DependentUpon>
     </Compile>
-    <Compile Include="Components\DataModule\FieldSingleLink.cs">
+    <Compile Include="Legacy\Components\DataModule\FieldSingleLink.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Components\DataModule\FieldSingleLink.Designer.cs">
+    <Compile Include="Legacy\Components\DataModule\FieldSingleLink.Designer.cs">
       <DependentUpon>FieldSingleLink.cs</DependentUpon>
     </Compile>
-    <Compile Include="Components\DataModule\FieldTabControl.cs">
+    <Compile Include="Legacy\Components\DataModule\FieldTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Components\DataModule\IField.cs" />
+    <Compile Include="Legacy\Components\DataModule\IField.cs" />
     <Compile Include="Components\Data\FilterBool.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -581,22 +581,22 @@
     <Compile Include="Components\Data\FilterString.Designer.cs">
       <DependentUpon>FilterString.cs</DependentUpon>
     </Compile>
-    <Compile Include="Components\ElementAdditionals\LinkedDetailedAdditional.cs">
+    <Compile Include="Legacy\Components\ElementAdditionals\LinkedDetailedAdditional.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Components\ElementAdditionals\LinkedDetailedAdditional.Designer.cs">
+    <Compile Include="Legacy\Components\ElementAdditionals\LinkedDetailedAdditional.Designer.cs">
       <DependentUpon>LinkedDetailedAdditional.cs</DependentUpon>
     </Compile>
-    <Compile Include="Components\ElementAdditionals\ListBoxAdditional.cs">
+    <Compile Include="Legacy\Components\ElementAdditionals\ListBoxAdditional.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Components\ElementAdditionals\ListBoxAdditional.Designer.cs">
+    <Compile Include="Legacy\Components\ElementAdditionals\ListBoxAdditional.Designer.cs">
       <DependentUpon>ListBoxAdditional.cs</DependentUpon>
     </Compile>
-    <Compile Include="Components\FormDesignerUI.cs">
+    <Compile Include="Legacy\Components\FormDesignerUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Components\FormDesignerUI.Designer.cs">
+    <Compile Include="Legacy\Components\FormDesignerUI.Designer.cs">
       <DependentUpon>FormDesignerUI.cs</DependentUpon>
     </Compile>
     <Compile Include="Components\ICodeComponent.cs" />
@@ -651,22 +651,22 @@
     <Compile Include="Components\SceneDesignerUI.Designer.cs">
       <DependentUpon>SceneDesignerUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="Components\Scripting\DataModuleFileProperties.cs">
+    <Compile Include="Legacy\Components\Scripting\DataModuleFileProperties.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Components\Scripting\DataModuleFileProperties.Designer.cs">
+    <Compile Include="Legacy\Components\Scripting\DataModuleFileProperties.Designer.cs">
       <DependentUpon>DataModuleFileProperties.cs</DependentUpon>
     </Compile>
-    <Compile Include="Components\Scripting\DataModuleFolderProperties.cs">
+    <Compile Include="Legacy\Components\Scripting\DataModuleFolderProperties.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Components\Scripting\DataModuleFolderProperties.Designer.cs">
+    <Compile Include="Legacy\Components\Scripting\DataModuleFolderProperties.Designer.cs">
       <DependentUpon>DataModuleFolderProperties.cs</DependentUpon>
     </Compile>
-    <Compile Include="Components\Scripting\ScriptFileProperties.cs">
+    <Compile Include="Legacy\Components\Scripting\ScriptFileProperties.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Components\Scripting\ScriptFileProperties.Designer.cs">
+    <Compile Include="Legacy\Components\Scripting\ScriptFileProperties.Designer.cs">
       <DependentUpon>ScriptFileProperties.cs</DependentUpon>
     </Compile>
     <Compile Include="Components\ScriptManager.cs">
@@ -708,15 +708,15 @@
     <Compile Include="Data\DBFilter.cs" />
     <Compile Include="Data\DBObject.cs" />
     <Compile Include="Data\DBOperator.cs" />
-    <Compile Include="Data\FormComponent.cs" />
-    <Compile Include="Data\FormProperties.cs" />
+    <Compile Include="Legacy\Data\FormComponent.cs" />
+    <Compile Include="Legacy\Data\FormProperties.cs" />
     <Compile Include="Data\GlobalSettings.cs" />
     <Compile Include="Data\IconSets.cs" />
     <Compile Include="Data\Identifiers.cs" />
     <Compile Include="Data\Item.cs" />
     <Compile Include="Data\Journal.cs" />
     <Compile Include="Data\JournalMapLink.cs" />
-    <Compile Include="Data\LinkedAdditionalData.cs" />
+    <Compile Include="Legacy\Data\LinkedAdditionalData.cs" />
     <Compile Include="Data\MainSourceData.cs" />
     <Compile Include="Data\Map.cs" />
     <Compile Include="Data\MapSection.cs" />
@@ -731,10 +731,10 @@
     <Compile Include="Data\StoryOrder.cs" />
     <Compile Include="Data\Variable.cs" />
     <Compile Include="Data\VendorItem.cs" />
-    <Compile Include="Forms\AddElementForm.cs">
+    <Compile Include="Legacy\Forms\AddElementForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AddElementForm.Designer.cs">
+    <Compile Include="Legacy\Forms\AddElementForm.Designer.cs">
       <DependentUpon>AddElementForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\AddJournalInlineCodeForm.cs">
@@ -755,22 +755,22 @@
     <Compile Include="Forms\ArtManager\StandardSheetPropertiesForm.Designer.cs">
       <DependentUpon>StandardSheetPropertiesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DataModuleDesignerForm.cs">
+    <Compile Include="Legacy\Forms\DataModuleDesignerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DataModuleDesignerForm.Designer.cs">
+    <Compile Include="Legacy\Forms\DataModuleDesignerForm.Designer.cs">
       <DependentUpon>DataModuleDesignerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DataModuleFieldForm.cs">
+    <Compile Include="Legacy\Forms\DataModuleFieldForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DataModuleFieldForm.Designer.cs">
+    <Compile Include="Legacy\Forms\DataModuleFieldForm.Designer.cs">
       <DependentUpon>DataModuleFieldForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DataModuleFormPropertiesForm.cs">
+    <Compile Include="Legacy\Forms\DataModuleFormPropertiesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DataModuleFormPropertiesForm.Designer.cs">
+    <Compile Include="Legacy\Forms\DataModuleFormPropertiesForm.Designer.cs">
       <DependentUpon>DataModuleFormPropertiesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\DynamicsAttitudeForm.cs">
@@ -779,28 +779,28 @@
     <Compile Include="Forms\DynamicsAttitudeForm.Designer.cs">
       <DependentUpon>DynamicsAttitudeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\EditDataModuleComponentForm.cs">
+    <Compile Include="Legacy\Forms\EditDataModuleComponentForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\EditDataModuleComponentForm.Designer.cs">
+    <Compile Include="Legacy\Forms\EditDataModuleComponentForm.Designer.cs">
       <DependentUpon>EditDataModuleComponentForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\EnterCustomSourceForm.cs">
+    <Compile Include="Legacy\Forms\EnterCustomSourceForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\EnterCustomSourceForm.Designer.cs">
+    <Compile Include="Legacy\Forms\EnterCustomSourceForm.Designer.cs">
       <DependentUpon>EnterCustomSourceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\LinkedDataEditColumnsForm.cs">
+    <Compile Include="Legacy\Forms\LinkedDataEditColumnsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\LinkedDataEditColumnsForm.Designer.cs">
+    <Compile Include="Legacy\Forms\LinkedDataEditColumnsForm.Designer.cs">
       <DependentUpon>LinkedDataEditColumnsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SceneDesignerForm.cs">
+    <Compile Include="Legacy\Forms\SceneDesignerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\SceneDesignerForm.Designer.cs">
+    <Compile Include="Legacy\Forms\SceneDesignerForm.Designer.cs">
       <DependentUpon>SceneDesignerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\VariableChangesForm.cs">
@@ -996,12 +996,12 @@
     <Compile Include="Lib\StoryDev\Parser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scripting\Module.cs" />
-    <Compile Include="Scripting\Modules\DataField.cs" />
-    <Compile Include="Scripting\Modules\DataOptions.cs" />
-    <Compile Include="Scripting\Modules\DataType.cs" />
-    <Compile Include="Scripting\Modules\FormElement.cs" />
-    <Compile Include="Scripting\ScriptEngine.cs" />
+    <Compile Include="Legacy\Scripting\Module.cs" />
+    <Compile Include="Legacy\Scripting\Modules\DataField.cs" />
+    <Compile Include="Legacy\Scripting\Modules\DataOptions.cs" />
+    <Compile Include="Legacy\Scripting\Modules\DataType.cs" />
+    <Compile Include="Legacy\Scripting\Modules\FormElement.cs" />
+    <Compile Include="Legacy\Scripting\ScriptEngine.cs" />
     <Compile Include="Simulation\CallStack.cs" />
     <Compile Include="Simulation\Engine.cs" />
     <Compile Include="Simulation\Message.cs" />
@@ -1173,40 +1173,40 @@
     <EmbeddedResource Include="Components\CodeUI\UnlockSection.resx">
       <DependentUpon>UnlockSection.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Components\DataModule\DataModuleEditUI.resx">
+    <EmbeddedResource Include="Legacy\Components\DataModule\DataModuleEditUI.resx">
       <DependentUpon>DataModuleEditUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Components\DataModule\FieldCheckList.resx">
+    <EmbeddedResource Include="Legacy\Components\DataModule\FieldCheckList.resx">
       <DependentUpon>FieldCheckList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Components\DataModule\FieldComboBox.resx">
+    <EmbeddedResource Include="Legacy\Components\DataModule\FieldComboBox.resx">
       <DependentUpon>FieldComboBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Components\DataModule\FieldDatePicker.resx">
+    <EmbeddedResource Include="Legacy\Components\DataModule\FieldDatePicker.resx">
       <DependentUpon>FieldDatePicker.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Components\DataModule\FieldIconSelector.resx">
+    <EmbeddedResource Include="Legacy\Components\DataModule\FieldIconSelector.resx">
       <DependentUpon>FieldIconSelector.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Components\DataModule\FieldInputCode.resx">
+    <EmbeddedResource Include="Legacy\Components\DataModule\FieldInputCode.resx">
       <DependentUpon>FieldInputCode.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Components\DataModule\FieldInputMultiline.resx">
+    <EmbeddedResource Include="Legacy\Components\DataModule\FieldInputMultiline.resx">
       <DependentUpon>FieldInputMultiline.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Components\DataModule\FieldInputSingle.resx">
+    <EmbeddedResource Include="Legacy\Components\DataModule\FieldInputSingle.resx">
       <DependentUpon>FieldInputSingle.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Components\DataModule\FieldLinkedDetailedView.resx">
+    <EmbeddedResource Include="Legacy\Components\DataModule\FieldLinkedDetailedView.resx">
       <DependentUpon>FieldLinkedDetailedView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Components\DataModule\FieldListBox.resx">
+    <EmbeddedResource Include="Legacy\Components\DataModule\FieldListBox.resx">
       <DependentUpon>FieldListBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Components\DataModule\FieldNumeric.resx">
+    <EmbeddedResource Include="Legacy\Components\DataModule\FieldNumeric.resx">
       <DependentUpon>FieldNumeric.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Components\DataModule\FieldSingleLink.resx">
+    <EmbeddedResource Include="Legacy\Components\DataModule\FieldSingleLink.resx">
       <DependentUpon>FieldSingleLink.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\Data\FilterBool.resx">
@@ -1230,13 +1230,13 @@
     <EmbeddedResource Include="Components\Data\FilterString.resx">
       <DependentUpon>FilterString.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Components\ElementAdditionals\LinkedDetailedAdditional.resx">
+    <EmbeddedResource Include="Legacy\Components\ElementAdditionals\LinkedDetailedAdditional.resx">
       <DependentUpon>LinkedDetailedAdditional.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Components\ElementAdditionals\ListBoxAdditional.resx">
+    <EmbeddedResource Include="Legacy\Components\ElementAdditionals\ListBoxAdditional.resx">
       <DependentUpon>ListBoxAdditional.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Components\FormDesignerUI.resx">
+    <EmbeddedResource Include="Legacy\Components\FormDesignerUI.resx">
       <DependentUpon>FormDesignerUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\ItemUI.resx">
@@ -1257,13 +1257,13 @@
     <EmbeddedResource Include="Components\Preferences\GeneralUI.resx">
       <DependentUpon>GeneralUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Components\Scripting\DataModuleFileProperties.resx">
+    <EmbeddedResource Include="Legacy\Components\Scripting\DataModuleFileProperties.resx">
       <DependentUpon>DataModuleFileProperties.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Components\Scripting\DataModuleFolderProperties.resx">
+    <EmbeddedResource Include="Legacy\Components\Scripting\DataModuleFolderProperties.resx">
       <DependentUpon>DataModuleFolderProperties.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Components\Scripting\ScriptFileProperties.resx">
+    <EmbeddedResource Include="Legacy\Components\Scripting\ScriptFileProperties.resx">
       <DependentUpon>ScriptFileProperties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\ScriptManager.resx">
@@ -1275,7 +1275,7 @@
     <EmbeddedResource Include="Components\VarTrackerUI.resx">
       <DependentUpon>VarTrackerUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AddElementForm.resx">
+    <EmbeddedResource Include="Legacy\Forms\AddElementForm.resx">
       <DependentUpon>AddElementForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddJournalInlineCodeForm.resx">
@@ -1287,28 +1287,28 @@
     <EmbeddedResource Include="Forms\ArtManager\StandardSheetPropertiesForm.resx">
       <DependentUpon>StandardSheetPropertiesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DataModuleDesignerForm.resx">
+    <EmbeddedResource Include="Legacy\Forms\DataModuleDesignerForm.resx">
       <DependentUpon>DataModuleDesignerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DataModuleFieldForm.resx">
+    <EmbeddedResource Include="Legacy\Forms\DataModuleFieldForm.resx">
       <DependentUpon>DataModuleFieldForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DataModuleFormPropertiesForm.resx">
+    <EmbeddedResource Include="Legacy\Forms\DataModuleFormPropertiesForm.resx">
       <DependentUpon>DataModuleFormPropertiesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DynamicsAttitudeForm.resx">
       <DependentUpon>DynamicsAttitudeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EditDataModuleComponentForm.resx">
+    <EmbeddedResource Include="Legacy\Forms\EditDataModuleComponentForm.resx">
       <DependentUpon>EditDataModuleComponentForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EnterCustomSourceForm.resx">
+    <EmbeddedResource Include="Legacy\Forms\EnterCustomSourceForm.resx">
       <DependentUpon>EnterCustomSourceForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\LinkedDataEditColumnsForm.resx">
+    <EmbeddedResource Include="Legacy\Forms\LinkedDataEditColumnsForm.resx">
       <DependentUpon>LinkedDataEditColumnsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SceneDesignerForm.resx">
+    <EmbeddedResource Include="Legacy\Forms\SceneDesignerForm.resx">
       <DependentUpon>SceneDesignerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\VariableChangesForm.resx">
@@ -1514,7 +1514,7 @@
     <None Include="Resources\Folder.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Components\SceneDesign\" />
+    <Folder Include="Scripting\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

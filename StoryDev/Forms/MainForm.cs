@@ -60,22 +60,6 @@ namespace StoryDev.Forms
                 resourcesToolStripMenuItem.Enabled = true;
                 saveAllToolStripMenuItem.Enabled = true;
                 scriptsToolStripMenuItem.Enabled = true;
-
-                //RefreshModuleList();
-            }
-        }
-
-        private void RefreshModuleList()
-        {
-            modulesToolStripMenuItem.DropDownItems.Clear();
-
-            var moduleCount = ScriptEngine.Instance.DataModules.Count;
-            modulesToolStripMenuItem.Visible = moduleCount > 0;
-            foreach (var module in ScriptEngine.Instance.DataModules)
-            {
-                var menuItem = new ToolStripMenuItem();
-                menuItem.Text = module.Name + "...";
-                modulesToolStripMenuItem.DropDownItems.Add(menuItem);
             }
         }
 
@@ -294,8 +278,7 @@ namespace StoryDev.Forms
             };
             ui.RequestDataModuleRefresh += () =>
             {
-                ScriptEngine.Instance.ExecuteDataModules();
-                RefreshModuleList();
+                
             };
 
             tab.Controls.Add(ui);
@@ -311,12 +294,12 @@ namespace StoryDev.Forms
 
         private void scenesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new SceneDesignerForm().Show();
+            //new SceneDesignerForm().Show();
         }
 
         private void artToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new ArtManagerForm().ShowDialog();
+            //new ArtManagerForm().ShowDialog();
         }
     }
 }
