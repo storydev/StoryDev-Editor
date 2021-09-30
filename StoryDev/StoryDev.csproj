@@ -451,6 +451,12 @@
     <Compile Include="Components\CodeUI\UnlockSection.Designer.cs">
       <DependentUpon>UnlockSection.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\PreviewConvoUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\PreviewConvoUI.Designer.cs">
+      <DependentUpon>PreviewConvoUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Previews\PreviewForm.cs">
       <SubType>Form</SubType>
     </Compile>
