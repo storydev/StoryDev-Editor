@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
 
+using Jint;
+using JEngine = Jint.Engine;
+
 namespace StoryDev.Lib.StoryDev
 {
     class Parser
@@ -19,6 +22,8 @@ namespace StoryDev.Lib.StoryDev
         private CommandBlock currentBlock;
         private List<string> addedResources;
         private int blocksAdded;
+        private JEngine jengine;
+
 
         public Parser()
         {
@@ -27,6 +32,8 @@ namespace StoryDev.Lib.StoryDev
             _blocks = new List<CommandBlock>();
             _commands = new List<Command>();
             addedResources = new List<string>();
+
+            jengine = new JEngine();
         }
 
         public List<CommandBlock> GetBlocks()
@@ -58,6 +65,160 @@ namespace StoryDev.Lib.StoryDev
         {
             _blocks = new List<CommandBlock>();
             _commands = new List<Command>();
+        }
+
+        public void AddGlobalVariables()
+        {
+            jengine.ResetConstraints();
+            foreach (var variable in Globals.Variables)
+            {
+                jengine.SetValue(variable.Name, variable.DefaultValue);
+            }
+        }
+
+        public Command[] TranslateBlock(CommandBlock block, TranslateOptions options = null)
+        {
+            if (options == null)
+            {
+                options = new TranslateOptions(false);
+            }
+
+            var executeFrom = -1;
+            var endExecution = -1;
+            var choicesIndex = -1;
+
+            for (int i = 0; i < block.Commands.Count; i++)
+            {
+                var command = block.Commands[i];
+
+                if (command.Type == (int)CommandType.OptionConditional)
+                {
+                    if (executeFrom == -1)
+                    {
+                        var code = command.Data[0];
+                        if (string.IsNullOrEmpty(code))
+                        {
+                            executeFrom = i;
+                            continue;
+                        }
+
+                        var result = jengine.Evaluate(code);
+                        if (result.IsBoolean())
+                        {
+                            if (result.AsBoolean())
+                            {
+                                executeFrom = i;
+                                continue;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        endExecution = i;
+                        continue;
+                    }
+                }
+                else if (command.Type == (int)CommandType.Choices)
+                {
+                    choicesIndex = i;
+                }
+            }
+
+            var skipToNextFallthrough = false;
+            if (executeFrom == -1)
+                executeFrom = 0;
+
+            if (endExecution == -1)
+                endExecution = block.Commands.Count;
+
+            var total = endExecution - executeFrom;
+            if (choicesIndex > -1)
+                total += 1;
+
+            var results = new Command[total];
+            var resultIndex = 0;
+
+            for (int i = executeFrom; i < endExecution; i++)
+            {
+                var command = block.Commands[i];
+
+                if (command.Type == (int)CommandType.Option)
+                {
+                    results[resultIndex] = command;
+                }
+                else if (command.Type == (int)CommandType.FallThrough && !options.FallThroughRealTime)
+                {
+                    var code = command.Data[0];
+                    if (string.IsNullOrEmpty(code))
+                    {
+                        skipToNextFallthrough = false;
+                        continue;
+                    }
+
+                    var result = jengine.Evaluate(code);
+                    if (result.IsBoolean())
+                    {
+                        if (result.AsBoolean())
+                        {
+                            skipToNextFallthrough = !result.AsBoolean();
+                        }
+                        else
+                        {
+                            skipToNextFallthrough = false;
+                        }
+                    }
+                    else
+                    {
+                        skipToNextFallthrough = false;
+                    }
+                }
+                else
+                {
+                    if (!skipToNextFallthrough)
+                    {
+                        var text = "";
+                        if (command.Type == (int)CommandType.Narrative || command.Type == (int)CommandType.OverlayTitle)
+                        {
+                            text = command.Data[0];
+                        }
+                        else if (command.Type == (int)CommandType.Dialogue)
+                        {
+                            text = command.Data[1];
+                        }
+
+                        if (options.AutoParse)
+                        {
+                            if (text.IndexOf('$') > -1)
+                            {
+                                text = ParseText(text, options.ParseMap);
+                            }
+                        }
+
+                        if (text != "")
+                        {
+                            if (command.Type == (int)CommandType.Narrative || command.Type == (int)CommandType.OverlayTitle)
+                            {
+                                command.Data[0] = text;
+                            }
+                            else if (command.Type == (int)CommandType.Dialogue)
+                            {
+                                command.Data[1] = text;
+                            }
+                        }
+
+                        results[resultIndex] = command;
+                    }
+                }
+
+                resultIndex++;
+            }
+
+            if (choicesIndex > -1)
+            {
+                results[resultIndex] = block.Commands[choicesIndex];
+            }
+
+            return results;
         }
 
         public int ParseFile(string file)
@@ -424,6 +585,76 @@ namespace StoryDev.Lib.StoryDev
             return blocks;
         }
 
+        private string ParseText(string text, Dictionary<string, object> variables)
+        {
+            var result = "";
+            var isSpace = false;
+            var isVariable = false;
+            var variableName = "";
+            var captured = false;
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (captured)
+                {
+                    if (text[i] == '}')
+                    {
+                        captured = false;
+                        if (variables.ContainsKey(variableName))
+                        {
+                            result += variables[variableName].ToString();
+                        }
+                        variableName = "";
+                        isVariable = false;
+                    }
+                    else
+                    {
+                        variableName += text[i];
+                    }
+                }
+                else if (text[i] == ' ')
+                {
+                    if (isVariable)
+                    {
+                        if (variables.ContainsKey(variableName))
+                        {
+                            result += variables[variableName].ToString();
+                        }
+                        variableName = "";
+                        isVariable = false;
+                    }
+
+                    isSpace = true;
+                    result += text[i];
+                }
+                else if (text[i] == '{' && isVariable)
+                {
+                    captured = true;
+                }
+                else
+                {
+                    if (text[i] == '$' && isSpace)
+                    {
+                        isVariable = true;
+                    }
+                    else
+                    {
+                        if (isVariable)
+                        {
+                            variableName += text[i];
+                        }
+                        else
+                        {
+                            result += text[i];
+                        }
+                    }
+
+                    isSpace = false;
+                }
+            }
+
+            return result;
+        }
+
         private WordData GetNextWord(string value)
         {
             var word = "";
@@ -474,6 +705,23 @@ namespace StoryDev.Lib.StoryDev
                 Line = line;
             }
         }
+    }
+
+    class TranslateOptions
+    {
+        
+        public bool AutoParse;
+        public Dictionary<string, object> ParseMap;
+        public bool FallThroughRealTime;
+
+
+        public TranslateOptions(bool autoParse, Dictionary<string, object> parseMap = null, bool fallthroughRealTime = false)
+        {
+            AutoParse = autoParse;
+            ParseMap = parseMap;
+            FallThroughRealTime = fallthroughRealTime;
+        }
+
     }
 
 
