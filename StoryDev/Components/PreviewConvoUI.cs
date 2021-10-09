@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,10 +15,10 @@ namespace StoryDev.Components
     {
 
         private Parser sdParser;
-        private CommandBlock currentBlock;
+        private Command[] commandList;
 
         private string currentPOV;
-        private int currentBlockIndex;
+        private int currentCommandIndex;
         private int currentPosition;
 
         public PreviewConvoUI()
@@ -36,13 +35,19 @@ namespace StoryDev.Components
             sdParser.Clear();
             sdParser.ParseFile(path);
 
-            currentBlockIndex = 0;
+            currentCommandIndex = 0;
             currentPosition = 0;
+
+            commandList = sdParser.TranslateBlock(sdParser.GetBlocks()[0]);
         }
 
         private void Advance()
         {
-            
+            if (currentCommandIndex + 1 < commandList.Length)
+            {
+                currentCommandIndex++;
+                Invalidate();
+            }
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -51,7 +56,16 @@ namespace StoryDev.Components
 
             g.Clear(Color.FromArgb(128, 206, 237));
 
-            
+
+
+            for (int i = 0; i < currentCommandIndex + 1; i++)
+            {
+                var command = commandList[i];
+                if (command.Type == (int)CommandType.OverlayTitle)
+                {
+
+                }
+            }
         }
     }
 }

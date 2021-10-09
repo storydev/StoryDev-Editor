@@ -877,7 +877,6 @@ namespace StoryDev
             File.WriteAllText(CurrentProjectFolder + "\\custom-sources.json", content);
         }
 
-
         public static string PurgeFilePath(string path)
         {
             var result = "";

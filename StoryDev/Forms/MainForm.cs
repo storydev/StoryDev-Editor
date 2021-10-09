@@ -11,6 +11,7 @@ using Ookii.Dialogs.WinForms;
 
 using StoryDev.Components;
 using StoryDev.Scripting;
+using StoryDev.Forms.Project;
 
 namespace StoryDev.Forms
 {
@@ -60,6 +61,7 @@ namespace StoryDev.Forms
                 resourcesToolStripMenuItem.Enabled = true;
                 saveAllToolStripMenuItem.Enabled = true;
                 scriptsToolStripMenuItem.Enabled = true;
+                projectToolStripMenuItem.Enabled = true;
             }
         }
 
@@ -300,6 +302,11 @@ namespace StoryDev.Forms
         private void artToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //new ArtManagerForm().ShowDialog();
+        }
+
+        private void projectSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new ProjectSettingsForm().ShowDialog();
         }
     }
 }
