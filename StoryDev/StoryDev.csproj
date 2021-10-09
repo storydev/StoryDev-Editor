@@ -463,6 +463,12 @@
     <Compile Include="Forms\Previews\PreviewForm.Designer.cs">
       <DependentUpon>PreviewForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Project\ProjectOutputForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Project\ProjectOutputForm.Designer.cs">
+      <DependentUpon>ProjectOutputForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Project\ProjectSettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1193,6 +1199,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Previews\PreviewForm.resx">
       <DependentUpon>PreviewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Project\ProjectOutputForm.resx">
+      <DependentUpon>ProjectOutputForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Project\ProjectSettingsForm.resx">
       <DependentUpon>ProjectSettingsForm.cs</DependentUpon>

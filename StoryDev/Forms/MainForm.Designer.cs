@@ -60,6 +60,7 @@ namespace StoryDev.Forms
             this.tcMain = new System.Windows.Forms.TabControl();
             this.projectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.projectSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.outputToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -293,6 +294,7 @@ namespace StoryDev.Forms
             // projectToolStripMenuItem
             // 
             this.projectToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.outputToolStripMenuItem,
             this.projectSettingsToolStripMenuItem});
             this.projectToolStripMenuItem.Enabled = false;
             this.projectToolStripMenuItem.Name = "projectToolStripMenuItem";
@@ -305,6 +307,13 @@ namespace StoryDev.Forms
             this.projectSettingsToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.projectSettingsToolStripMenuItem.Text = "Project Settings...";
             this.projectSettingsToolStripMenuItem.Click += new System.EventHandler(this.projectSettingsToolStripMenuItem_Click);
+            // 
+            // outputToolStripMenuItem
+            // 
+            this.outputToolStripMenuItem.Name = "outputToolStripMenuItem";
+            this.outputToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.outputToolStripMenuItem.Text = "Output...";
+            this.outputToolStripMenuItem.Click += new System.EventHandler(this.outputToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -356,6 +365,7 @@ namespace StoryDev.Forms
         private System.Windows.Forms.ToolStripMenuItem startPreviewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem projectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem projectSettingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem outputToolStripMenuItem;
     }
 }
 
