@@ -31,7 +31,7 @@ namespace StoryDev.Forms
             {
                 Globals.SetProjectFolder(openFolder.SelectedPath);
                 var folderName = openFolder.SelectedPath.Substring(openFolder.SelectedPath.LastIndexOf('\\') + 1);
-                Text = "StoryDev - " + folderName;
+                Text = "StoryDev Story Creator - " + folderName;
 
                 viewToolStripMenuItem.Enabled = true;
                 resourcesToolStripMenuItem.Enabled = true;
