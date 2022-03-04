@@ -65,7 +65,7 @@ namespace StoryDev.Forms
             this.resourcesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1179, 33);
+            this.menuStrip1.Size = new System.Drawing.Size(1179, 36);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -77,7 +77,7 @@ namespace StoryDev.Forms
             this.toolStripSeparator4,
             this.preferencesToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(54, 29);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(54, 32);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // openProjectToolStripMenuItem
@@ -125,7 +125,7 @@ namespace StoryDev.Forms
             this.achievementsToolStripMenuItem});
             this.viewToolStripMenuItem.Enabled = false;
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(65, 29);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(65, 32);
             this.viewToolStripMenuItem.Text = "View";
             // 
             // chaptersToolStripMenuItem
@@ -133,7 +133,6 @@ namespace StoryDev.Forms
             this.chaptersToolStripMenuItem.Name = "chaptersToolStripMenuItem";
             this.chaptersToolStripMenuItem.Size = new System.Drawing.Size(251, 34);
             this.chaptersToolStripMenuItem.Text = "Chapters...";
-            this.chaptersToolStripMenuItem.Click += new System.EventHandler(this.chaptersToolStripMenuItem_Click);
             // 
             // conversationsToolStripMenuItem
             // 
@@ -159,49 +158,42 @@ namespace StoryDev.Forms
             this.charactersToolStripMenuItem.Name = "charactersToolStripMenuItem";
             this.charactersToolStripMenuItem.Size = new System.Drawing.Size(251, 34);
             this.charactersToolStripMenuItem.Text = "Characters";
-            this.charactersToolStripMenuItem.Click += new System.EventHandler(this.charactersToolStripMenuItem_Click);
             // 
             // characterGroupsToolStripMenuItem
             // 
             this.characterGroupsToolStripMenuItem.Name = "characterGroupsToolStripMenuItem";
             this.characterGroupsToolStripMenuItem.Size = new System.Drawing.Size(251, 34);
             this.characterGroupsToolStripMenuItem.Text = "Character Groups";
-            this.characterGroupsToolStripMenuItem.Click += new System.EventHandler(this.characterGroupsToolStripMenuItem_Click);
             // 
             // placesOfInterestToolStripMenuItem
             // 
             this.placesOfInterestToolStripMenuItem.Name = "placesOfInterestToolStripMenuItem";
             this.placesOfInterestToolStripMenuItem.Size = new System.Drawing.Size(251, 34);
             this.placesOfInterestToolStripMenuItem.Text = "Places of Interest";
-            this.placesOfInterestToolStripMenuItem.Click += new System.EventHandler(this.placesOfInterestToolStripMenuItem_Click);
             // 
             // journalToolStripMenuItem
             // 
             this.journalToolStripMenuItem.Name = "journalToolStripMenuItem";
             this.journalToolStripMenuItem.Size = new System.Drawing.Size(251, 34);
             this.journalToolStripMenuItem.Text = "Journal";
-            this.journalToolStripMenuItem.Click += new System.EventHandler(this.journalToolStripMenuItem_Click);
             // 
             // itemsToolStripMenuItem
             // 
             this.itemsToolStripMenuItem.Name = "itemsToolStripMenuItem";
             this.itemsToolStripMenuItem.Size = new System.Drawing.Size(251, 34);
             this.itemsToolStripMenuItem.Text = "Items";
-            this.itemsToolStripMenuItem.Click += new System.EventHandler(this.itemsToolStripMenuItem_Click);
             // 
             // artefactsToolStripMenuItem
             // 
             this.artefactsToolStripMenuItem.Name = "artefactsToolStripMenuItem";
             this.artefactsToolStripMenuItem.Size = new System.Drawing.Size(251, 34);
             this.artefactsToolStripMenuItem.Text = "Artefacts";
-            this.artefactsToolStripMenuItem.Click += new System.EventHandler(this.artefactsToolStripMenuItem_Click);
             // 
             // specialFeatureToolStripMenuItem
             // 
             this.specialFeatureToolStripMenuItem.Name = "specialFeatureToolStripMenuItem";
             this.specialFeatureToolStripMenuItem.Size = new System.Drawing.Size(251, 34);
             this.specialFeatureToolStripMenuItem.Text = "Special Feature";
-            this.specialFeatureToolStripMenuItem.Click += new System.EventHandler(this.specialFeatureToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
@@ -213,7 +205,6 @@ namespace StoryDev.Forms
             this.achievementsToolStripMenuItem.Name = "achievementsToolStripMenuItem";
             this.achievementsToolStripMenuItem.Size = new System.Drawing.Size(251, 34);
             this.achievementsToolStripMenuItem.Text = "Achievements";
-            this.achievementsToolStripMenuItem.Click += new System.EventHandler(this.achievementsToolStripMenuItem_Click);
             // 
             // resourcesToolStripMenuItem
             // 
@@ -221,7 +212,7 @@ namespace StoryDev.Forms
             this.iconSetsToolStripMenuItem});
             this.resourcesToolStripMenuItem.Enabled = false;
             this.resourcesToolStripMenuItem.Name = "resourcesToolStripMenuItem";
-            this.resourcesToolStripMenuItem.Size = new System.Drawing.Size(107, 29);
+            this.resourcesToolStripMenuItem.Size = new System.Drawing.Size(107, 32);
             this.resourcesToolStripMenuItem.Text = "Resources";
             // 
             // iconSetsToolStripMenuItem
@@ -245,9 +236,9 @@ namespace StoryDev.Forms
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1179, 749);
-            this.Controls.Add(this.tcMain);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "StoryDev";
@@ -273,7 +264,6 @@ namespace StoryDev.Forms
         private System.Windows.Forms.ToolStripMenuItem itemsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem artefactsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem specialFeatureToolStripMenuItem;
-        private System.Windows.Forms.TabControl tcMain;
         private System.Windows.Forms.ToolStripMenuItem chaptersToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem achievementsToolStripMenuItem;
