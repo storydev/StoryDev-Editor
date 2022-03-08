@@ -31,6 +31,12 @@ namespace StoryDev
     delegate void OnMapDisconnect(int from, int to);
     delegate void OnMapSelected(int map, int point);
     delegate void OnGoToConversation(string file, string blockName, int line);
+    delegate void OnRequestOpenForm(FormType type, string[] data);
+
+    enum FormType
+    {
+        Form_ConversationEditor
+    }
 
     enum GameEvent
     {
@@ -287,9 +293,11 @@ namespace StoryDev
             AppCacheFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             AppCacheFolder += "\\StoryDev\\";
 
-            if (!Directory.Exists(AppCacheFolder))
+            bool appCacheExists = Directory.Exists(AppCacheFolder);
+            if (!appCacheExists || !File.Exists(AppCacheFolder + "settings.json"))
             {
-                Directory.CreateDirectory(AppCacheFolder);
+                if (!appCacheExists)
+                    Directory.CreateDirectory(AppCacheFolder);
                 Preferences = new Preferences();
             }
             else
@@ -309,6 +317,8 @@ namespace StoryDev
         //
 
         public static string CurrentProjectFolder;
+        public static string[] Files;
+        public static string[] FilePaths;
 
         public static List<Conversation> Conversations { get; private set; }
 
@@ -328,6 +338,15 @@ namespace StoryDev
 
             foreach (var dir in Directory.GetDirectories(CurrentProjectFolder + "\\Chapters"))
             {
+                string[] files = Directory.GetFiles(dir, "*.sdc");
+                for (int i = 0; i < files.Length; i++)
+                {
+                    string fileName = Path.GetFileNameWithoutExtension(files[i]);
+                    string fullPath = files[i].Substring(0, files[i].LastIndexOf('.'));
+                    PushArray(ref Files, fileName);
+                    PushArray(ref FilePaths, fullPath);
+                }
+                
                 var folderName = dir.Substring(dir.LastIndexOf('\\') + 1);
                 Chapters.Add(folderName);
             }
@@ -852,204 +871,209 @@ namespace StoryDev
             else
             {
                 Chapters = new List<string>();
+                Files = new string[0];
+                FilePaths = new string[0];
+
                 ReloadChapters();
+
+                Console.WriteLine(Files);
             }
 
-            if (File.Exists(path + "\\identifiers.json"))
-            {
-                var content = File.ReadAllText(path + "\\identifiers.json");
-                GlobalIdentifiers = JsonConvert.DeserializeObject<Identifiers>(content);
-            }
-            else
-            {
-                GlobalIdentifiers = new Identifiers();
-            }
+            //if (File.Exists(path + "\\identifiers.json"))
+            //{
+            //    var content = File.ReadAllText(path + "\\identifiers.json");
+            //    GlobalIdentifiers = JsonConvert.DeserializeObject<Identifiers>(content);
+            //}
+            //else
+            //{
+            //    GlobalIdentifiers = new Identifiers();
+            //}
 
-            if (File.Exists(path + "\\Chapters\\conversations.json"))
-            {
-                var content = File.ReadAllText(path + "\\Chapters\\conversations.json");
-                Conversations = JsonConvert.DeserializeObject<List<Conversation>>(content);
-            }
-            else
-            {
-                Conversations = new List<Conversation>();
-            }
+            //if (File.Exists(path + "\\Chapters\\conversations.json"))
+            //{
+            //    var content = File.ReadAllText(path + "\\Chapters\\conversations.json");
+            //    Conversations = JsonConvert.DeserializeObject<List<Conversation>>(content);
+            //}
+            //else
+            //{
+            //    Conversations = new List<Conversation>();
+            //}
 
-            // Load Characters
-            if (File.Exists(path + "\\characters.json"))
-            {
-                var content = File.ReadAllText(path + "\\characters.json");
-                Characters = JsonConvert.DeserializeObject<List<Character>>(content);
-            }
-            else
-            {
-                Characters = new List<Character>();
-            }
+            //// Load Characters
+            //if (File.Exists(path + "\\characters.json"))
+            //{
+            //    var content = File.ReadAllText(path + "\\characters.json");
+            //    Characters = JsonConvert.DeserializeObject<List<Character>>(content);
+            //}
+            //else
+            //{
+            //    Characters = new List<Character>();
+            //}
 
-            // Load Character Groups
-            if (File.Exists(path + "\\character-groups.json"))
-            {
-                var content = File.ReadAllText(path + "\\character-groups.json");
-                CharacterGroups = JsonConvert.DeserializeObject<List<CharacterGroup>>(content);
-            }
-            else
-            {
-                CharacterGroups = new List<CharacterGroup>();
-            }
+            //// Load Character Groups
+            //if (File.Exists(path + "\\character-groups.json"))
+            //{
+            //    var content = File.ReadAllText(path + "\\character-groups.json");
+            //    CharacterGroups = JsonConvert.DeserializeObject<List<CharacterGroup>>(content);
+            //}
+            //else
+            //{
+            //    CharacterGroups = new List<CharacterGroup>();
+            //}
 
-            // Load Gossips
-            if (File.Exists(path + "\\character-gossips.json"))
-            {
-                var content = File.ReadAllText(path + "\\character-gossips.json");
-                Gossips = JsonConvert.DeserializeObject<List<CharacterGossip>>(content);
-            }
-            else
-            {
-                Gossips = new List<CharacterGossip>();
-            }
+            //// Load Gossips
+            //if (File.Exists(path + "\\character-gossips.json"))
+            //{
+            //    var content = File.ReadAllText(path + "\\character-gossips.json");
+            //    Gossips = JsonConvert.DeserializeObject<List<CharacterGossip>>(content);
+            //}
+            //else
+            //{
+            //    Gossips = new List<CharacterGossip>();
+            //}
 
-            // Load Traits
-            if (File.Exists(path + "\\traits.json"))
-            {
-                var content = File.ReadAllText(path + "\\traits.json");
-                Traits = JsonConvert.DeserializeObject<List<CharacterTrait>>(content);
-            }
-            else
-            {
-                Traits = new List<CharacterTrait>();
-            }
+            //// Load Traits
+            //if (File.Exists(path + "\\traits.json"))
+            //{
+            //    var content = File.ReadAllText(path + "\\traits.json");
+            //    Traits = JsonConvert.DeserializeObject<List<CharacterTrait>>(content);
+            //}
+            //else
+            //{
+            //    Traits = new List<CharacterTrait>();
+            //}
 
-            // Load Items
-            if (File.Exists(path + "\\items.json"))
-            {
-                var content = File.ReadAllText(path + "\\items.json");
-                Items = JsonConvert.DeserializeObject<List<Item>>(content);
-            }
-            else
-            {
-                Items = new List<Item>();
-            }
+            //// Load Items
+            //if (File.Exists(path + "\\items.json"))
+            //{
+            //    var content = File.ReadAllText(path + "\\items.json");
+            //    Items = JsonConvert.DeserializeObject<List<Item>>(content);
+            //}
+            //else
+            //{
+            //    Items = new List<Item>();
+            //}
 
-            // Load Journals
-            if (File.Exists(path + "\\journals.json"))
-            {
-                var content = File.ReadAllText(path + "\\journals.json");
-                Journals = JsonConvert.DeserializeObject<List<Journal>>(content);
-            }
-            else
-            {
-                Journals = new List<Journal>();
-            }
+            //// Load Journals
+            //if (File.Exists(path + "\\journals.json"))
+            //{
+            //    var content = File.ReadAllText(path + "\\journals.json");
+            //    Journals = JsonConvert.DeserializeObject<List<Journal>>(content);
+            //}
+            //else
+            //{
+            //    Journals = new List<Journal>();
+            //}
 
-            // Load Places
-            if (File.Exists(path + "\\places.json"))
-            {
-                var content = File.ReadAllText(path + "\\places.json");
-                Places = JsonConvert.DeserializeObject<List<Place>>(content);
-            }
-            else
-            {
-                Places = new List<Place>();
-            }
+            //// Load Places
+            //if (File.Exists(path + "\\places.json"))
+            //{
+            //    var content = File.ReadAllText(path + "\\places.json");
+            //    Places = JsonConvert.DeserializeObject<List<Place>>(content);
+            //}
+            //else
+            //{
+            //    Places = new List<Place>();
+            //}
 
-            // Load Activities
-            if (File.Exists(path + "\\activities.json"))
-            {
-                var content = File.ReadAllText(path + "\\activities.json");
-                Activities = JsonConvert.DeserializeObject<List<Activity>>(content);
-            }
-            else
-            {
-                Activities = new List<Activity>();
-            }
+            //// Load Activities
+            //if (File.Exists(path + "\\activities.json"))
+            //{
+            //    var content = File.ReadAllText(path + "\\activities.json");
+            //    Activities = JsonConvert.DeserializeObject<List<Activity>>(content);
+            //}
+            //else
+            //{
+            //    Activities = new List<Activity>();
+            //}
 
-            // Load Sections
-            if (File.Exists(path + "\\sections.json"))
-            {
-                var content = File.ReadAllText(path + "\\sections.json");
-                Sections = JsonConvert.DeserializeObject<List<MapSection>>(content);
-            }
-            else
-            {
-                Sections = new List<MapSection>();
-            }
+            //// Load Sections
+            //if (File.Exists(path + "\\sections.json"))
+            //{
+            //    var content = File.ReadAllText(path + "\\sections.json");
+            //    Sections = JsonConvert.DeserializeObject<List<MapSection>>(content);
+            //}
+            //else
+            //{
+            //    Sections = new List<MapSection>();
+            //}
 
-            // Load Icon Sets
-            if (File.Exists(path + "\\iconsets.json"))
-            {
-                var content = File.ReadAllText(path + "\\iconsets.json");
-                IconSetData = JsonConvert.DeserializeObject<IconSets>(content);
-            }
-            else
-            {
-                IconSetData = new IconSets();
-            }
+            //// Load Icon Sets
+            //if (File.Exists(path + "\\iconsets.json"))
+            //{
+            //    var content = File.ReadAllText(path + "\\iconsets.json");
+            //    IconSetData = JsonConvert.DeserializeObject<IconSets>(content);
+            //}
+            //else
+            //{
+            //    IconSetData = new IconSets();
+            //}
 
-            // Load Artefacts
-            if (File.Exists(path + "\\artefacts.json"))
-            {
-                var content = File.ReadAllText(path + "\\artefacts.json");
-                Artefacts = JsonConvert.DeserializeObject<List<Artefact>>(content);
-            }
-            else
-            {
-                Artefacts = new List<Artefact>();
-            }
+            //// Load Artefacts
+            //if (File.Exists(path + "\\artefacts.json"))
+            //{
+            //    var content = File.ReadAllText(path + "\\artefacts.json");
+            //    Artefacts = JsonConvert.DeserializeObject<List<Artefact>>(content);
+            //}
+            //else
+            //{
+            //    Artefacts = new List<Artefact>();
+            //}
 
-            // Load Fragments
-            if (File.Exists(path + "\\fragments.json"))
-            {
-                var content = File.ReadAllText(path + "\\fragments.json");
-                Fragments = JsonConvert.DeserializeObject<List<ArtefactFragment>>(content);
-            }
-            else
-            {
-                Fragments = new List<ArtefactFragment>();
-            }
+            //// Load Fragments
+            //if (File.Exists(path + "\\fragments.json"))
+            //{
+            //    var content = File.ReadAllText(path + "\\fragments.json");
+            //    Fragments = JsonConvert.DeserializeObject<List<ArtefactFragment>>(content);
+            //}
+            //else
+            //{
+            //    Fragments = new List<ArtefactFragment>();
+            //}
 
-            // Load Settings
-            if (File.Exists(path + "\\settings.json"))
-            {
-                var content = File.ReadAllText(path + "\\settings.json");
-                Settings = JsonConvert.DeserializeObject<GlobalSettings>(content);
-            }
-            else
-            {
-                Settings = new GlobalSettings();
-            }
+            //// Load Settings
+            //if (File.Exists(path + "\\settings.json"))
+            //{
+            //    var content = File.ReadAllText(path + "\\settings.json");
+            //    Settings = JsonConvert.DeserializeObject<GlobalSettings>(content);
+            //}
+            //else
+            //{
+            //    Settings = new GlobalSettings();
+            //}
 
-            // Load Special Feature
-            if (File.Exists(path + "\\special-feature.json"))
-            {
-                var content = File.ReadAllText(path + "\\special-feature.json");
-                Feature = JsonConvert.DeserializeObject<SpecialFeature>(content);
-            }
-            else
-            {
-                Feature = new SpecialFeature();
-            }
+            //// Load Special Feature
+            //if (File.Exists(path + "\\special-feature.json"))
+            //{
+            //    var content = File.ReadAllText(path + "\\special-feature.json");
+            //    Feature = JsonConvert.DeserializeObject<SpecialFeature>(content);
+            //}
+            //else
+            //{
+            //    Feature = new SpecialFeature();
+            //}
 
-            // Load Scenarios
-            if (File.Exists(path + "\\scenarios.json"))
-            {
-                var content = File.ReadAllText(path + "\\scenarios.json");
-                Scenarios = JsonConvert.DeserializeObject<List<SpecialScenario>>(content);
-            }
-            else
-            {
-                Scenarios = new List<SpecialScenario>();
-            }
+            //// Load Scenarios
+            //if (File.Exists(path + "\\scenarios.json"))
+            //{
+            //    var content = File.ReadAllText(path + "\\scenarios.json");
+            //    Scenarios = JsonConvert.DeserializeObject<List<SpecialScenario>>(content);
+            //}
+            //else
+            //{
+            //    Scenarios = new List<SpecialScenario>();
+            //}
 
-            // Load Achievements
-            if (File.Exists(path + "\\achievements.json"))
-            {
-                var content = File.ReadAllText(path + "\\achievements.json");
-                Achievements = JsonConvert.DeserializeObject<List<Achievement>>(content);
-            }
-            else
-            {
-                Achievements = new List<Achievement>();
-            }
+            //// Load Achievements
+            //if (File.Exists(path + "\\achievements.json"))
+            //{
+            //    var content = File.ReadAllText(path + "\\achievements.json");
+            //    Achievements = JsonConvert.DeserializeObject<List<Achievement>>(content);
+            //}
+            //else
+            //{
+            //    Achievements = new List<Achievement>();
+            //}
 
             // Load Simulation Options
             if (File.Exists(path + "\\simulation-options.json"))
@@ -1063,60 +1087,71 @@ namespace StoryDev
                 SaveSimulationOptions();
             }
 
-            // Load Story Order data
-            if (File.Exists(path + "\\story-order.json"))
-            {
-                var content = File.ReadAllText(path + "\\story-order.json");
-                StoryOrder = JsonConvert.DeserializeObject<StoryOrder>(content);
-            }
-            else
-            {
-                StoryOrder = new StoryOrder();
-            }
+            //// Load Story Order data
+            //if (File.Exists(path + "\\story-order.json"))
+            //{
+            //    var content = File.ReadAllText(path + "\\story-order.json");
+            //    StoryOrder = JsonConvert.DeserializeObject<StoryOrder>(content);
+            //}
+            //else
+            //{
+            //    StoryOrder = new StoryOrder();
+            //}
 
-            // Load Custom Variables
-            if (File.Exists(path + "\\variables.json"))
-            {
-                var content = File.ReadAllText(path + "\\variables.json");
-                Variables = JsonConvert.DeserializeObject<List<Variable>>(content);
-            }
-            else
-            {
-                Variables = new List<Variable>();
-            }
+            //// Load Custom Variables
+            //if (File.Exists(path + "\\variables.json"))
+            //{
+            //    var content = File.ReadAllText(path + "\\variables.json");
+            //    Variables = JsonConvert.DeserializeObject<List<Variable>>(content);
+            //}
+            //else
+            //{
+            //    Variables = new List<Variable>();
+            //}
 
-            // Load Maps
-            if (File.Exists(path + "\\maps.json"))
-            {
-                var content = File.ReadAllText(path + "\\maps.json");
-                Maps = JsonConvert.DeserializeObject<List<Map>>(content);
-            }
-            else
-            {
-                Maps = new List<Map>();
-            }
+            //// Load Maps
+            //if (File.Exists(path + "\\maps.json"))
+            //{
+            //    var content = File.ReadAllText(path + "\\maps.json");
+            //    Maps = JsonConvert.DeserializeObject<List<Map>>(content);
+            //}
+            //else
+            //{
+            //    Maps = new List<Map>();
+            //}
 
-            // Load Map Convo Links
-            if (File.Exists(path + "\\map-convo-links.json"))
-            {
-                var content = File.ReadAllText(path + "\\map-convo-links.json");
-                ConvoMapLinks = JsonConvert.DeserializeObject<List<ConvoMapLink>>(content);
-            }
-            else
-            {
-                ConvoMapLinks = new List<ConvoMapLink>();
-            }
+            //// Load Map Convo Links
+            //if (File.Exists(path + "\\map-convo-links.json"))
+            //{
+            //    var content = File.ReadAllText(path + "\\map-convo-links.json");
+            //    ConvoMapLinks = JsonConvert.DeserializeObject<List<ConvoMapLink>>(content);
+            //}
+            //else
+            //{
+            //    ConvoMapLinks = new List<ConvoMapLink>();
+            //}
 
-            // Load Map Journal Links
-            if (File.Exists(path + "\\map-journal-links.json"))
+            //// Load Map Journal Links
+            //if (File.Exists(path + "\\map-journal-links.json"))
+            //{
+            //    var content = File.ReadAllText(path + "\\map-journal-links.json");
+            //    JournalMapLinks = JsonConvert.DeserializeObject<List<JournalMapLink>>(content);
+            //}
+            //else
+            //{
+            //    JournalMapLinks = new List<JournalMapLink>();
+            //}
+        }
+
+        public static void PushArray<T>(ref T[] arr, T instance)
+        {
+            T[] temp = new T[arr.Length + 1];
+            for (int i = 0; i < arr.Length; i++)
             {
-                var content = File.ReadAllText(path + "\\map-journal-links.json");
-                JournalMapLinks = JsonConvert.DeserializeObject<List<JournalMapLink>>(content);
+                temp[i] = arr[i];
             }
-            else
-            {
-                JournalMapLinks = new List<JournalMapLink>();
-            }
+            temp[arr.Length] = instance;
+            arr = temp;
         }
 
     }

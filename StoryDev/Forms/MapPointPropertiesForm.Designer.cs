@@ -194,7 +194,6 @@ namespace StoryDev.Forms
             this.lbJournals.Size = new System.Drawing.Size(342, 724);
             this.lbJournals.TabIndex = 1;
             this.lbJournals.SelectedIndexChanged += new System.EventHandler(this.lbJournals_SelectedIndexChanged);
-            this.lbJournals.DoubleClick += new System.EventHandler(this.lbJournals_DoubleClick);
             // 
             // tabPage3
             // 

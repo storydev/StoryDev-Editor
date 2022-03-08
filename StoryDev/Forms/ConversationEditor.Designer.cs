@@ -42,13 +42,14 @@ namespace StoryDev.Forms
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.customVariablesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dynamicsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.attitudesHereToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupFrequenciesHereToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextsHereToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pnlDesigner = new System.Windows.Forms.Panel();
             this.branchDesignerUI1 = new StoryDev.Components.BranchDesignerUI();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnBrowseMaps = new System.Windows.Forms.Button();
-            this.txtMapPointAssoc = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.chbSnapping = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbView = new System.Windows.Forms.ComboBox();
@@ -58,10 +59,6 @@ namespace StoryDev.Forms
             this.pnlTools = new System.Windows.Forms.Panel();
             this.cmbBranches = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dynamicsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.attitudesHereToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupFrequenciesHereToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextsHereToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -76,7 +73,6 @@ namespace StoryDev.Forms
             // 
             // menuStrip1
             // 
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
@@ -169,6 +165,34 @@ namespace StoryDev.Forms
             this.optionsToolStripMenuItem.Text = "Options...";
             this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
             // 
+            // dynamicsToolStripMenuItem
+            // 
+            this.dynamicsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.attitudesHereToolStripMenuItem,
+            this.groupFrequenciesHereToolStripMenuItem,
+            this.contextsHereToolStripMenuItem});
+            this.dynamicsToolStripMenuItem.Name = "dynamicsToolStripMenuItem";
+            this.dynamicsToolStripMenuItem.Size = new System.Drawing.Size(105, 29);
+            this.dynamicsToolStripMenuItem.Text = "Dynamics";
+            // 
+            // attitudesHereToolStripMenuItem
+            // 
+            this.attitudesHereToolStripMenuItem.Name = "attitudesHereToolStripMenuItem";
+            this.attitudesHereToolStripMenuItem.Size = new System.Drawing.Size(316, 34);
+            this.attitudesHereToolStripMenuItem.Text = "Attitudes Here...";
+            // 
+            // groupFrequenciesHereToolStripMenuItem
+            // 
+            this.groupFrequenciesHereToolStripMenuItem.Name = "groupFrequenciesHereToolStripMenuItem";
+            this.groupFrequenciesHereToolStripMenuItem.Size = new System.Drawing.Size(316, 34);
+            this.groupFrequenciesHereToolStripMenuItem.Text = "Group Frequencies Here...";
+            // 
+            // contextsHereToolStripMenuItem
+            // 
+            this.contextsHereToolStripMenuItem.Name = "contextsHereToolStripMenuItem";
+            this.contextsHereToolStripMenuItem.Size = new System.Drawing.Size(316, 34);
+            this.contextsHereToolStripMenuItem.Text = "Contexts Here...";
+            // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -218,9 +242,6 @@ namespace StoryDev.Forms
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnBrowseMaps);
-            this.panel1.Controls.Add(this.txtMapPointAssoc);
-            this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.chbSnapping);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.cmbView);
@@ -229,33 +250,6 @@ namespace StoryDev.Forms
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(792, 43);
             this.panel1.TabIndex = 0;
-            // 
-            // btnBrowseMaps
-            // 
-            this.btnBrowseMaps.Location = new System.Drawing.Point(425, 7);
-            this.btnBrowseMaps.Name = "btnBrowseMaps";
-            this.btnBrowseMaps.Size = new System.Drawing.Size(47, 28);
-            this.btnBrowseMaps.TabIndex = 6;
-            this.btnBrowseMaps.Text = "...";
-            this.btnBrowseMaps.UseVisualStyleBackColor = true;
-            this.btnBrowseMaps.Click += new System.EventHandler(this.btnBrowseMaps_Click);
-            // 
-            // txtMapPointAssoc
-            // 
-            this.txtMapPointAssoc.Location = new System.Drawing.Point(188, 8);
-            this.txtMapPointAssoc.Name = "txtMapPointAssoc";
-            this.txtMapPointAssoc.ReadOnly = true;
-            this.txtMapPointAssoc.Size = new System.Drawing.Size(231, 26);
-            this.txtMapPointAssoc.TabIndex = 5;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 11);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(170, 20);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Map/Point Association:";
             // 
             // chbSnapping
             // 
@@ -317,6 +311,7 @@ namespace StoryDev.Forms
             this.storyEditor.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.storyEditor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.storyEditor.Enabled = false;
+            this.storyEditor.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.storyEditor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
             this.storyEditor.IsReplaceMode = false;
             this.storyEditor.Location = new System.Drawing.Point(0, 43);
@@ -381,34 +376,6 @@ namespace StoryDev.Forms
             this.label1.TabIndex = 0;
             this.label1.Text = "Dialogue Branch:";
             // 
-            // dynamicsToolStripMenuItem
-            // 
-            this.dynamicsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.attitudesHereToolStripMenuItem,
-            this.groupFrequenciesHereToolStripMenuItem,
-            this.contextsHereToolStripMenuItem});
-            this.dynamicsToolStripMenuItem.Name = "dynamicsToolStripMenuItem";
-            this.dynamicsToolStripMenuItem.Size = new System.Drawing.Size(105, 29);
-            this.dynamicsToolStripMenuItem.Text = "Dynamics";
-            // 
-            // attitudesHereToolStripMenuItem
-            // 
-            this.attitudesHereToolStripMenuItem.Name = "attitudesHereToolStripMenuItem";
-            this.attitudesHereToolStripMenuItem.Size = new System.Drawing.Size(316, 34);
-            this.attitudesHereToolStripMenuItem.Text = "Attitudes Here...";
-            // 
-            // groupFrequenciesHereToolStripMenuItem
-            // 
-            this.groupFrequenciesHereToolStripMenuItem.Name = "groupFrequenciesHereToolStripMenuItem";
-            this.groupFrequenciesHereToolStripMenuItem.Size = new System.Drawing.Size(316, 34);
-            this.groupFrequenciesHereToolStripMenuItem.Text = "Group Frequencies Here...";
-            // 
-            // contextsHereToolStripMenuItem
-            // 
-            this.contextsHereToolStripMenuItem.Name = "contextsHereToolStripMenuItem";
-            this.contextsHereToolStripMenuItem.Size = new System.Drawing.Size(316, 34);
-            this.contextsHereToolStripMenuItem.Text = "Contexts Here...";
-            // 
             // ConversationEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -468,9 +435,6 @@ namespace StoryDev.Forms
         private System.Windows.Forms.ToolStripMenuItem storyOrderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem customVariablesToolStripMenuItem;
         private Components.CodeEditor storyEditor;
-        private System.Windows.Forms.Button btnBrowseMaps;
-        private System.Windows.Forms.TextBox txtMapPointAssoc;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStripMenuItem dynamicsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem attitudesHereToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem groupFrequenciesHereToolStripMenuItem;

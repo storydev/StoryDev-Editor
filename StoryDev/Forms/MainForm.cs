@@ -65,5 +65,22 @@ namespace StoryDev.Forms
         {
             new MapsForm().Show();
         }
+
+        private void convoFinderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var finder = new ConvoFinderForm();
+            finder.RequestOpenForm += RequestOpenForm;
+            finder.Show(this);
+        }
+
+        private void RequestOpenForm(FormType type, string[] data)
+        {
+            if (type == FormType.Form_ConversationEditor)
+            {
+                var editor = new ConversationEditor();
+                editor.OpenFile(data[0]);
+                editor.Show(this);
+            }
+        }
     }
 }

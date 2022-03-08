@@ -39,19 +39,9 @@ namespace StoryDev.Forms
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chaptersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.conversationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mapsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.charactersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.characterGroupsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.placesOfInterestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.journalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.itemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.artefactsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.specialFeatureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.achievementsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resourcesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iconSetsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.convoFinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -112,17 +102,7 @@ namespace StoryDev.Forms
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.chaptersToolStripMenuItem,
             this.conversationsToolStripMenuItem,
-            this.mapsToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.charactersToolStripMenuItem,
-            this.characterGroupsToolStripMenuItem,
-            this.placesOfInterestToolStripMenuItem,
-            this.journalToolStripMenuItem,
-            this.itemsToolStripMenuItem,
-            this.artefactsToolStripMenuItem,
-            this.specialFeatureToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.achievementsToolStripMenuItem});
+            this.convoFinderToolStripMenuItem});
             this.viewToolStripMenuItem.Enabled = false;
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(65, 29);
@@ -141,71 +121,6 @@ namespace StoryDev.Forms
             this.conversationsToolStripMenuItem.Text = "Conversations...";
             this.conversationsToolStripMenuItem.Click += new System.EventHandler(this.conversationsToolStripMenuItem_Click);
             // 
-            // mapsToolStripMenuItem
-            // 
-            this.mapsToolStripMenuItem.Name = "mapsToolStripMenuItem";
-            this.mapsToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.mapsToolStripMenuItem.Text = "Maps...";
-            this.mapsToolStripMenuItem.Click += new System.EventHandler(this.mapsToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(267, 6);
-            // 
-            // charactersToolStripMenuItem
-            // 
-            this.charactersToolStripMenuItem.Name = "charactersToolStripMenuItem";
-            this.charactersToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.charactersToolStripMenuItem.Text = "Characters";
-            // 
-            // characterGroupsToolStripMenuItem
-            // 
-            this.characterGroupsToolStripMenuItem.Name = "characterGroupsToolStripMenuItem";
-            this.characterGroupsToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.characterGroupsToolStripMenuItem.Text = "Character Groups";
-            // 
-            // placesOfInterestToolStripMenuItem
-            // 
-            this.placesOfInterestToolStripMenuItem.Name = "placesOfInterestToolStripMenuItem";
-            this.placesOfInterestToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.placesOfInterestToolStripMenuItem.Text = "Places of Interest";
-            // 
-            // journalToolStripMenuItem
-            // 
-            this.journalToolStripMenuItem.Name = "journalToolStripMenuItem";
-            this.journalToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.journalToolStripMenuItem.Text = "Journal";
-            // 
-            // itemsToolStripMenuItem
-            // 
-            this.itemsToolStripMenuItem.Name = "itemsToolStripMenuItem";
-            this.itemsToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.itemsToolStripMenuItem.Text = "Items";
-            // 
-            // artefactsToolStripMenuItem
-            // 
-            this.artefactsToolStripMenuItem.Name = "artefactsToolStripMenuItem";
-            this.artefactsToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.artefactsToolStripMenuItem.Text = "Artefacts";
-            // 
-            // specialFeatureToolStripMenuItem
-            // 
-            this.specialFeatureToolStripMenuItem.Name = "specialFeatureToolStripMenuItem";
-            this.specialFeatureToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.specialFeatureToolStripMenuItem.Text = "Special Feature";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(267, 6);
-            // 
-            // achievementsToolStripMenuItem
-            // 
-            this.achievementsToolStripMenuItem.Name = "achievementsToolStripMenuItem";
-            this.achievementsToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.achievementsToolStripMenuItem.Text = "Achievements";
-            // 
             // resourcesToolStripMenuItem
             // 
             this.resourcesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -221,6 +136,13 @@ namespace StoryDev.Forms
             this.iconSetsToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.iconSetsToolStripMenuItem.Text = "Icon Sets...";
             this.iconSetsToolStripMenuItem.Click += new System.EventHandler(this.iconSetsToolStripMenuItem_Click);
+            // 
+            // convoFinderToolStripMenuItem
+            // 
+            this.convoFinderToolStripMenuItem.Name = "convoFinderToolStripMenuItem";
+            this.convoFinderToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.convoFinderToolStripMenuItem.Text = "Convo Finder...";
+            this.convoFinderToolStripMenuItem.Click += new System.EventHandler(this.convoFinderToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -247,23 +169,13 @@ namespace StoryDev.Forms
         private System.Windows.Forms.ToolStripMenuItem openProjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem conversationsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem charactersToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem characterGroupsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem placesOfInterestToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem journalToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem itemsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem artefactsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem specialFeatureToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem chaptersToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripMenuItem achievementsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resourcesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem iconSetsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mapsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem convoFinderToolStripMenuItem;
     }
 }
 

@@ -282,22 +282,5 @@ namespace StoryDev.Forms
                 editor.Show();
             }
         }
-
-        private void lbJournals_DoubleClick(object sender, EventArgs e)
-        {
-            if (lbJournals.SelectedIndex > -1)
-            {
-                foreach (var frm in Application.OpenForms)
-                {
-                    if (frm.GetType() == typeof(MainForm))
-                    {
-                        var casted = (MainForm)frm;
-                        var journal = Globals.Journals.FindIndex((j) => journalLinks.ElementAt(lbJournals.SelectedIndex).JournalID == j.ID);
-                        casted.SelectJournal(journal);
-                        casted.BringToFront();
-                    }
-                }
-            }
-        }
     }
 }
