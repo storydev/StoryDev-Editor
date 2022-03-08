@@ -82,5 +82,10 @@ namespace StoryDev.Forms
                 editor.Show(this);
             }
         }
+
+        private void scriptEditorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new ScriptEditorForm().Show(this);
+        }
     }
 }

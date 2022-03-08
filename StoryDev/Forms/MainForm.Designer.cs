@@ -39,9 +39,10 @@ namespace StoryDev.Forms
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chaptersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.conversationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.convoFinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resourcesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iconSetsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.convoFinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scriptEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,7 +74,7 @@ namespace StoryDev.Forms
             // openProjectToolStripMenuItem
             // 
             this.openProjectToolStripMenuItem.Name = "openProjectToolStripMenuItem";
-            this.openProjectToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.openProjectToolStripMenuItem.Size = new System.Drawing.Size(229, 34);
             this.openProjectToolStripMenuItem.Text = "Open Project...";
             this.openProjectToolStripMenuItem.Click += new System.EventHandler(this.openProjectToolStripMenuItem_Click);
             // 
@@ -81,19 +82,19 @@ namespace StoryDev.Forms
             // 
             this.saveAllToolStripMenuItem.Enabled = false;
             this.saveAllToolStripMenuItem.Name = "saveAllToolStripMenuItem";
-            this.saveAllToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.saveAllToolStripMenuItem.Size = new System.Drawing.Size(229, 34);
             this.saveAllToolStripMenuItem.Text = "Save all...";
             this.saveAllToolStripMenuItem.Click += new System.EventHandler(this.saveAllToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(267, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(226, 6);
             // 
             // preferencesToolStripMenuItem
             // 
             this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
-            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(229, 34);
             this.preferencesToolStripMenuItem.Text = "Preferences...";
             this.preferencesToolStripMenuItem.Click += new System.EventHandler(this.preferencesToolStripMenuItem_Click);
             // 
@@ -102,7 +103,8 @@ namespace StoryDev.Forms
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.chaptersToolStripMenuItem,
             this.conversationsToolStripMenuItem,
-            this.convoFinderToolStripMenuItem});
+            this.convoFinderToolStripMenuItem,
+            this.scriptEditorToolStripMenuItem});
             this.viewToolStripMenuItem.Enabled = false;
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(65, 29);
@@ -121,6 +123,13 @@ namespace StoryDev.Forms
             this.conversationsToolStripMenuItem.Text = "Conversations...";
             this.conversationsToolStripMenuItem.Click += new System.EventHandler(this.conversationsToolStripMenuItem_Click);
             // 
+            // convoFinderToolStripMenuItem
+            // 
+            this.convoFinderToolStripMenuItem.Name = "convoFinderToolStripMenuItem";
+            this.convoFinderToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.convoFinderToolStripMenuItem.Text = "Convo Finder...";
+            this.convoFinderToolStripMenuItem.Click += new System.EventHandler(this.convoFinderToolStripMenuItem_Click);
+            // 
             // resourcesToolStripMenuItem
             // 
             this.resourcesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -137,12 +146,12 @@ namespace StoryDev.Forms
             this.iconSetsToolStripMenuItem.Text = "Icon Sets...";
             this.iconSetsToolStripMenuItem.Click += new System.EventHandler(this.iconSetsToolStripMenuItem_Click);
             // 
-            // convoFinderToolStripMenuItem
+            // scriptEditorToolStripMenuItem
             // 
-            this.convoFinderToolStripMenuItem.Name = "convoFinderToolStripMenuItem";
-            this.convoFinderToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.convoFinderToolStripMenuItem.Text = "Convo Finder...";
-            this.convoFinderToolStripMenuItem.Click += new System.EventHandler(this.convoFinderToolStripMenuItem_Click);
+            this.scriptEditorToolStripMenuItem.Name = "scriptEditorToolStripMenuItem";
+            this.scriptEditorToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.scriptEditorToolStripMenuItem.Text = "Script Editor...";
+            this.scriptEditorToolStripMenuItem.Click += new System.EventHandler(this.scriptEditorToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -176,6 +185,7 @@ namespace StoryDev.Forms
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem convoFinderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem scriptEditorToolStripMenuItem;
     }
 }
 
