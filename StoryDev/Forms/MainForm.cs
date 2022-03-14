@@ -53,7 +53,7 @@ namespace StoryDev.Forms
 
         private void conversationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new ConversationEditor().Show();
+            new ConversationEditor().Show(this);
         }
 
         private void preferencesToolStripMenuItem_Click(object sender, EventArgs e)

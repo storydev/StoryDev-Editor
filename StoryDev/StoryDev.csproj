@@ -794,6 +794,11 @@
     <Compile Include="Lib\StoryDev\Parser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scripting\DataField.cs" />
+    <Compile Include="Scripting\DataFieldType.cs" />
+    <Compile Include="Scripting\DataStruct.cs" />
+    <Compile Include="Scripting\Environment.cs" />
+    <Compile Include="Scripting\ScriptError.cs" />
     <Compile Include="Simulation\CallStack.cs" />
     <Compile Include="Simulation\Engine.cs" />
     <Compile Include="Simulation\Message.cs" />

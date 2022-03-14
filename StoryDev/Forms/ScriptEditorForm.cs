@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using StoryDev.Scripting;
 using StoryDev.Components;
 
 namespace StoryDev.Forms
@@ -130,17 +131,21 @@ namespace StoryDev.Forms
                     return;
             }
 
-            if (!File.Exists(path))
+            if (!File.Exists(Globals.CurrentProjectFolder + "\\" + path))
                 return;
 
             var tabPage = new TabPage();
             var codeEditor = new CodeEditor();
             codeEditor.CurrentLanguage = Language.HaxeScript;
+            codeEditor.OpenFile(Globals.CurrentProjectFolder + "\\" + path);
             codeEditor.Dock = DockStyle.Fill;
             tabPage.Text = Path.GetFileName(path);
             tabPage.Controls.Add(codeEditor);
             tcMain.TabPages.Add(tabPage);
             openPaths.Add(path);
+
+            tcMain.SelectedIndex = tcMain.TabPages.Count - 1;
+            saveToolStripMenuItem.Enabled = tcMain.SelectedIndex > -1;
         }
 
         private void cmsFolderOptions_Opening(object sender, CancelEventArgs e)
@@ -188,6 +193,79 @@ namespace StoryDev.Forms
                 var node = GetNodeByPath(path);
                 PopulateTreeNode(node, Globals.CurrentProjectFolder + "\\" + path);
                 node.Expand();
+            }
+        }
+
+        private void renameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (tvScriptFiles.SelectedNode != null)
+            {
+                var currentPath = tvScriptFiles.SelectedNode.FullPath;
+                var entry = new SimpleEntryForm();
+                entry.Value = tvScriptFiles.SelectedNode.Text;
+                entry.Text = "Rename";
+                if (entry.ShowDialog() == DialogResult.OK)
+                {
+                    string path = currentPath.Substring(0, currentPath.LastIndexOf('/'));
+                    Directory.Move(Globals.CurrentProjectFolder + "\\" + currentPath, Globals.CurrentProjectFolder + "\\" + path + "\\" + entry.Value);
+                    tvScriptFiles.SelectedNode.Text = entry.Value;
+                }
+            }
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (tvScriptFiles.SelectedNode != null)
+            {
+                var currentPath = tvScriptFiles.SelectedNode.FullPath;
+                var response = MessageBox.Show(string.Format("Delete '{0}'?", tvScriptFiles.SelectedNode.Text), "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (response == DialogResult.Yes)
+                {
+                    if (currentPath == "Scripts/Data" || currentPath == "Scripts/Game Functions")
+                    {
+                        MessageBox.Show("You cannot delete this folder.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    if (Directory.Exists(Globals.CurrentProjectFolder + "\\" + currentPath))
+                    {
+                        var files = Directory.GetFiles(Globals.CurrentProjectFolder + "\\" + currentPath);
+                        foreach (var file in files)
+                        {
+                            File.Delete(file);
+                        }
+                        
+                        Directory.Delete(Globals.CurrentProjectFolder + "\\" + currentPath);
+                        var nodePath = currentPath.Substring(0, currentPath.LastIndexOf('/'));
+                        var node = GetNodeByPath(nodePath);
+                        PopulateTreeNode(node, Globals.CurrentProjectFolder + "\\" + nodePath);
+                        if (node.Nodes.Count > 0)
+                            node.Expand();
+                    }
+                    else
+                    {
+                        File.Delete(Globals.CurrentProjectFolder + "\\" + currentPath);
+                        var nodePath = currentPath.Substring(0, currentPath.LastIndexOf('/'));
+                        var node = GetNodeByPath(nodePath);
+                        PopulateTreeNode(node, Globals.CurrentProjectFolder + "\\" + nodePath);
+                        if (node.Nodes.Count > 0)
+                            node.Expand();
+                    }
+                }
+            }
+        }
+
+        private void testRunToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Scripting.Environment.TestEnv.RunAllScripts();
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (tcMain.SelectedTab != null)
+            {
+                var casted = (CodeEditor)tcMain.SelectedTab.Controls[0];
+                casted.SaveToFile(openPaths[tcMain.SelectedIndex], Encoding.UTF8);
             }
         }
     }
