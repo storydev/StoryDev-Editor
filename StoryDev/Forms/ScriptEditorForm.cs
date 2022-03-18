@@ -265,7 +265,7 @@ namespace StoryDev.Forms
             if (tcMain.SelectedTab != null)
             {
                 var casted = (CodeEditor)tcMain.SelectedTab.Controls[0];
-                casted.SaveToFile(openPaths[tcMain.SelectedIndex], Encoding.UTF8);
+                casted.SaveToFile(Globals.CurrentProjectFolder + "\\" + openPaths[tcMain.SelectedIndex], Encoding.UTF8);
             }
         }
     }
