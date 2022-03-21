@@ -8,6 +8,7 @@ using System.IO;
 using Jint;
 using Jint.Runtime;
 using Jint.Runtime.Debugger;
+using Jint.Runtime.Environments;
 
 namespace StoryDev.Scripting
 {
@@ -15,17 +16,17 @@ namespace StoryDev.Scripting
     {
 
         private Engine jEngine;
+
         private List<ScriptError> _errors;
+        public IEnumerable<ScriptError> Errors
+        {
+            get => _errors;
+        }
 
         private List<DataStruct> _structures;
-        public List<DataStruct> Structures
+        public IEnumerable<DataStruct> Structures
         {
-            get
-            {
-                if (_structures == null)
-                    _structures = new List<DataStruct>();
-                return _structures;
-            }
+            get => _structures;
         }
 
         private DataStruct _lastUsedStructure;
@@ -35,17 +36,26 @@ namespace StoryDev.Scripting
 
         public Environment()
         {
-            jEngine = new Engine();
+            jEngine = new Engine(c =>
+            {
+                c.DebugMode();
+            });
             jEngine.SetValue("CreateStructure", new Action<string, string>(CreateStructure));
-            jEngine.SetValue("AddField", new Action<string, DataFieldType>(AddField));
+            jEngine.SetValue("AddField", new Action<string, DataFieldType, DataFieldType>(AddField));
+
+            jEngine.SetValue("SetFieldRelationship", new Action<string, string, string>(SetFieldRelationship));
+            jEngine.SetValue("SetFieldRelationshipCustom", new Action<string[]>(SetFieldRelationshipCustom));
+            jEngine.SetValue("SetFieldRelationshipCustom", new Action<string>(SetFieldRelationshipCustom));
+
 
             jEngine.SetValue("FIELDTYPE_INTEGER", DataFieldType.INTEGER);
             jEngine.SetValue("FIELDTYPE_FLOAT", DataFieldType.FLOAT);
             jEngine.SetValue("FIELDTYPE_STRING", DataFieldType.STRING);
             jEngine.SetValue("FIELDTYPE_BOOLEAN", DataFieldType.BOOLEAN);
             jEngine.SetValue("FIELDTYPE_DATETIME", DataFieldType.DATETIME);
+            jEngine.SetValue("FIELDTYPE_ARRAY", DataFieldType.OFARRAY);
 
-            jEngine.DebugHandler.Break += DebugHandler_Break;
+            jEngine.DebugHandler.Step += DebugHandler_Step;
 
             fieldsToValidate = new Dictionary<string, List<DataField>>();
             _errors = new List<ScriptError>();
@@ -54,17 +64,20 @@ namespace StoryDev.Scripting
             Clear();
         }
 
-        private StepMode DebugHandler_Break(object sender, DebugInformation e)
+        private StepMode DebugHandler_Step(object sender, DebugInformation e)
         {
             
 
-            return StepMode.None;
+            return StepMode.Over;
         }
 
         public void Clear()
         {
             _structures.Clear();
             _errors.Clear();
+
+            jEngine.ResetCallStack();
+            jEngine.ResetConstraints();
         }
 
         public void RunAllScripts()
@@ -99,7 +112,13 @@ namespace StoryDev.Scripting
                 error.Column = jEx.Column;
                 error.LineNumber = jEx.LineNumber;
                 error.Message = jEx.Message;
+                error.FilePath = filename;
                 _errors.Add(error);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
                 return false;
             }
         }
@@ -221,7 +240,7 @@ namespace StoryDev.Scripting
             _lastUsedStructure = _structures[_structures.Count - 1];
         }
 
-        public void AddField(string fieldName, DataFieldType type)
+        public void AddField(string fieldName, DataFieldType type, DataFieldType subtype = DataFieldType.NONE)
         {
             if (_lastUsedStructure == null)
             {
@@ -231,6 +250,9 @@ namespace StoryDev.Scripting
             var field = new DataField();
             field.Name = fieldName;
             field.Type = type;
+            if (type == DataFieldType.OFARRAY)
+                field.ArrayType = subtype;
+
             _lastUsedStructure.Fields.Add(field);
             _lastUsedField = _lastUsedStructure.Fields[_lastUsedStructure.Fields.Count - 1];
         }

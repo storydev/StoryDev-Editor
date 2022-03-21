@@ -10,6 +10,7 @@ namespace StoryDev.Scripting
     internal class ScriptError
     {
 
+        public string FilePath;
         public int Column;
         public int LineNumber;
         public string Message;

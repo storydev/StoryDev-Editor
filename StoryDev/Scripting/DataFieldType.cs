@@ -8,10 +8,12 @@ namespace StoryDev.Scripting
 {
     internal enum DataFieldType
     {
+        NONE,
         INTEGER,
         FLOAT,
         STRING,
         BOOLEAN,
-        DATETIME
+        DATETIME,
+        OFARRAY,
     }
 }

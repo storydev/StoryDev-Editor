@@ -258,6 +258,7 @@ namespace StoryDev.Forms
         private void testRunToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Scripting.Environment.TestEnv.RunAllScripts();
+            new TestEnvironmentForm().Show();
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)

@@ -503,6 +503,7 @@
     <Compile Include="Components\ItemUI.Designer.cs">
       <DependentUpon>ItemUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\IWizardPage.cs" />
     <Compile Include="Components\JournalUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -541,6 +542,24 @@
     </Compile>
     <Compile Include="Components\SplitButton.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\TestEnv\Results\DataStructureResults.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\TestEnv\Results\DataStructureResults.Designer.cs">
+      <DependentUpon>DataStructureResults.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\TestEnv\SectionBasic.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\TestEnv\SectionBasic.Designer.cs">
+      <DependentUpon>SectionBasic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\TestEnv\SectionResults.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\TestEnv\SectionResults.Designer.cs">
+      <DependentUpon>SectionResults.cs</DependentUpon>
     </Compile>
     <Compile Include="Components\VarTrackerUI.cs">
       <SubType>UserControl</SubType>
@@ -600,6 +619,12 @@
     </Compile>
     <Compile Include="Forms\ScriptEditorForm.Designer.cs">
       <DependentUpon>ScriptEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TestEnvironmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TestEnvironmentForm.Designer.cs">
+      <DependentUpon>TestEnvironmentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\VariableChangesForm.cs">
       <SubType>Form</SubType>
@@ -1012,6 +1037,15 @@
     <EmbeddedResource Include="Components\SpecialFeatureUI.resx">
       <DependentUpon>SpecialFeatureUI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Components\TestEnv\Results\DataStructureResults.resx">
+      <DependentUpon>DataStructureResults.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\TestEnv\SectionBasic.resx">
+      <DependentUpon>SectionBasic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\TestEnv\SectionResults.resx">
+      <DependentUpon>SectionResults.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Components\VarTrackerUI.resx">
       <DependentUpon>VarTrackerUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -1023,6 +1057,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ScriptEditorForm.resx">
       <DependentUpon>ScriptEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TestEnvironmentForm.resx">
+      <DependentUpon>TestEnvironmentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\VariableChangesForm.resx">
       <DependentUpon>VariableChangesForm.cs</DependentUpon>
