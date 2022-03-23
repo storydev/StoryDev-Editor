@@ -12,6 +12,7 @@ namespace StoryDev.Scripting
         public string Name;
         public List<DataField> Fields;
         public string SourceFile;
+        public string DefinedFormName;
 
         public DataStruct()
         {

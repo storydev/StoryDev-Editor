@@ -487,6 +487,54 @@
     <Compile Include="Components\Data\FilterString.Designer.cs">
       <DependentUpon>FilterString.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\Forms\FormArray.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Forms\FormArray.Designer.cs">
+      <DependentUpon>FormArray.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Forms\FormArrayItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Forms\FormArrayItem.Designer.cs">
+      <DependentUpon>FormArrayItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Forms\FormCheckBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Forms\FormCheckBox.Designer.cs">
+      <DependentUpon>FormCheckBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Forms\FormDateTime.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Forms\FormDateTime.Designer.cs">
+      <DependentUpon>FormDateTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Forms\FormDropdown.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Forms\FormDropdown.Designer.cs">
+      <DependentUpon>FormDropdown.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Forms\FormNumber.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Forms\FormNumber.Designer.cs">
+      <DependentUpon>FormNumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Forms\FormTextInput.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Forms\FormTextInput.Designer.cs">
+      <DependentUpon>FormTextInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Forms\FormTextMultiline.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Forms\FormTextMultiline.Designer.cs">
+      <DependentUpon>FormTextMultiline.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\ICodeComponent.cs" />
     <Compile Include="Components\IconsCanvas.cs">
       <SubType>UserControl</SubType>
@@ -497,6 +545,7 @@
     <Compile Include="Components\IconSelect.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Components\IFormComponent.cs" />
     <Compile Include="Components\ItemUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -823,6 +872,8 @@
     <Compile Include="Scripting\DataFieldType.cs" />
     <Compile Include="Scripting\DataStruct.cs" />
     <Compile Include="Scripting\Environment.cs" />
+    <Compile Include="Scripting\ErrorType.cs" />
+    <Compile Include="Scripting\FieldDisplay.cs" />
     <Compile Include="Scripting\ScriptError.cs" />
     <Compile Include="Simulation\CallStack.cs" />
     <Compile Include="Simulation\Engine.cs" />
@@ -1015,6 +1066,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Components\Data\FilterString.resx">
       <DependentUpon>FilterString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Forms\FormArray.resx">
+      <DependentUpon>FormArray.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Forms\FormArrayItem.resx">
+      <DependentUpon>FormArrayItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Forms\FormCheckBox.resx">
+      <DependentUpon>FormCheckBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Forms\FormDateTime.resx">
+      <DependentUpon>FormDateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Forms\FormDropdown.resx">
+      <DependentUpon>FormDropdown.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Forms\FormNumber.resx">
+      <DependentUpon>FormNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Forms\FormTextInput.resx">
+      <DependentUpon>FormTextInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Forms\FormTextMultiline.resx">
+      <DependentUpon>FormTextMultiline.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\ItemUI.resx">
       <DependentUpon>ItemUI.cs</DependentUpon>

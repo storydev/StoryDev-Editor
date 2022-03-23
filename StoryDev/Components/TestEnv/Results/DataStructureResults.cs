@@ -92,5 +92,14 @@ namespace StoryDev.Components.TestEnv.Results
 
             return result;
         }
+
+        private void btnOpenForm_Click(object sender, EventArgs e)
+        {
+            if (cmbStructures.SelectedIndex > -1)
+            {
+                var structure = Scripting.Environment.TestEnv.Structures.ElementAt(cmbStructures.SelectedIndex);
+                Scripting.Environment.TestEnv.ShowForm(structure.DefinedFormName);
+            }
+        }
     }
 }

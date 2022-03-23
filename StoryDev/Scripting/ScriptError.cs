@@ -7,13 +7,15 @@ using System.Threading.Tasks;
 
 namespace StoryDev.Scripting
 {
-    internal class ScriptError
+    class ScriptError
     {
 
+        public ErrorType Type;
         public string FilePath;
         public int Column;
         public int LineNumber;
         public string Message;
+        public string Context;
 
         public ScriptError()
         {
