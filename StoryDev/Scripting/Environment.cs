@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
 using System.IO;
 using System.Windows.Forms;
 
@@ -38,12 +39,14 @@ namespace StoryDev.Scripting
         private string _currentlyExecutingFilePath;
         private DataStruct _lastUsedStructure;
         private DataField _lastUsedField;
+        private string _lastSetSyncField;
 
         private Dictionary<string, List<DataField>> fieldsToValidate;
 
         private Dictionary<string, Form> dataForms;
         private Form currentForm;
         private Dictionary<string, List<Tuple<string, string, string, FieldDisplay>>> syncedFields;
+        private Dictionary<string, List<Tuple<string, dynamic>>> propertyList;
 
         public Environment()
         {
@@ -73,6 +76,7 @@ namespace StoryDev.Scripting
             //
             jEngine.SetValue("CreateForm", new Action<string>(CreateForm));
             jEngine.SetValue("SyncField", new Action<string, string, FieldDisplay>(SyncField));
+            jEngine.SetValue("SetProperties", new Action<dynamic>(SetProperties));
 
             jEngine.SetValue("DISPLAY_DATE", FieldDisplay.Date);
             jEngine.SetValue("DISPLAY_DATETIME", FieldDisplay.DateTime);
@@ -88,11 +92,11 @@ namespace StoryDev.Scripting
             fieldsToValidate = new Dictionary<string, List<DataField>>();
             dataForms = new Dictionary<string, Form>();
             syncedFields = new Dictionary<string, List<Tuple<string, string, string, FieldDisplay>>>();
+            propertyList = new Dictionary<string, List<Tuple<string, dynamic>>>();
 
             _errors = new List<ScriptError>();
             _errorsForThrow = new List<ScriptError>();
             _structures = new List<DataStruct>();
-
 
             Clear();
         }
@@ -108,6 +112,12 @@ namespace StoryDev.Scripting
         {
             _structures.Clear();
             _errors.Clear();
+            _errorsForThrow.Clear();
+
+            fieldsToValidate.Clear();
+            dataForms.Clear();
+            syncedFields.Clear();
+            propertyList.Clear();
 
             jEngine.ResetCallStack();
             jEngine.ResetConstraints();
@@ -139,10 +149,28 @@ namespace StoryDev.Scripting
                         currentForm = form;
                     }
 
+                    
                     foreach (var field in sync.Value)
                     {
                         ConstructComponent(field.Item1, field.Item2, field.Item3, field.Item4);
+                        
                     }
+
+                    
+                }
+                
+                foreach (var sync in syncedFields)
+                {
+                    string structName = "";
+                    foreach (var field in sync.Value)
+                    {
+                        if (structName == "")
+                        {
+                            structName = field.Item1;
+                            break;
+                        }
+                    }
+                    SetComponentProperties(structName);
                 }
             }
         }
@@ -365,6 +393,10 @@ namespace StoryDev.Scripting
             form.Text = title;
             form.StartPosition = FormStartPosition.CenterScreen;
             form.Padding = new Padding(15);
+            form.MaximizeBox = false;
+            form.MinimizeBox = false;
+            form.Size = new System.Drawing.Size(1280, 960);
+            form.FormBorderStyle = FormBorderStyle.FixedSingle;
             _lastUsedStructure.DefinedFormName = title;
 
             dataForms.Add(title, form);
@@ -390,8 +422,29 @@ namespace StoryDev.Scripting
                 syncedFields.Add(currentForm.Text, new List<Tuple<string, string, string, FieldDisplay>>());
             }
 
+            if (!propertyList.ContainsKey(currentForm.Text))
+            {
+                propertyList.Add(currentForm.Text, new List<Tuple<string, dynamic>>());
+            }
+
             var list = syncedFields[currentForm.Text];
             list.Add(new Tuple<string, string, string, FieldDisplay>(_lastUsedStructure.Name, fieldName, displayText, displayAs));
+
+            _lastSetSyncField = displayText;
+        }
+
+        public void SetProperties(dynamic obj)
+        {
+            if (string.IsNullOrEmpty(_lastSetSyncField))
+            {
+                SubmitValidationError("Function being used without previously having created a synced field.", "SetProperties");
+                return;
+            }
+
+            if (propertyList.ContainsKey(currentForm.Text))
+            {
+                propertyList[currentForm.Text].Add(new Tuple<string, dynamic>(_lastSetSyncField, obj));
+            }
         }
 
         private void ConstructComponent(string structRef, string fieldName, string displayText, FieldDisplay displayAs)
@@ -501,6 +554,70 @@ namespace StoryDev.Scripting
             }
         }
 
+        private void SetComponentProperties(string structRef)
+        {
+            var str = GetStructByName(structRef);
+            if (!string.IsNullOrEmpty(str.DefinedFormName))
+            {
+                if (propertyList.ContainsKey(str.DefinedFormName))
+                {
+                    var list = propertyList[str.DefinedFormName];
+                    foreach (var prop in list)
+                    {
+                        var control = GetControlFromForm(str.DefinedFormName, prop.Item1);
+                        SetPropertiesFor(control, prop.Item2);
+                    }
+                }
+            }
+        }
+
+        private void SetPropertiesFor(Control ctl, dynamic obj)
+        {
+            IDictionary<string, object> properties = (IDictionary<string, object>)obj;
+            foreach (var kv in properties)
+            {
+                var type = ctl.GetType();
+                var property = type.GetProperty(kv.Key);
+                if (property != null)
+                {
+                    var valueType = kv.Value.GetType();
+                    if (property.PropertyType == valueType)
+                    {
+                        property.SetValue(ctl, kv.Value);
+                    }
+                }
+                else
+                {
+                    SubmitValidationError(
+                        string.Format("The property name '{0}' of type '{1}' does not exist.", kv.Key, type.Name), "");
+                }
+            }
+        }
+
+        private Control GetControlFromForm(string formName, string displayName)
+        {
+            Control result = null;
+
+            if (dataForms.ContainsKey(formName))
+            {
+                var form = dataForms[formName];
+                foreach (Control ctl in form.Controls)
+                {
+                    if (ctl is IFormComponent)
+                    {
+                        var casted = (IFormComponent)ctl;
+                        if (casted.DisplayName == displayName)
+                        {
+                            result = ctl;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
         private string[] GetFieldRelationshipValues(DataField field)
         {
             string[] results = null;
@@ -536,7 +653,7 @@ namespace StoryDev.Scripting
             error.Message = message;
             error.FilePath = _currentlyExecutingFilePath;
             error.Context = context;
-            _errorsForThrow.Add(error);
+            _errors.Add(error);
         }
 
         private static Environment _testEnv;
