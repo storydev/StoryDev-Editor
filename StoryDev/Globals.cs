@@ -32,6 +32,8 @@ namespace StoryDev
     delegate void OnMapSelected(int map, int point);
     delegate void OnGoToConversation(string file, string blockName, int line);
     delegate void OnRequestOpenForm(FormType type, string[] data);
+    delegate void OnFormArrayItemDeleted(int index);
+    delegate void OnFormArrayItemEdited(int index, object newValue);
 
     enum FormType
     {

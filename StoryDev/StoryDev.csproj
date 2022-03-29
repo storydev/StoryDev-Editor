@@ -663,6 +663,12 @@
     <Compile Include="Forms\ConvoFinderForm.Designer.cs">
       <DependentUpon>ConvoFinderForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\EditArrayItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EditArrayItemForm.Designer.cs">
+      <DependentUpon>EditArrayItemForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ScriptEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1129,6 +1135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ConvoFinderForm.resx">
       <DependentUpon>ConvoFinderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EditArrayItemForm.resx">
+      <DependentUpon>EditArrayItemForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ScriptEditorForm.resx">
       <DependentUpon>ScriptEditorForm.cs</DependentUpon>

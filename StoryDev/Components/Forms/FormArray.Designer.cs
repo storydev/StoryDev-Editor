@@ -57,6 +57,7 @@
             // 
             // pnlEnterValue
             // 
+            this.pnlEnterValue.BackColor = System.Drawing.SystemColors.ControlDark;
             this.pnlEnterValue.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlEnterValue.Location = new System.Drawing.Point(5, 38);
             this.pnlEnterValue.Name = "pnlEnterValue";
@@ -67,6 +68,7 @@
             // pnlResults
             // 
             this.pnlResults.AutoScroll = true;
+            this.pnlResults.BackColor = System.Drawing.Color.White;
             this.pnlResults.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlResults.Location = new System.Drawing.Point(5, 79);
             this.pnlResults.Name = "pnlResults";

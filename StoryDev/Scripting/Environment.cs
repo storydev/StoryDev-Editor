@@ -36,6 +36,11 @@ namespace StoryDev.Scripting
             get => _structures;
         }
 
+        public Engine CurrentEngine
+        {
+            get => jEngine;
+        }
+
         private string _currentlyExecutingFilePath;
         private DataStruct _lastUsedStructure;
         private DataField _lastUsedField;
@@ -85,6 +90,7 @@ namespace StoryDev.Scripting
             jEngine.SetValue("DISPLAY_NUMERIC", FieldDisplay.Numeric);
             jEngine.SetValue("DISPLAY_SINGLELINE", FieldDisplay.SingleText);
             jEngine.SetValue("DISPLAY_TIME", FieldDisplay.Time);
+            jEngine.SetValue("DISPLAY_ARRAY", FieldDisplay.Array);
 
 
             jEngine.DebugHandler.Step += DebugHandler_Step;
@@ -509,7 +515,7 @@ namespace StoryDev.Scripting
                         dropdown.DisplayName = displayText;
                         dropdown.Value = 0;
                         var combo = (ComboBox)dropdown.GetValueControl();
-                        combo.Items.AddRange(GetFieldRelationshipValues(field));
+                        combo.Items.AddRange(GetFieldRelationshipValues(jEngine, field));
                         currentForm.Controls.Add(dropdown);
                         currentForm.Controls.SetChildIndex(dropdown, 0);
                     }
@@ -550,6 +556,16 @@ namespace StoryDev.Scripting
                         currentForm.Controls.Add(textInput);
                         currentForm.Controls.SetChildIndex(textInput, 0);
                     }
+                }
+                else if (field.Type == DataFieldType.OFARRAY)
+                {
+                    var arrayField = new FormArray();
+                    arrayField.DisplayName = displayText;
+                    arrayField.SetArrayType(field);
+                    arrayField.Dock = DockStyle.Top;
+
+                    currentForm.Controls.Add(arrayField);
+                    currentForm.Controls.SetChildIndex(arrayField, 0);
                 }
             }
         }
@@ -618,7 +634,7 @@ namespace StoryDev.Scripting
             return result;
         }
 
-        private string[] GetFieldRelationshipValues(DataField field)
+        public static string[] GetFieldRelationshipValues(Engine jEngine, DataField field)
         {
             string[] results = null;
 

@@ -15,5 +15,6 @@ namespace StoryDev.Scripting
         Numeric,
         SingleText,
         MultilineText,
+        Array
     }
 }

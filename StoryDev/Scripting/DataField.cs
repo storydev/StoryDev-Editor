@@ -12,6 +12,7 @@ namespace StoryDev.Scripting
         public string Name;
         public DataFieldType Type;
         public DataFieldType ArrayType;
+        public FieldDisplay DisplayedAs;
         public string StructReference;
         public string FieldReference;
         public string DisplayReference;
