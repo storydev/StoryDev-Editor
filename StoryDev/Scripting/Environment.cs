@@ -49,9 +49,14 @@ namespace StoryDev.Scripting
         private Dictionary<string, List<DataField>> fieldsToValidate;
 
         private Dictionary<string, Form> dataForms;
+        private List<TabControl> tabControls;
         private Form currentForm;
         private Dictionary<string, List<Tuple<string, string, string, FieldDisplay>>> syncedFields;
         private Dictionary<string, List<Tuple<string, dynamic>>> propertyList;
+        private List<string> tabs;
+        private string currentTabControl;
+        private List<Tuple<string, string, string>> tabPages;
+        private string currentTabPage;
 
         public Environment()
         {
@@ -82,6 +87,10 @@ namespace StoryDev.Scripting
             jEngine.SetValue("CreateForm", new Action<string>(CreateForm));
             jEngine.SetValue("SyncField", new Action<string, string, FieldDisplay>(SyncField));
             jEngine.SetValue("SetProperties", new Action<dynamic>(SetProperties));
+            jEngine.SetValue("BeginTabs", new Func<string, bool>(BeginTabs));
+            jEngine.SetValue("BeginTabPage", new Func<string, bool>(BeginTabPage));
+            jEngine.SetValue("EndTabs", new Action(EndTabs));
+            jEngine.SetValue("EndTabPage", new Action(EndTabPage));
 
             jEngine.SetValue("DISPLAY_DATE", FieldDisplay.Date);
             jEngine.SetValue("DISPLAY_DATETIME", FieldDisplay.DateTime);
@@ -99,12 +108,13 @@ namespace StoryDev.Scripting
             dataForms = new Dictionary<string, Form>();
             syncedFields = new Dictionary<string, List<Tuple<string, string, string, FieldDisplay>>>();
             propertyList = new Dictionary<string, List<Tuple<string, dynamic>>>();
+            tabs = new List<string>();
+            tabPages = new List<Tuple<string, string, string>>();
+            tabControls = new List<TabControl>();
 
             _errors = new List<ScriptError>();
             _errorsForThrow = new List<ScriptError>();
             _structures = new List<DataStruct>();
-
-            Clear();
         }
 
         private StepMode DebugHandler_Step(object sender, DebugInformation e)
@@ -124,6 +134,11 @@ namespace StoryDev.Scripting
             dataForms.Clear();
             syncedFields.Clear();
             propertyList.Clear();
+            tabControls.Clear();
+            tabs.Clear();
+            tabPages.Clear();
+            currentTabPage = "";
+            currentTabControl = "";
 
             jEngine.ResetCallStack();
             jEngine.ResetConstraints();
@@ -146,6 +161,71 @@ namespace StoryDev.Scripting
             {
                 Validate();
 
+                //
+                // Currently, the way the codebase here is setup, we need to validate
+                // before we can define forms. This is because we need to know if we need to
+                // construct components with their respective relationships.
+                //
+                // If necessary, we may need to divide this up into two separate script categories,
+                // which may allow for a cleaner setup here, and easier to code, more specifically,
+                // but means more restrictive measures on how scripts can be written.
+                //
+                // Perhaps functionality should be added to standard script files to allow initialising
+                // forms, and hide form generation scripts by default.
+                //
+
+
+                var tabPageNames = new Dictionary<string, List<string>>();
+                foreach (var pages in tabPages)
+                {
+                    if (!tabPageNames.ContainsKey(pages.Item1))
+                    {
+                        tabPageNames.Add(pages.Item1, new List<string>());
+                    }
+
+                    List<string> list = tabPageNames[pages.Item1];
+                    bool found = false;
+                    foreach (var item in list)
+                    {
+                        if (item == pages.Item2)
+                        {
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (!found)
+                    {
+                        list.Add(pages.Item2);
+                    }
+                }
+
+                foreach (var tabControl in tabPageNames)
+                {
+                    var tc = new TabControl();
+                    tc.Tag = tabControl.Key;
+                    tc.Dock = DockStyle.Fill;
+                    foreach (var page in tabControl.Value)
+                    {
+                        var tabPage = new TabPage();
+                        tabPage.Text = page;
+                        var scrollContainer = new Panel();
+                        scrollContainer.Dock = DockStyle.Fill;
+                        scrollContainer.AutoScroll = true;
+                        tabPage.Controls.Add(scrollContainer);
+
+                        tc.TabPages.Add(tabPage);
+                    }
+                    tabControls.Add(tc);
+                }
+
+                foreach (var tc in tabControls)
+                {
+                    // Assuming we are just using one tab control.
+                    // Should be refactored.
+                    currentForm.Controls.Add(tc);
+                }
+
                 foreach (var sync in syncedFields)
                 {
                     Form form = null;
@@ -155,7 +235,6 @@ namespace StoryDev.Scripting
                         currentForm = form;
                     }
 
-                    
                     foreach (var field in sync.Value)
                     {
                         ConstructComponent(field.Item1, field.Item2, field.Item3, field.Item4);
@@ -409,6 +488,28 @@ namespace StoryDev.Scripting
             currentForm = dataForms.ElementAt(dataForms.Count - 1).Value;
         }
 
+        public bool BeginTabs(string id)
+        {
+            currentTabControl = id;
+            return true;
+        }
+
+        public bool BeginTabPage(string title)
+        {
+            currentTabPage = title;
+            return true;
+        }
+
+        public void EndTabPage()
+        {
+            currentTabPage = string.Empty;
+        }
+
+        public void EndTabs()
+        {
+            tabs.Add(currentTabPage);
+        }
+
         public void SyncField(string fieldName, string displayText, FieldDisplay displayAs)
         {
             if (currentForm == null)
@@ -435,6 +536,10 @@ namespace StoryDev.Scripting
 
             var list = syncedFields[currentForm.Text];
             list.Add(new Tuple<string, string, string, FieldDisplay>(_lastUsedStructure.Name, fieldName, displayText, displayAs));
+            if (!string.IsNullOrEmpty(currentTabControl) && !string.IsNullOrEmpty(currentTabPage))
+            {
+                tabPages.Add(new Tuple<string, string, string>(currentTabControl, currentTabPage, fieldName));
+            }
 
             _lastSetSyncField = displayText;
         }
@@ -455,6 +560,39 @@ namespace StoryDev.Scripting
 
         private void ConstructComponent(string structRef, string fieldName, string displayText, FieldDisplay displayAs)
         {
+            Control parentControl = null;
+            foreach (var pages in tabPages)
+            {
+                var breakout = false;
+                if (pages.Item3 == fieldName)
+                {
+                    foreach (var tc in tabControls)
+                    {
+                        if ((string)tc.Tag == pages.Item1)
+                        {
+                            foreach (TabPage page in tc.TabPages)
+                            {
+                                if (page.Text == pages.Item2)
+                                {
+                                    parentControl = page.Controls[0];
+                                    breakout = true;
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (breakout)
+                            break;
+                    }
+                }
+
+                if (breakout)
+                    break;
+            }
+
+            if (parentControl == null)
+                parentControl = currentForm;
+
             DataStruct str = GetStructByName(structRef);
             DataField field = GetFieldByName(str, fieldName);
             if (field != null)
@@ -465,8 +603,8 @@ namespace StoryDev.Scripting
                     checkbox.DisplayName = displayText;
                     checkbox.Value = false;
                     checkbox.Dock = DockStyle.Top;
-                    currentForm.Controls.Add(checkbox);
-                    currentForm.Controls.SetChildIndex(checkbox, 0);
+                    parentControl.Controls.Add(checkbox);
+                    parentControl.Controls.SetChildIndex(checkbox, 0);
                 }
                 else if (field.Type == DataFieldType.DATETIME)
                 {
@@ -489,8 +627,8 @@ namespace StoryDev.Scripting
                         picker.CustomFormat = "hh:mm:ss";
                     }
 
-                    currentForm.Controls.Add(datePicker);
-                    currentForm.Controls.SetChildIndex(datePicker, 0);
+                    parentControl.Controls.Add(datePicker);
+                    parentControl.Controls.SetChildIndex(datePicker, 0);
                 }
                 else if (field.Type == DataFieldType.FLOAT)
                 {
@@ -504,8 +642,8 @@ namespace StoryDev.Scripting
                     nud.Increment = 0.1m;
                     nud.Maximum = 999999999m;
 
-                    currentForm.Controls.Add(numeric);
-                    currentForm.Controls.SetChildIndex(numeric, 0);
+                    parentControl.Controls.Add(numeric);
+                    parentControl.Controls.SetChildIndex(numeric, 0);
                 }
                 else if (field.Type == DataFieldType.INTEGER)
                 {
@@ -516,8 +654,8 @@ namespace StoryDev.Scripting
                         dropdown.Value = 0;
                         var combo = (ComboBox)dropdown.GetValueControl();
                         combo.Items.AddRange(GetFieldRelationshipValues(jEngine, field));
-                        currentForm.Controls.Add(dropdown);
-                        currentForm.Controls.SetChildIndex(dropdown, 0);
+                        parentControl.Controls.Add(dropdown);
+                        parentControl.Controls.SetChildIndex(dropdown, 0);
                     }
                     else if (displayAs == FieldDisplay.Numeric)
                     {
@@ -530,8 +668,8 @@ namespace StoryDev.Scripting
                         nud.DecimalPlaces = 0;
                         nud.Maximum = 999999999m;
 
-                        currentForm.Controls.Add(numeric);
-                        currentForm.Controls.SetChildIndex(numeric, 0);
+                        parentControl.Controls.Add(numeric);
+                        parentControl.Controls.SetChildIndex(numeric, 0);
                     }
                 }
                 else if (field.Type == DataFieldType.STRING)
@@ -543,8 +681,8 @@ namespace StoryDev.Scripting
                         textInput.Value = "";
                         textInput.Dock = DockStyle.Top;
 
-                        currentForm.Controls.Add(textInput);
-                        currentForm.Controls.SetChildIndex(textInput, 0);
+                        parentControl.Controls.Add(textInput);
+                        parentControl.Controls.SetChildIndex(textInput, 0);
                     }
                     else if (displayAs == FieldDisplay.MultilineText)
                     {
@@ -553,8 +691,8 @@ namespace StoryDev.Scripting
                         textInput.Value = "";
                         textInput.Dock = DockStyle.Top;
 
-                        currentForm.Controls.Add(textInput);
-                        currentForm.Controls.SetChildIndex(textInput, 0);
+                        parentControl.Controls.Add(textInput);
+                        parentControl.Controls.SetChildIndex(textInput, 0);
                     }
                 }
                 else if (field.Type == DataFieldType.OFARRAY)
@@ -564,8 +702,8 @@ namespace StoryDev.Scripting
                     arrayField.SetArrayType(field);
                     arrayField.Dock = DockStyle.Top;
 
-                    currentForm.Controls.Add(arrayField);
-                    currentForm.Controls.SetChildIndex(arrayField, 0);
+                    parentControl.Controls.Add(arrayField);
+                    parentControl.Controls.SetChildIndex(arrayField, 0);
                 }
             }
         }
@@ -628,6 +766,40 @@ namespace StoryDev.Scripting
                             break;
                         }
                     }
+
+                    if (result == null)
+                        result = FindInnerControl(ctl, displayName);
+
+                    if (result != null)
+                        break;
+                }
+            }
+
+            return result;
+        }
+
+        private Control FindInnerControl(Control control, string displayName)
+        {
+            Control result = null;
+            if (control.Controls.Count > 0)
+            {
+                foreach (Control inner in control.Controls)
+                {
+                    if (inner is IFormComponent)
+                    {
+                        var casted = (IFormComponent)inner;
+                        if (casted.DisplayName == displayName)
+                        {
+                            result = inner;
+                            break;
+                        }
+                    }
+
+                    if (result == null)
+                        result = FindInnerControl(inner, displayName);
+
+                    if (result != null)
+                        break;
                 }
             }
 
