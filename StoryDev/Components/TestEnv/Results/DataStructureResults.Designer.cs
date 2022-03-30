@@ -37,8 +37,8 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel2 = new System.Windows.Forms.Panel();
-            this.cmbStructures = new System.Windows.Forms.ComboBox();
             this.btnOpenForm = new System.Windows.Forms.Button();
+            this.cmbStructures = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -119,6 +119,16 @@
             this.panel2.Size = new System.Drawing.Size(1301, 45);
             this.panel2.TabIndex = 0;
             // 
+            // btnOpenForm
+            // 
+            this.btnOpenForm.Location = new System.Drawing.Point(214, 8);
+            this.btnOpenForm.Name = "btnOpenForm";
+            this.btnOpenForm.Size = new System.Drawing.Size(133, 31);
+            this.btnOpenForm.TabIndex = 1;
+            this.btnOpenForm.Text = "Open Form";
+            this.btnOpenForm.UseVisualStyleBackColor = true;
+            this.btnOpenForm.Click += new System.EventHandler(this.btnOpenForm_Click);
+            // 
             // cmbStructures
             // 
             this.cmbStructures.Dock = System.Windows.Forms.DockStyle.Left;
@@ -129,16 +139,6 @@
             this.cmbStructures.Size = new System.Drawing.Size(200, 28);
             this.cmbStructures.TabIndex = 0;
             this.cmbStructures.SelectedIndexChanged += new System.EventHandler(this.cmbStructures_SelectedIndexChanged);
-            // 
-            // btnOpenForm
-            // 
-            this.btnOpenForm.Location = new System.Drawing.Point(214, 8);
-            this.btnOpenForm.Name = "btnOpenForm";
-            this.btnOpenForm.Size = new System.Drawing.Size(133, 31);
-            this.btnOpenForm.TabIndex = 1;
-            this.btnOpenForm.Text = "Open Form";
-            this.btnOpenForm.UseVisualStyleBackColor = true;
-            this.btnOpenForm.Click += new System.EventHandler(this.btnOpenForm_Click);
             // 
             // DataStructureResults
             // 

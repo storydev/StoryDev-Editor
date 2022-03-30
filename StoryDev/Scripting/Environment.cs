@@ -57,6 +57,7 @@ namespace StoryDev.Scripting
         private string currentTabControl;
         private List<Tuple<string, string, string>> tabPages;
         private string currentTabPage;
+        private Control lastControl;
 
         public Environment()
         {
@@ -84,7 +85,7 @@ namespace StoryDev.Scripting
             //
             // Data Forms API
             //
-            jEngine.SetValue("CreateForm", new Action<string>(CreateForm));
+            jEngine.SetValue("CreateForm", new Action<string, string>(CreateForm));
             jEngine.SetValue("SyncField", new Action<string, string, FieldDisplay>(SyncField));
             jEngine.SetValue("SetProperties", new Action<dynamic>(SetProperties));
             jEngine.SetValue("BeginTabs", new Func<string, bool>(BeginTabs));
@@ -111,6 +112,7 @@ namespace StoryDev.Scripting
             tabs = new List<string>();
             tabPages = new List<Tuple<string, string, string>>();
             tabControls = new List<TabControl>();
+            currentContainer = new List<Control>();
 
             _errors = new List<ScriptError>();
             _errorsForThrow = new List<ScriptError>();
@@ -137,6 +139,7 @@ namespace StoryDev.Scripting
             tabControls.Clear();
             tabs.Clear();
             tabPages.Clear();
+            currentContainer.Clear();
             currentTabPage = "";
             currentTabControl = "";
 
@@ -161,102 +164,108 @@ namespace StoryDev.Scripting
             {
                 Validate();
 
-                //
-                // Currently, the way the codebase here is setup, we need to validate
-                // before we can define forms. This is because we need to know if we need to
-                // construct components with their respective relationships.
-                //
-                // If necessary, we may need to divide this up into two separate script categories,
-                // which may allow for a cleaner setup here, and easier to code, more specifically,
-                // but means more restrictive measures on how scripts can be written.
-                //
-                // Perhaps functionality should be added to standard script files to allow initialising
-                // forms, and hide form generation scripts by default.
-                //
-
-
-                var tabPageNames = new Dictionary<string, List<string>>();
-                foreach (var pages in tabPages)
+                var formsFile = Globals.CurrentProjectFolder + "\\Scripts\\Data\\Forms.js";
+                if (File.Exists(formsFile))
                 {
-                    if (!tabPageNames.ContainsKey(pages.Item1))
-                    {
-                        tabPageNames.Add(pages.Item1, new List<string>());
-                    }
-
-                    List<string> list = tabPageNames[pages.Item1];
-                    bool found = false;
-                    foreach (var item in list)
-                    {
-                        if (item == pages.Item2)
-                        {
-                            found = true;
-                            break;
-                        }
-                    }
-
-                    if (!found)
-                    {
-                        list.Add(pages.Item2);
-                    }
+                    RunScript(formsFile);
                 }
 
-                foreach (var tabControl in tabPageNames)
-                {
-                    var tc = new TabControl();
-                    tc.Tag = tabControl.Key;
-                    tc.Dock = DockStyle.Fill;
-                    foreach (var page in tabControl.Value)
-                    {
-                        var tabPage = new TabPage();
-                        tabPage.Text = page;
-                        var scrollContainer = new Panel();
-                        scrollContainer.Dock = DockStyle.Fill;
-                        scrollContainer.AutoScroll = true;
-                        tabPage.Controls.Add(scrollContainer);
+                ////
+                //// Currently, the way the codebase here is setup, we need to validate
+                //// before we can define forms. This is because we need to know if we need to
+                //// construct components with their respective relationships.
+                ////
+                //// If necessary, we may need to divide this up into two separate script categories,
+                //// which may allow for a cleaner setup here, and easier to code, more specifically,
+                //// but means more restrictive measures on how scripts can be written.
+                ////
+                //// Perhaps functionality should be added to standard script files to allow initialising
+                //// forms, and hide form generation scripts by default.
+                ////
 
-                        tc.TabPages.Add(tabPage);
-                    }
-                    tabControls.Add(tc);
-                }
 
-                foreach (var tc in tabControls)
-                {
-                    // Assuming we are just using one tab control.
-                    // Should be refactored.
-                    currentForm.Controls.Add(tc);
-                }
+                //var tabPageNames = new Dictionary<string, List<string>>();
+                //foreach (var pages in tabPages)
+                //{
+                //    if (!tabPageNames.ContainsKey(pages.Item1))
+                //    {
+                //        tabPageNames.Add(pages.Item1, new List<string>());
+                //    }
 
-                foreach (var sync in syncedFields)
-                {
-                    Form form = null;
-                    if (dataForms.ContainsKey(sync.Key))
-                    {
-                        form = dataForms[sync.Key];
-                        currentForm = form;
-                    }
+                //    List<string> list = tabPageNames[pages.Item1];
+                //    bool found = false;
+                //    foreach (var item in list)
+                //    {
+                //        if (item == pages.Item2)
+                //        {
+                //            found = true;
+                //            break;
+                //        }
+                //    }
 
-                    foreach (var field in sync.Value)
-                    {
-                        ConstructComponent(field.Item1, field.Item2, field.Item3, field.Item4);
+                //    if (!found)
+                //    {
+                //        list.Add(pages.Item2);
+                //    }
+                //}
+
+                //foreach (var tabControl in tabPageNames)
+                //{
+                //    var tc = new TabControl();
+                //    tc.Tag = tabControl.Key;
+                //    tc.Dock = DockStyle.Fill;
+                //    foreach (var page in tabControl.Value)
+                //    {
+                //        var tabPage = new TabPage();
+                //        tabPage.Text = page;
+                //        var scrollContainer = new Panel();
+                //        scrollContainer.Dock = DockStyle.Fill;
+                //        scrollContainer.AutoScroll = true;
+                //        tabPage.Controls.Add(scrollContainer);
+
+                //        tc.TabPages.Add(tabPage);
+                //    }
+                //    tabControls.Add(tc);
+                //}
+
+                //foreach (var tc in tabControls)
+                //{
+                //    // Assuming we are just using one tab control.
+                //    // Should be refactored.
+                //    currentForm.Controls.Add(tc);
+                //}
+
+                //foreach (var sync in syncedFields)
+                //{
+                //    Form form = null;
+                //    if (dataForms.ContainsKey(sync.Key))
+                //    {
+                //        form = dataForms[sync.Key];
+                //        currentForm = form;
+                //    }
+
+                //    foreach (var field in sync.Value)
+                //    {
+                //        ConstructComponent(field.Item1, field.Item2, field.Item3, field.Item4);
                         
-                    }
+                //    }
 
                     
-                }
+                //}
                 
-                foreach (var sync in syncedFields)
-                {
-                    string structName = "";
-                    foreach (var field in sync.Value)
-                    {
-                        if (structName == "")
-                        {
-                            structName = field.Item1;
-                            break;
-                        }
-                    }
-                    SetComponentProperties(structName);
-                }
+                //foreach (var sync in syncedFields)
+                //{
+                //    string structName = "";
+                //    foreach (var field in sync.Value)
+                //    {
+                //        if (structName == "")
+                //        {
+                //            structName = field.Item1;
+                //            break;
+                //        }
+                //    }
+                //    SetComponentProperties(structName);
+                //}
             }
         }
 
@@ -466,13 +475,19 @@ namespace StoryDev.Scripting
         // Data Forms Scripting API
         //
 
-        public void CreateForm(string title)
+        private List<Control> currentContainer;
+
+        public void CreateForm(string title, string structRef)
         {
+            _lastUsedStructure = GetStructByName(structRef);
             if (_lastUsedStructure == null)
             {
-                SubmitValidationError("Function is being used without first defining a data structure.", "CreateForm");
+                SubmitValidationError("Structure reference, '" + structRef + "', has not been defined.", "CreateForm");
                 return;
             }
+
+            if (currentContainer == null)
+                currentContainer = new List<Control>();
 
             Form form = new Form();
             form.Text = title;
@@ -486,114 +501,98 @@ namespace StoryDev.Scripting
 
             dataForms.Add(title, form);
             currentForm = dataForms.ElementAt(dataForms.Count - 1).Value;
+            currentContainer.Add(dataForms.ElementAt(dataForms.Count - 1).Value);
         }
 
         public bool BeginTabs(string id)
         {
-            currentTabControl = id;
+            Control container = null;
+            if (currentContainer == null || currentContainer.Count == 0)
+            {
+                SubmitValidationError("Forms API method being used without first calling CreateForm.", "BeginTabs");
+                return false;
+            }
+
+            container = currentContainer[currentContainer.Count - 1];
+
+            var tabControl = new TabControl();
+            tabControl.Tag = id;
+            tabControl.Dock = DockStyle.Fill;
+            container.Controls.Add(tabControl);
+            currentContainer.Add(tabControl);
+
             return true;
         }
 
         public bool BeginTabPage(string title)
         {
-            currentTabPage = title;
+            var container = currentContainer[currentContainer.Count - 1];
+            if (container.GetType() != typeof(TabControl))
+            {
+                SubmitValidationError("BeginTabPage being called before BeginTabs.", "BeginTabPage");
+                return false;
+            }
+
+            var tabPage = new TabPage();
+            tabPage.Text = title;
+            var tabContainer = new Panel();
+            tabContainer.AutoScroll = true;
+            tabContainer.Dock = DockStyle.Fill;
+            tabContainer.Padding = new Padding(8);
+            tabPage.Controls.Add(tabContainer);
+            container.Controls.Add(tabPage);
+            currentContainer.Add(tabContainer);
+
             return true;
         }
 
         public void EndTabPage()
         {
-            currentTabPage = string.Empty;
+            currentContainer.RemoveAt(currentContainer.Count - 1);
         }
 
         public void EndTabs()
         {
-            tabs.Add(currentTabPage);
+            currentContainer.RemoveAt(currentContainer.Count - 1);
         }
 
         public void SyncField(string fieldName, string displayText, FieldDisplay displayAs)
         {
-            if (currentForm == null)
+            Control container = null;
+            if (currentContainer == null || currentContainer.Count == 0 || _lastUsedStructure == null)
             {
-                SubmitValidationError("Function is being used without first calling `CreateForm`.", "SyncField");
+                SubmitValidationError("Forms API method being used without first calling CreateForm.", "SyncField");
                 return;
             }
 
-            if (_lastUsedStructure == null)
-            {
-                SubmitValidationError("Function is being used without first defining a data structure.", "SyncField");
-                return;
-            }
+            container = currentContainer[currentContainer.Count - 1];
 
-            if (!syncedFields.ContainsKey(currentForm.Text))
-            {
-                syncedFields.Add(currentForm.Text, new List<Tuple<string, string, string, FieldDisplay>>());
-            }
-
-            if (!propertyList.ContainsKey(currentForm.Text))
-            {
-                propertyList.Add(currentForm.Text, new List<Tuple<string, dynamic>>());
-            }
-
-            var list = syncedFields[currentForm.Text];
-            list.Add(new Tuple<string, string, string, FieldDisplay>(_lastUsedStructure.Name, fieldName, displayText, displayAs));
-            if (!string.IsNullOrEmpty(currentTabControl) && !string.IsNullOrEmpty(currentTabPage))
-            {
-                tabPages.Add(new Tuple<string, string, string>(currentTabControl, currentTabPage, fieldName));
-            }
-
-            _lastSetSyncField = displayText;
+            ConstructComponent(_lastUsedStructure.Name, fieldName, displayText, displayAs);
         }
 
         public void SetProperties(dynamic obj)
         {
-            if (string.IsNullOrEmpty(_lastSetSyncField))
+            if (lastControl == null)
             {
-                SubmitValidationError("Function being used without previously having created a synced field.", "SetProperties");
+                SubmitValidationError("SetProperties being called when no Field Component has been created.", "SetProperties");
                 return;
             }
 
-            if (propertyList.ContainsKey(currentForm.Text))
-            {
-                propertyList[currentForm.Text].Add(new Tuple<string, dynamic>(_lastSetSyncField, obj));
-            }
+            SetPropertiesFor(lastControl, obj);
         }
 
         private void ConstructComponent(string structRef, string fieldName, string displayText, FieldDisplay displayAs)
         {
-            Control parentControl = null;
-            foreach (var pages in tabPages)
+            Control container = null;
+            if (currentContainer == null || currentContainer.Count == 0 || _lastUsedStructure == null)
             {
-                var breakout = false;
-                if (pages.Item3 == fieldName)
-                {
-                    foreach (var tc in tabControls)
-                    {
-                        if ((string)tc.Tag == pages.Item1)
-                        {
-                            foreach (TabPage page in tc.TabPages)
-                            {
-                                if (page.Text == pages.Item2)
-                                {
-                                    parentControl = page.Controls[0];
-                                    breakout = true;
-                                    break;
-                                }
-                            }
-                        }
-
-                        if (breakout)
-                            break;
-                    }
-                }
-
-                if (breakout)
-                    break;
+                SubmitValidationError("Forms API method being used without first calling CreateForm.", "SyncField");
+                return;
             }
 
-            if (parentControl == null)
-                parentControl = currentForm;
+            container = currentContainer[currentContainer.Count - 1];
 
-            DataStruct str = GetStructByName(structRef);
+            DataStruct str = _lastUsedStructure;
             DataField field = GetFieldByName(str, fieldName);
             if (field != null)
             {
@@ -603,8 +602,9 @@ namespace StoryDev.Scripting
                     checkbox.DisplayName = displayText;
                     checkbox.Value = false;
                     checkbox.Dock = DockStyle.Top;
-                    parentControl.Controls.Add(checkbox);
-                    parentControl.Controls.SetChildIndex(checkbox, 0);
+                    container.Controls.Add(checkbox);
+                    container.Controls.SetChildIndex(checkbox, 0);
+                    lastControl = checkbox;
                 }
                 else if (field.Type == DataFieldType.DATETIME)
                 {
@@ -627,8 +627,9 @@ namespace StoryDev.Scripting
                         picker.CustomFormat = "hh:mm:ss";
                     }
 
-                    parentControl.Controls.Add(datePicker);
-                    parentControl.Controls.SetChildIndex(datePicker, 0);
+                    container.Controls.Add(datePicker);
+                    container.Controls.SetChildIndex(datePicker, 0);
+                    lastControl = datePicker;
                 }
                 else if (field.Type == DataFieldType.FLOAT)
                 {
@@ -642,8 +643,9 @@ namespace StoryDev.Scripting
                     nud.Increment = 0.1m;
                     nud.Maximum = 999999999m;
 
-                    parentControl.Controls.Add(numeric);
-                    parentControl.Controls.SetChildIndex(numeric, 0);
+                    container.Controls.Add(numeric);
+                    container.Controls.SetChildIndex(numeric, 0);
+                    lastControl = numeric;
                 }
                 else if (field.Type == DataFieldType.INTEGER)
                 {
@@ -654,8 +656,9 @@ namespace StoryDev.Scripting
                         dropdown.Value = 0;
                         var combo = (ComboBox)dropdown.GetValueControl();
                         combo.Items.AddRange(GetFieldRelationshipValues(jEngine, field));
-                        parentControl.Controls.Add(dropdown);
-                        parentControl.Controls.SetChildIndex(dropdown, 0);
+                        container.Controls.Add(dropdown);
+                        container.Controls.SetChildIndex(dropdown, 0);
+                        lastControl = dropdown;
                     }
                     else if (displayAs == FieldDisplay.Numeric)
                     {
@@ -668,8 +671,9 @@ namespace StoryDev.Scripting
                         nud.DecimalPlaces = 0;
                         nud.Maximum = 999999999m;
 
-                        parentControl.Controls.Add(numeric);
-                        parentControl.Controls.SetChildIndex(numeric, 0);
+                        container.Controls.Add(numeric);
+                        container.Controls.SetChildIndex(numeric, 0);
+                        lastControl = numeric;
                     }
                 }
                 else if (field.Type == DataFieldType.STRING)
@@ -681,8 +685,9 @@ namespace StoryDev.Scripting
                         textInput.Value = "";
                         textInput.Dock = DockStyle.Top;
 
-                        parentControl.Controls.Add(textInput);
-                        parentControl.Controls.SetChildIndex(textInput, 0);
+                        container.Controls.Add(textInput);
+                        container.Controls.SetChildIndex(textInput, 0);
+                        lastControl = textInput;
                     }
                     else if (displayAs == FieldDisplay.MultilineText)
                     {
@@ -691,8 +696,9 @@ namespace StoryDev.Scripting
                         textInput.Value = "";
                         textInput.Dock = DockStyle.Top;
 
-                        parentControl.Controls.Add(textInput);
-                        parentControl.Controls.SetChildIndex(textInput, 0);
+                        container.Controls.Add(textInput);
+                        container.Controls.SetChildIndex(textInput, 0);
+                        lastControl = textInput;
                     }
                 }
                 else if (field.Type == DataFieldType.OFARRAY)
@@ -702,42 +708,35 @@ namespace StoryDev.Scripting
                     arrayField.SetArrayType(field);
                     arrayField.Dock = DockStyle.Top;
 
-                    parentControl.Controls.Add(arrayField);
-                    parentControl.Controls.SetChildIndex(arrayField, 0);
-                }
-            }
-        }
-
-        private void SetComponentProperties(string structRef)
-        {
-            var str = GetStructByName(structRef);
-            if (!string.IsNullOrEmpty(str.DefinedFormName))
-            {
-                if (propertyList.ContainsKey(str.DefinedFormName))
-                {
-                    var list = propertyList[str.DefinedFormName];
-                    foreach (var prop in list)
-                    {
-                        var control = GetControlFromForm(str.DefinedFormName, prop.Item1);
-                        SetPropertiesFor(control, prop.Item2);
-                    }
+                    container.Controls.Add(arrayField);
+                    container.Controls.SetChildIndex(arrayField, 0);
+                    lastControl = arrayField;
                 }
             }
         }
 
         private void SetPropertiesFor(Control ctl, dynamic obj)
         {
+            if (!(ctl is IFormComponent))
+            {
+                SubmitValidationError("The control being modified must be a field previously synced.", "SetProperties");
+                return;
+            }
+
+            IFormComponent control = (IFormComponent)ctl;
+
             IDictionary<string, object> properties = (IDictionary<string, object>)obj;
             foreach (var kv in properties)
             {
-                var type = ctl.GetType();
+                var inner = control.GetValueControl();
+                var type = inner.GetType();
                 var property = type.GetProperty(kv.Key);
                 if (property != null)
                 {
                     var valueType = kv.Value.GetType();
                     if (property.PropertyType == valueType)
                     {
-                        property.SetValue(ctl, kv.Value);
+                        property.SetValue(inner, kv.Value);
                     }
                 }
                 else
@@ -746,64 +745,6 @@ namespace StoryDev.Scripting
                         string.Format("The property name '{0}' of type '{1}' does not exist.", kv.Key, type.Name), "");
                 }
             }
-        }
-
-        private Control GetControlFromForm(string formName, string displayName)
-        {
-            Control result = null;
-
-            if (dataForms.ContainsKey(formName))
-            {
-                var form = dataForms[formName];
-                foreach (Control ctl in form.Controls)
-                {
-                    if (ctl is IFormComponent)
-                    {
-                        var casted = (IFormComponent)ctl;
-                        if (casted.DisplayName == displayName)
-                        {
-                            result = ctl;
-                            break;
-                        }
-                    }
-
-                    if (result == null)
-                        result = FindInnerControl(ctl, displayName);
-
-                    if (result != null)
-                        break;
-                }
-            }
-
-            return result;
-        }
-
-        private Control FindInnerControl(Control control, string displayName)
-        {
-            Control result = null;
-            if (control.Controls.Count > 0)
-            {
-                foreach (Control inner in control.Controls)
-                {
-                    if (inner is IFormComponent)
-                    {
-                        var casted = (IFormComponent)inner;
-                        if (casted.DisplayName == displayName)
-                        {
-                            result = inner;
-                            break;
-                        }
-                    }
-
-                    if (result == null)
-                        result = FindInnerControl(inner, displayName);
-
-                    if (result != null)
-                        break;
-                }
-            }
-
-            return result;
         }
 
         public static string[] GetFieldRelationshipValues(Engine jEngine, DataField field)

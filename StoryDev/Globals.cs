@@ -1156,6 +1156,24 @@ namespace StoryDev
             arr = temp;
         }
 
+        public static void PushArray<T>(ref T[] arr, T[] toAdd)
+        {
+            int total = arr.Length + toAdd.Length;
+            T[] temp = new T[total];
+            for (int i = 0; i < total; i++)
+            {
+                if (i > arr.Length - 1)
+                {
+                    temp[i] = toAdd[i - arr.Length];
+                }
+                else
+                {
+                    temp[i] = arr[i];
+                }
+            }
+            arr = temp;
+        }
+
     }
 
     class PlayerState

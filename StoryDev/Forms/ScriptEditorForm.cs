@@ -67,6 +67,8 @@ namespace StoryDev.Forms
             }
 
             string[] files = Directory.GetFiles(path, "*.hxs");
+            string[] jsFiles = Directory.GetFiles(path, "*.js");
+            Globals.PushArray(ref files, jsFiles);
             foreach (string file in files)
             {
                 TreeNode fileNode = new TreeNode();
@@ -188,8 +190,21 @@ namespace StoryDev.Forms
             entry.NotEmpty = true;
             if (entry.ShowDialog() == DialogResult.OK)
             {
-                var path = tvScriptFiles.SelectedNode.FullPath;
-                File.WriteAllText(Globals.CurrentProjectFolder + "\\" + path + "\\" + entry.Value + ".hxs", "");
+                string path = tvScriptFiles.SelectedNode.FullPath;
+                string ext = "hxs";
+                string fileName = "";
+                int dotIndex = entry.Value.IndexOf('.');
+                if (dotIndex > -1)
+                {
+                    ext = entry.Value.Substring(dotIndex + 1);
+                    fileName = entry.Value.Substring(0, dotIndex);
+                }
+                else
+                {
+                    fileName = entry.Value;
+                }
+
+                File.WriteAllText(Globals.CurrentProjectFolder + "\\" + path + "\\" + fileName + "." + ext, "");
                 var node = GetNodeByPath(path);
                 PopulateTreeNode(node, Globals.CurrentProjectFolder + "\\" + path);
                 node.Expand();
@@ -225,6 +240,22 @@ namespace StoryDev.Forms
                     {
                         MessageBox.Show("You cannot delete this folder.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
+                    }
+
+                    var index = -1;
+                    foreach (var open in openPaths)
+                    {
+                        index += 1;
+                        if (currentPath == open)
+                        {
+                            break;
+                        }
+                    }
+
+                    if (index > -1)
+                    {
+                        openPaths.RemoveAt(index);
+                        tcMain.TabPages.RemoveAt(index);
                     }
 
                     if (Directory.Exists(Globals.CurrentProjectFolder + "\\" + currentPath))
