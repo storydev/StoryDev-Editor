@@ -539,6 +539,8 @@ namespace StoryDev.Scripting
             tabContainer.AutoScroll = true;
             tabContainer.Dock = DockStyle.Fill;
             tabContainer.Padding = new Padding(8);
+            tabContainer.SuspendLayout();
+
             tabPage.Controls.Add(tabContainer);
             container.Controls.Add(tabPage);
             currentContainer.Add(tabContainer);
@@ -548,6 +550,7 @@ namespace StoryDev.Scripting
 
         public void EndTabPage()
         {
+            currentContainer[currentContainer.Count - 1].ResumeLayout();
             currentContainer.RemoveAt(currentContainer.Count - 1);
         }
 
