@@ -103,5 +103,10 @@ namespace StoryDev.Components
         {
             Globals.SaveCharacterGroups();
         }
+
+        private void pnlContent_Layout(object sender, LayoutEventArgs e)
+        {
+
+        }
     }
 }

@@ -31,19 +31,19 @@ namespace StoryDev.Components
         {
             this.btnSave = new System.Windows.Forms.Button();
             this.pnlContent = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.nudInitialFrequency = new System.Windows.Forms.NumericUpDown();
+            this.nudFrequencyRate = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
             this.lbResults = new System.Windows.Forms.ListBox();
             this.btnCreate = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtName = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.nudFrequencyRate = new System.Windows.Forms.NumericUpDown();
-            this.nudInitialFrequency = new System.Windows.Forms.NumericUpDown();
-            this.label3 = new System.Windows.Forms.Label();
             this.pnlContent.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudFrequencyRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudInitialFrequency)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudFrequencyRate)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSave
@@ -75,6 +75,86 @@ namespace StoryDev.Components
             this.pnlContent.Name = "pnlContent";
             this.pnlContent.Size = new System.Drawing.Size(859, 704);
             this.pnlContent.TabIndex = 8;
+            this.pnlContent.Layout += new System.Windows.Forms.LayoutEventHandler(this.pnlContent_Layout);
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(459, 71);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(129, 20);
+            this.label3.TabIndex = 18;
+            this.label3.Text = "Initial Frequency:";
+            // 
+            // nudInitialFrequency
+            // 
+            this.nudInitialFrequency.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.nudInitialFrequency.DecimalPlaces = 2;
+            this.nudInitialFrequency.Location = new System.Drawing.Point(594, 69);
+            this.nudInitialFrequency.Maximum = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            this.nudInitialFrequency.Name = "nudInitialFrequency";
+            this.nudInitialFrequency.Size = new System.Drawing.Size(91, 26);
+            this.nudInitialFrequency.TabIndex = 17;
+            this.nudInitialFrequency.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            65536});
+            this.nudInitialFrequency.ValueChanged += new System.EventHandler(this.nudInitialFrequency_ValueChanged);
+            // 
+            // nudFrequencyRate
+            // 
+            this.nudFrequencyRate.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.nudFrequencyRate.DecimalPlaces = 2;
+            this.nudFrequencyRate.Location = new System.Drawing.Point(362, 69);
+            this.nudFrequencyRate.Maximum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.nudFrequencyRate.Name = "nudFrequencyRate";
+            this.nudFrequencyRate.Size = new System.Drawing.Size(91, 26);
+            this.nudFrequencyRate.TabIndex = 16;
+            this.nudFrequencyRate.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudFrequencyRate.ValueChanged += new System.EventHandler(this.nudFrequencyRate_ValueChanged);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(173, 71);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(183, 20);
+            this.label2.TabIndex = 15;
+            this.label2.Text = "Default Frequency Rate:";
+            // 
+            // txtName
+            // 
+            this.txtName.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtName.Location = new System.Drawing.Point(362, 37);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(323, 26);
+            this.txtName.TabIndex = 14;
+            this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(301, 40);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 20);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Name:";
             // 
             // panel1
             // 
@@ -114,85 +194,6 @@ namespace StoryDev.Components
             this.btnCreate.UseVisualStyleBackColor = true;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(301, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 20);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "Name:";
-            // 
-            // txtName
-            // 
-            this.txtName.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtName.Location = new System.Drawing.Point(362, 37);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(323, 26);
-            this.txtName.TabIndex = 14;
-            this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(173, 71);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(183, 20);
-            this.label2.TabIndex = 15;
-            this.label2.Text = "Default Frequency Rate:";
-            // 
-            // nudFrequencyRate
-            // 
-            this.nudFrequencyRate.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.nudFrequencyRate.DecimalPlaces = 2;
-            this.nudFrequencyRate.Location = new System.Drawing.Point(362, 69);
-            this.nudFrequencyRate.Maximum = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            this.nudFrequencyRate.Name = "nudFrequencyRate";
-            this.nudFrequencyRate.Size = new System.Drawing.Size(91, 26);
-            this.nudFrequencyRate.TabIndex = 16;
-            this.nudFrequencyRate.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudFrequencyRate.ValueChanged += new System.EventHandler(this.nudFrequencyRate_ValueChanged);
-            // 
-            // nudInitialFrequency
-            // 
-            this.nudInitialFrequency.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.nudInitialFrequency.DecimalPlaces = 2;
-            this.nudInitialFrequency.Location = new System.Drawing.Point(594, 69);
-            this.nudInitialFrequency.Maximum = new decimal(new int[] {
-            15,
-            0,
-            0,
-            0});
-            this.nudInitialFrequency.Name = "nudInitialFrequency";
-            this.nudInitialFrequency.Size = new System.Drawing.Size(91, 26);
-            this.nudInitialFrequency.TabIndex = 17;
-            this.nudInitialFrequency.Value = new decimal(new int[] {
-            30,
-            0,
-            0,
-            65536});
-            this.nudInitialFrequency.ValueChanged += new System.EventHandler(this.nudInitialFrequency_ValueChanged);
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(459, 71);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(129, 20);
-            this.label3.TabIndex = 18;
-            this.label3.Text = "Initial Frequency:";
-            // 
             // CharacterGroupUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -206,8 +207,8 @@ namespace StoryDev.Components
             this.Size = new System.Drawing.Size(1171, 786);
             this.pnlContent.ResumeLayout(false);
             this.pnlContent.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudFrequencyRate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudInitialFrequency)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudFrequencyRate)).EndInit();
             this.ResumeLayout(false);
 
         }

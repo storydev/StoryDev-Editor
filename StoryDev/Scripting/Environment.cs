@@ -56,8 +56,12 @@ namespace StoryDev.Scripting
         private List<string> tabs;
         private string currentTabControl;
         private List<Tuple<string, string, string>> tabPages;
+        private List<Tuple<string, string, int>> layouts;
         private string currentTabPage;
         private Control lastControl;
+
+        private int numColumns;
+        private int previouslySetNumColumns;
 
         public Environment()
         {
@@ -92,6 +96,9 @@ namespace StoryDev.Scripting
             jEngine.SetValue("BeginTabPage", new Func<string, bool>(BeginTabPage));
             jEngine.SetValue("EndTabs", new Action(EndTabs));
             jEngine.SetValue("EndTabPage", new Action(EndTabPage));
+            jEngine.SetValue("BeginColumns", new Action<int, int, string>(BeginColumns));
+            jEngine.SetValue("EndColumns", new Action(EndColumns));
+            jEngine.SetValue("NextColumn", new Action(NextColumn));
 
             jEngine.SetValue("DISPLAY_DATE", FieldDisplay.Date);
             jEngine.SetValue("DISPLAY_DATETIME", FieldDisplay.DateTime);
@@ -113,6 +120,8 @@ namespace StoryDev.Scripting
             tabPages = new List<Tuple<string, string, string>>();
             tabControls = new List<TabControl>();
             currentContainer = new List<Control>();
+            layouts = new List<Tuple<string, string, int>>();
+            numColumns = 0;
 
             _errors = new List<ScriptError>();
             _errorsForThrow = new List<ScriptError>();
@@ -140,8 +149,10 @@ namespace StoryDev.Scripting
             tabs.Clear();
             tabPages.Clear();
             currentContainer.Clear();
+            layouts.Clear();
             currentTabPage = "";
             currentTabControl = "";
+            numColumns = 0;
 
             jEngine.ResetCallStack();
             jEngine.ResetConstraints();
@@ -169,6 +180,8 @@ namespace StoryDev.Scripting
                 {
                     RunScript(formsFile);
                 }
+
+                PerformLayouts();
 
                 ////
                 //// Currently, the way the codebase here is setup, we need to validate
@@ -497,6 +510,26 @@ namespace StoryDev.Scripting
             form.MinimizeBox = false;
             form.Size = new System.Drawing.Size(1280, 960);
             form.FormBorderStyle = FormBorderStyle.FixedSingle;
+            form.Load += (object sender, EventArgs e) =>
+            {
+                foreach (var layout in layouts)
+                {
+                    if (layout.Item1 != title)
+                        continue;
+
+                    Control ctl = FindInnerControl(form, layout.Item2);
+                    if (ctl.GetType() == typeof(FlowLayoutPanel))
+                    {
+                        var columnWidth = ctl.Width / layout.Item3;
+                        foreach (Control child in ctl.Controls)
+                        {
+                            child.Width = columnWidth;
+                        }
+
+                        break;
+                    }
+                }
+            };
             _lastUsedStructure.DefinedFormName = title;
 
             dataForms.Add(title, form);
@@ -556,6 +589,75 @@ namespace StoryDev.Scripting
 
         public void EndTabs()
         {
+            currentContainer.RemoveAt(currentContainer.Count - 1);
+        }
+
+        public void BeginColumns(int columns, int maxHeight = 150, string id = "")
+        {
+            if (id == null)
+                id = "";
+
+            Control container = null;
+            if (currentContainer == null || currentContainer.Count == 0)
+            {
+                SubmitValidationError("Forms API method being used without first calling CreateForm.", "BeginColumns");
+                return;
+            }
+
+            previouslySetNumColumns = numColumns = columns;
+            container = currentContainer[currentContainer.Count - 1];
+
+            var containerPanel = new FlowLayoutPanel();
+            if (id != "")
+                containerPanel.Tag = id;
+            else
+                containerPanel.Tag = "ContainerPanel" + (layouts.Count + 1);
+
+            containerPanel.Size = new System.Drawing.Size(0, maxHeight);
+            containerPanel.Dock = DockStyle.Top;
+            containerPanel.Padding = new Padding(0);
+            containerPanel.AutoScroll = true;
+            containerPanel.FlowDirection = FlowDirection.LeftToRight;
+            container.Controls.Add(containerPanel);
+            layouts.Add(new Tuple<string, string, int>(currentForm.Text, (string)containerPanel.Tag, columns));
+
+            currentContainer.Add(containerPanel);
+
+            for (int i = 0; i < columns; i++)
+            {
+                var panel = new Panel();
+                var width = container.Width / columns;
+                panel.Size = new System.Drawing.Size(width, containerPanel.Height);
+                panel.Margin = new Padding(0);
+                panel.Padding = new Padding(8);
+                containerPanel.Controls.Add(panel);
+            }
+
+            for (int i = columns - 1; i > -1; i--)
+            {
+                currentContainer.Add(containerPanel.Controls[i]);
+            }
+        }
+
+        public void NextColumn()
+        {
+            if (numColumns - 1 > 0)
+            {
+                currentContainer.RemoveAt(currentContainer.Count - 1);
+                numColumns -= 1;
+            }
+        }
+
+        public void EndColumns()
+        {
+            currentContainer.RemoveAt(currentContainer.Count - 1);
+            var container = currentContainer[currentContainer.Count - 1];
+            foreach (Control ctl in container.Controls)
+            {
+                ctl.Width = container.Width / previouslySetNumColumns;
+            }
+
+            previouslySetNumColumns = 0;
             currentContainer.RemoveAt(currentContainer.Count - 1);
         }
 
@@ -716,6 +818,37 @@ namespace StoryDev.Scripting
                     lastControl = arrayField;
                 }
             }
+        }
+
+        private void PerformLayouts()
+        {
+            foreach (var layout in layouts)
+            {
+                if (!dataForms.ContainsKey(layout.Item1))
+                    continue;
+
+                Form form = dataForms[layout.Item1];
+
+                
+            }
+        }
+
+        private Control FindInnerControl(Control ctl, string tag)
+        {
+            foreach (Control child in ctl.Controls)
+            {
+                if ((string)child.Tag == tag)
+                {         
+                    return child;
+                }
+            }
+
+            foreach (Control child in ctl.Controls)
+            {
+                return FindInnerControl(child, tag);
+            }
+
+            return null;
         }
 
         private void SetPropertiesFor(Control ctl, dynamic obj)
