@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -44,7 +45,6 @@ namespace StoryDev.Scripting
         private string _currentlyExecutingFilePath;
         private DataStruct _lastUsedStructure;
         private DataField _lastUsedField;
-        private string _lastSetSyncField;
 
         private Dictionary<string, List<DataField>> fieldsToValidate;
 
@@ -54,11 +54,11 @@ namespace StoryDev.Scripting
         private Dictionary<string, List<Tuple<string, string, string, FieldDisplay>>> syncedFields;
         private Dictionary<string, List<Tuple<string, dynamic>>> propertyList;
         private List<string> tabs;
-        private string currentTabControl;
         private List<Tuple<string, string, string>> tabPages;
         private List<Tuple<string, string, int>> layouts;
-        private string currentTabPage;
+        private Dictionary<string, Control> pages;
         private Control lastControl;
+
 
         private int numColumns;
         private int previouslySetNumColumns;
@@ -99,6 +99,10 @@ namespace StoryDev.Scripting
             jEngine.SetValue("BeginColumns", new Action<int, int, string>(BeginColumns));
             jEngine.SetValue("EndColumns", new Action(EndColumns));
             jEngine.SetValue("NextColumn", new Action(NextColumn));
+            jEngine.SetValue("BeginPages", new Func<string, bool>(BeginPages));
+            jEngine.SetValue("BeginPage", new Func<string, bool>(BeginPage));
+            jEngine.SetValue("EndPages", new Action(EndPages));
+            jEngine.SetValue("EndPage", new Action(EndPage));
 
             jEngine.SetValue("DISPLAY_DATE", FieldDisplay.Date);
             jEngine.SetValue("DISPLAY_DATETIME", FieldDisplay.DateTime);
@@ -119,8 +123,9 @@ namespace StoryDev.Scripting
             tabs = new List<string>();
             tabPages = new List<Tuple<string, string, string>>();
             tabControls = new List<TabControl>();
-            currentContainer = new List<Control>();
+            currentContainer = new List<ControlMethod>();
             layouts = new List<Tuple<string, string, int>>();
+            pages = new Dictionary<string, Control>();
             numColumns = 0;
 
             _errors = new List<ScriptError>();
@@ -150,8 +155,7 @@ namespace StoryDev.Scripting
             tabPages.Clear();
             currentContainer.Clear();
             layouts.Clear();
-            currentTabPage = "";
-            currentTabControl = "";
+            pages.Clear();
             numColumns = 0;
 
             jEngine.ResetCallStack();
@@ -182,103 +186,6 @@ namespace StoryDev.Scripting
                 }
 
                 PerformLayouts();
-
-                ////
-                //// Currently, the way the codebase here is setup, we need to validate
-                //// before we can define forms. This is because we need to know if we need to
-                //// construct components with their respective relationships.
-                ////
-                //// If necessary, we may need to divide this up into two separate script categories,
-                //// which may allow for a cleaner setup here, and easier to code, more specifically,
-                //// but means more restrictive measures on how scripts can be written.
-                ////
-                //// Perhaps functionality should be added to standard script files to allow initialising
-                //// forms, and hide form generation scripts by default.
-                ////
-
-
-                //var tabPageNames = new Dictionary<string, List<string>>();
-                //foreach (var pages in tabPages)
-                //{
-                //    if (!tabPageNames.ContainsKey(pages.Item1))
-                //    {
-                //        tabPageNames.Add(pages.Item1, new List<string>());
-                //    }
-
-                //    List<string> list = tabPageNames[pages.Item1];
-                //    bool found = false;
-                //    foreach (var item in list)
-                //    {
-                //        if (item == pages.Item2)
-                //        {
-                //            found = true;
-                //            break;
-                //        }
-                //    }
-
-                //    if (!found)
-                //    {
-                //        list.Add(pages.Item2);
-                //    }
-                //}
-
-                //foreach (var tabControl in tabPageNames)
-                //{
-                //    var tc = new TabControl();
-                //    tc.Tag = tabControl.Key;
-                //    tc.Dock = DockStyle.Fill;
-                //    foreach (var page in tabControl.Value)
-                //    {
-                //        var tabPage = new TabPage();
-                //        tabPage.Text = page;
-                //        var scrollContainer = new Panel();
-                //        scrollContainer.Dock = DockStyle.Fill;
-                //        scrollContainer.AutoScroll = true;
-                //        tabPage.Controls.Add(scrollContainer);
-
-                //        tc.TabPages.Add(tabPage);
-                //    }
-                //    tabControls.Add(tc);
-                //}
-
-                //foreach (var tc in tabControls)
-                //{
-                //    // Assuming we are just using one tab control.
-                //    // Should be refactored.
-                //    currentForm.Controls.Add(tc);
-                //}
-
-                //foreach (var sync in syncedFields)
-                //{
-                //    Form form = null;
-                //    if (dataForms.ContainsKey(sync.Key))
-                //    {
-                //        form = dataForms[sync.Key];
-                //        currentForm = form;
-                //    }
-
-                //    foreach (var field in sync.Value)
-                //    {
-                //        ConstructComponent(field.Item1, field.Item2, field.Item3, field.Item4);
-                        
-                //    }
-
-                    
-                //}
-                
-                //foreach (var sync in syncedFields)
-                //{
-                //    string structName = "";
-                //    foreach (var field in sync.Value)
-                //    {
-                //        if (structName == "")
-                //        {
-                //            structName = field.Item1;
-                //            break;
-                //        }
-                //    }
-                //    SetComponentProperties(structName);
-                //}
             }
         }
 
@@ -488,7 +395,7 @@ namespace StoryDev.Scripting
         // Data Forms Scripting API
         //
 
-        private List<Control> currentContainer;
+        private List<ControlMethod> currentContainer;
 
         public void CreateForm(string title, string structRef)
         {
@@ -500,7 +407,7 @@ namespace StoryDev.Scripting
             }
 
             if (currentContainer == null)
-                currentContainer = new List<Control>();
+                currentContainer = new List<ControlMethod>();
 
             Form form = new Form();
             form.Text = title;
@@ -518,23 +425,172 @@ namespace StoryDev.Scripting
                         continue;
 
                     Control ctl = FindInnerControl(form, layout.Item2);
-                    if (ctl.GetType() == typeof(FlowLayoutPanel))
+                    if (ctl != null)
                     {
-                        var columnWidth = ctl.Width / layout.Item3;
-                        foreach (Control child in ctl.Controls)
+                        if (ctl.GetType() == typeof(FlowLayoutPanel))
                         {
-                            child.Width = columnWidth;
-                        }
+                            var columnWidth = ctl.Width / layout.Item3;
+                            foreach (Control child in ctl.Controls)
+                            {
+                                child.Width = columnWidth;
+                            }
 
-                        break;
+                            break;
+                        }
                     }
                 }
             };
+
             _lastUsedStructure.DefinedFormName = title;
 
             dataForms.Add(title, form);
             currentForm = dataForms.ElementAt(dataForms.Count - 1).Value;
-            currentContainer.Add(dataForms.ElementAt(dataForms.Count - 1).Value);
+            currentContainer.Add(new ControlMethod()
+            {
+                Type = ControlType.Standard,
+                Container = dataForms.ElementAt(dataForms.Count - 1).Value
+            });
+        }
+
+        public bool BeginPages(string id)
+        {
+            Control container = null;
+            if (currentContainer == null || currentContainer.Count == 0)
+            {
+                SubmitValidationError("Forms API method being used without first calling CreateForm.", "BeginPages");
+                return false;
+            }
+
+            var lastMethod = currentContainer[currentContainer.Count - 1];
+
+            if (lastMethod.Type == ControlType.Standard)
+                container = lastMethod.Container;
+            else if (lastMethod.Type == ControlType.Pages)
+                container = lastMethod.ContentContainer;
+
+            var pnlContainer = new Panel();
+            pnlContainer.Dock = DockStyle.Fill;
+            pnlContainer.Padding = new Padding(0);
+
+            var pnlPagesSide = new Panel();
+            pnlPagesSide.Dock = DockStyle.Left;
+            pnlPagesSide.Width = 250;
+            pnlPagesSide.AutoScroll = true;
+            pnlPagesSide.BackColor = Color.White;
+
+            var pnlContent = new Panel();
+            pnlContent.Dock = DockStyle.Fill;
+            pnlContent.Padding = new Padding(8);
+            pnlContent.Tag = id;
+
+            pnlContainer.SuspendLayout();
+            pnlContainer.Controls.Add(pnlContent);
+            pnlContainer.Controls.Add(pnlPagesSide);
+            pnlContainer.ResumeLayout();
+
+            currentContainer.Add(new ControlMethod()
+            {
+                Type = ControlType.Pages,
+                Container = pnlPagesSide,
+                ContentContainer = pnlContent
+            });
+
+            pnlPagesSide.SuspendLayout();
+            pnlContent.SuspendLayout();
+
+            container.Controls.Add(pnlContainer);
+
+            return true;
+        }
+
+        public bool BeginPage(string text)
+        {
+            if (currentContainer == null || currentContainer.Count == 0)
+            {
+                SubmitValidationError("Forms API method being used without first calling CreateForm.", "BeginPage");
+                return false;
+            }
+
+            ControlMethod lastMethod = currentContainer[currentContainer.Count - 1];
+            if (lastMethod.Type != ControlType.Pages)
+            {
+                SubmitValidationError("BeginPage being used before calling BeginPages.", "BeginPage");
+                return false;
+            }
+
+            var radio = new RadioButton();
+            radio.Text = text;
+            radio.ForeColor = Color.Black;
+            radio.Height = 40;
+            radio.Dock = DockStyle.Top;
+            radio.Appearance = Appearance.Button;
+            radio.Padding = new Padding(6);
+            radio.Checked = false;
+            radio.FlatStyle = FlatStyle.Flat;
+            radio.FlatAppearance.CheckedBackColor = Color.FromArgb(0, 48, 196);
+            radio.FlatAppearance.MouseDownBackColor = Color.FromArgb(0, 48, 196);
+            radio.FlatAppearance.BorderSize = 0;
+            radio.FlatAppearance.MouseOverBackColor = Color.FromArgb(64, 128, 255);
+
+            var contentWrapper = new Panel();
+            contentWrapper.Dock = DockStyle.Fill;
+            contentWrapper.AutoScroll = true;
+            pages.Add(lastMethod.ContentContainer.Tag + "#" + text, contentWrapper);
+            currentContainer.Add(new ControlMethod()
+            {
+                Type = ControlType.Standard,
+                Container = contentWrapper
+            });
+
+            radio.CheckedChanged += (object sender, EventArgs e) =>
+            {
+                lastMethod.ContentContainer.Controls.Clear();
+                var id = lastMethod.ContentContainer.Tag + "#" + text;
+                if (pages.ContainsKey(id))
+                {
+                    pages[id].Location = new Point(0, 0);
+                    pages[id].Size = new Size(lastMethod.ContentContainer.Width, lastMethod.ContentContainer.Height);
+                    lastMethod.ContentContainer.Controls.Add(pages[id]);
+
+                    foreach (var layout in layouts)
+                    {
+                        if (layout.Item1 != currentForm.Text)
+                            continue;
+
+                        Control ctl = FindInnerControl(lastMethod.ContentContainer, layout.Item2);
+                        if (ctl != null)
+                        {
+                            if (ctl.GetType() == typeof(FlowLayoutPanel))
+                            {
+                                var columnWidth = ctl.Width / layout.Item3;
+                                foreach (Control child in ctl.Controls)
+                                {
+                                    child.Width = columnWidth;
+                                }
+
+                                break;
+                            }
+                        }
+                    }
+                }
+            };
+
+            lastMethod.Container.Controls.Add(radio);
+            lastMethod.Container.Controls.SetChildIndex(radio, 0);
+
+            return true;
+        }
+
+        public void EndPage()
+        {
+            currentContainer.RemoveAt(currentContainer.Count - 1);
+        }
+
+        public void EndPages()
+        {
+            var lastMethod = currentContainer[currentContainer.Count - 1];
+            lastMethod.Container.ResumeLayout();
+            currentContainer.RemoveAt(currentContainer.Count - 1);
         }
 
         public bool BeginTabs(string id)
@@ -546,20 +602,36 @@ namespace StoryDev.Scripting
                 return false;
             }
 
-            container = currentContainer[currentContainer.Count - 1];
+            var lastMethod = currentContainer[currentContainer.Count - 1];
+
+            if (lastMethod.Type == ControlType.Standard)
+                container = lastMethod.Container;
+            else if (lastMethod.Type == ControlType.Pages)
+                container = lastMethod.ContentContainer;
 
             var tabControl = new TabControl();
             tabControl.Tag = id;
             tabControl.Dock = DockStyle.Fill;
             container.Controls.Add(tabControl);
-            currentContainer.Add(tabControl);
+            currentContainer.Add(new ControlMethod()
+            {
+                Type = ControlType.Standard,
+                Container = tabControl
+            });
 
             return true;
         }
 
         public bool BeginTabPage(string title)
         {
-            var container = currentContainer[currentContainer.Count - 1];
+            Control container = null;
+            var lastMethod = currentContainer[currentContainer.Count - 1];
+
+            if (lastMethod.Type == ControlType.Standard)
+                container = lastMethod.Container;
+            else if (lastMethod.Type == ControlType.Pages)
+                container = lastMethod.ContentContainer;
+
             if (container.GetType() != typeof(TabControl))
             {
                 SubmitValidationError("BeginTabPage being called before BeginTabs.", "BeginTabPage");
@@ -576,14 +648,26 @@ namespace StoryDev.Scripting
 
             tabPage.Controls.Add(tabContainer);
             container.Controls.Add(tabPage);
-            currentContainer.Add(tabContainer);
+            currentContainer.Add(new ControlMethod()
+            {
+                Type = ControlType.Standard,
+                Container = tabContainer
+            });
 
             return true;
         }
 
         public void EndTabPage()
         {
-            currentContainer[currentContainer.Count - 1].ResumeLayout();
+            var lastMethod = currentContainer[currentContainer.Count - 1];
+
+            Control container = null;
+            if (lastMethod.Type == ControlType.Standard)
+                container = lastMethod.Container;
+            else if (lastMethod.Type == ControlType.Pages)
+                container = lastMethod.ContentContainer;
+
+            container.ResumeLayout();
             currentContainer.RemoveAt(currentContainer.Count - 1);
         }
 
@@ -605,7 +689,13 @@ namespace StoryDev.Scripting
             }
 
             previouslySetNumColumns = numColumns = columns;
-            container = currentContainer[currentContainer.Count - 1];
+
+            var lastMethod = currentContainer[currentContainer.Count - 1];
+
+            if (lastMethod.Type == ControlType.Standard)
+                container = lastMethod.Container;
+            else if (lastMethod.Type == ControlType.Pages)
+                container = lastMethod.ContentContainer;
 
             var containerPanel = new FlowLayoutPanel();
             if (id != "")
@@ -621,7 +711,11 @@ namespace StoryDev.Scripting
             container.Controls.Add(containerPanel);
             layouts.Add(new Tuple<string, string, int>(currentForm.Text, (string)containerPanel.Tag, columns));
 
-            currentContainer.Add(containerPanel);
+            currentContainer.Add(new ControlMethod()
+            {
+                Type = ControlType.Standard,
+                Container = containerPanel
+            });
 
             for (int i = 0; i < columns; i++)
             {
@@ -635,7 +729,11 @@ namespace StoryDev.Scripting
 
             for (int i = columns - 1; i > -1; i--)
             {
-                currentContainer.Add(containerPanel.Controls[i]);
+                currentContainer.Add(new ControlMethod()
+                {
+                    Type = ControlType.Standard,
+                    Container = containerPanel.Controls[i]
+                });
             }
         }
 
@@ -651,7 +749,14 @@ namespace StoryDev.Scripting
         public void EndColumns()
         {
             currentContainer.RemoveAt(currentContainer.Count - 1);
-            var container = currentContainer[currentContainer.Count - 1];
+            Control container = null;
+            var lastMethod = currentContainer[currentContainer.Count - 1];
+
+            if (lastMethod.Type == ControlType.Standard)
+                container = lastMethod.Container;
+            else if (lastMethod.Type == ControlType.Pages)
+                container = lastMethod.ContentContainer;
+
             foreach (Control ctl in container.Controls)
             {
                 ctl.Width = container.Width / previouslySetNumColumns;
@@ -663,14 +768,11 @@ namespace StoryDev.Scripting
 
         public void SyncField(string fieldName, string displayText, FieldDisplay displayAs)
         {
-            Control container = null;
             if (currentContainer == null || currentContainer.Count == 0 || _lastUsedStructure == null)
             {
                 SubmitValidationError("Forms API method being used without first calling CreateForm.", "SyncField");
                 return;
             }
-
-            container = currentContainer[currentContainer.Count - 1];
 
             ConstructComponent(_lastUsedStructure.Name, fieldName, displayText, displayAs);
         }
@@ -695,7 +797,12 @@ namespace StoryDev.Scripting
                 return;
             }
 
-            container = currentContainer[currentContainer.Count - 1];
+            var lastMethod = currentContainer[currentContainer.Count - 1];
+
+            if (lastMethod.Type == ControlType.Standard)
+                container = lastMethod.Container;
+            else if (lastMethod.Type == ControlType.Pages)
+                container = lastMethod.ContentContainer;
 
             DataStruct str = _lastUsedStructure;
             DataField field = GetFieldByName(str, fieldName);
