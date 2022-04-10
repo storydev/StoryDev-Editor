@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using StoryDev.Scripting;
+using StoryDev.DBO.Scripting;
 
 namespace StoryDev.Components.Forms
 {
@@ -126,12 +126,14 @@ namespace StoryDev.Components.Forms
         {
             arrayValues.Add(false);
             PopulateList();
+            FormModified?.Invoke();
         }
 
         private void BtnTrue_Click(object sender, EventArgs e)
         {
             arrayValues.Add(true);
             PopulateList();
+            FormModified?.Invoke();
         }
 
         private void Enter_KeyUp(object sender, KeyEventArgs e)
@@ -155,6 +157,7 @@ namespace StoryDev.Components.Forms
                 }
 
                 PopulateList();
+                FormModified?.Invoke();
             }
         }
 
@@ -182,12 +185,14 @@ namespace StoryDev.Components.Forms
         private void Result_FormArrayItemEdited(int index, object newValue)
         {
             arrayValues[index] = newValue;
+            FormModified?.Invoke();
         }
 
         private void Result_FormArrayItemDeleted(int index)
         {
             arrayValues.RemoveAt(index);
             PopulateList();
+            FormModified?.Invoke();
         }
 
         public object[] GetResultArray()
@@ -209,5 +214,7 @@ namespace StoryDev.Components.Forms
                 arrayValues.Add(val);
             }
         }
+
+        public event OnFormArrayModified FormModified;
     }
 }

@@ -13,6 +13,9 @@ using Jint.Runtime;
 using Jint.Runtime.Debugger;
 using Jint.Runtime.Environments;
 
+using StoryDev.DBO;
+using StoryDev.DBO.Scripting;
+using StoryDev.Forms;
 using StoryDev.Components;
 using StoryDev.Components.Forms;
 
@@ -48,9 +51,9 @@ namespace StoryDev.Scripting
 
         private Dictionary<string, List<DataField>> fieldsToValidate;
 
-        private Dictionary<string, Form> dataForms;
+        private Dictionary<string, NewDataEntryForm> dataForms;
         private List<TabControl> tabControls;
-        private Form currentForm;
+        private NewDataEntryForm currentForm;
         private Dictionary<string, List<Tuple<string, string, string, FieldDisplay>>> syncedFields;
         private Dictionary<string, List<Tuple<string, dynamic>>> propertyList;
         private List<string> tabs;
@@ -73,7 +76,8 @@ namespace StoryDev.Scripting
             //
             // Data API
             //
-            jEngine.SetValue("CreateStructure", new Action<string, string>(CreateStructure));
+            jEngine.SetValue("CreateStructure", new Action<string>(CreateStructure));
+            jEngine.SetValue("SetSourceOptions", new Action<SourceType, string, DatabaseVendor>(SetSourceOptions));
             jEngine.SetValue("AddField", new Action<string, DataFieldType, DataFieldType>(AddField));
             jEngine.SetValue("SetFieldRelationship", new Action<string, string, string>(SetFieldRelationship));
             jEngine.SetValue("SetFieldRelationshipCustom", new Action<string[]>(SetFieldRelationshipCustom));
@@ -85,6 +89,13 @@ namespace StoryDev.Scripting
             jEngine.SetValue("FIELDTYPE_BOOLEAN", DataFieldType.BOOLEAN);
             jEngine.SetValue("FIELDTYPE_DATETIME", DataFieldType.DATETIME);
             jEngine.SetValue("FIELDTYPE_ARRAY", DataFieldType.OFARRAY);
+
+            jEngine.SetValue("SOURCE_FILE", SourceType.File);
+            jEngine.SetValue("SOURCE_DATABASE", SourceType.Database);
+
+            jEngine.SetValue("DB_NONE", DatabaseVendor.None);
+            jEngine.SetValue("DB_SQLITE", DatabaseVendor.SQLite);
+
 
             //
             // Data Forms API
@@ -117,7 +128,7 @@ namespace StoryDev.Scripting
             jEngine.DebugHandler.Step += DebugHandler_Step;
 
             fieldsToValidate = new Dictionary<string, List<DataField>>();
-            dataForms = new Dictionary<string, Form>();
+            dataForms = new Dictionary<string, NewDataEntryForm>();
             syncedFields = new Dictionary<string, List<Tuple<string, string, string, FieldDisplay>>>();
             propertyList = new Dictionary<string, List<Tuple<string, dynamic>>>();
             tabs = new List<string>();
@@ -178,15 +189,24 @@ namespace StoryDev.Scripting
             if (!hadErrors)
             {
                 Validate();
+                CreateTypes();
 
                 var formsFile = Globals.CurrentProjectFolder + "\\Scripts\\Data\\Forms.js";
                 if (File.Exists(formsFile))
                 {
                     RunScript(formsFile);
                 }
-
-                PerformLayouts();
             }
+        }
+
+        public void CreateTypes()
+        {
+            ItemConstructor.Init();
+            foreach (var str in _structures)
+            {
+                ItemConstructor.CreateType(str, typeof(DBO.Json.DBObject));
+            }
+
         }
 
         public bool RunScript(string filename)
@@ -339,13 +359,33 @@ namespace StoryDev.Scripting
         // Data Scripting API
         //
 
-        public void CreateStructure(string name, string sourceFile)
+        public void CreateStructure(string name)
         {
             var structure = new DataStruct();
             structure.Name = name;
-            structure.SourceFile = sourceFile;
             _structures.Add(structure);
             _lastUsedStructure = _structures[_structures.Count - 1];
+        }
+
+        public void SetSourceOptions(SourceType type, string info, DatabaseVendor vendor = DatabaseVendor.None)
+        {
+            if (_lastUsedStructure == null)
+            {
+                return;
+            }
+
+            _lastUsedStructure.Source = new SourceOptions(type, info, vendor);
+
+            if (_lastUsedStructure.Source.Type == SourceType.File)
+            {
+                var folderPath = _lastUsedStructure.Source.Info;
+                folderPath = Path.GetDirectoryName(folderPath);
+                Directory.CreateDirectory(Globals.CurrentProjectFolder + "\\" + folderPath);
+                _lastUsedStructure.Source.Info = Globals.CurrentProjectFolder + "\\" + _lastUsedStructure.Source.Info;
+                if (!File.Exists(_lastUsedStructure.Source.Info))
+                    File.WriteAllText(_lastUsedStructure.Source.Info, "");
+                DBO.Json.DBObject.SetManagerOptions(_lastUsedStructure);
+            }
         }
 
         public void AddField(string fieldName, DataFieldType type, DataFieldType subtype = DataFieldType.NONE)
@@ -400,6 +440,8 @@ namespace StoryDev.Scripting
         public void CreateForm(string title, string structRef)
         {
             _lastUsedStructure = GetStructByName(structRef);
+
+
             if (_lastUsedStructure == null)
             {
                 SubmitValidationError("Structure reference, '" + structRef + "', has not been defined.", "CreateForm");
@@ -409,13 +451,19 @@ namespace StoryDev.Scripting
             if (currentContainer == null)
                 currentContainer = new List<ControlMethod>();
 
-            Form form = new Form();
+            IInstanceManager manager = null;
+            if (_lastUsedStructure.Source.Type == SourceType.File)
+            {
+                manager = DBO.Json.DBObject.Manager;
+            }
+
+            NewDataEntryForm form = new NewDataEntryForm(manager);
             form.Text = title;
             form.StartPosition = FormStartPosition.CenterScreen;
             form.Padding = new Padding(15);
             form.MaximizeBox = false;
             form.MinimizeBox = false;
-            form.Size = new System.Drawing.Size(1280, 960);
+            form.Size = new Size(1280, 960);
             form.FormBorderStyle = FormBorderStyle.FixedSingle;
             form.Load += (object sender, EventArgs e) =>
             {
@@ -448,7 +496,7 @@ namespace StoryDev.Scripting
             currentContainer.Add(new ControlMethod()
             {
                 Type = ControlType.Standard,
-                Container = dataForms.ElementAt(dataForms.Count - 1).Value
+                Container = currentForm.GetContainer()
             });
         }
 
@@ -806,6 +854,7 @@ namespace StoryDev.Scripting
 
             DataStruct str = _lastUsedStructure;
             DataField field = GetFieldByName(str, fieldName);
+            field.DisplayedAs = displayAs;
             if (field != null)
             {
                 if (field.Type == DataFieldType.BOOLEAN)
@@ -816,6 +865,7 @@ namespace StoryDev.Scripting
                     checkbox.Dock = DockStyle.Top;
                     container.Controls.Add(checkbox);
                     container.Controls.SetChildIndex(checkbox, 0);
+                    currentForm.AddFieldReference(field, checkbox);
                     lastControl = checkbox;
                 }
                 else if (field.Type == DataFieldType.DATETIME)
@@ -841,6 +891,7 @@ namespace StoryDev.Scripting
 
                     container.Controls.Add(datePicker);
                     container.Controls.SetChildIndex(datePicker, 0);
+                    currentForm.AddFieldReference(field, datePicker);
                     lastControl = datePicker;
                 }
                 else if (field.Type == DataFieldType.FLOAT)
@@ -857,6 +908,7 @@ namespace StoryDev.Scripting
 
                     container.Controls.Add(numeric);
                     container.Controls.SetChildIndex(numeric, 0);
+                    currentForm.AddFieldReference(field, numeric);
                     lastControl = numeric;
                 }
                 else if (field.Type == DataFieldType.INTEGER)
@@ -870,6 +922,7 @@ namespace StoryDev.Scripting
                         combo.Items.AddRange(GetFieldRelationshipValues(jEngine, field));
                         container.Controls.Add(dropdown);
                         container.Controls.SetChildIndex(dropdown, 0);
+                        currentForm.AddFieldReference(field, dropdown);
                         lastControl = dropdown;
                     }
                     else if (displayAs == FieldDisplay.Numeric)
@@ -885,6 +938,7 @@ namespace StoryDev.Scripting
 
                         container.Controls.Add(numeric);
                         container.Controls.SetChildIndex(numeric, 0);
+                        currentForm.AddFieldReference(field, numeric);
                         lastControl = numeric;
                     }
                 }
@@ -899,6 +953,7 @@ namespace StoryDev.Scripting
 
                         container.Controls.Add(textInput);
                         container.Controls.SetChildIndex(textInput, 0);
+                        currentForm.AddFieldReference(field, textInput);
                         lastControl = textInput;
                     }
                     else if (displayAs == FieldDisplay.MultilineText)
@@ -910,6 +965,7 @@ namespace StoryDev.Scripting
 
                         container.Controls.Add(textInput);
                         container.Controls.SetChildIndex(textInput, 0);
+                        currentForm.AddFieldReference(field, textInput);
                         lastControl = textInput;
                     }
                 }
@@ -922,21 +978,9 @@ namespace StoryDev.Scripting
 
                     container.Controls.Add(arrayField);
                     container.Controls.SetChildIndex(arrayField, 0);
+                    currentForm.AddFieldReference(field, arrayField);
                     lastControl = arrayField;
                 }
-            }
-        }
-
-        private void PerformLayouts()
-        {
-            foreach (var layout in layouts)
-            {
-                if (!dataForms.ContainsKey(layout.Item1))
-                    continue;
-
-                Form form = dataForms[layout.Item1];
-
-                
             }
         }
 

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using StoryDev.Forms;
-using StoryDev.Scripting;
+using StoryDev.DBO.Scripting;
 
 namespace StoryDev.Components.Forms
 {

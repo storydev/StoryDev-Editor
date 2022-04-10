@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StoryDev.Scripting
+namespace StoryDev.DBO.Scripting
 {
-    internal class DataStruct
+    public class DataStruct
     {
 
         public string Name;
         public List<DataField> Fields;
-        public string SourceFile;
+        public SourceOptions Source;
         public string DefinedFormName;
 
         public DataStruct()

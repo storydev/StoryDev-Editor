@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StoryDev.Scripting
+namespace StoryDev.DBO.Scripting
 {
-    enum FieldDisplay
+    public enum FieldDisplay
     {
         Date,
         Time,

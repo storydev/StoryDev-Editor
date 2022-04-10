@@ -34,6 +34,7 @@ namespace StoryDev
     delegate void OnRequestOpenForm(FormType type, string[] data);
     delegate void OnFormArrayItemDeleted(int index);
     delegate void OnFormArrayItemEdited(int index, object newValue);
+    delegate void OnFormArrayModified();
 
     enum FormType
     {

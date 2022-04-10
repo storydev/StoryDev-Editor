@@ -43,7 +43,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(5, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(241, 27);
+            this.panel1.Size = new System.Drawing.Size(180, 27);
             this.panel1.TabIndex = 1;
             // 
             // lblName
@@ -51,7 +51,7 @@
             this.lblName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblName.Location = new System.Drawing.Point(0, 0);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(241, 27);
+            this.lblName.Size = new System.Drawing.Size(180, 27);
             this.lblName.TabIndex = 0;
             this.lblName.Text = "Display Name:";
             this.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -60,9 +60,9 @@
             // 
             this.panel2.Controls.Add(this.nudValue);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(246, 5);
+            this.panel2.Location = new System.Drawing.Point(185, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(449, 27);
+            this.panel2.Size = new System.Drawing.Size(510, 27);
             this.panel2.TabIndex = 2;
             // 
             // nudValue
@@ -75,7 +75,7 @@
             0,
             0});
             this.nudValue.Name = "nudValue";
-            this.nudValue.Size = new System.Drawing.Size(449, 26);
+            this.nudValue.Size = new System.Drawing.Size(510, 26);
             this.nudValue.TabIndex = 0;
             // 
             // FormNumber

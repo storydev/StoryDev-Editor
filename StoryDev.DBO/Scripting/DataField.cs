@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StoryDev.Scripting
+namespace StoryDev.DBO.Scripting
 {
-    internal class DataField
+    public class DataField
     {
 
         public string Name;
