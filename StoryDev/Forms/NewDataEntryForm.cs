@@ -27,7 +27,7 @@ namespace StoryDev.Forms
         private List<DataFieldRef> references;
         private Dictionary<string, FieldInfo> fields;
 
-        public NewDataEntryForm(IInstanceManager manager, IDBObject obj = null)
+        public NewDataEntryForm()
         {
             InitializeComponent();
 
@@ -36,20 +36,20 @@ namespace StoryDev.Forms
 
             this.manager = manager;
 
-            if (obj != null)
-            {
-                instance = obj;
-            }
-            else
-            {
-                var type = ItemConstructor.ResolvedTypes[manager.StructReference.Name];
-                instance = (IDBObject)Activator.CreateInstance(type);
-            }
+            //if (obj != null)
+            //{
+            //    instance = obj;
+            //}
+            //else
+            //{
+            //    var type = ItemConstructor.ResolvedTypes[manager.StructReference.Name];
+            //    instance = (IDBObject)Activator.CreateInstance(type);
+            //}
 
-            foreach (var field in instance.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance))
-            {
-                fields.Add(field.Name, field);
-            }
+            //foreach (var field in instance.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance))
+            //{
+            //    fields.Add(field.Name, field);
+            //}
         }
 
         public Control GetContainer()

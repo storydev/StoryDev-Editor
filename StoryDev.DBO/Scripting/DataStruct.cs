@@ -11,7 +11,7 @@ namespace StoryDev.DBO.Scripting
 
         public string Name;
         public List<DataField> Fields;
-        public SourceOptions Source;
+        public string SourceFile;
         public string DefinedFormName;
 
         public DataStruct()

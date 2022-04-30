@@ -6,25 +6,19 @@ using System.Threading.Tasks;
 
 namespace StoryDev.DBO.Scripting
 {
-    public struct SourceOptions
+
+    public class SourceOptions
     {
 
-        public SourceType Type { get; set; }
-        public DatabaseVendor DBVendor { get; set; }
-        public string Info { get; set; }
+        public string Name;
+        public string Info;
+        public SourceType Type;
+        public DatabaseVendor Vendor;
+        public bool IsDefaultConnection;
 
-        public SourceOptions(SourceType type, string info)
+        public SourceOptions()
         {
-            Type = type;
-            Info = info;
-            DBVendor = DatabaseVendor.None;
-        }
-
-        public SourceOptions(SourceType type, string info, DatabaseVendor dbVendor)
-        {
-            Type = type;
-            Info = info;
-            DBVendor = dbVendor;
+            
         }
 
     }
@@ -39,6 +33,10 @@ namespace StoryDev.DBO.Scripting
     {
         None,
         SQLite,
+        MySQL,
+        Postgresql,
+        Oracle,
+        Microsoft
     }
 
 }

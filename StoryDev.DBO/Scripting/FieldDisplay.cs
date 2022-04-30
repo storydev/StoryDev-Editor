@@ -15,6 +15,7 @@ namespace StoryDev.DBO.Scripting
         Numeric,
         SingleText,
         MultilineText,
+        MarkdownText,
         Array
     }
 }

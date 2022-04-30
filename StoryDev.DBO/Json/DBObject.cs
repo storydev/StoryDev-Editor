@@ -18,12 +18,22 @@ namespace StoryDev.DBO.Json
 
         public static DBManager Manager { get; private set; }
 
-        public static void SetManagerOptions(DataStruct str)
+        public static void SetManagerOptions(DataStruct str, string sourceFolder)
         {
             Manager = new DBManager();
-            Manager.SourcePath.Add(str.Name, str.Source.Info);
+            var filePath = Path.Combine(sourceFolder, str.SourceFile);
+
+            Manager.SourcePath.Add(str.Name, filePath);
             Manager.Items.Add(str.Name, new List<object>());
             Manager.StructReference = str;
+
+            if (!File.Exists(filePath))
+                File.WriteAllText(filePath, "");
+            else
+            {
+                var results = File.ReadAllText(filePath);
+                Manager.Items[str.Name] = JsonConvert.DeserializeObject<List<object>>(results);
+            }
         }
 
         public bool Delete()

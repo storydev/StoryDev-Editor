@@ -77,7 +77,6 @@ namespace StoryDev.Scripting
             // Data API
             //
             jEngine.SetValue("CreateStructure", new Action<string>(CreateStructure));
-            jEngine.SetValue("SetSourceOptions", new Action<SourceType, string, DatabaseVendor>(SetSourceOptions));
             jEngine.SetValue("AddField", new Action<string, DataFieldType, DataFieldType>(AddField));
             jEngine.SetValue("SetFieldRelationship", new Action<string, string, string>(SetFieldRelationship));
             jEngine.SetValue("SetFieldRelationshipCustom", new Action<string[]>(SetFieldRelationshipCustom));
@@ -367,27 +366,6 @@ namespace StoryDev.Scripting
             _lastUsedStructure = _structures[_structures.Count - 1];
         }
 
-        public void SetSourceOptions(SourceType type, string info, DatabaseVendor vendor = DatabaseVendor.None)
-        {
-            if (_lastUsedStructure == null)
-            {
-                return;
-            }
-
-            _lastUsedStructure.Source = new SourceOptions(type, info, vendor);
-
-            if (_lastUsedStructure.Source.Type == SourceType.File)
-            {
-                var folderPath = _lastUsedStructure.Source.Info;
-                folderPath = Path.GetDirectoryName(folderPath);
-                Directory.CreateDirectory(Globals.CurrentProjectFolder + "\\" + folderPath);
-                _lastUsedStructure.Source.Info = Globals.CurrentProjectFolder + "\\" + _lastUsedStructure.Source.Info;
-                if (!File.Exists(_lastUsedStructure.Source.Info))
-                    File.WriteAllText(_lastUsedStructure.Source.Info, "");
-                DBO.Json.DBObject.SetManagerOptions(_lastUsedStructure);
-            }
-        }
-
         public void AddField(string fieldName, DataFieldType type, DataFieldType subtype = DataFieldType.NONE)
         {
             if (_lastUsedStructure == null)
@@ -451,13 +429,7 @@ namespace StoryDev.Scripting
             if (currentContainer == null)
                 currentContainer = new List<ControlMethod>();
 
-            IInstanceManager manager = null;
-            if (_lastUsedStructure.Source.Type == SourceType.File)
-            {
-                manager = DBO.Json.DBObject.Manager;
-            }
-
-            NewDataEntryForm form = new NewDataEntryForm(manager);
+            NewDataEntryForm form = new NewDataEntryForm();
             form.Text = title;
             form.StartPosition = FormStartPosition.CenterScreen;
             form.Padding = new Padding(15);
