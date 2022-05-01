@@ -40,19 +40,26 @@ namespace StoryDev.Forms
             this.chaptersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.conversationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.convoFinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scriptEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resourcesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iconSetsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.scriptEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.charactersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mapsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.itemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gameObjectsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.meditationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.viewToolStripMenuItem,
+            this.dataToolStripMenuItem,
             this.resourcesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -130,6 +137,13 @@ namespace StoryDev.Forms
             this.convoFinderToolStripMenuItem.Text = "Convo Finder...";
             this.convoFinderToolStripMenuItem.Click += new System.EventHandler(this.convoFinderToolStripMenuItem_Click);
             // 
+            // scriptEditorToolStripMenuItem
+            // 
+            this.scriptEditorToolStripMenuItem.Name = "scriptEditorToolStripMenuItem";
+            this.scriptEditorToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.scriptEditorToolStripMenuItem.Text = "Script Editor...";
+            this.scriptEditorToolStripMenuItem.Click += new System.EventHandler(this.scriptEditorToolStripMenuItem_Click);
+            // 
             // resourcesToolStripMenuItem
             // 
             this.resourcesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -146,12 +160,54 @@ namespace StoryDev.Forms
             this.iconSetsToolStripMenuItem.Text = "Icon Sets...";
             this.iconSetsToolStripMenuItem.Click += new System.EventHandler(this.iconSetsToolStripMenuItem_Click);
             // 
-            // scriptEditorToolStripMenuItem
+            // dataToolStripMenuItem
             // 
-            this.scriptEditorToolStripMenuItem.Name = "scriptEditorToolStripMenuItem";
-            this.scriptEditorToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.scriptEditorToolStripMenuItem.Text = "Script Editor...";
-            this.scriptEditorToolStripMenuItem.Click += new System.EventHandler(this.scriptEditorToolStripMenuItem_Click);
+            this.dataToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.charactersToolStripMenuItem,
+            this.itemsToolStripMenuItem,
+            this.gameObjectsToolStripMenuItem,
+            this.meditationsToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.mapsToolStripMenuItem});
+            this.dataToolStripMenuItem.Enabled = false;
+            this.dataToolStripMenuItem.Name = "dataToolStripMenuItem";
+            this.dataToolStripMenuItem.Size = new System.Drawing.Size(65, 29);
+            this.dataToolStripMenuItem.Text = "Data";
+            // 
+            // charactersToolStripMenuItem
+            // 
+            this.charactersToolStripMenuItem.Name = "charactersToolStripMenuItem";
+            this.charactersToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.charactersToolStripMenuItem.Text = "Characters...";
+            // 
+            // mapsToolStripMenuItem
+            // 
+            this.mapsToolStripMenuItem.Name = "mapsToolStripMenuItem";
+            this.mapsToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.mapsToolStripMenuItem.Text = "Maps...";
+            // 
+            // itemsToolStripMenuItem
+            // 
+            this.itemsToolStripMenuItem.Name = "itemsToolStripMenuItem";
+            this.itemsToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.itemsToolStripMenuItem.Text = "Items...";
+            // 
+            // gameObjectsToolStripMenuItem
+            // 
+            this.gameObjectsToolStripMenuItem.Name = "gameObjectsToolStripMenuItem";
+            this.gameObjectsToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.gameObjectsToolStripMenuItem.Text = "Game Objects...";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(267, 6);
+            // 
+            // meditationsToolStripMenuItem
+            // 
+            this.meditationsToolStripMenuItem.Name = "meditationsToolStripMenuItem";
+            this.meditationsToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.meditationsToolStripMenuItem.Text = "Meditations...";
             // 
             // MainForm
             // 
@@ -186,6 +242,13 @@ namespace StoryDev.Forms
         private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem convoFinderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem scriptEditorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem charactersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem itemsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gameObjectsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem meditationsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem mapsToolStripMenuItem;
     }
 }
 

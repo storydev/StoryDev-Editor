@@ -758,12 +758,12 @@ namespace StoryDev.Forms
 
         private void storyOrderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new StoryOrderForm().ShowDialog();
+            
         }
 
         private void customVariablesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new CustomVariablesForm().Show(this);
+            
         }
     }
 

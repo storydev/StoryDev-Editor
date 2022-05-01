@@ -5,13 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using StoryDev.DBO.SQLite;
+
 namespace StoryDev.Data
 {
     [MainSourceData("Characters", "FirstName", IdentifierID = "CharacterID")]
     class Character : DBObject
     {
 
-        public int ID;
         public string FirstName;
         public string LastName;
         public int ColorRed;
@@ -24,22 +25,6 @@ namespace StoryDev.Data
         public string Appearance;
 
         public bool PlayerCharacter;
-        [SearchCustomDataSource("Attitudes")]
-        public int Attitude;
-
-        //
-        // NPC Fields
-        //
-        [SearchRelationship(typeof(CharacterGroup), "ID", "Name", "CharacterGroups")]
-        public int GroupID;
-        public bool IsVendor;
-        public List<VendorItem> VendorItems;
-
-        //
-        // Player Fields
-        //
-        public List<CharacterAttitude> Attitudes;
-        public List<int> Traits;
 
         public Character()
         {
@@ -51,13 +36,6 @@ namespace StoryDev.Data
             Description = "";
             Appearance = "";
             PlayerCharacter = false;
-            Attitude = 0;
-            GroupID = -1;
-            IsVendor = false;
-
-            Attitudes = new List<CharacterAttitude>();
-            Traits = new List<int>();
-            VendorItems = new List<VendorItem>();
         }
 
     }

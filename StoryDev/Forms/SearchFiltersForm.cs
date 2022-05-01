@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Reflection;
 using System.Windows.Forms;
 
+using StoryDev.DBO;
 using StoryDev.Components.Data;
 using StoryDev.Data;
 
@@ -100,7 +101,7 @@ namespace StoryDev.Forms
                             sourceName = relationship.SourceName;
                             if (relSource != null)
                             {
-                                var value = (IEnumerable<DBObject>)relSource.GetValue(null);
+                                var value = (IEnumerable<IDBObject>)relSource.GetValue(null);
                                 foreach (var obj in value)
                                 {
                                     var v = relationship.Type.GetField(relationship.DisplayField).GetValue(obj);
@@ -177,7 +178,10 @@ namespace StoryDev.Forms
                     var casted = (FilterBool)ctl;
                     if (casted.Value > -1)
                     {
-                        var filter = new DBFilter(casted.FieldName, DBOperator.Equals, casted.Value == 1);
+                        var filter = new DBFilter();
+                        filter.FieldName = casted.FieldName;
+                        filter.Operator = DBOperator.Equals;
+                        filter.ConditionValue = casted.Value == 1;
                         filters.Add(filter);
                     }
                 }
@@ -186,7 +190,10 @@ namespace StoryDev.Forms
                     var casted = (FilterDecimal)ctl;
                     if (casted.Operator != DBOperator.None)
                     {
-                        var filter = new DBFilter(casted.FieldName, casted.Operator, casted.Value);
+                        var filter = new DBFilter();
+                        filter.FieldName = casted.FieldName;
+                        filter.Operator = casted.Operator;
+                        filter.ConditionValue = casted.Value;
                         filters.Add(filter);
                     }
                 }
@@ -195,7 +202,10 @@ namespace StoryDev.Forms
                     var casted = (FilterFloat)ctl;
                     if (casted.Operator != DBOperator.None)
                     {
-                        var filter = new DBFilter(casted.FieldName, casted.Operator, casted.Value);
+                        var filter = new DBFilter();
+                        filter.FieldName = casted.FieldName;
+                        filter.Operator = casted.Operator;
+                        filter.ConditionValue = casted.Value;
                         filters.Add(filter);
                     }
                 }
@@ -204,7 +214,10 @@ namespace StoryDev.Forms
                     var casted = (FilterNumber)ctl;
                     if (casted.Operator != DBOperator.None)
                     {
-                        var filter = new DBFilter(casted.FieldName, casted.Operator, casted.Value);
+                        var filter = new DBFilter();
+                        filter.FieldName = casted.FieldName;
+                        filter.Operator = casted.Operator;
+                        filter.ConditionValue = casted.Value;
                         filters.Add(filter);
                     }
                 }
@@ -222,7 +235,7 @@ namespace StoryDev.Forms
                                 var genericTypeArg = gField.PropertyType.GetGenericArguments()[0];
                                 if (genericTypeArg != typeof(string))
                                 {
-                                    var source = (IEnumerable<DBObject>)gField.GetValue(null);
+                                    var source = (IEnumerable<IDBObject>)gField.GetValue(null);
                                     var sourceItem = source.ElementAt(casted.SelectedIndex);
                                     result = (int)genericTypeArg.GetField("ID").GetValue(sourceItem);
                                 }
@@ -230,14 +243,20 @@ namespace StoryDev.Forms
                                 {
                                     var source = (IEnumerable<string>)gField.GetValue(null);
                                     var sourceItem = source.ElementAt(casted.SelectedIndex);
-                                    var sFilter = new DBFilter(casted.FieldName, DBOperator.Equals, sourceItem);
+                                    var sFilter = new DBFilter();
+                                    sFilter.FieldName = casted.FieldName;
+                                    sFilter.Operator = DBOperator.Equals;
+                                    sFilter.ConditionValue = sourceItem;
                                     filters.Add(sFilter);
                                     continue;
                                 }
                             }
                         }
 
-                        var filter = new DBFilter(casted.FieldName, casted.Operator, result);
+                        var filter = new DBFilter();
+                        filter.FieldName = casted.FieldName;
+                        filter.Operator = casted.Operator;
+                        filter.ConditionValue = result;
                         filters.Add(filter);
                     }
                 }
@@ -246,7 +265,10 @@ namespace StoryDev.Forms
                     var casted = (FilterString)ctl;
                     if (casted.Operator != DBOperator.None)
                     {
-                        var filter = new DBFilter(casted.FieldName, casted.Operator, casted.Value);
+                        var filter = new DBFilter();
+                        filter.FieldName = casted.FieldName;
+                        filter.Operator = casted.Operator;
+                        filter.ConditionValue = casted.Value;
                         filters.Add(filter);
                     }
                 }
@@ -262,7 +284,7 @@ namespace StoryDev.Forms
                     if (gProp.PropertyType.IsGenericType && gProp.PropertyType.GetGenericTypeDefinition() == typeof(List<>))
                     {
                         var genericTypeArg = gProp.PropertyType.GetGenericArguments()[0];
-                        var source = (IEnumerable<DBObject>)gProp.GetValue(null);
+                        var source = (IEnumerable<IDBObject>)gProp.GetValue(null);
                         if (selected > -1)
                         {
                             var sourceItem = source.ElementAt(selected);
@@ -272,7 +294,10 @@ namespace StoryDev.Forms
 
                     if (id > -1)
                     {
-                        var filter = new DBFilter(fieldName, DBOperator.Equals, id);
+                        var filter = new DBFilter();
+                        filter.FieldName = fieldName;
+                        filter.Operator = DBOperator.Equals;
+                        filter.ConditionValue = id;
                         filters.Add(filter);
                     }
                 }

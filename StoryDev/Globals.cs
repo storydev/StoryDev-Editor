@@ -7,6 +7,7 @@ using System.Security;
 using System.IO;
 
 using StoryDev.Data;
+using StoryDev.DBO;
 using StoryDev.Simulation;
 using Newtonsoft.Json;
 
@@ -323,16 +324,6 @@ namespace StoryDev
         public static string[] Files;
         public static string[] FilePaths;
 
-        public static List<Conversation> Conversations { get; private set; }
-
-        public static StoryOrder StoryOrder { get; private set; }
-
-        public static void SaveStoryOrder()
-        {
-            var content = JsonConvert.SerializeObject(StoryOrder);
-            File.WriteAllText(CurrentProjectFolder + "\\story-order.json", content);
-        }
-
         public static List<string> Chapters { get; private set; }
 
         public static void ReloadChapters()
@@ -357,23 +348,9 @@ namespace StoryDev
 
         public static void SaveAll()
         {
-            SaveAchievements();
-            SaveActivities();
-            SaveArtefacts();
-            SaveCharacterGroups();
             SaveCharacters();
-            SaveFeature();
-            SaveFragments();
-            SaveGossips();
             SaveIconSetData();
-            SaveItems();
-            SaveJournals();
-            SaveMaps();
-            SavePlaces();
-            SaveScenarios();
-            SaveSections();
             SaveSettings();
-            SaveTraits();
         }
 
         public static IconSets IconSetData { get; private set; }
@@ -390,14 +367,6 @@ namespace StoryDev
         {
             var content = JsonConvert.SerializeObject(Simulation);
             File.WriteAllText(CurrentProjectFolder + "\\simulation-options.json", content);
-        }
-
-        public static List<Variable> Variables { get; private set; }
-
-        public static void SaveVariables()
-        {
-            var content = JsonConvert.SerializeObject(Variables);
-            File.WriteAllText(CurrentProjectFolder + "\\variables.json", content);
         }
 
         //
@@ -535,299 +504,6 @@ namespace StoryDev
                 return 6;
 
             return -1;
-        }
-
-        //
-        // Character Groups and Functions
-        //
-
-        public static List<CharacterGroup> CharacterGroups { get; private set; }
-
-        public static void SaveCharacterGroups()
-        {
-            var content = JsonConvert.SerializeObject(CharacterGroups);
-            File.WriteAllText(CurrentProjectFolder + "\\character-groups.json", content);
-        }
-
-        public static CharacterGroup GetCharacterGroup(int id)
-        {
-            CharacterGroup result = null;
-            foreach (var group in CharacterGroups)
-            {
-                if (group.ID == id)
-                {
-                    result = group;
-                    break;
-                }
-            }
-            return result;
-        }
-
-        public static int GetCharacterGroupIndex(int id)
-        {
-            int result = -1;
-            for (int i = 0; i < CharacterGroups.Count; i++)
-            {
-                if (CharacterGroups[i].ID == id)
-                {
-                    result = i;
-                    break;
-                }
-            }
-            return result;
-        }
-
-        //
-        // Gossips and Functions
-        //
-
-        public static List<CharacterGossip> Gossips { get; private set; }
-
-        public static void SaveGossips()
-        {
-            var content = JsonConvert.SerializeObject(Gossips);
-            File.WriteAllText(CurrentProjectFolder + "\\character-gossips.json", content);
-        }
-
-        //
-        // Traits and Functions
-        //
-
-        public static List<CharacterTrait> Traits { get; private set; }
-
-        public static void SaveTraits()
-        {
-            var content = JsonConvert.SerializeObject(Traits);
-            File.WriteAllText(CurrentProjectFolder + "\\traits.json", content);
-        }
-
-        public static int GetTraitIndex(int id)
-        {
-            int result = -1;
-            for (int i = 0; i < Traits.Count; i++)
-            {
-                if (Traits[i].ID == id)
-                {
-                    result = i;
-                    break;
-                }
-            }
-            return result;
-        }
-
-        public static List<CharacterTrait> GetTraits(int characterId)
-        {
-            List<CharacterTrait> result = new List<CharacterTrait>();
-            foreach (var trait in Traits)
-            {
-                if (trait.CharacterID == characterId)
-                {
-                    result.Add(trait);
-                }
-            }
-
-            return result;
-        }
-
-        //
-        // Items and Functions
-        //
-
-        public static List<Item> Items { get; private set; }
-
-        public static void SaveItems()
-        {
-            var content = JsonConvert.SerializeObject(Items);
-            File.WriteAllText(CurrentProjectFolder + "\\items.json", content);
-        }
-
-        public static Item GetItem(int id)
-        {
-            Item result = null;
-            foreach (var item in Items)
-            {
-                if (item.ID == id)
-                {
-                    result = item;
-                    break;
-                }
-            }
-            return result;
-        }
-
-        //
-        // Journals and Functions
-        //
-
-        public static List<Journal> Journals { get; private set; }
-
-        public static int GetJournalIndex(int id)
-        {
-            for (int i = 0; i < Journals.Count; i++)
-            {
-                if (Journals[i].ID == id)
-                    return i;
-            }
-
-            return -1;
-        }
-
-        public static void SaveJournals()
-        {
-            var content = JsonConvert.SerializeObject(Journals);
-            File.WriteAllText(CurrentProjectFolder + "\\journals.json", content);
-        }
-
-        //
-        // Places and Functions
-        //
-
-        public static List<Place> Places { get; private set; }
-
-        public static void SavePlaces()
-        {
-            var content = JsonConvert.SerializeObject(Places);
-            File.WriteAllText(CurrentProjectFolder + "\\places.json", content);
-        }
-
-        //
-        // Activities and Functions
-        //
-
-        public static List<Activity> Activities { get; private set; }
-
-        public static List<Activity> GetActivitiesByPlace(int placeId)
-        {
-            var results = new List<Activity>();
-
-            foreach (var activity in Activities)
-            {
-                if (activity.PlaceID == placeId)
-                {
-                    results.Add(activity);
-                }
-            }
-
-            return results;
-        }
-
-        public static void SaveActivities()
-        {
-            var content = JsonConvert.SerializeObject(Activities);
-            File.WriteAllText(CurrentProjectFolder + "\\activities.json", content);
-        }
-
-        //
-        // Sections and Functions
-        //
-
-        public static List<MapSection> Sections { get; private set; }
-
-        public static void SaveSections()
-        {
-            var content = JsonConvert.SerializeObject(Sections);
-            File.WriteAllText(CurrentProjectFolder + "\\sections.json", content);
-        }
-
-        public static List<MapSection> GetSectionsByPlace(int placeID)
-        {
-            return Sections.FindAll((s) => s.PlaceID == placeID);
-        }
-
-        //
-        // Artefacts and Functions
-        //
-
-        public static List<Artefact> Artefacts { get; private set; }
-
-        public static void SaveArtefacts()
-        {
-            var content = JsonConvert.SerializeObject(Artefacts);
-            File.WriteAllText(CurrentProjectFolder + "\\artefacts.json", content);
-        }
-
-        //
-        // Artefact Fragments and Functions
-        //
-
-        public static List<ArtefactFragment> Fragments { get; private set; }
-
-        public static void SaveFragments()
-        {
-            var content = JsonConvert.SerializeObject(Fragments);
-            File.WriteAllText(CurrentProjectFolder + "\\fragments.json", content);
-        }
-
-        //
-        // Special Feature, Scenarios and Functions
-        //
-
-        public static SpecialFeature Feature { get; private set; }
-
-        public static void SaveFeature()
-        {
-            var content = JsonConvert.SerializeObject(Feature);
-            File.WriteAllText(CurrentProjectFolder + "\\special-feature.json", content);
-        }
-
-        public static List<SpecialScenario> Scenarios { get; private set; }
-
-        public static void SaveScenarios()
-        {
-            var content = JsonConvert.SerializeObject(Scenarios);
-            File.WriteAllText(CurrentProjectFolder + "\\scenarios.json", content);
-        }
-
-        //
-        // Achievements and Functions
-        //
-
-        public static List<Achievement> Achievements { get; private set; }
-
-        public static void SaveAchievements()
-        {
-            var content = JsonConvert.SerializeObject(Achievements);
-            File.WriteAllText(CurrentProjectFolder + "\\achievements.json", content);
-        }
-
-        //
-        // Maps
-        //
-
-        public static List<Map> Maps { get; private set; }
-
-        public static void SaveMaps()
-        {
-            var content = JsonConvert.SerializeObject(Maps);
-            File.WriteAllText(CurrentProjectFolder + "\\maps.json", content);
-        }
-
-        public static List<ConvoMapLink> ConvoMapLinks { get; private set; }
-
-        public static void SaveConvoMapLinks()
-        {
-            var content = JsonConvert.SerializeObject(ConvoMapLinks);
-            File.WriteAllText(CurrentProjectFolder + "\\map-convo-links.json", content);
-        }
-
-        public static List<JournalMapLink> JournalMapLinks { get; private set; }
-
-        public static void SaveJournalMapLinks()
-        {
-            var content = JsonConvert.SerializeObject(JournalMapLinks);
-            File.WriteAllText(CurrentProjectFolder + "\\map-journal-links.json", content);
-        }
-
-        //
-        // Global Data
-        //
-
-        public static Identifiers GlobalIdentifiers { get; private set; }
-
-        public static void SaveIdentifiers()
-        {
-            var content = JsonConvert.SerializeObject(GlobalIdentifiers);
-            File.WriteAllText(CurrentProjectFolder + "\\identifiers.json", content);
         }
 
         public static GlobalSettings Settings { get; private set; }

@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Windows.Forms;
 
 using StoryDev.Data;
+using StoryDev.DBO;
 
 namespace StoryDev.Forms
 {
@@ -222,7 +223,7 @@ namespace StoryDev.Forms
                     foreach (var filter in filters)
                     {
                         var value = result.GetType().GetField(filter.FieldName).GetValue(result);
-                        if (!GetResultOf(value, filter.Operator, filter.Value))
+                        if (!GetResultOf(value, filter.Operator, filter.ConditionValue))
                             return false;
 
                         show = true;

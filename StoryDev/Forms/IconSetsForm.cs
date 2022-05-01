@@ -34,11 +34,6 @@ namespace StoryDev.Forms
                 txtFilePath.Text = Globals.IconSetData.Items.FilePath;
                 nudIconSize.Value = Globals.IconSetData.Items.IconSize;
             }
-            else if (cmbIconSet.SelectedIndex == 1) // artefacts
-            {
-                txtFilePath.Text = Globals.IconSetData.Artefacts.FilePath;
-                nudIconSize.Value = Globals.IconSetData.Artefacts.IconSize;
-            }
 
             pnlProperties.Enabled = true;
         }
@@ -60,8 +55,6 @@ namespace StoryDev.Forms
             canvas.ImagePath = txtFilePath.Text;
             if (cmbIconSet.SelectedIndex == 0)
                 Globals.IconSetData.Items.FilePath = txtFilePath.Text;
-            else if (cmbIconSet.SelectedIndex == 1)
-                Globals.IconSetData.Artefacts.FilePath = txtFilePath.Text;
 
         }
 
@@ -70,8 +63,6 @@ namespace StoryDev.Forms
             canvas.IconSize = (int)nudIconSize.Value;
             if (cmbIconSet.SelectedIndex == 0)
                 Globals.IconSetData.Items.IconSize = (int)nudIconSize.Value;
-            else if (cmbIconSet.SelectedIndex == 1)
-                Globals.IconSetData.Artefacts.IconSize = (int)nudIconSize.Value;
         }
 
         private void IconSetsForm_FormClosing(object sender, FormClosingEventArgs e)

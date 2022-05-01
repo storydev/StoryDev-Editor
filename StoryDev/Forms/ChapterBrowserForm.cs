@@ -40,7 +40,8 @@ namespace StoryDev.Forms
             var response = MessageBox.Show("Are you sure you wish to delete this chapter? You will remove all associated conversations.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (response == DialogResult.Yes)
             {
-                Directory.Delete(Globals.CurrentProjectFolder + "\\" + (string)lbChapters.SelectedItem, true);
+                var chapterDir = Path.Combine(Globals.CurrentProjectFolder, "Chapters", (string)lbChapters.SelectedItem);
+                Directory.Delete(chapterDir, true);
                 Globals.ReloadChapters();
                 PopulateChapters();
             }
@@ -52,7 +53,8 @@ namespace StoryDev.Forms
             entry.Text = "Add Chapter";
             if (entry.ShowDialog() == DialogResult.OK)
             {
-                Directory.CreateDirectory(Globals.CurrentProjectFolder + "\\" + entry.Value);
+                var chapterDir = Path.Combine(Globals.CurrentProjectFolder, "Chapters", entry.Value);
+                Directory.CreateDirectory(chapterDir);
                 Globals.ReloadChapters();
                 PopulateChapters();
             }

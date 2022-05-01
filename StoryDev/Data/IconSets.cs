@@ -10,12 +10,10 @@ namespace StoryDev.Data
     {
 
         public IconSet Items;
-        public IconSet Artefacts;
 
         public IconSets()
         {
             Items = new IconSet();
-            Artefacts = new IconSet();
         }
 
     }

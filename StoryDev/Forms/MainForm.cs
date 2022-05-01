@@ -36,6 +36,7 @@ namespace StoryDev.Forms
                 viewToolStripMenuItem.Enabled = true;
                 resourcesToolStripMenuItem.Enabled = true;
                 saveAllToolStripMenuItem.Enabled = true;
+                dataToolStripMenuItem.Enabled = true;
             }
         }
 
@@ -59,11 +60,6 @@ namespace StoryDev.Forms
         private void preferencesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new PreferencesForm().ShowDialog();
-        }
-
-        private void mapsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            new MapsForm().Show();
         }
 
         private void convoFinderToolStripMenuItem_Click(object sender, EventArgs e)
