@@ -288,6 +288,12 @@
     <Compile Include="Forms\EditArrayItemForm.Designer.cs">
       <DependentUpon>EditArrayItemForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MapEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MapEditorForm.Designer.cs">
+      <DependentUpon>MapEditorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\NewDataEntryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -495,6 +501,9 @@
     <EmbeddedResource Include="Forms\EditArrayItemForm.resx">
       <DependentUpon>EditArrayItemForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MapEditorForm.resx">
+      <DependentUpon>MapEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\NewDataEntryForm.resx">
       <DependentUpon>NewDataEntryForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -641,6 +650,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\DrawTerrainTool.png" />
+    <None Include="Resources\DrawPointsTool.png" />
+    <None Include="Resources\DrawObjectTool.png" />
     <None Include="Resources\OpenFolder.png" />
     <None Include="Resources\File.png" />
   </ItemGroup>

@@ -113,6 +113,36 @@ namespace StoryDev.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap DrawObjectTool {
+            get {
+                object obj = ResourceManager.GetObject("DrawObjectTool", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DrawPointsTool {
+            get {
+                object obj = ResourceManager.GetObject("DrawPointsTool", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DrawTerrainTool {
+            get {
+                object obj = ResourceManager.GetObject("DrawTerrainTool", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap File {
             get {
                 object obj = ResourceManager.GetObject("File", resourceCulture);
