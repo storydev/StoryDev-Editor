@@ -37,6 +37,7 @@ namespace StoryDev.Forms
                 resourcesToolStripMenuItem.Enabled = true;
                 saveAllToolStripMenuItem.Enabled = true;
                 dataToolStripMenuItem.Enabled = true;
+                projectToolStripMenuItem.Enabled = true;
             }
         }
 

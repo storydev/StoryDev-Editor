@@ -272,6 +272,9 @@
     <Compile Include="Data\GlobalSettings.cs" />
     <Compile Include="Data\IconSets.cs" />
     <Compile Include="Data\MainSourceData.cs" />
+    <Compile Include="Data\Map.cs" />
+    <Compile Include="Data\MapCharacterLink.cs" />
+    <Compile Include="Data\PlaceMapLink.cs" />
     <Compile Include="Data\Preferences.cs" />
     <Compile Include="Data\SearchCustomDataSource.cs" />
     <Compile Include="Data\SearchOptions.cs" />
@@ -293,6 +296,12 @@
     </Compile>
     <Compile Include="Forms\MapEditorForm.Designer.cs">
       <DependentUpon>MapEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MapPointsEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MapPointsEditorForm.Designer.cs">
+      <DependentUpon>MapPointsEditorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\NewDataEntryForm.cs">
       <SubType>Form</SubType>
@@ -503,6 +512,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MapEditorForm.resx">
       <DependentUpon>MapEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MapPointsEditorForm.resx">
+      <DependentUpon>MapPointsEditorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\NewDataEntryForm.resx">
       <DependentUpon>NewDataEntryForm.cs</DependentUpon>
