@@ -84,5 +84,10 @@ namespace StoryDev.Forms
         {
             new ScriptEditorForm().Show(this);
         }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new ProjectSettingsForm().Show(this);
+        }
     }
 }

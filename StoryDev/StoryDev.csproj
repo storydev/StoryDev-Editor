@@ -276,6 +276,7 @@
     <Compile Include="Data\MapCharacterLink.cs" />
     <Compile Include="Data\PlaceMapLink.cs" />
     <Compile Include="Data\Preferences.cs" />
+    <Compile Include="Data\Project.cs" />
     <Compile Include="Data\SearchCustomDataSource.cs" />
     <Compile Include="Data\SearchOptions.cs" />
     <Compile Include="Data\SearchRelationship.cs" />
@@ -308,6 +309,12 @@
     </Compile>
     <Compile Include="Forms\NewDataEntryForm.Designer.cs">
       <DependentUpon>NewDataEntryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ProjectSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ProjectSettingsForm.Designer.cs">
+      <DependentUpon>ProjectSettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ScriptEditorForm.cs">
       <SubType>Form</SubType>
@@ -518,6 +525,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\NewDataEntryForm.resx">
       <DependentUpon>NewDataEntryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ProjectSettingsForm.resx">
+      <DependentUpon>ProjectSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ScriptEditorForm.resx">
       <DependentUpon>ScriptEditorForm.cs</DependentUpon>

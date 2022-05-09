@@ -538,6 +538,15 @@ namespace StoryDev
             return CurrentProjectFolder + "\\Resources";
         }
 
+        public static Project CurrentProject { get; private set; }
+
+        public static void SaveProjectSettings()
+        {
+            var data = JsonConvert.SerializeObject(CurrentProject);
+            var projectSettingsPath = Path.Combine(CurrentProjectFolder, "project.json");
+            File.WriteAllText(projectSettingsPath, data);
+        }
+
         public static void SetProjectFolder(string path)
         {
             CurrentProjectFolder = path;
@@ -556,6 +565,17 @@ namespace StoryDev
                 ReloadChapters();
 
                 Console.WriteLine(Files);
+            }
+
+            var projectSettingsPath = Path.Combine(CurrentProjectFolder, "project.json");
+            if (File.Exists(projectSettingsPath))
+            {
+                var content = File.ReadAllText(projectSettingsPath);
+                CurrentProject = JsonConvert.DeserializeObject<Project>(content);
+            }
+            else
+            {
+                CurrentProject = new Project();
             }
 
             //if (File.Exists(path + "\\identifiers.json"))
