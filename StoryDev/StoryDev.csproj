@@ -244,6 +244,12 @@
     <Compile Include="Components\SplitButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Components\StoryOrderDesigner.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\StoryOrderDesigner.Designer.cs">
+      <DependentUpon>StoryOrderDesigner.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\TestEnv\Results\DataStructureResults.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -321,6 +327,12 @@
     </Compile>
     <Compile Include="Forms\ScriptEditorForm.Designer.cs">
       <DependentUpon>ScriptEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\StoryOrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\StoryOrderForm.Designer.cs">
+      <DependentUpon>StoryOrderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\TestEnvironmentForm.cs">
       <SubType>Form</SubType>
@@ -499,6 +511,9 @@
     <EmbeddedResource Include="Components\Preferences\GeneralUI.resx">
       <DependentUpon>GeneralUI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Components\StoryOrderDesigner.resx">
+      <DependentUpon>StoryOrderDesigner.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Components\TestEnv\Results\DataStructureResults.resx">
       <DependentUpon>DataStructureResults.cs</DependentUpon>
     </EmbeddedResource>
@@ -531,6 +546,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ScriptEditorForm.resx">
       <DependentUpon>ScriptEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\StoryOrderForm.resx">
+      <DependentUpon>StoryOrderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TestEnvironmentForm.resx">
       <DependentUpon>TestEnvironmentForm.cs</DependentUpon>
@@ -672,6 +690,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\Execute.png" />
+    <None Include="Resources\Event.png" />
+    <None Include="Resources\Discovery.png" />
+    <None Include="Resources\Conversation.png" />
     <None Include="Resources\DrawTerrainTool.png" />
     <None Include="Resources\DrawPointsTool.png" />
     <None Include="Resources\DrawObjectTool.png" />
