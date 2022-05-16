@@ -94,5 +94,10 @@ namespace StoryDev.Forms
         {
 
         }
+
+        private void storyOrderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new StoryOrderForm().Show(this);
+        }
     }
 }

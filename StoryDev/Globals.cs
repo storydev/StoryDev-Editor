@@ -291,6 +291,7 @@ namespace StoryDev
         public static Preferences Preferences { get; private set; }
 
         private static string AppCacheFolder;
+        public static IInstanceManager SQLiteManager;
 
         public static void GlobalInit()
         {
@@ -321,6 +322,8 @@ namespace StoryDev
         //
 
         public static string CurrentProjectFolder;
+        public static IInstanceManager MainProjectDatabase { get; private set; }
+
         public static string[] Files;
         public static string[] FilePaths;
 
@@ -348,7 +351,6 @@ namespace StoryDev
 
         public static void SaveAll()
         {
-            SaveCharacters();
             SaveIconSetData();
             SaveSettings();
         }
@@ -367,143 +369,6 @@ namespace StoryDev
         {
             var content = JsonConvert.SerializeObject(Simulation);
             File.WriteAllText(CurrentProjectFolder + "\\simulation-options.json", content);
-        }
-
-        //
-        // Characters and Functions
-        //
-
-        public static List<Character> Characters { get; private set; }
-
-        public static void SaveCharacters()
-        {
-            var content = JsonConvert.SerializeObject(Characters);
-            File.WriteAllText(CurrentProjectFolder + "\\characters.json", content);
-        }
-
-        public static Character GetCharacter(int id)
-        {
-            Character result = null;
-            foreach (var character in Characters)
-            {
-                if (character.ID == id)
-                {
-                    result = character;
-                    break;
-                }
-            }
-            return result;
-        }
-
-        public static int GetCharacterIndex(int id)
-        {
-            int result = -1;
-            for (int i = 0; i < Characters.Count; i++)
-            {
-                if (Characters[i].ID == id)
-                {
-                    result = i;
-                    break;
-                }
-            }
-            return result;
-        }
-
-        public static readonly string[] Attitudes =
-        {
-            "Hate",
-            "Angry",
-            "Upset",
-            "Content",
-            "Happy",
-            "Joyous",
-            "Love"
-        };
-
-        public static readonly string[] TraitPriorities =
-        {
-            "Normal",
-            "High",
-            "Highest"
-        };
-
-        public static string GetAttitudeName(int value)
-        {
-            if (value >= -50 && value < -30)
-            {
-                return "Hate";
-            }
-            else if (value >= -30 && value < -10)
-            {
-                return "Angry";
-            }
-            else if (value >= -10 && value < 0)
-            {
-                return "Upset";
-            }
-            else if (value >= 0 && value < 10)
-            {
-                return "Content";
-            }
-            else if (value >= 10 && value < 30)
-            {
-                return "Happy";
-            }
-            else if (value >= 30 && value < 45)
-            {
-                return "Joyous";
-            }
-            else if (value >= 45 && value <= 50)
-            {
-                return "Love";
-            }
-
-            return string.Empty;
-        }
-
-        public static int ResolveAttitudeIndex(int index)
-        {
-            if (index == 0)
-                return -50;
-            else if (index == 1)
-                return -30;
-            else if (index == 2)
-                return -10;
-            else if (index == 3)
-                return 0;
-            else if (index == 4)
-                return 10;
-            else if (index == 5)
-                return 30;
-            else if (index == 6)
-                return 50;
-
-            return 0;
-        }
-
-        /// <summary>
-        /// Gets the index 
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static int GetAttitudeIndexByValue(int value)
-        {
-            if (value >= -50 && value < -30)
-                return 0;
-            else if (value >= -30 && value < -10)
-                return 1;
-            else if (value >= -10 && value < 0)
-                return 2;
-            else if (value >= 0 && value < 10)
-                return 3;
-            else if (value >= 10 && value < 30)
-                return 4;
-            else if (value >= 30 && value < 45)
-                return 5;
-            else if (value >= 45 && value <= 50)
-                return 6;
-
-            return -1;
         }
 
         public static GlobalSettings Settings { get; private set; }
@@ -577,6 +442,22 @@ namespace StoryDev
             {
                 CurrentProject = new Project();
             }
+
+            var projectDataPath = Path.Combine(CurrentProjectFolder, "project_data.dat");
+            if (!File.Exists(projectDataPath))
+            {
+                File.WriteAllText(projectDataPath, "");
+            }
+
+            MainProjectDatabase = DBO.SQLite.DBObject.Manager;
+            MainProjectDatabase.ConnectionInfo = new ConnectionString()
+            {
+                FileOrFolder = projectDataPath,
+                Vendor = DBO.Scripting.DatabaseVendor.SQLite
+            }.ToString();
+
+            MainProjectDatabase.CreateTable<Timeline>();
+            MainProjectDatabase.CreateTable<TimelineElement>();
 
             //if (File.Exists(path + "\\identifiers.json"))
             //{
@@ -1000,8 +881,6 @@ namespace StoryDev
             AttitudesTowards = new List<int>();
             Traits = new List<int>();
             TraitProgress = new List<int>();
-
-            AttitudesTowards.Add(Globals.Characters[0].ID);
         }
 
     }

@@ -286,6 +286,8 @@
     <Compile Include="Data\SearchCustomDataSource.cs" />
     <Compile Include="Data\SearchOptions.cs" />
     <Compile Include="Data\SearchRelationship.cs" />
+    <Compile Include="Data\Timeline.cs" />
+    <Compile Include="Data\TimelineElement.cs" />
     <Compile Include="Forms\ConvoFinderForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -690,6 +692,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\NewTimeline.png" />
     <None Include="Resources\Execute.png" />
     <None Include="Resources\Event.png" />
     <None Include="Resources\Discovery.png" />
