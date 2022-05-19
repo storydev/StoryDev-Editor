@@ -74,7 +74,7 @@
             this.tsbExecute});
             this.toolStrip1.Location = new System.Drawing.Point(4, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(224, 45);
+            this.toolStrip1.Size = new System.Drawing.Size(270, 45);
             this.toolStrip1.TabIndex = 0;
             // 
             // tsbNewTimeline
@@ -101,6 +101,7 @@
             this.tsbConversation.Name = "tsbConversation";
             this.tsbConversation.Size = new System.Drawing.Size(40, 40);
             this.tsbConversation.Text = "toolStripButton1";
+            this.tsbConversation.Click += new System.EventHandler(this.tsbConversation_Click);
             // 
             // tsbDiscovery
             // 

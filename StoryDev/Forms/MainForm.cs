@@ -97,7 +97,9 @@ namespace StoryDev.Forms
 
         private void storyOrderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new StoryOrderForm().Show(this);
+            var storyOrderForm = new StoryOrderForm();
+            storyOrderForm.RequestOpenForm += RequestOpenForm;
+            storyOrderForm.Show(this);
         }
     }
 }
