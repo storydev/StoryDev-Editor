@@ -123,7 +123,7 @@ namespace StoryDev.Scripting
             jEngine.SetValue("DISPLAY_TIME", FieldDisplay.Time);
             jEngine.SetValue("DISPLAY_ARRAY", FieldDisplay.Array);
 
-
+            
             jEngine.DebugHandler.Step += DebugHandler_Step;
 
             fieldsToValidate = new Dictionary<string, List<DataField>>();
