@@ -61,15 +61,7 @@ namespace StoryDev.Forms
         private void btnOK_Click(object sender, EventArgs e)
         {
             var instance = (T)Activator.CreateInstance(type);
-            var identifiers = (Identifiers)typeof(Globals).GetProperty("GlobalIdentifiers", BindingFlags.Public | BindingFlags.Static).GetValue(null);
-            var identID = typeof(Identifiers).GetField(data.IdentifierID, BindingFlags.Public | BindingFlags.Instance);
-            var value = (int)identID.GetValue(identifiers);
-            idField.SetValue(instance, value);
             type.GetField(data.PrimaryDisplay).SetValue(instance, txtName.Text);
-
-            LastInsertedID = value;
-            value += 1;
-            identID.SetValue(identifiers, value);
 
             var list = (List<T>)typeof(Globals).GetProperty(data.SourceData, BindingFlags.Static | BindingFlags.Public).GetValue(null);
             list.Add(instance);

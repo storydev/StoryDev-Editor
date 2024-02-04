@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using System.IO;
 
 using StoryDev.Data;
-using StoryDev.Simulation;
 using StoryDev.Components;
 using StoryDev.Lib.StoryDev;
 
@@ -18,9 +17,6 @@ namespace StoryDev.Forms
 {
     partial class ConversationEditor : Form
     {
-
-        private CancellationTokenSource simulationToken;
-        private Task<bool> runningSimulation;
 
         private string currentFile;
         private string fileShortName;
@@ -31,21 +27,12 @@ namespace StoryDev.Forms
 
         private Parser sdParser;
 
-        private SimulationForm simulation;
-        private VarTrackerForm tracker;
-
         public ConversationEditor()
         {
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
 
             InitializeComponent();
 
-            simulationToken = new CancellationTokenSource();
-
-            simulation = new SimulationForm();
-            simulation.FormClosing += Simulation_FormClosing;
-            simulation.SimulationStarted += Simulation_SimulationStarted;
-            simulation.SimulationStopped += Simulation_SimulationStopped;
 
             storyEditor.CurrentLanguage = Language.StoryScript;
 
@@ -63,123 +50,6 @@ namespace StoryDev.Forms
 
             currentFile = path;
             LoadCurrent();
-        }
-
-        private void Simulation_SimulationStopped()
-        {
-            if (runningSimulation != null)
-            {
-                if (runningSimulation.Status == TaskStatus.Running)
-                {
-                    simulationToken.Cancel();
-                }
-            }
-        }
-
-        private async void Simulation_SimulationStarted(StateTemplate template, List<int> outcomes)
-        {
-            if (string.IsNullOrEmpty(currentFile))
-            {
-                MessageBox.Show("You must open a file to start the simulation.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                simulation.Interrupt();
-                return;
-            }
-
-            foreach (var outcome in outcomes)
-            {
-                if (outcome == 0)
-                {
-                    Engine.Instance.ProduceBestOutcome = true;
-                }
-
-                if (outcome == 1)
-                {
-                    Engine.Instance.ProduceWorstOutcome = true;
-                }
-            }
-            
-            Invoke((MethodInvoker)delegate { CreateTracker(template, outcomes); });
-
-            var sdcFile = currentFile.Substring(Globals.CurrentProjectFolder.Length + 1) + ".sdc";
-            if (await Engine.Instance.PlayAsync(sdcFile, simulationToken.Token))
-            {
-                
-            }
-            else
-            {
-                simulation.UpdateAllMessages();
-            }
-        }
-
-        private void CreateTracker(StateTemplate template, List<int> outcomes)
-        {
-            var trackerOpen = false;
-            if (tracker == null)
-            {
-                tracker = new VarTrackerForm(template, outcomes);
-                tracker.FormClosing += Tracker_FormClosing;
-                tracker.GoToConversation += Tracker_GoToConversation;
-            }
-            else
-                trackerOpen = true;
-
-            Engine.Instance.CreateStates();
-
-            if (Engine.Instance.ProduceBestOutcome && !trackerOpen)
-            {
-                tracker.AddState(Engine.Instance.GetBestState(), 0);
-            }
-
-            if (Engine.Instance.ProduceWorstOutcome && !trackerOpen)
-            {
-                tracker.AddState(Engine.Instance.GetWorstState(), 1);
-            }
-
-            if (!tracker.Visible)
-                tracker.Show(this);
-        }
-
-        private void Tracker_GoToConversation(string file, string blockName, int line)
-        {
-            var actualPath = file;
-            actualPath = actualPath.Substring(0, actualPath.LastIndexOf('.'));
-
-            OpenFile(Globals.CurrentProjectFolder + "\\" + actualPath);
-            for (int i = 0; i < cmbBranches.Items.Count; i++)
-            {
-                if ((string)cmbBranches.Items[i] == blockName)
-                {
-                    cmbBranches.SelectedIndex = i;
-                }
-            }
-
-            if (line < storyEditor.LinesCount)
-            {
-                var range = storyEditor.GetLine(line);
-                storyEditor.SelectionStart = range.Start.iChar;
-            }
-            else
-            {
-                var rem = line - storyEditor.LinesCount - 1;
-
-                if (rem < pnlChoices.Controls.Count)
-                {
-                    pnlChoices.Controls[rem].BackColor = Color.Orange;
-                }
-            }
-        }
-
-        private void Tracker_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            e.Cancel = true;
-            tracker.Hide();
-        }
-
-        private void Simulation_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            e.Cancel = true;
-            simulation.Hide();
-            simulationsToolStripMenuItem.Checked = false;
         }
 
         private void cmbView_SelectedIndexChanged(object sender, EventArgs e)
@@ -271,11 +141,7 @@ namespace StoryDev.Forms
 
         private void ConversationEditor_Load(object sender, EventArgs e)
         {
-            if (Globals.Simulation.EnableSimulationsStartup)
-            {
-                simulation.Show(this);
-                simulationsToolStripMenuItem.Checked = true;
-            }
+            
         }
 
         private void SaveCurrent()
@@ -351,18 +217,6 @@ namespace StoryDev.Forms
                 sdParser.Clear();
                 if (sdParser.ParseFile(currentFile + ".sdc") > -1)
                 {
-                    var convoLink = Globals.ConvoMapLinks.Where((link) => link.ConversationFile == currentFile);
-                    if (convoLink.Count() > 0)
-                    {
-                        var link = convoLink.First();
-                        var actualMap = Globals.Maps.Find((m) => m.ID == link.MapID);
-                        txtMapPointAssoc.Text = actualMap.Name + ": " + actualMap.Points[link.MapPoint].Name;
-                    }
-                    else
-                    {
-                        txtMapPointAssoc.Text = "";
-                    }
-
                     cmbBranches.Items.Clear();
 
                     var blocks = sdParser.GetBlocks();
@@ -712,66 +566,9 @@ namespace StoryDev.Forms
             choices.Add(choice);
         }
 
-        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            new SimulationOptionsForm().ShowDialog();
-        }
-
-        private void simulationsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (simulationsToolStripMenuItem.Checked)
-            {
-                simulation.Show(this);
-            }
-            else
-            {
-                simulation.Hide();
-            }
-        }
-
         private void ConversationEditor_FormClosing(object sender, FormClosingEventArgs e)
         {
-            e.Cancel = false;
-            simulation.Dispose();
-            simulation = null;
-        }
-
-        private void storyOrderToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            new StoryOrderForm().ShowDialog();
-        }
-
-        private void customVariablesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            new CustomVariablesForm().Show(this);
-        }
-
-        private void btnBrowseMaps_Click(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(currentFile))
-            {
-                var browser = new MapBrowserForm();
-                browser.MapSelected += Browser_MapSelected;
-                browser.ShowDialog();
-            }
-        }
-
-        private void Browser_MapSelected(int map, int point)
-        {
-            var convoLink = Globals.ConvoMapLinks.Where((link) => link.ConversationFile == currentFile);
-            if (convoLink.Count() == 0)
-            {
-                var link = new ConvoMapLink();
-                link.ConversationFile = currentFile;
-                link.MapID = map;
-                link.MapPoint = point;
-                Globals.ConvoMapLinks.Add(link);
-                Globals.SaveConvoMapLinks();
-
-                var actualMap = Globals.Maps.Find((m) => m.ID == map);
-
-                txtMapPointAssoc.Text = actualMap.Name + ": " + actualMap.Points[point].Name;
-            }
+            
         }
     }
 

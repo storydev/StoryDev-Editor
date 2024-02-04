@@ -109,18 +109,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\AchievementsUI.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\AchievementsUI.Designer.cs">
-      <DependentUpon>AchievementsUI.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\ArtefactsUI.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\ArtefactsUI.Designer.cs">
-      <DependentUpon>ArtefactsUI.cs</DependentUpon>
-    </Compile>
     <Compile Include="Components\ArtPreviewUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -132,18 +120,6 @@
     </Compile>
     <Compile Include="Components\BranchDesignerUI.Designer.cs">
       <DependentUpon>BranchDesignerUI.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CharacterGroupUI.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CharacterGroupUI.Designer.cs">
-      <DependentUpon>CharacterGroupUI.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CharacterUI.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CharacterUI.Designer.cs">
-      <DependentUpon>CharacterUI.cs</DependentUpon>
     </Compile>
     <Compile Include="Components\ChoiceUI.cs">
       <SubType>UserControl</SubType>
@@ -157,412 +133,6 @@
     <Compile Include="Components\CodeEditor.Designer.cs">
       <DependentUpon>CodeEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Components\CodeUI\AccessSection.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\AccessSection.Designer.cs">
-      <DependentUpon>AccessSection.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\AcquireArtefactFragment.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\AcquireArtefactFragment.Designer.cs">
-      <DependentUpon>AcquireArtefactFragment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\AdjustCharacterAttitude.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\AdjustCharacterAttitude.Designer.cs">
-      <DependentUpon>AdjustCharacterAttitude.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\AdjustCharacterAttitudeTowards.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\AdjustCharacterAttitudeTowards.Designer.cs">
-      <DependentUpon>AdjustCharacterAttitudeTowards.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\AdjustCharacterTrait.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\AdjustCharacterTrait.Designer.cs">
-      <DependentUpon>AdjustCharacterTrait.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\AdjustFrequency.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\AdjustFrequency.Designer.cs">
-      <DependentUpon>AdjustFrequency.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\AdjustGroupFrequency.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\AdjustGroupFrequency.Designer.cs">
-      <DependentUpon>AdjustGroupFrequency.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\AdjustInventoryCash.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\AdjustInventoryCash.Designer.cs">
-      <DependentUpon>AdjustInventoryCash.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\AdjustInventoryItem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\AdjustInventoryItem.Designer.cs">
-      <DependentUpon>AdjustInventoryItem.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\AdvanceJournal.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\AdvanceJournal.Designer.cs">
-      <DependentUpon>AdvanceJournal.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\CharacterRequiresHealing.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\CharacterRequiresHealing.Designer.cs">
-      <DependentUpon>CharacterRequiresHealing.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\ConsumeItem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\ConsumeItem.Designer.cs">
-      <DependentUpon>ConsumeItem.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\GetCustomVariable.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\GetCustomVariable.Designer.cs">
-      <DependentUpon>GetCustomVariable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasActivityComplete.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasActivityComplete.Designer.cs">
-      <DependentUpon>HasActivityComplete.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasActivityPartComplete.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasActivityPartComplete.Designer.cs">
-      <DependentUpon>HasActivityPartComplete.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasActivityProgress.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasActivityProgress.Designer.cs">
-      <DependentUpon>HasActivityProgress.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasArtefactActivated.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasArtefactActivated.Designer.cs">
-      <DependentUpon>HasArtefactActivated.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasArtefactCompleted.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasArtefactCompleted.Designer.cs">
-      <DependentUpon>HasArtefactCompleted.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasArtefactFragment.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasArtefactFragment.Designer.cs">
-      <DependentUpon>HasArtefactFragment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasCharacterAttitude.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasCharacterAttitude.Designer.cs">
-      <DependentUpon>HasCharacterAttitude.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasCharacterAttitudeTowards.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasCharacterAttitudeTowards.Designer.cs">
-      <DependentUpon>HasCharacterAttitudeTowards.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasCharacterTraitProgress.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasCharacterTraitProgress.Designer.cs">
-      <DependentUpon>HasCharacterTraitProgress.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasFrequency.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasFrequency.Designer.cs">
-      <DependentUpon>HasFrequency.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasFrequencyWithGroup.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasFrequencyWithGroup.Designer.cs">
-      <DependentUpon>HasFrequencyWithGroup.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasGossipOptionChosen.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasGossipOptionChosen.Designer.cs">
-      <DependentUpon>HasGossipOptionChosen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasItem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasItem.Designer.cs">
-      <DependentUpon>HasItem.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasItemNumber.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasItemNumber.Designer.cs">
-      <DependentUpon>HasItemNumber.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasJournalCompleted.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasJournalCompleted.Designer.cs">
-      <DependentUpon>HasJournalCompleted.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasJournalProgress.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasJournalProgress.Designer.cs">
-      <DependentUpon>HasJournalProgress.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasScenarioCompleted.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasScenarioCompleted.Designer.cs">
-      <DependentUpon>HasScenarioCompleted.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasSpokenWith.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasSpokenWith.Designer.cs">
-      <DependentUpon>HasSpokenWith.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasUnlockedPlace.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasUnlockedPlace.Designer.cs">
-      <DependentUpon>HasUnlockedPlace.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasUnlockedSection.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\HasUnlockedSection.Designer.cs">
-      <DependentUpon>HasUnlockedSection.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\HideCharacterGossip.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\HideCharacterGossip.Designer.cs">
-      <DependentUpon>HideCharacterGossip.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\IsCharacterNourished.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\IsCharacterNourished.Designer.cs">
-      <DependentUpon>IsCharacterNourished.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\IsCurrentPOV.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\IsCurrentPOV.Designer.cs">
-      <DependentUpon>IsCurrentPOV.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\IsItemAvailable.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\IsItemAvailable.Designer.cs">
-      <DependentUpon>IsItemAvailable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\IsSectionAvailable.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\IsSectionAvailable.Designer.cs">
-      <DependentUpon>IsSectionAvailable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\IsWithinSection.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\IsWithinSection.Designer.cs">
-      <DependentUpon>IsWithinSection.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\OpenVendor.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\OpenVendor.Designer.cs">
-      <DependentUpon>OpenVendor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\SetCharacterAttitude.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\SetCharacterAttitude.Designer.cs">
-      <DependentUpon>SetCharacterAttitude.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\SetCharacterAttitudeTowards.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\SetCharacterAttitudeTowards.Designer.cs">
-      <DependentUpon>SetCharacterAttitudeTowards.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\StartConversation.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\StartConversation.Designer.cs">
-      <DependentUpon>StartConversation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\UnlockArtefact.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\UnlockArtefact.Designer.cs">
-      <DependentUpon>UnlockArtefact.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\UnlockCharacterGossip.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\UnlockCharacterGossip.Designer.cs">
-      <DependentUpon>UnlockCharacterGossip.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\UnlockJournal.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\UnlockJournal.Designer.cs">
-      <DependentUpon>UnlockJournal.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\UnlockPlace.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\UnlockPlace.Designer.cs">
-      <DependentUpon>UnlockPlace.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\UnlockScenario.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\UnlockScenario.Designer.cs">
-      <DependentUpon>UnlockScenario.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CodeUI\UnlockSection.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\CodeUI\UnlockSection.Designer.cs">
-      <DependentUpon>UnlockSection.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\PreviewConvoUI.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\PreviewConvoUI.Designer.cs">
-      <DependentUpon>PreviewConvoUI.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Previews\PreviewForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Previews\PreviewForm.Designer.cs">
-      <DependentUpon>PreviewForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Project\ProjectOutputForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Project\ProjectOutputForm.Designer.cs">
-      <DependentUpon>ProjectOutputForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Project\ProjectSettingsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Project\ProjectSettingsForm.Designer.cs">
-      <DependentUpon>ProjectSettingsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Legacy\Components\DataModule\DataModuleEditUI.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Legacy\Components\DataModule\DataModuleEditUI.Designer.cs">
-      <DependentUpon>DataModuleEditUI.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Legacy\Components\DataModule\FieldButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Legacy\Components\DataModule\FieldButton.Designer.cs">
-      <DependentUpon>FieldButton.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Legacy\Components\DataModule\FieldCheckBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Legacy\Components\DataModule\FieldCheckList.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Legacy\Components\DataModule\FieldCheckList.Designer.cs">
-      <DependentUpon>FieldCheckList.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Legacy\Components\DataModule\FieldComboBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Legacy\Components\DataModule\FieldComboBox.Designer.cs">
-      <DependentUpon>FieldComboBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Legacy\Components\DataModule\FieldDatePicker.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Legacy\Components\DataModule\FieldDatePicker.Designer.cs">
-      <DependentUpon>FieldDatePicker.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Legacy\Components\DataModule\FieldIconSelector.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Legacy\Components\DataModule\FieldIconSelector.Designer.cs">
-      <DependentUpon>FieldIconSelector.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Legacy\Components\DataModule\FieldInputCode.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Legacy\Components\DataModule\FieldInputCode.Designer.cs">
-      <DependentUpon>FieldInputCode.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Legacy\Components\DataModule\FieldInputMultiline.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Legacy\Components\DataModule\FieldInputMultiline.Designer.cs">
-      <DependentUpon>FieldInputMultiline.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Legacy\Components\DataModule\FieldInputSingle.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Legacy\Components\DataModule\FieldInputSingle.Designer.cs">
-      <DependentUpon>FieldInputSingle.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Legacy\Components\DataModule\FieldLabel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Legacy\Components\DataModule\FieldLinkedDetailedView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Legacy\Components\DataModule\FieldLinkedDetailedView.Designer.cs">
-      <DependentUpon>FieldLinkedDetailedView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Legacy\Components\DataModule\FieldListBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Legacy\Components\DataModule\FieldListBox.Designer.cs">
-      <DependentUpon>FieldListBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Legacy\Components\DataModule\FieldNumeric.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Legacy\Components\DataModule\FieldNumeric.Designer.cs">
-      <DependentUpon>FieldNumeric.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Legacy\Components\DataModule\FieldSingleLink.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Legacy\Components\DataModule\FieldSingleLink.Designer.cs">
-      <DependentUpon>FieldSingleLink.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Legacy\Components\DataModule\FieldTabControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Legacy\Components\DataModule\IField.cs" />
     <Compile Include="Components\Data\FilterBool.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -605,24 +175,6 @@
     <Compile Include="Components\Data\FilterString.Designer.cs">
       <DependentUpon>FilterString.cs</DependentUpon>
     </Compile>
-    <Compile Include="Legacy\Components\ElementAdditionals\LinkedDetailedAdditional.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Legacy\Components\ElementAdditionals\LinkedDetailedAdditional.Designer.cs">
-      <DependentUpon>LinkedDetailedAdditional.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Legacy\Components\ElementAdditionals\ListBoxAdditional.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Legacy\Components\ElementAdditionals\ListBoxAdditional.Designer.cs">
-      <DependentUpon>ListBoxAdditional.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Legacy\Components\FormDesignerUI.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Legacy\Components\FormDesignerUI.Designer.cs">
-      <DependentUpon>FormDesignerUI.cs</DependentUpon>
-    </Compile>
     <Compile Include="Components\ICodeComponent.cs" />
     <Compile Include="Components\IconsCanvas.cs">
       <SubType>UserControl</SubType>
@@ -632,30 +184,6 @@
     </Compile>
     <Compile Include="Components\IconSelect.cs">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Components\ItemUI.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\ItemUI.Designer.cs">
-      <DependentUpon>ItemUI.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\JournalUI.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\JournalUI.Designer.cs">
-      <DependentUpon>JournalUI.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\MapsCanvas.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\MapsCanvas.Designer.cs">
-      <DependentUpon>MapsCanvas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\PlaceUI.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\PlaceUI.Designer.cs">
-      <DependentUpon>PlaceUI.cs</DependentUpon>
     </Compile>
     <Compile Include="Components\Preferences\CodeEditorUI.cs">
       <SubType>UserControl</SubType>
@@ -669,176 +197,23 @@
     <Compile Include="Components\Preferences\GeneralUI.Designer.cs">
       <DependentUpon>GeneralUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="Components\SceneDesignerUI.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\SceneDesignerUI.Designer.cs">
-      <DependentUpon>SceneDesignerUI.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Legacy\Components\Scripting\DataModuleFileProperties.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Legacy\Components\Scripting\DataModuleFileProperties.Designer.cs">
-      <DependentUpon>DataModuleFileProperties.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Legacy\Components\Scripting\DataModuleFolderProperties.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Legacy\Components\Scripting\DataModuleFolderProperties.Designer.cs">
-      <DependentUpon>DataModuleFolderProperties.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Legacy\Components\Scripting\ScriptFileProperties.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Legacy\Components\Scripting\ScriptFileProperties.Designer.cs">
-      <DependentUpon>ScriptFileProperties.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\ScriptManager.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\ScriptManager.Designer.cs">
-      <DependentUpon>ScriptManager.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\SpecialFeatureUI.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\SpecialFeatureUI.Designer.cs">
-      <DependentUpon>SpecialFeatureUI.cs</DependentUpon>
-    </Compile>
     <Compile Include="Components\SplitButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Components\VarTrackerUI.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\VarTrackerUI.Designer.cs">
-      <DependentUpon>VarTrackerUI.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Achievement.cs" />
-    <Compile Include="Data\Activity.cs" />
-    <Compile Include="Data\ActivityPart.cs" />
-    <Compile Include="Data\Artefact.cs" />
-    <Compile Include="Data\ArtefactFragment.cs" />
     <Compile Include="Data\Art\Scale9Rect.cs" />
     <Compile Include="Data\Art\SheetCell.cs" />
-    <Compile Include="Data\Character.cs" />
-    <Compile Include="Data\CharacterAttitude.cs" />
-    <Compile Include="Data\CharacterGossip.cs" />
-    <Compile Include="Data\CharacterGroup.cs" />
-    <Compile Include="Data\CharacterTrait.cs" />
     <Compile Include="Data\Choice.cs" />
     <Compile Include="Data\Conversation.cs" />
-    <Compile Include="Data\ConvoMapLink.cs" />
     <Compile Include="Data\DBFilter.cs" />
     <Compile Include="Data\DBObject.cs" />
     <Compile Include="Data\DBOperator.cs" />
-    <Compile Include="Legacy\Data\FormComponent.cs" />
-    <Compile Include="Legacy\Data\FormProperties.cs" />
-    <Compile Include="Data\GlobalSettings.cs" />
     <Compile Include="Data\IconSets.cs" />
-    <Compile Include="Data\Identifiers.cs" />
-    <Compile Include="Data\Item.cs" />
-    <Compile Include="Data\Journal.cs" />
-    <Compile Include="Data\JournalMapLink.cs" />
-    <Compile Include="Legacy\Data\LinkedAdditionalData.cs" />
     <Compile Include="Data\MainSourceData.cs" />
-    <Compile Include="Data\Map.cs" />
-    <Compile Include="Data\MapSection.cs" />
-    <Compile Include="Data\Place.cs" />
     <Compile Include="Data\Preferences.cs" />
-    <Compile Include="Data\ScriptFileData.cs" />
     <Compile Include="Data\SearchCustomDataSource.cs" />
     <Compile Include="Data\SearchOptions.cs" />
     <Compile Include="Data\SearchRelationship.cs" />
-    <Compile Include="Data\SpecialFeature.cs" />
-    <Compile Include="Data\SpecialScenario.cs" />
-    <Compile Include="Data\StoryOrder.cs" />
     <Compile Include="Data\Variable.cs" />
-    <Compile Include="Data\VendorItem.cs" />
-    <Compile Include="Legacy\Forms\AddElementForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Legacy\Forms\AddElementForm.Designer.cs">
-      <DependentUpon>AddElementForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\AddJournalInlineCodeForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\AddJournalInlineCodeForm.Designer.cs">
-      <DependentUpon>AddJournalInlineCodeForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\ArtManagerForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ArtManagerForm.Designer.cs">
-      <DependentUpon>ArtManagerForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\ArtManager\StandardSheetPropertiesForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ArtManager\StandardSheetPropertiesForm.Designer.cs">
-      <DependentUpon>StandardSheetPropertiesForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Legacy\Forms\DataModuleDesignerForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Legacy\Forms\DataModuleDesignerForm.Designer.cs">
-      <DependentUpon>DataModuleDesignerForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Legacy\Forms\DataModuleFieldForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Legacy\Forms\DataModuleFieldForm.Designer.cs">
-      <DependentUpon>DataModuleFieldForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Legacy\Forms\DataModuleFormPropertiesForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Legacy\Forms\DataModuleFormPropertiesForm.Designer.cs">
-      <DependentUpon>DataModuleFormPropertiesForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DynamicsAttitudeForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\DynamicsAttitudeForm.Designer.cs">
-      <DependentUpon>DynamicsAttitudeForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Legacy\Forms\EditDataModuleComponentForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Legacy\Forms\EditDataModuleComponentForm.Designer.cs">
-      <DependentUpon>EditDataModuleComponentForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Legacy\Forms\EnterCustomSourceForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Legacy\Forms\EnterCustomSourceForm.Designer.cs">
-      <DependentUpon>EnterCustomSourceForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Legacy\Forms\LinkedDataEditColumnsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Legacy\Forms\LinkedDataEditColumnsForm.Designer.cs">
-      <DependentUpon>LinkedDataEditColumnsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Legacy\Forms\SceneDesignerForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Legacy\Forms\SceneDesignerForm.Designer.cs">
-      <DependentUpon>SceneDesignerForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\VariableChangesForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\VariableChangesForm.Designer.cs">
-      <DependentUpon>VariableChangesForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\ChapterBrowserForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ChapterBrowserForm.Designer.cs">
-      <DependentUpon>ChapterBrowserForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\CodeComponentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -857,54 +232,6 @@
     <Compile Include="Forms\ConversationEditor.Designer.cs">
       <DependentUpon>ConversationEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\CustomVariablesForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\CustomVariablesForm.Designer.cs">
-      <DependentUpon>CustomVariablesForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\EditActivityForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\EditActivityForm.Designer.cs">
-      <DependentUpon>EditActivityForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\EditAttitudeForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\EditAttitudeForm.Designer.cs">
-      <DependentUpon>EditAttitudeForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\EditCharacterTraitForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\EditCharacterTraitForm.Designer.cs">
-      <DependentUpon>EditCharacterTraitForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\EditGossipsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\EditGossipsForm.Designer.cs">
-      <DependentUpon>EditGossipsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\EditSectionForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\EditSectionForm.Designer.cs">
-      <DependentUpon>EditSectionForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\EditVarForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\EditVarForm.Designer.cs">
-      <DependentUpon>EditVarForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\EditVendorItemForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\EditVendorItemForm.Designer.cs">
-      <DependentUpon>EditVendorItemForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\FileReplaceForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -922,24 +249,6 @@
     </Compile>
     <Compile Include="Forms\IconSetsForm.Designer.cs">
       <DependentUpon>IconSetsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\MapBrowserForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\MapBrowserForm.Designer.cs">
-      <DependentUpon>MapBrowserForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\MapPointPropertiesForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\MapPointPropertiesForm.Designer.cs">
-      <DependentUpon>MapPointPropertiesForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\MapsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\MapsForm.Designer.cs">
-      <DependentUpon>MapsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\PreferencesForm.cs">
       <SubType>Form</SubType>
@@ -965,47 +274,11 @@
     <Compile Include="Forms\SearchForm.Designer.cs">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SetArtefactUseContextsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\SetArtefactUseContextsForm.Designer.cs">
-      <DependentUpon>SetArtefactUseContextsForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\SimpleEntryForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\SimpleEntryForm.Designer.cs">
       <DependentUpon>SimpleEntryForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\SimulationForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\SimulationForm.Designer.cs">
-      <DependentUpon>SimulationForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\SimulationOptionsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\SimulationOptionsForm.Designer.cs">
-      <DependentUpon>SimulationOptionsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\StoryOrderForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\StoryOrderForm.Designer.cs">
-      <DependentUpon>StoryOrderForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\VarTrackerForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\VarTrackerForm.Designer.cs">
-      <DependentUpon>VarTrackerForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\VendorItemForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\VendorItemForm.Designer.cs">
-      <DependentUpon>VendorItemForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Globals.cs" />
     <Compile Include="Forms\MainForm.cs">
@@ -1020,227 +293,14 @@
     <Compile Include="Lib\StoryDev\Parser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Legacy\Scripting\Module.cs" />
-    <Compile Include="Legacy\Scripting\Modules\DataField.cs" />
-    <Compile Include="Legacy\Scripting\Modules\DataOptions.cs" />
-    <Compile Include="Legacy\Scripting\Modules\DataType.cs" />
-    <Compile Include="Legacy\Scripting\Modules\FormElement.cs" />
-    <Compile Include="Legacy\Scripting\ScriptEngine.cs" />
-    <Compile Include="Simulation\CallStack.cs" />
-    <Compile Include="Simulation\Engine.cs" />
-    <Compile Include="Simulation\Message.cs" />
-    <EmbeddedResource Include="Components\AchievementsUI.resx">
-      <DependentUpon>AchievementsUI.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\ArtefactsUI.resx">
-      <DependentUpon>ArtefactsUI.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Components\BranchDesignerUI.resx">
       <DependentUpon>BranchDesignerUI.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CharacterGroupUI.resx">
-      <DependentUpon>CharacterGroupUI.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CharacterUI.resx">
-      <DependentUpon>CharacterUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\ChoiceUI.resx">
       <DependentUpon>ChoiceUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\CodeEditor.resx">
       <DependentUpon>CodeEditor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\AccessSection.resx">
-      <DependentUpon>AccessSection.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\AcquireArtefactFragment.resx">
-      <DependentUpon>AcquireArtefactFragment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\AdjustCharacterAttitude.resx">
-      <DependentUpon>AdjustCharacterAttitude.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\AdjustCharacterAttitudeTowards.resx">
-      <DependentUpon>AdjustCharacterAttitudeTowards.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\AdjustCharacterTrait.resx">
-      <DependentUpon>AdjustCharacterTrait.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\AdjustFrequency.resx">
-      <DependentUpon>AdjustFrequency.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\AdjustGroupFrequency.resx">
-      <DependentUpon>AdjustGroupFrequency.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\AdjustInventoryCash.resx">
-      <DependentUpon>AdjustInventoryCash.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\AdjustInventoryItem.resx">
-      <DependentUpon>AdjustInventoryItem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\AdvanceJournal.resx">
-      <DependentUpon>AdvanceJournal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\CharacterRequiresHealing.resx">
-      <DependentUpon>CharacterRequiresHealing.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\ConsumeItem.resx">
-      <DependentUpon>ConsumeItem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\GetCustomVariable.resx">
-      <DependentUpon>GetCustomVariable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\HasActivityComplete.resx">
-      <DependentUpon>HasActivityComplete.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\HasActivityPartComplete.resx">
-      <DependentUpon>HasActivityPartComplete.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\HasActivityProgress.resx">
-      <DependentUpon>HasActivityProgress.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\HasArtefactActivated.resx">
-      <DependentUpon>HasArtefactActivated.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\HasArtefactCompleted.resx">
-      <DependentUpon>HasArtefactCompleted.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\HasArtefactFragment.resx">
-      <DependentUpon>HasArtefactFragment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\HasCharacterAttitude.resx">
-      <DependentUpon>HasCharacterAttitude.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\HasCharacterAttitudeTowards.resx">
-      <DependentUpon>HasCharacterAttitudeTowards.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\HasCharacterTraitProgress.resx">
-      <DependentUpon>HasCharacterTraitProgress.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\HasFrequency.resx">
-      <DependentUpon>HasFrequency.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\HasFrequencyWithGroup.resx">
-      <DependentUpon>HasFrequencyWithGroup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\HasGossipOptionChosen.resx">
-      <DependentUpon>HasGossipOptionChosen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\HasItem.resx">
-      <DependentUpon>HasItem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\HasItemNumber.resx">
-      <DependentUpon>HasItemNumber.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\HasJournalCompleted.resx">
-      <DependentUpon>HasJournalCompleted.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\HasJournalProgress.resx">
-      <DependentUpon>HasJournalProgress.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\HasScenarioCompleted.resx">
-      <DependentUpon>HasScenarioCompleted.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\HasSpokenWith.resx">
-      <DependentUpon>HasSpokenWith.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\HasUnlockedPlace.resx">
-      <DependentUpon>HasUnlockedPlace.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\HasUnlockedSection.resx">
-      <DependentUpon>HasUnlockedSection.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\HideCharacterGossip.resx">
-      <DependentUpon>HideCharacterGossip.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\IsCharacterNourished.resx">
-      <DependentUpon>IsCharacterNourished.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\IsCurrentPOV.resx">
-      <DependentUpon>IsCurrentPOV.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\IsItemAvailable.resx">
-      <DependentUpon>IsItemAvailable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\IsSectionAvailable.resx">
-      <DependentUpon>IsSectionAvailable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\IsWithinSection.resx">
-      <DependentUpon>IsWithinSection.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\OpenVendor.resx">
-      <DependentUpon>OpenVendor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\SetCharacterAttitude.resx">
-      <DependentUpon>SetCharacterAttitude.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\SetCharacterAttitudeTowards.resx">
-      <DependentUpon>SetCharacterAttitudeTowards.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\StartConversation.resx">
-      <DependentUpon>StartConversation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\UnlockArtefact.resx">
-      <DependentUpon>UnlockArtefact.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\UnlockCharacterGossip.resx">
-      <DependentUpon>UnlockCharacterGossip.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\UnlockJournal.resx">
-      <DependentUpon>UnlockJournal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\UnlockPlace.resx">
-      <DependentUpon>UnlockPlace.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\UnlockScenario.resx">
-      <DependentUpon>UnlockScenario.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\CodeUI\UnlockSection.resx">
-      <DependentUpon>UnlockSection.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Previews\PreviewForm.resx">
-      <DependentUpon>PreviewForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Project\ProjectOutputForm.resx">
-      <DependentUpon>ProjectOutputForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Project\ProjectSettingsForm.resx">
-      <DependentUpon>ProjectSettingsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Legacy\Components\DataModule\DataModuleEditUI.resx">
-      <DependentUpon>DataModuleEditUI.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Legacy\Components\DataModule\FieldCheckList.resx">
-      <DependentUpon>FieldCheckList.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Legacy\Components\DataModule\FieldComboBox.resx">
-      <DependentUpon>FieldComboBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Legacy\Components\DataModule\FieldDatePicker.resx">
-      <DependentUpon>FieldDatePicker.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Legacy\Components\DataModule\FieldIconSelector.resx">
-      <DependentUpon>FieldIconSelector.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Legacy\Components\DataModule\FieldInputCode.resx">
-      <DependentUpon>FieldInputCode.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Legacy\Components\DataModule\FieldInputMultiline.resx">
-      <DependentUpon>FieldInputMultiline.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Legacy\Components\DataModule\FieldInputSingle.resx">
-      <DependentUpon>FieldInputSingle.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Legacy\Components\DataModule\FieldLinkedDetailedView.resx">
-      <DependentUpon>FieldLinkedDetailedView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Legacy\Components\DataModule\FieldListBox.resx">
-      <DependentUpon>FieldListBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Legacy\Components\DataModule\FieldNumeric.resx">
-      <DependentUpon>FieldNumeric.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Legacy\Components\DataModule\FieldSingleLink.resx">
-      <DependentUpon>FieldSingleLink.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\Data\FilterBool.resx">
       <DependentUpon>FilterBool.cs</DependentUpon>
@@ -1263,92 +323,11 @@
     <EmbeddedResource Include="Components\Data\FilterString.resx">
       <DependentUpon>FilterString.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Legacy\Components\ElementAdditionals\LinkedDetailedAdditional.resx">
-      <DependentUpon>LinkedDetailedAdditional.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Legacy\Components\ElementAdditionals\ListBoxAdditional.resx">
-      <DependentUpon>ListBoxAdditional.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Legacy\Components\FormDesignerUI.resx">
-      <DependentUpon>FormDesignerUI.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\ItemUI.resx">
-      <DependentUpon>ItemUI.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\JournalUI.resx">
-      <DependentUpon>JournalUI.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\MapsCanvas.resx">
-      <DependentUpon>MapsCanvas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\PlaceUI.resx">
-      <DependentUpon>PlaceUI.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Components\Preferences\CodeEditorUI.resx">
       <DependentUpon>CodeEditorUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\Preferences\GeneralUI.resx">
       <DependentUpon>GeneralUI.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Legacy\Components\Scripting\DataModuleFileProperties.resx">
-      <DependentUpon>DataModuleFileProperties.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Legacy\Components\Scripting\DataModuleFolderProperties.resx">
-      <DependentUpon>DataModuleFolderProperties.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Legacy\Components\Scripting\ScriptFileProperties.resx">
-      <DependentUpon>ScriptFileProperties.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\ScriptManager.resx">
-      <DependentUpon>ScriptManager.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\SpecialFeatureUI.resx">
-      <DependentUpon>SpecialFeatureUI.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\VarTrackerUI.resx">
-      <DependentUpon>VarTrackerUI.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Legacy\Forms\AddElementForm.resx">
-      <DependentUpon>AddElementForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AddJournalInlineCodeForm.resx">
-      <DependentUpon>AddJournalInlineCodeForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ArtManagerForm.resx">
-      <DependentUpon>ArtManagerForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ArtManager\StandardSheetPropertiesForm.resx">
-      <DependentUpon>StandardSheetPropertiesForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Legacy\Forms\DataModuleDesignerForm.resx">
-      <DependentUpon>DataModuleDesignerForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Legacy\Forms\DataModuleFieldForm.resx">
-      <DependentUpon>DataModuleFieldForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Legacy\Forms\DataModuleFormPropertiesForm.resx">
-      <DependentUpon>DataModuleFormPropertiesForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DynamicsAttitudeForm.resx">
-      <DependentUpon>DynamicsAttitudeForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Legacy\Forms\EditDataModuleComponentForm.resx">
-      <DependentUpon>EditDataModuleComponentForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Legacy\Forms\EnterCustomSourceForm.resx">
-      <DependentUpon>EnterCustomSourceForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Legacy\Forms\LinkedDataEditColumnsForm.resx">
-      <DependentUpon>LinkedDataEditColumnsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Legacy\Forms\SceneDesignerForm.resx">
-      <DependentUpon>SceneDesignerForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\VariableChangesForm.resx">
-      <DependentUpon>VariableChangesForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ChapterBrowserForm.resx">
-      <DependentUpon>ChapterBrowserForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CodeComponentForm.resx">
       <DependentUpon>CodeComponentForm.cs</DependentUpon>
@@ -1358,30 +337,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ConversationEditor.resx">
       <DependentUpon>ConversationEditor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CustomVariablesForm.resx">
-      <DependentUpon>CustomVariablesForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EditActivityForm.resx">
-      <DependentUpon>EditActivityForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EditAttitudeForm.resx">
-      <DependentUpon>EditAttitudeForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EditCharacterTraitForm.resx">
-      <DependentUpon>EditCharacterTraitForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EditGossipsForm.resx">
-      <DependentUpon>EditGossipsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EditSectionForm.resx">
-      <DependentUpon>EditSectionForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EditVarForm.resx">
-      <DependentUpon>EditVarForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EditVendorItemForm.resx">
-      <DependentUpon>EditVendorItemForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FileReplaceForm.resx">
       <DependentUpon>FileReplaceForm.cs</DependentUpon>
@@ -1395,15 +350,6 @@
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MapBrowserForm.resx">
-      <DependentUpon>MapBrowserForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MapPointPropertiesForm.resx">
-      <DependentUpon>MapPointPropertiesForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MapsForm.resx">
-      <DependentUpon>MapsForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\PreferencesForm.resx">
       <DependentUpon>PreferencesForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1416,26 +362,8 @@
     <EmbeddedResource Include="Forms\SearchForm.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SetArtefactUseContextsForm.resx">
-      <DependentUpon>SetArtefactUseContextsForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\SimpleEntryForm.resx">
       <DependentUpon>SimpleEntryForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SimulationForm.resx">
-      <DependentUpon>SimulationForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SimulationOptionsForm.resx">
-      <DependentUpon>SimulationOptionsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\StoryOrderForm.resx">
-      <DependentUpon>StoryOrderForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\VarTrackerForm.resx">
-      <DependentUpon>VarTrackerForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\VendorItemForm.resx">
-      <DependentUpon>VendorItemForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -1547,6 +475,7 @@
     <None Include="Resources\Folder.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Components\CodeUI\" />
     <Folder Include="Scripting\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
