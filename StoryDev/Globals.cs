@@ -60,8 +60,7 @@ namespace StoryDev
 
         public static void GlobalInit()
         {
-            AppCacheFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            AppCacheFolder += "\\StoryDev\\";
+            AppCacheFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "StoryDev");
 
             if (!Directory.Exists(AppCacheFolder))
             {
@@ -70,15 +69,16 @@ namespace StoryDev
             }
             else
             {
-                if (File.Exists(AppCacheFolder + "settings.json"))
-                    Preferences = JsonConvert.DeserializeObject<Preferences>(File.ReadAllText(AppCacheFolder + "settings.json"));
+                var settingsPath = Path.Combine(AppCacheFolder, "settings.json");
+                if (File.Exists(settingsPath))
+                    Preferences = JsonConvert.DeserializeObject<Preferences>(File.ReadAllText(settingsPath));
             }
         }
 
         public static void SavePreferences()
         {
             var content = JsonConvert.SerializeObject(Preferences);
-            File.WriteAllText(AppCacheFolder + "settings.json", content);
+            File.WriteAllText(Path.Combine(AppCacheFolder, "settings.json"), content);
         }
 
         //
