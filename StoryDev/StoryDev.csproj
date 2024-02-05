@@ -200,19 +200,43 @@
     <Compile Include="Components\SplitButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Components\StoryFlowUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\StoryFlowUI.Designer.cs">
+      <DependentUpon>StoryFlowUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\StoryFlowWrapper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\StoryFlowWrapper.Designer.cs">
+      <DependentUpon>StoryFlowWrapper.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data\Art\Scale9Rect.cs" />
     <Compile Include="Data\Art\SheetCell.cs" />
+    <Compile Include="Data\AutoType.cs" />
     <Compile Include="Data\Choice.cs" />
     <Compile Include="Data\Conversation.cs" />
     <Compile Include="Data\DBFilter.cs" />
     <Compile Include="Data\DBObject.cs" />
     <Compile Include="Data\DBOperator.cs" />
+    <Compile Include="Data\EventCommand.cs" />
+    <Compile Include="Data\EventType.cs" />
+    <Compile Include="Data\Group.cs" />
     <Compile Include="Data\IconSets.cs" />
     <Compile Include="Data\MainSourceData.cs" />
     <Compile Include="Data\Preferences.cs" />
+    <Compile Include="Data\Project.cs" />
     <Compile Include="Data\SearchCustomDataSource.cs" />
     <Compile Include="Data\SearchOptions.cs" />
     <Compile Include="Data\SearchRelationship.cs" />
+    <Compile Include="Data\StoryFlow.cs" />
+    <Compile Include="Data\StoryItem.cs" />
+    <Compile Include="Data\StoryItemType.cs" />
+    <Compile Include="Data\Tag.cs" />
+    <Compile Include="Data\TagApplication.cs" />
+    <Compile Include="Data\TagValue.cs" />
+    <Compile Include="Data\TriggerType.cs" />
     <Compile Include="Data\Variable.cs" />
     <Compile Include="Forms\CodeComponentForm.cs">
       <SubType>Form</SubType>
@@ -328,6 +352,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Components\Preferences\GeneralUI.resx">
       <DependentUpon>GeneralUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\StoryFlowWrapper.resx">
+      <DependentUpon>StoryFlowWrapper.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CodeComponentForm.resx">
       <DependentUpon>CodeComponentForm.cs</DependentUpon>
