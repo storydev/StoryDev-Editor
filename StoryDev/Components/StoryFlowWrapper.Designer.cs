@@ -30,25 +30,25 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlTools = new System.Windows.Forms.Panel();
-            this.spcMain = new System.Windows.Forms.SplitContainer();
-            this.pnlProperties = new System.Windows.Forms.Panel();
-            this.storyFlow = new StoryDev.Components.StoryFlowUI();
-            this.spbtnWrappers = new StoryDev.Components.SplitButton();
+            this.spcbtnNewItem = new StoryDev.Components.SplitButton();
             this.cmsWrappers = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.groupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.spcbtnNewItem = new StoryDev.Components.SplitButton();
+            this.spbtnWrappers = new StoryDev.Components.SplitButton();
+            this.spcMain = new System.Windows.Forms.SplitContainer();
+            this.storyFlow = new StoryDev.Components.StoryFlowUI();
+            this.pnlProperties = new System.Windows.Forms.Panel();
             this.cmsItems = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.conversationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eventToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.placesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.featuresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlTools.SuspendLayout();
+            this.cmsWrappers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spcMain)).BeginInit();
             this.spcMain.Panel1.SuspendLayout();
             this.spcMain.Panel2.SuspendLayout();
             this.spcMain.SuspendLayout();
-            this.cmsWrappers.SuspendLayout();
             this.cmsItems.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,6 +62,51 @@
             this.pnlTools.Padding = new System.Windows.Forms.Padding(4);
             this.pnlTools.Size = new System.Drawing.Size(1171, 52);
             this.pnlTools.TabIndex = 0;
+            // 
+            // spcbtnNewItem
+            // 
+            this.spcbtnNewItem.Dock = System.Windows.Forms.DockStyle.Left;
+            this.spcbtnNewItem.Enabled = false;
+            this.spcbtnNewItem.Location = new System.Drawing.Point(142, 4);
+            this.spcbtnNewItem.Menu = this.cmsWrappers;
+            this.spcbtnNewItem.Name = "spcbtnNewItem";
+            this.spcbtnNewItem.Size = new System.Drawing.Size(138, 44);
+            this.spcbtnNewItem.TabIndex = 1;
+            this.spcbtnNewItem.Text = "New Item";
+            this.spcbtnNewItem.UseVisualStyleBackColor = true;
+            // 
+            // cmsWrappers
+            // 
+            this.cmsWrappers.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.cmsWrappers.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.groupToolStripMenuItem,
+            this.tagToolStripMenuItem});
+            this.cmsWrappers.Name = "cmsWrappers";
+            this.cmsWrappers.Size = new System.Drawing.Size(241, 101);
+            // 
+            // groupToolStripMenuItem
+            // 
+            this.groupToolStripMenuItem.Name = "groupToolStripMenuItem";
+            this.groupToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
+            this.groupToolStripMenuItem.Text = "Group";
+            this.groupToolStripMenuItem.Click += new System.EventHandler(this.groupToolStripMenuItem_Click);
+            // 
+            // tagToolStripMenuItem
+            // 
+            this.tagToolStripMenuItem.Name = "tagToolStripMenuItem";
+            this.tagToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
+            this.tagToolStripMenuItem.Text = "Tag";
+            // 
+            // spbtnWrappers
+            // 
+            this.spbtnWrappers.Dock = System.Windows.Forms.DockStyle.Left;
+            this.spbtnWrappers.Location = new System.Drawing.Point(4, 4);
+            this.spbtnWrappers.Menu = this.cmsWrappers;
+            this.spbtnWrappers.Name = "spbtnWrappers";
+            this.spbtnWrappers.Size = new System.Drawing.Size(138, 44);
+            this.spbtnWrappers.TabIndex = 0;
+            this.spbtnWrappers.Text = "New";
+            this.spbtnWrappers.UseVisualStyleBackColor = true;
             // 
             // spcMain
             // 
@@ -80,14 +125,6 @@
             this.spcMain.SplitterDistance = 791;
             this.spcMain.TabIndex = 1;
             // 
-            // pnlProperties
-            // 
-            this.pnlProperties.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlProperties.Location = new System.Drawing.Point(0, 0);
-            this.pnlProperties.Name = "pnlProperties";
-            this.pnlProperties.Size = new System.Drawing.Size(376, 631);
-            this.pnlProperties.TabIndex = 0;
-            // 
             // storyFlow
             // 
             this.storyFlow.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -96,49 +133,13 @@
             this.storyFlow.Size = new System.Drawing.Size(791, 631);
             this.storyFlow.TabIndex = 0;
             // 
-            // spbtnWrappers
+            // pnlProperties
             // 
-            this.spbtnWrappers.Dock = System.Windows.Forms.DockStyle.Left;
-            this.spbtnWrappers.Location = new System.Drawing.Point(4, 4);
-            this.spbtnWrappers.Menu = this.cmsWrappers;
-            this.spbtnWrappers.Name = "spbtnWrappers";
-            this.spbtnWrappers.Size = new System.Drawing.Size(138, 44);
-            this.spbtnWrappers.TabIndex = 0;
-            this.spbtnWrappers.Text = "New";
-            this.spbtnWrappers.UseVisualStyleBackColor = true;
-            // 
-            // cmsWrappers
-            // 
-            this.cmsWrappers.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.cmsWrappers.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.groupToolStripMenuItem,
-            this.tagToolStripMenuItem});
-            this.cmsWrappers.Name = "cmsWrappers";
-            this.cmsWrappers.Size = new System.Drawing.Size(135, 68);
-            // 
-            // groupToolStripMenuItem
-            // 
-            this.groupToolStripMenuItem.Name = "groupToolStripMenuItem";
-            this.groupToolStripMenuItem.Size = new System.Drawing.Size(134, 32);
-            this.groupToolStripMenuItem.Text = "Group";
-            // 
-            // tagToolStripMenuItem
-            // 
-            this.tagToolStripMenuItem.Name = "tagToolStripMenuItem";
-            this.tagToolStripMenuItem.Size = new System.Drawing.Size(134, 32);
-            this.tagToolStripMenuItem.Text = "Tag";
-            // 
-            // spcbtnNewItem
-            // 
-            this.spcbtnNewItem.Dock = System.Windows.Forms.DockStyle.Left;
-            this.spcbtnNewItem.Enabled = false;
-            this.spcbtnNewItem.Location = new System.Drawing.Point(142, 4);
-            this.spcbtnNewItem.Menu = this.cmsWrappers;
-            this.spcbtnNewItem.Name = "spcbtnNewItem";
-            this.spcbtnNewItem.Size = new System.Drawing.Size(138, 44);
-            this.spcbtnNewItem.TabIndex = 1;
-            this.spcbtnNewItem.Text = "New Item";
-            this.spcbtnNewItem.UseVisualStyleBackColor = true;
+            this.pnlProperties.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlProperties.Location = new System.Drawing.Point(0, 0);
+            this.pnlProperties.Name = "pnlProperties";
+            this.pnlProperties.Size = new System.Drawing.Size(376, 631);
+            this.pnlProperties.TabIndex = 0;
             // 
             // cmsItems
             // 
@@ -184,11 +185,11 @@
             this.Name = "StoryFlowWrapper";
             this.Size = new System.Drawing.Size(1171, 683);
             this.pnlTools.ResumeLayout(false);
+            this.cmsWrappers.ResumeLayout(false);
             this.spcMain.Panel1.ResumeLayout(false);
             this.spcMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spcMain)).EndInit();
             this.spcMain.ResumeLayout(false);
-            this.cmsWrappers.ResumeLayout(false);
             this.cmsItems.ResumeLayout(false);
             this.ResumeLayout(false);
 

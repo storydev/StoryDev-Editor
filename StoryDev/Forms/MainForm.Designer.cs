@@ -39,6 +39,7 @@ namespace StoryDev.Forms
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.conversationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tcMain = new System.Windows.Forms.TabControl();
+            this.storyFlowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,7 +97,8 @@ namespace StoryDev.Forms
             // viewToolStripMenuItem
             // 
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.conversationsToolStripMenuItem});
+            this.conversationsToolStripMenuItem,
+            this.storyFlowToolStripMenuItem});
             this.viewToolStripMenuItem.Enabled = false;
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(65, 29);
@@ -117,6 +119,13 @@ namespace StoryDev.Forms
             this.tcMain.SelectedIndex = 0;
             this.tcMain.Size = new System.Drawing.Size(1179, 716);
             this.tcMain.TabIndex = 1;
+            // 
+            // storyFlowToolStripMenuItem
+            // 
+            this.storyFlowToolStripMenuItem.Name = "storyFlowToolStripMenuItem";
+            this.storyFlowToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.storyFlowToolStripMenuItem.Text = "Story Flow";
+            this.storyFlowToolStripMenuItem.Click += new System.EventHandler(this.storyFlowToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -147,6 +156,7 @@ namespace StoryDev.Forms
         private System.Windows.Forms.ToolStripMenuItem saveAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem storyFlowToolStripMenuItem;
     }
 }
 

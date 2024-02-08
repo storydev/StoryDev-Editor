@@ -55,6 +55,26 @@ namespace StoryDev.Forms
             new PreferencesForm().ShowDialog();
         }
 
-        
+        private void storyFlowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < tcMain.TabPages.Count; i++)
+            {
+                var page = tcMain.TabPages[i];
+                if (page.Text == "Story Flow")
+                {
+                    tcMain.SelectedIndex = i;
+                    return;
+                }
+            }
+
+            var wrapper = new StoryFlowWrapper()
+            {
+                Dock = DockStyle.Fill,
+            };
+            var tab = new TabPage();
+            tab.Text = "Story Flow";
+            tab.Controls.Add(wrapper);
+            tcMain.TabPages.Add(tab);
+        }
     }
 }

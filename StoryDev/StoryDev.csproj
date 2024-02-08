@@ -212,6 +212,18 @@
     <Compile Include="Components\StoryFlowWrapper.Designer.cs">
       <DependentUpon>StoryFlowWrapper.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\StoryFlow\GroupProperties.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\StoryFlow\GroupProperties.Designer.cs">
+      <DependentUpon>GroupProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\StoryFlow\TagValueItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\StoryFlow\TagValueItem.Designer.cs">
+      <DependentUpon>TagValueItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data\Art\Scale9Rect.cs" />
     <Compile Include="Data\Art\SheetCell.cs" />
     <Compile Include="Data\AutoType.cs" />
@@ -353,8 +365,17 @@
     <EmbeddedResource Include="Components\Preferences\GeneralUI.resx">
       <DependentUpon>GeneralUI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Components\StoryFlowUI.resx">
+      <DependentUpon>StoryFlowUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Components\StoryFlowWrapper.resx">
       <DependentUpon>StoryFlowWrapper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\StoryFlow\GroupProperties.resx">
+      <DependentUpon>GroupProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\StoryFlow\TagValueItem.resx">
+      <DependentUpon>TagValueItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CodeComponentForm.resx">
       <DependentUpon>CodeComponentForm.cs</DependentUpon>

@@ -26,6 +26,7 @@ namespace StoryDev
     delegate void OnGoToConversation(string file, string blockName, int line);
     delegate void OnTabNameChange(string text);
     delegate void OnRequestDataModuleRefresh();
+    delegate void OnGroupSelected(int index);
 
     class Globals
     {
@@ -87,6 +88,8 @@ namespace StoryDev
 
         public static string CurrentProjectFolder;
 
+        public static Project CurrentProject { get; private set; }
+
         public static List<Conversation> Conversations { get; private set; }
 
         public static List<string> Chapters { get; private set; }
@@ -105,6 +108,7 @@ namespace StoryDev
         public static void SaveAll()
         {
             SaveIconSetData();
+            SaveProject();
         }
 
         public static IconSets IconSetData { get; private set; }
@@ -121,6 +125,12 @@ namespace StoryDev
         {
             var content = JsonConvert.SerializeObject(Variables);
             File.WriteAllText(CurrentProjectFolder + "\\variables.json", content);
+        }
+
+        public static void SaveProject()
+        {
+            var content = JsonConvert.SerializeObject(CurrentProject);
+            File.WriteAllText(Path.Combine(CurrentProjectFolder, "data.json"), content);
         }
 
         public static string GetResourcesPath()
@@ -148,24 +158,9 @@ namespace StoryDev
                 ReloadChapters();
             }
 
-            if (!Directory.Exists(path + "\\Scripts"))
+            if (File.Exists(Path.Combine(path, "Chapters", "conversations.json")))
             {
-                Directory.CreateDirectory(path + "\\Scripts");
-            }
-
-            if (!Directory.Exists(path + "\\Events"))
-            {
-                Directory.CreateDirectory(path + "\\Events");
-            }
-
-            if (!Directory.Exists(path + "\\Data Modules"))
-            {
-                Directory.CreateDirectory(path + "\\Data Modules");
-            }
-
-            if (File.Exists(path + "\\Chapters\\conversations.json"))
-            {
-                var content = File.ReadAllText(path + "\\Chapters\\conversations.json");
+                var content = File.ReadAllText(Path.Combine(path, "Chapters", "conversations.json"));
                 Conversations = JsonConvert.DeserializeObject<List<Conversation>>(content);
             }
             else
@@ -174,9 +169,9 @@ namespace StoryDev
             }
 
             // Load Icon Sets
-            if (File.Exists(path + "\\iconsets.json"))
+            if (File.Exists(Path.Combine(path, "iconsets.json")))
             {
-                var content = File.ReadAllText(path + "\\iconsets.json");
+                var content = File.ReadAllText(Path.Combine(path, "iconsets.json"));
                 IconSetData = JsonConvert.DeserializeObject<IconSets>(content);
             }
             else
@@ -185,14 +180,25 @@ namespace StoryDev
             }
 
             // Load Custom Variables
-            if (File.Exists(path + "\\variables.json"))
+            if (File.Exists(Path.Combine(path, "variables.json")))
             {
-                var content = File.ReadAllText(path + "\\variables.json");
+                var content = File.ReadAllText(Path.Combine(path, "variables.json"));
                 Variables = JsonConvert.DeserializeObject<List<Variable>>(content);
             }
             else
             {
                 Variables = new List<Variable>();
+            }
+
+            var projectDataPath = Path.Combine(path, "data.json");
+            if (!File.Exists(projectDataPath))
+            {
+                CurrentProject = new Project();
+            }
+            else
+            {
+                var content = File.ReadAllText(projectDataPath);
+                CurrentProject = JsonConvert.DeserializeObject<Project>(content);
             }
         }
 
@@ -202,10 +208,8 @@ namespace StoryDev
 
         public static void PushArray<T>(ref T[] arr, T obj)
         {
-            var temp = new T[arr.Length + 1];
-            for (int i = 0; i < arr.Length; i++) temp[i] = arr[i];
-            temp[arr.Length] = obj;
-            arr = temp;
+            Array.Resize(ref arr, arr.Length);
+            arr[arr.Length - 1] = obj;
         }
 
     }
